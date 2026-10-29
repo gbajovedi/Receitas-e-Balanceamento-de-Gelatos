@@ -69,20 +69,20 @@ export const ThemeToggle: React.FC = () => {
       role="group"
       aria-label="Controle de Tema: Modo Escuro, Automático e Modo Claro"
     >
-      {/* 1. Esquerda: Modo Escuro (Ícone de Lua) */}
+      {/* 1. Esquerda: Modo Escuro (Ícone de Lua ampliado) */}
       <button
         type="button"
         onClick={() => handleSelectMode('dark')}
-        className={`h-8 px-2.5 sm:px-3 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
+        className={`h-8 w-8 sm:w-9 rounded-lg transition-all flex items-center justify-center ${
           themeMode === 'dark'
-            ? 'bg-amber-500 text-slate-950 font-black shadow-md shadow-amber-500/20 scale-[1.02]'
+            ? 'bg-amber-500 text-slate-950 shadow-md shadow-amber-500/20 scale-[1.03]'
             : 'theme-switch-inactive text-slate-400 hover:text-white hover:bg-slate-700/50'
         }`}
         title="Modo Escuro (Fixo)"
+        aria-label="Ativar Modo Escuro"
         aria-pressed={themeMode === 'dark'}
       >
-        <Moon className="w-3.5 h-3.5 shrink-0" />
-        <span className="hidden sm:inline text-[11px]">Escuro</span>
+        <Moon className="w-5 h-5 shrink-0" />
       </button>
 
       {/* 2. Centro: Automático (Padrão do Sistema Android, iOS, Windows, Mac) */}
@@ -91,30 +91,31 @@ export const ThemeToggle: React.FC = () => {
         onClick={() => handleSelectMode('auto')}
         className={`h-8 px-2.5 sm:px-3 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
           themeMode === 'auto'
-            ? 'bg-amber-500 text-slate-950 font-black shadow-md shadow-amber-500/20 scale-[1.02]'
+            ? 'bg-amber-500 text-slate-950 font-black shadow-md shadow-amber-500/20 scale-[1.03]'
             : 'theme-switch-inactive text-slate-400 hover:text-white hover:bg-slate-700/50'
         }`}
         title={autoTooltip}
+        aria-label={autoTooltip}
         aria-pressed={themeMode === 'auto'}
       >
-        <Laptop className="w-3.5 h-3.5 shrink-0" />
+        <Laptop className="w-4 h-4 shrink-0" />
         <span className="text-[11px] font-bold">Auto</span>
       </button>
 
-      {/* 3. Direita: Modo Claro (Ícone de Sol) */}
+      {/* 3. Direita: Modo Claro (Ícone de Sol ampliado) */}
       <button
         type="button"
         onClick={() => handleSelectMode('light')}
-        className={`h-8 px-2.5 sm:px-3 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
+        className={`h-8 w-8 sm:w-9 rounded-lg transition-all flex items-center justify-center ${
           themeMode === 'light'
-            ? 'bg-amber-500 text-slate-950 font-black shadow-md shadow-amber-500/20 scale-[1.02]'
+            ? 'bg-amber-500 text-slate-950 shadow-md shadow-amber-500/20 scale-[1.03]'
             : 'theme-switch-inactive text-slate-400 hover:text-white hover:bg-slate-700/50'
         }`}
         title="Modo Claro (Fixo)"
+        aria-label="Ativar Modo Claro"
         aria-pressed={themeMode === 'light'}
       >
-        <Sun className="w-3.5 h-3.5 shrink-0" />
-        <span className="hidden sm:inline text-[11px]">Claro</span>
+        <Sun className="w-5 h-5 shrink-0" />
       </button>
     </div>
   );
