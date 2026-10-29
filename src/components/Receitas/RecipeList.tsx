@@ -1,7 +1,8 @@
 import React, { useState, useMemo } from 'react';
 import { Recipe } from '../../types/gelato';
-import { Search, Calculator, Plus, Trash2, BookOpen } from 'lucide-react';
+import { Search, Calculator, Plus, Trash2, BookOpen, Eye } from 'lucide-react';
 import { db } from '../../db/database';
+import { RecipeViewerModal } from './RecipeViewerModal';
 
 interface RecipeListProps {
   recipes: Recipe[];
@@ -12,6 +13,7 @@ interface RecipeListProps {
 export const RecipeList: React.FC<RecipeListProps> = ({ recipes, onSelectRecipe, onRefresh }) => {
   const [search, setSearch] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('Todas');
+  const [viewingRecipe, setViewingRecipe] = useState<Recipe | null>(null);
 
   const categories = useMemo(() => {
     const set = new Set<string>();
@@ -50,7 +52,7 @@ export const RecipeList: React.FC<RecipeListProps> = ({ recipes, onSelectRecipe,
               <span>Catálogo & Livro de Receitas</span>
             </h2>
             <p className="text-xs sm:text-sm text-slate-300 mt-0.5">
-              {recipes.length} formulações cadastradas da alta gelateria artesanal italiana e moderna.
+              Toque em qualquer receita para abrir a <strong>Ficha de Produção (Modo Cozinha)</strong> com ajuste de batelada.
             </p>
           </div>
 
@@ -107,7 +109,8 @@ export const RecipeList: React.FC<RecipeListProps> = ({ recipes, onSelectRecipe,
           return (
             <div
               key={recipe.id}
-              className="bg-slate-800/80 hover:bg-slate-800 rounded-2xl border border-slate-700/80 p-5 shadow-lg hover:border-amber-500/50 transition-all flex flex-col justify-between group hover:shadow-amber-500/5"
+              className="bg-slate-800/80 hover:bg-slate-800 rounded-2xl border border-slate-700/80 p-5 shadow-lg hover:border-amber-500/50 transition-all flex flex-col justify-between group hover:shadow-amber-500/5 cursor-pointer"
+              onClick={() => setViewingRecipe(recipe)}
             >
               <div className="space-y-3.5">
                 <div className="flex items-start justify-between gap-2">
@@ -128,7 +131,7 @@ export const RecipeList: React.FC<RecipeListProps> = ({ recipes, onSelectRecipe,
                 {/* Ingredients snippet */}
                 <div className="space-y-1">
                   <span className="text-xs uppercase font-bold text-slate-400 tracking-wider">
-                    Insumos Principais:
+                    Insumos ({recipe.ingredients?.length ?? 0}):
                   </span>
                   <div className="text-xs sm:text-sm text-slate-300 line-clamp-2 leading-relaxed">
                     {recipe.ingredients && recipe.ingredients.map(i => i.name).join(', ')}
@@ -137,19 +140,35 @@ export const RecipeList: React.FC<RecipeListProps> = ({ recipes, onSelectRecipe,
 
                 <div className="flex items-center justify-between text-xs sm:text-sm text-slate-400 font-mono pt-3 border-t border-slate-700/60 font-medium">
                   <span>Peso base: <strong className="text-slate-200">{Math.round(totalWeight)} g</strong></span>
-                  <span>{recipe.ingredients ? recipe.ingredients.length : 0} insumos</span>
+                  <span className="text-amber-400/90 font-bold group-hover:underline flex items-center gap-1">
+                    <Eye className="w-3.5 h-3.5" />
+                    Examinar receita
+                  </span>
                 </div>
               </div>
 
               {/* Card Footer Actions */}
-              <div className="flex items-center gap-2 pt-4 mt-3 border-t border-slate-700/60">
+              <div
+                className="flex items-center gap-2 pt-4 mt-3 border-t border-slate-700/60"
+                onClick={e => e.stopPropagation()}
+              >
+                <button
+                  type="button"
+                  onClick={() => setViewingRecipe(recipe)}
+                  className="flex-1 py-2.5 bg-slate-900 hover:bg-slate-750 text-slate-200 hover:text-white border border-slate-700 font-bold text-xs sm:text-sm rounded-xl transition-all flex items-center justify-center gap-1.5"
+                >
+                  <Eye className="w-4 h-4 text-amber-400" />
+                  <span>Ver Ficha</span>
+                </button>
+
                 <button
                   type="button"
                   onClick={() => onSelectRecipe(recipe.id)}
-                  className="flex-1 py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs sm:text-sm rounded-xl transition-all flex items-center justify-center gap-2 shadow-md shadow-amber-500/10 active:scale-95"
+                  className="flex-1 py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs sm:text-sm rounded-xl transition-all flex items-center justify-center gap-1.5 shadow-md shadow-amber-500/10 active:scale-95"
+                  title="Carregar esta receita na calculadora de balanceamento"
                 >
                   <Calculator className="w-4 h-4" />
-                  <span>Carregar na Calculadora</span>
+                  <span>Balancear</span>
                 </button>
 
                 {recipe.isCustom && (
@@ -173,6 +192,14 @@ export const RecipeList: React.FC<RecipeListProps> = ({ recipes, onSelectRecipe,
           Nenhuma receita encontrada para os filtros selecionados.
         </div>
       )}
+
+      {/* Full-Screen Kitchen Mode Viewer Modal */}
+      <RecipeViewerModal
+        recipe={viewingRecipe}
+        isOpen={!!viewingRecipe}
+        onClose={() => setViewingRecipe(null)}
+        onOpenInCalculator={onSelectRecipe}
+      />
     </div>
   );
 };

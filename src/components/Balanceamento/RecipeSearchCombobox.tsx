@@ -217,3 +217,4 @@ export const RecipeSearchCombobox: React.FC<RecipeSearchComboboxProps> = ({
     </div>
   );
 };
+
