@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { Recipe } from '../../types/gelato';
-import { Search, Calculator, Plus, Trash2, BookOpen, Eye } from 'lucide-react';
+import { Search, Calculator, Plus, Trash2, BookOpen, Eye, X } from 'lucide-react';
 import { db } from '../../db/database';
 import { RecipeViewerModal } from './RecipeViewerModal';
 
@@ -66,27 +66,37 @@ export const RecipeList: React.FC<RecipeListProps> = ({ recipes, onSelectRecipe,
           </button>
         </div>
 
-        <div className="flex flex-col md:flex-row gap-3">
+        <div className="space-y-3">
           {/* Search bar */}
-          <div className="relative flex-1">
-            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5" />
+          <div className="relative w-full">
+            <Search className="w-5 h-5 text-amber-400 absolute left-3.5 top-3.5" />
             <input
               type="text"
               value={search}
               onChange={e => setSearch(e.target.value)}
               placeholder="Buscar por sabor ou insumo (ex: pistache, chocolate, maracujá, manga)..."
-              className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-10 pr-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 font-medium"
+              className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-11 pr-10 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 font-semibold shadow-inner"
             />
+            {search && (
+              <button
+                type="button"
+                onClick={() => setSearch('')}
+                className="absolute right-3 top-3 p-1 text-slate-400 hover:text-white rounded-lg transition-colors"
+                title="Limpar busca"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            )}
           </div>
 
           {/* Category filter pills */}
-          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 max-w-full">
+          <div className="flex items-center gap-2 overflow-x-auto pb-1 max-w-full">
             {categories.map(cat => (
               <button
                 key={cat}
                 type="button"
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all ${
+                className={`px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap shrink-0 transition-all ${
                   selectedCategory === cat
                     ? 'bg-amber-500 text-slate-950 shadow-md shadow-amber-500/20'
                     : 'bg-slate-900 border border-slate-700 text-slate-300 hover:text-white hover:border-slate-600'
