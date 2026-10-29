@@ -391,3 +391,4 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
     </div>
   );
 };
+

@@ -17,3 +17,4 @@ export const AllergensBadge: React.FC<AllergensBadgeProps> = ({ allergensLabel }
     </div>
   );
 };
+

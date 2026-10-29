@@ -132,3 +132,4 @@ export interface PricingSettings {
   targetProfitMarginPercent: number;
   cardFeePercent: number;
 }
+
