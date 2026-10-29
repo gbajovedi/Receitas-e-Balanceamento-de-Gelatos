@@ -4,17 +4,32 @@ export const STORAGE_KEY = 'gelato_pricing_params_v1';
 export const PRICING_UPDATED_EVENT = 'gelato-pricing-updated';
 
 export interface PricingParams {
+  // 1. Ocupação & Utilidades
   rent: number;
   electricity: number;
   water: number;
+  telecom: number;
+
+  // 2. Pessoal & Gestão
   payroll: number;
+  ownerSalary: number; // Pró-labore do mestre gelatiere / sócios
   accounting: number;
   software: number;
-  secPackaging: number;
-  marketing: number;
-  telecom: number;
-  fixedTaxes: number;
+
+  // 3. Refrigeração, Máquinas & Sanitização
+  equipmentMaintenance: number; // Manutenção preventiva de refrigeração e compressores
+  equipmentDepreciation: number; // Depreciação / Fundo de reposição de maquinário
+  cleaningHygiene: number; // Higiene industrial, sanitizantes CIP e químicos
+  secPackaging: number; // Embalagens secundárias (guardanapos, sacolas, colheres)
+
+  // 4. Tributos, Licenças, Marketing & Vendas
+  fixedTaxes: number; // Impostos fixos / MEI (DAS)
+  licensesAndPermits: number; // Alvarás, RT nutricionista, bombeiros, laudos e dedetização
+  commercialInsurance: number; // Seguros patrimoniais e perda de estoque refrigerado
   posRentalMonthly: number; // Aluguel da maquininha (R$/mês)
+  marketing: number; // Marketing e redes sociais
+
+  // Produção e Pote
   monthlyUnits: number;
   tubWeightGrams: number;
   tubPackCost: number;
@@ -72,17 +87,31 @@ export const CIELO_PRESETS = {
 } as const;
 
 export const DEFAULT_PRICING_PARAMS: PricingParams = {
+  // 1. Ocupação & Utilidades
   rent: 0,
   electricity: 100,
   water: 150,
+  telecom: 120,
+
+  // 2. Pessoal & Gestão
   payroll: 2000,
+  ownerSalary: 0,
   accounting: 350,
   software: 100,
+
+  // 3. Refrigeração, Máquinas & Sanitização
+  equipmentMaintenance: 250,
+  equipmentDepreciation: 350,
+  cleaningHygiene: 150,
   secPackaging: 200,
-  marketing: 500,
-  telecom: 120,
+
+  // 4. Tributos, Licenças, Marketing & Vendas
   fixedTaxes: 75,
+  licensesAndPermits: 100,
+  commercialInsurance: 0,
   posRentalMonthly: 0,
+  marketing: 500,
+
   monthlyUnits: 4000,
   tubWeightGrams: 500,
   tubPackCost: 1.50,
@@ -103,6 +132,28 @@ export const DEFAULT_PRICING_PARAMS: PricingParams = {
   salesTaxPercent: 0,
   sampleCaldaCostKg: 15.00
 };
+
+export function calculateTotalFixedCosts(params: PricingParams): number {
+  return (
+    (params.rent || 0) +
+    (params.electricity || 0) +
+    (params.water || 0) +
+    (params.telecom || 0) +
+    (params.payroll || 0) +
+    (params.ownerSalary || 0) +
+    (params.accounting || 0) +
+    (params.software || 0) +
+    (params.equipmentMaintenance || 0) +
+    (params.equipmentDepreciation || 0) +
+    (params.cleaningHygiene || 0) +
+    (params.secPackaging || 0) +
+    (params.fixedTaxes || 0) +
+    (params.licensesAndPermits || 0) +
+    (params.commercialInsurance || 0) +
+    (params.posRentalMonthly || 0) +
+    (params.marketing || 0)
+  );
+}
 
 export function calculateEffectiveCardFee(params: PricingParams): number {
   if (!params.useSalesMix) {
@@ -145,19 +196,7 @@ export function saveStoredPricingParams(params: PricingParams): void {
 }
 
 export function getPricingSettings(params: PricingParams = getStoredPricingParams()): PricingSettings {
-  const totalFixedCosts =
-    params.rent +
-    params.electricity +
-    params.water +
-    params.payroll +
-    params.accounting +
-    params.software +
-    params.secPackaging +
-    params.marketing +
-    params.telecom +
-    params.fixedTaxes +
-    (params.posRentalMonthly || 0);
-
+  const totalFixedCosts = calculateTotalFixedCosts(params);
   const overheadPerUnit = params.monthlyUnits > 0 ? totalFixedCosts / params.monthlyUnits : 0;
   const effectiveCardFee = calculateEffectiveCardFee(params);
 

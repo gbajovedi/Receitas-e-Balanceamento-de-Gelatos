@@ -7,7 +7,11 @@ import {
   Receipt,
   PieChart,
   Sparkles,
-  Zap
+  Zap,
+  Building2,
+  Users,
+  Snowflake,
+  ShieldCheck
 } from 'lucide-react';
 import {
   getStoredPricingParams,
@@ -21,19 +25,40 @@ import {
 export const PricingCalculator: React.FC = () => {
   const initial = getStoredPricingParams();
 
-  // Overhead parameters (Custos Fixos)
+  // 1. Ocupação & Utilidades
   const [rent, setRent] = useState<number>(initial.rent);
   const [electricity, setElectricity] = useState<number>(initial.electricity);
   const [water, setWater] = useState<number>(initial.water);
+  const [telecom, setTelecom] = useState<number>(initial.telecom);
+
+  // 2. Pessoal & Gestão
   const [payroll, setPayroll] = useState<number>(initial.payroll);
+  const [ownerSalary, setOwnerSalary] = useState<number>(initial.ownerSalary ?? 0);
   const [accounting, setAccounting] = useState<number>(initial.accounting);
   const [software, setSoftware] = useState<number>(initial.software);
-  const [secPackaging, setSecPackaging] = useState<number>(initial.secPackaging);
-  const [marketing, setMarketing] = useState<number>(initial.marketing);
-  const [telecom, setTelecom] = useState<number>(initial.telecom);
-  const [fixedTaxes, setFixedTaxes] = useState<number>(initial.fixedTaxes);
-  const [posRentalMonthly, setPosRentalMonthly] = useState<number>(initial.posRentalMonthly ?? 0);
 
+  // 3. Refrigeração, Máquinas & Sanitização
+  const [equipmentMaintenance, setEquipmentMaintenance] = useState<number>(
+    initial.equipmentMaintenance ?? 250
+  );
+  const [equipmentDepreciation, setEquipmentDepreciation] = useState<number>(
+    initial.equipmentDepreciation ?? 350
+  );
+  const [cleaningHygiene, setCleaningHygiene] = useState<number>(initial.cleaningHygiene ?? 150);
+  const [secPackaging, setSecPackaging] = useState<number>(initial.secPackaging);
+
+  // 4. Tributos, Licenças & Proteção
+  const [fixedTaxes, setFixedTaxes] = useState<number>(initial.fixedTaxes);
+  const [licensesAndPermits, setLicensesAndPermits] = useState<number>(
+    initial.licensesAndPermits ?? 100
+  );
+  const [commercialInsurance, setCommercialInsurance] = useState<number>(
+    initial.commercialInsurance ?? 0
+  );
+  const [posRentalMonthly, setPosRentalMonthly] = useState<number>(initial.posRentalMonthly ?? 0);
+  const [marketing, setMarketing] = useState<number>(initial.marketing);
+
+  // Produção e Pote
   const [monthlyUnits, setMonthlyUnits] = useState<number>(initial.monthlyUnits);
   const [tubWeightGrams, setTubWeightGrams] = useState<number>(initial.tubWeightGrams);
   const [tubPackCost, setTubPackCost] = useState<number>(initial.tubPackCost);
@@ -62,19 +87,25 @@ export const PricingCalculator: React.FC = () => {
   // Taxa manual (modo simples)
   const [cardFeeManual, setCardFeeManual] = useState<number>(initial.cardFee ?? 2.03);
 
-  // Calcular taxa efetiva ponderada do mix atual
+  // Objeto unificado para persistência e cálculos
   const currentParams: PricingParams = {
     rent,
     electricity,
     water,
+    telecom,
     payroll,
+    ownerSalary,
     accounting,
     software,
+    equipmentMaintenance,
+    equipmentDepreciation,
+    cleaningHygiene,
     secPackaging,
-    marketing,
-    telecom,
     fixedTaxes,
+    licensesAndPermits,
+    commercialInsurance,
     posRentalMonthly,
+    marketing,
     monthlyUnits,
     tubWeightGrams,
     tubPackCost,
@@ -97,21 +128,27 @@ export const PricingCalculator: React.FC = () => {
   const effectiveCardFee = calculateEffectiveCardFee(currentParams);
   const totalMixSum = mixPix + mixDebit + mixCreditSight + mixCreditInstallment;
 
-  // Persistência automática para o localStorage
+  // Persistência automática no localStorage
   useEffect(() => {
     saveStoredPricingParams(currentParams);
   }, [
     rent,
     electricity,
     water,
+    telecom,
     payroll,
+    ownerSalary,
     accounting,
     software,
+    equipmentMaintenance,
+    equipmentDepreciation,
+    cleaningHygiene,
     secPackaging,
-    marketing,
-    telecom,
     fixedTaxes,
+    licensesAndPermits,
+    commercialInsurance,
     posRentalMonthly,
+    marketing,
     monthlyUnits,
     tubWeightGrams,
     tubPackCost,
@@ -143,19 +180,25 @@ export const PricingCalculator: React.FC = () => {
   };
 
   const handleResetToDefaults = () => {
-    if (window.confirm('Deseja restaurar todos os valores para os padrões da planilha e da Cielo?')) {
+    if (window.confirm('Deseja restaurar todos os custos fixos para os padrões recomendados da gelateria?')) {
       const def = DEFAULT_PRICING_PARAMS;
       setRent(def.rent);
       setElectricity(def.electricity);
       setWater(def.water);
+      setTelecom(def.telecom);
       setPayroll(def.payroll);
+      setOwnerSalary(def.ownerSalary);
       setAccounting(def.accounting);
       setSoftware(def.software);
+      setEquipmentMaintenance(def.equipmentMaintenance);
+      setEquipmentDepreciation(def.equipmentDepreciation);
+      setCleaningHygiene(def.cleaningHygiene);
       setSecPackaging(def.secPackaging);
-      setMarketing(def.marketing);
-      setTelecom(def.telecom);
       setFixedTaxes(def.fixedTaxes);
+      setLicensesAndPermits(def.licensesAndPermits);
+      setCommercialInsurance(def.commercialInsurance);
       setPosRentalMonthly(def.posRentalMonthly);
+      setMarketing(def.marketing);
       setMonthlyUnits(def.monthlyUnits);
       setTubWeightGrams(def.tubWeightGrams);
       setTubPackCost(def.tubPackCost);
@@ -177,20 +220,13 @@ export const PricingCalculator: React.FC = () => {
     }
   };
 
-  // Soma dos Custos Fixos (inclui aluguel maquininha e DAS MEI)
-  const totalFixedCosts =
-    rent +
-    electricity +
-    water +
-    payroll +
-    accounting +
-    software +
-    secPackaging +
-    marketing +
-    telecom +
-    fixedTaxes +
-    posRentalMonthly;
+  // Subtotais por Grupo Lógico
+  const subtotalOccupancy = rent + electricity + water + telecom;
+  const subtotalPersonnel = payroll + ownerSalary + accounting + software;
+  const subtotalEquipment = equipmentMaintenance + equipmentDepreciation + cleaningHygiene + secPackaging;
+  const subtotalLegal = fixedTaxes + licensesAndPermits + commercialInsurance + posRentalMonthly + marketing;
 
+  const totalFixedCosts = subtotalOccupancy + subtotalPersonnel + subtotalEquipment + subtotalLegal;
   const overheadPerUnit = monthlyUnits > 0 ? totalFixedCosts / monthlyUnits : 0;
 
   // Cálculos do Pote e Markup
@@ -226,13 +262,13 @@ export const PricingCalculator: React.FC = () => {
       badge: 'bg-cyan-500/20 text-cyan-300'
     },
     {
-      name: 'Crédito à Vista',
+      name: 'Crédito 1x',
       rate: cardFeeCreditSight,
       color: 'border-amber-500/40 text-amber-300 bg-amber-500/10',
       badge: 'bg-amber-500/20 text-amber-300'
     },
     {
-      name: 'Parcelado (2x-6x)',
+      name: 'Parcelado',
       rate: cardFeeCreditInstallment,
       color: 'border-rose-500/40 text-rose-300 bg-rose-500/10',
       badge: 'bg-rose-500/20 text-rose-300'
@@ -262,14 +298,14 @@ export const PricingCalculator: React.FC = () => {
             <span>Gestão Financeira & Engenharia de Preços</span>
           </h2>
           <p className="text-xs sm:text-sm text-slate-300 mt-0.5">
-            Simulador de rateio, aluguel de maquininha, taxas Cielo (Pix, Débito e Crédito) e formação de preço.
+            Simulador de rateio fixo avançado para gelaterias, taxas Cielo (Pix/Débito/Crédito) e markup de venda.
           </p>
         </div>
         <button
           type="button"
           onClick={handleResetToDefaults}
           className="self-start sm:self-auto px-3.5 py-2 bg-slate-900 hover:bg-slate-750 border border-slate-700 text-slate-300 hover:text-white rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all active:scale-95 shrink-0 shadow-sm"
-          title="Restaurar valores iniciais da planilha e da Cielo"
+          title="Restaurar valores iniciais recomendados"
         >
           <RotateCcw className="w-3.5 h-3.5 text-amber-400" />
           <span>Restaurar Padrões</span>
@@ -277,7 +313,7 @@ export const PricingCalculator: React.FC = () => {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        {/* Left Column: Fixed Costs Breakdown (Inclui MEI e Aluguel Maquininha) */}
+        {/* Left Column: Custos Fixos Mensais com 4 Grupos Temáticos */}
         <div className="lg:col-span-6 bg-slate-800/90 rounded-2xl border border-slate-700/80 p-5 shadow-xl space-y-4">
           <div className="flex items-center justify-between border-b border-slate-700 pb-3">
             <div className="flex items-center gap-2">
@@ -289,138 +325,255 @@ export const PricingCalculator: React.FC = () => {
             </span>
           </div>
 
-          <div className="grid grid-cols-2 gap-3 text-xs">
-            <div>
-              <label className="text-slate-300 font-semibold block mb-1">Aluguel do Espaço:</label>
-              <input
-                type="number"
-                value={rent || ''}
-                onChange={e => setRent(parseFloat(e.target.value) || 0)}
-                className="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-sm text-white font-mono font-bold"
-              />
-            </div>
-            <div>
-              <label className="text-slate-300 font-semibold block mb-1">Energia Elétrica:</label>
-              <input
-                type="number"
-                value={electricity || ''}
-                onChange={e => setElectricity(parseFloat(e.target.value) || 0)}
-                className="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-sm text-white font-mono font-bold"
-              />
-            </div>
-            <div>
-              <label className="text-slate-300 font-semibold block mb-1">Água:</label>
-              <input
-                type="number"
-                value={water || ''}
-                onChange={e => setWater(parseFloat(e.target.value) || 0)}
-                className="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-sm text-white font-mono font-bold"
-              />
-            </div>
-            <div>
-              <label className="text-slate-300 font-semibold block mb-1">Folha de Pagamento:</label>
-              <input
-                type="number"
-                value={payroll || ''}
-                onChange={e => setPayroll(parseFloat(e.target.value) || 0)}
-                className="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-sm text-white font-mono font-bold"
-              />
-            </div>
-            <div>
-              <label className="text-slate-300 font-semibold block mb-1">Contabilidade:</label>
-              <input
-                type="number"
-                value={accounting || ''}
-                onChange={e => setAccounting(parseFloat(e.target.value) || 0)}
-                className="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-sm text-white font-mono font-bold"
-              />
-            </div>
-            <div>
-              <label className="text-slate-300 font-semibold block mb-1">Software & Sistemas:</label>
-              <input
-                type="number"
-                value={software || ''}
-                onChange={e => setSoftware(parseFloat(e.target.value) || 0)}
-                className="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-sm text-white font-mono font-bold"
-              />
-            </div>
-            <div>
-              <label className="text-slate-300 font-semibold block mb-1">Marketing & Redes:</label>
-              <input
-                type="number"
-                value={marketing || ''}
-                onChange={e => setMarketing(parseFloat(e.target.value) || 0)}
-                className="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-sm text-white font-mono font-bold"
-              />
-            </div>
-            <div>
-              <label className="text-slate-300 font-semibold block mb-1">Embalagens Secundárias:</label>
-              <input
-                type="number"
-                value={secPackaging || ''}
-                onChange={e => setSecPackaging(parseFloat(e.target.value) || 0)}
-                className="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-sm text-white font-mono font-bold"
-              />
-            </div>
-            <div>
-              <label className="text-slate-300 font-semibold block mb-1">Internet & Telecom:</label>
-              <input
-                type="number"
-                value={telecom || ''}
-                onChange={e => setTelecom(parseFloat(e.target.value) || 0)}
-                className="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-sm text-white font-mono font-bold"
-              />
-            </div>
-
-            {/* Impostos Fixos (DAS MEI) */}
-            <div className="bg-slate-900/90 p-2 rounded-lg border border-amber-500/30">
-              <label className="text-amber-300 font-bold block mb-1">
-                🏛️ Impostos Fixos / MEI:
-              </label>
-              <input
-                type="number"
-                step="5"
-                value={fixedTaxes || ''}
-                onChange={e => setFixedTaxes(parseFloat(e.target.value) || 0)}
-                className="w-full bg-slate-950 border border-amber-500/50 rounded-lg p-1.5 text-sm text-white font-mono font-bold"
-                placeholder="Ex: 75.00"
-              />
-              <span className="text-[10px] text-slate-400 mt-0.5 block leading-tight">
-                Taxa mensal fixa (guia DAS-MEI)
+          {/* 1. GRUPO: OCUPAÇÃO & UTILIDADES */}
+          <div className="bg-slate-900/80 rounded-xl p-3 border border-slate-700/80 space-y-2.5">
+            <div className="flex items-center justify-between border-b border-slate-800 pb-1.5">
+              <span className="text-xs font-bold text-slate-200 flex items-center gap-1.5">
+                <Building2 className="w-3.5 h-3.5 text-amber-400" />
+                1. Ocupação & Utilidades
+              </span>
+              <span className="text-xs font-mono font-semibold text-slate-400">
+                R$ {subtotalOccupancy.toFixed(2)}
               </span>
             </div>
-
-            {/* Aluguel Maquininha Cielo */}
-            <div className="col-span-2 bg-slate-900/90 p-2.5 rounded-xl border border-emerald-500/30 flex items-center justify-between gap-3">
+            <div className="grid grid-cols-2 gap-2.5 text-xs">
               <div>
-                <label className="text-emerald-300 font-bold block text-xs flex items-center gap-1.5">
-                  <CreditCard className="w-3.5 h-3.5" />
-                  <span>Aluguel da Maquininha (R$/mês):</span>
-                </label>
-                <span className="text-[11px] text-slate-400 block">
-                  Cielo: R$ 0 com isenção por faturamento ou máquina comprada; padrão ~R$ 99,90.
-                </span>
-              </div>
-              <div className="flex items-center gap-2 shrink-0">
+                <label className="text-slate-300 font-semibold block mb-0.5">Aluguel do Espaço:</label>
                 <input
                   type="number"
-                  step="10"
-                  value={posRentalMonthly || ''}
-                  onChange={e => setPosRentalMonthly(parseFloat(e.target.value) || 0)}
-                  className="w-24 bg-slate-950 border border-emerald-500/50 rounded-lg p-1.5 text-sm text-white font-mono font-bold text-right"
-                  placeholder="0.00"
+                  value={rent || ''}
+                  onChange={e => setRent(parseFloat(e.target.value) || 0)}
+                  className="w-full bg-slate-950 border border-slate-700 rounded-lg p-1.5 text-xs text-white font-mono font-bold"
                 />
-                <button
-                  type="button"
-                  onClick={() => setPosRentalMonthly(posRentalMonthly > 0 ? 0 : 99.9)}
-                  className="text-[10px] px-2 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 rounded-lg font-bold"
-                >
-                  {posRentalMonthly > 0 ? 'Zerar (Isento)' : 'R$ 99,90'}
-                </button>
+              </div>
+              <div>
+                <label className="text-slate-300 font-semibold block mb-0.5">Energia Elétrica (Freezers 24h):</label>
+                <input
+                  type="number"
+                  value={electricity || ''}
+                  onChange={e => setElectricity(parseFloat(e.target.value) || 0)}
+                  className="w-full bg-slate-950 border border-slate-700 rounded-lg p-1.5 text-xs text-white font-mono font-bold"
+                />
+              </div>
+              <div>
+                <label className="text-slate-300 font-semibold block mb-0.5">Água & Esgoto:</label>
+                <input
+                  type="number"
+                  value={water || ''}
+                  onChange={e => setWater(parseFloat(e.target.value) || 0)}
+                  className="w-full bg-slate-950 border border-slate-700 rounded-lg p-1.5 text-xs text-white font-mono font-bold"
+                />
+              </div>
+              <div>
+                <label className="text-slate-300 font-semibold block mb-0.5">Internet & Telecom:</label>
+                <input
+                  type="number"
+                  value={telecom || ''}
+                  onChange={e => setTelecom(parseFloat(e.target.value) || 0)}
+                  className="w-full bg-slate-950 border border-slate-700 rounded-lg p-1.5 text-xs text-white font-mono font-bold"
+                />
               </div>
             </div>
           </div>
 
+          {/* 2. GRUPO: PESSOAL & GESTÃO */}
+          <div className="bg-slate-900/80 rounded-xl p-3 border border-slate-700/80 space-y-2.5">
+            <div className="flex items-center justify-between border-b border-slate-800 pb-1.5">
+              <span className="text-xs font-bold text-slate-200 flex items-center gap-1.5">
+                <Users className="w-3.5 h-3.5 text-cyan-400" />
+                2. Pessoal & Gestão
+              </span>
+              <span className="text-xs font-mono font-semibold text-slate-400">
+                R$ {subtotalPersonnel.toFixed(2)}
+              </span>
+            </div>
+            <div className="grid grid-cols-2 gap-2.5 text-xs">
+              <div>
+                <label className="text-slate-300 font-semibold block mb-0.5">Folha da Equipe (CLT/Extra):</label>
+                <input
+                  type="number"
+                  value={payroll || ''}
+                  onChange={e => setPayroll(parseFloat(e.target.value) || 0)}
+                  className="w-full bg-slate-950 border border-slate-700 rounded-lg p-1.5 text-xs text-white font-mono font-bold"
+                />
+              </div>
+              <div>
+                <div className="flex justify-between items-center mb-0.5">
+                  <label className="text-cyan-300 font-bold block">Pró-Labore (Gelatiere):</label>
+                  <span className="text-[9px] text-cyan-400 font-semibold bg-cyan-950/60 px-1 rounded">Dono</span>
+                </div>
+                <input
+                  type="number"
+                  value={ownerSalary || ''}
+                  onChange={e => setOwnerSalary(parseFloat(e.target.value) || 0)}
+                  className="w-full bg-slate-950 border border-cyan-500/50 rounded-lg p-1.5 text-xs text-white font-mono font-bold"
+                  placeholder="Ex: 2500.00"
+                  title="Salário mensal retirado pelo dono/mestre gelatiere"
+                />
+              </div>
+              <div>
+                <label className="text-slate-300 font-semibold block mb-0.5">Contabilidade & Honorários:</label>
+                <input
+                  type="number"
+                  value={accounting || ''}
+                  onChange={e => setAccounting(parseFloat(e.target.value) || 0)}
+                  className="w-full bg-slate-950 border border-slate-700 rounded-lg p-1.5 text-xs text-white font-mono font-bold"
+                />
+              </div>
+              <div>
+                <label className="text-slate-300 font-semibold block mb-0.5">Software, PDV & Cardápio:</label>
+                <input
+                  type="number"
+                  value={software || ''}
+                  onChange={e => setSoftware(parseFloat(e.target.value) || 0)}
+                  className="w-full bg-slate-950 border border-slate-700 rounded-lg p-1.5 text-xs text-white font-mono font-bold"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* 3. GRUPO: REFRIGERAÇÃO, MÁQUINAS & SANITIZAÇÃO */}
+          <div className="bg-slate-900/80 rounded-xl p-3 border border-slate-700/80 space-y-2.5">
+            <div className="flex items-center justify-between border-b border-slate-800 pb-1.5">
+              <span className="text-xs font-bold text-slate-200 flex items-center gap-1.5">
+                <Snowflake className="w-3.5 h-3.5 text-emerald-400" />
+                3. Refrigeração, Máquinas & Sanitização
+              </span>
+              <span className="text-xs font-mono font-semibold text-slate-400">
+                R$ {subtotalEquipment.toFixed(2)}
+              </span>
+            </div>
+            <div className="grid grid-cols-2 gap-2.5 text-xs">
+              <div>
+                <label className="text-slate-300 font-semibold block mb-0.5" title="Manutenção preventiva de compressores, gás e filtros">
+                  Manutenção Refrigeração:
+                </label>
+                <input
+                  type="number"
+                  value={equipmentMaintenance || ''}
+                  onChange={e => setEquipmentMaintenance(parseFloat(e.target.value) || 0)}
+                  className="w-full bg-slate-950 border border-slate-700 rounded-lg p-1.5 text-xs text-white font-mono font-bold"
+                  placeholder="Ex: 250.00"
+                />
+              </div>
+              <div>
+                <label className="text-slate-300 font-semibold block mb-0.5" title="Fundo mensal para substituição futura de mantecadora e pasteurizador">
+                  Depreciação de Maquinário:
+                </label>
+                <input
+                  type="number"
+                  value={equipmentDepreciation || ''}
+                  onChange={e => setEquipmentDepreciation(parseFloat(e.target.value) || 0)}
+                  className="w-full bg-slate-950 border border-slate-700 rounded-lg p-1.5 text-xs text-white font-mono font-bold"
+                  placeholder="Ex: 350.00"
+                />
+              </div>
+              <div>
+                <label className="text-slate-300 font-semibold block mb-0.5" title="Químicos CIP, sanitizantes de pasteurizadora, álcool 70% e luvas">
+                  Higiene & Sanitizantes CIP:
+                </label>
+                <input
+                  type="number"
+                  value={cleaningHygiene || ''}
+                  onChange={e => setCleaningHygiene(parseFloat(e.target.value) || 0)}
+                  className="w-full bg-slate-950 border border-slate-700 rounded-lg p-1.5 text-xs text-white font-mono font-bold"
+                  placeholder="Ex: 150.00"
+                />
+              </div>
+              <div>
+                <label className="text-slate-300 font-semibold block mb-0.5" title="Sacolas, guardanapos, colherinhas descartáveis">
+                  Embalagens Secundárias:
+                </label>
+                <input
+                  type="number"
+                  value={secPackaging || ''}
+                  onChange={e => setSecPackaging(parseFloat(e.target.value) || 0)}
+                  className="w-full bg-slate-950 border border-slate-700 rounded-lg p-1.5 text-xs text-white font-mono font-bold"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* 4. GRUPO: TRIBUTOS, LICENÇAS & PROTEÇÃO */}
+          <div className="bg-slate-900/80 rounded-xl p-3 border border-slate-700/80 space-y-2.5">
+            <div className="flex items-center justify-between border-b border-slate-800 pb-1.5">
+              <span className="text-xs font-bold text-slate-200 flex items-center gap-1.5">
+                <ShieldCheck className="w-3.5 h-3.5 text-rose-400" />
+                4. Tributos, Licenças & Proteção
+              </span>
+              <span className="text-xs font-mono font-semibold text-slate-400">
+                R$ {subtotalLegal.toFixed(2)}
+              </span>
+            </div>
+            <div className="grid grid-cols-2 gap-2.5 text-xs">
+              <div>
+                <label className="text-amber-300 font-bold block mb-0.5">Impostos Fixos (DAS MEI):</label>
+                <input
+                  type="number"
+                  step="5"
+                  value={fixedTaxes || ''}
+                  onChange={e => setFixedTaxes(parseFloat(e.target.value) || 0)}
+                  className="w-full bg-slate-950 border border-amber-500/50 rounded-lg p-1.5 text-xs text-white font-mono font-bold"
+                  placeholder="Ex: 75.00"
+                />
+              </div>
+              <div>
+                <label className="text-slate-300 font-semibold block mb-0.5" title="Alvará, laudo dos bombeiros, dedetização trimestral rateada e RT">
+                  Alvarás, Laudos & RT:
+                </label>
+                <input
+                  type="number"
+                  value={licensesAndPermits || ''}
+                  onChange={e => setLicensesAndPermits(parseFloat(e.target.value) || 0)}
+                  className="w-full bg-slate-950 border border-slate-700 rounded-lg p-1.5 text-xs text-white font-mono font-bold"
+                  placeholder="Ex: 100.00"
+                />
+              </div>
+              <div>
+                <label className="text-slate-300 font-semibold block mb-0.5" title="Seguro contra queima de compressores e perda de caldas congeladas">
+                  Seguro / Perda de Estoque:
+                </label>
+                <input
+                  type="number"
+                  value={commercialInsurance || ''}
+                  onChange={e => setCommercialInsurance(parseFloat(e.target.value) || 0)}
+                  className="w-full bg-slate-950 border border-slate-700 rounded-lg p-1.5 text-xs text-white font-mono font-bold"
+                  placeholder="0.00"
+                />
+              </div>
+              <div>
+                <label className="text-slate-300 font-semibold block mb-0.5">Marketing & Redes Sociais:</label>
+                <input
+                  type="number"
+                  value={marketing || ''}
+                  onChange={e => setMarketing(parseFloat(e.target.value) || 0)}
+                  className="w-full bg-slate-950 border border-slate-700 rounded-lg p-1.5 text-xs text-white font-mono font-bold"
+                />
+              </div>
+              <div className="col-span-2 flex items-center justify-between pt-1 border-t border-slate-800">
+                <span className="text-slate-400 text-[11px]">Aluguel Maquininha (R$/mês):</span>
+                <div className="flex items-center gap-1.5">
+                  <input
+                    type="number"
+                    step="10"
+                    value={posRentalMonthly || ''}
+                    onChange={e => setPosRentalMonthly(parseFloat(e.target.value) || 0)}
+                    className="w-20 bg-slate-950 border border-slate-700 rounded p-1 text-xs text-white font-mono font-bold text-right"
+                    placeholder="0.00"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setPosRentalMonthly(posRentalMonthly > 0 ? 0 : 99.9)}
+                    className="text-[10px] px-1.5 py-0.5 bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 rounded font-semibold"
+                  >
+                    {posRentalMonthly > 0 ? 'Isento' : 'R$ 99,90'}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Volume de Produção & Rateio Unitário */}
           <div className="pt-3.5 border-t border-slate-700 flex items-center justify-between">
             <div>
               <label className="text-xs font-semibold text-slate-300 block">Produção / Venda Mensal (Unidades ou Potes):</label>
@@ -822,7 +975,7 @@ export const PricingCalculator: React.FC = () => {
                 <span className="font-mono font-bold">R$ {directCostPerTub.toFixed(2)}</span>
               </div>
               <div className="flex justify-between text-slate-300">
-                <span>Custo Fixo Rateado (Aluguel, Luz, MEI, Maquininha):</span>
+                <span>Custo Fixo Rateado (17 categorias):</span>
                 <span className="font-mono font-bold">R$ {overheadPerUnit.toFixed(2)}</span>
               </div>
               <div className="flex justify-between font-black text-white pt-2 border-t border-slate-800 text-base">
@@ -919,7 +1072,7 @@ export const PricingCalculator: React.FC = () => {
                 <strong className="text-emerald-300 font-mono">
                   R$ {(paymentScenarios[2].feeVal - paymentScenarios[0].feeVal).toFixed(2)}
                 </strong>{' '}
-                por pote em comparação com o cartão de crédito à vista. Você pode conceder esse valor como desconto à vista sem reduzir seu lucro planejado!
+                por pote em comparação com o cartão de crédito 1x. Você pode conceder esse valor como desconto à vista sem reduzir seu lucro planejado!
               </div>
             </div>
           </div>

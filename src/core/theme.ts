@@ -162,3 +162,4 @@ export function applyTheme(mode: ThemeMode = getStoredThemeMode()): 'dark' | 'li
 
   return effective;
 }
+
