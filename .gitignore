@@ -1,0 +1,28 @@
+# Excel temporary / lock files
+~$*.xlsx
+~$*.xls
+~$*.xlsm
+*.tmp
+
+# Operating System Files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+
+# IDE & Editors
+.vscode/
+.idea/
+*.swp
+*~
+
+# Environments & Dependencies (futuras implementações)
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+node_modules/
+dist/
+.env
+.env.local
