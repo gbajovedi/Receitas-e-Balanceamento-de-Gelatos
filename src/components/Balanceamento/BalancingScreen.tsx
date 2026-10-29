@@ -16,7 +16,8 @@ import {
   ChevronDown,
   Sparkles,
   DollarSign,
-  Layers
+  Layers,
+  ChefHat
 } from 'lucide-react';
 
 interface BalancingScreenProps {
@@ -155,11 +156,6 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
     setIsDirty(true);
   };
 
-  // Normalize batch to exactly 1000g
-  const handleNormalize1000g = () => {
-    handleApplyBatchScale(1000);
-  };
-
   // Save changes to current recipe in IndexedDB
   const handleUpdateExisting = async () => {
     if (selectedRecipeId === 'new') return;
@@ -215,18 +211,19 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
   return (
     <div className="space-y-6 max-w-7xl mx-auto pb-16">
       {/* Top Header Card */}
-      <div className="bg-slate-800/90 rounded-2xl border border-slate-700 p-5 shadow-xl">
+      <div className="bg-slate-800/95 rounded-2xl border border-slate-700/80 p-5 shadow-xl">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
           {/* Recipe Selection & Title */}
-          <div className="space-y-1.5 flex-1">
+          <div className="space-y-2 flex-1">
             <div className="flex items-center gap-2">
-              <span className="text-xs font-semibold px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/30 uppercase tracking-wider">
+              <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-amber-500/15 text-amber-300 border border-amber-500/40 uppercase tracking-wider flex items-center gap-1.5">
+                <ChefHat className="w-3.5 h-3.5" />
                 Bancada de Balanceamento
               </span>
               {isDirty && (
-                <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 flex items-center gap-1">
-                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
-                  Edições não salvas
+                <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-cyan-500/15 text-cyan-300 border border-cyan-500/40 flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
+                  Edições ativas na bancada
                 </span>
               )}
             </div>
@@ -236,7 +233,7 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
                 <select
                   value={selectedRecipeId}
                   onChange={e => handleSelectRecipe(e.target.value)}
-                  className="w-full appearance-none bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 pr-10 text-sm font-semibold text-white focus:outline-none focus:border-amber-500 shadow-inner"
+                  className="w-full appearance-none bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 pr-10 text-sm font-bold text-white focus:outline-none focus:border-amber-500 shadow-inner"
                 >
                   <option value="new">✨ Criar Nova Receita Personalizada...</option>
                   <optgroup label="Receitas do Repositório">
@@ -258,7 +255,7 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
                   setRecipeName(e.target.value);
                   setIsDirty(true);
                 }}
-                className="flex-1 min-w-[220px] bg-slate-900/60 border border-slate-700 rounded-xl px-3.5 py-2 text-sm font-bold text-amber-200 focus:outline-none focus:border-amber-500 placeholder-slate-500"
+                className="flex-1 min-w-[240px] bg-slate-900/80 border border-slate-700 rounded-xl px-4 py-2.5 text-base font-bold text-amber-300 focus:outline-none focus:border-amber-500 placeholder-slate-500"
                 placeholder="Nome da Receita..."
               />
 
@@ -269,7 +266,7 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
                   setTargetStyleName(e.target.value);
                   setIsDirty(true);
                 }}
-                className="bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs font-medium text-slate-200 focus:outline-none focus:border-amber-500"
+                className="bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs font-bold text-slate-200 focus:outline-none focus:border-amber-500"
               >
                 {Object.keys(stylesDataMap).map(s => (
                   <option key={s} value={s}>
@@ -281,21 +278,21 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
           </div>
 
           {/* Action Buttons */}
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2.5">
             <button
               type="button"
               onClick={handleReset}
-              className="px-3.5 py-2 rounded-xl border border-slate-700 text-slate-400 hover:text-white hover:bg-slate-700/50 text-xs font-medium transition-colors flex items-center gap-1.5"
+              className="px-4 py-2.5 rounded-xl border border-slate-700 text-slate-300 hover:text-white hover:bg-slate-700/60 text-xs font-bold transition-colors flex items-center gap-1.5"
               title="Reverter alterações e voltar à receita original"
             >
-              <RotateCcw className="w-3.5 h-3.5" />
+              <RotateCcw className="w-4 h-4" />
               <span>Reverter</span>
             </button>
 
             <button
               type="button"
               onClick={() => setIsSaveModalOpen(true)}
-              className="px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs shadow-lg shadow-amber-500/25 transition-all flex items-center gap-1.5"
+              className="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs sm:text-sm shadow-lg shadow-amber-500/25 transition-all flex items-center gap-2 active:scale-95"
             >
               <Save className="w-4 h-4" />
               <span>Salvar Receita</span>
@@ -304,11 +301,11 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
             <button
               type="button"
               onClick={() => window.print()}
-              className="px-3 py-2 rounded-xl border border-slate-700 bg-slate-900/80 text-slate-300 hover:text-white text-xs font-medium transition-colors flex items-center gap-1.5"
+              className="px-3.5 py-2.5 rounded-xl border border-slate-700 bg-slate-900/80 text-slate-300 hover:text-white text-xs font-bold transition-colors flex items-center gap-1.5"
               title="Imprimir Ficha Técnica de Produção"
             >
-              <Printer className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">Imprimir</span>
+              <Printer className="w-4 h-4" />
+              <span className="hidden sm:inline">Imprimir Ficha</span>
             </button>
           </div>
         </div>
@@ -321,101 +318,108 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Left Column: Ingredients Table (8 Cols) */}
         <div className="lg:col-span-8 space-y-4">
-          <div className="bg-slate-800/90 rounded-2xl border border-slate-700 p-4 shadow-xl space-y-4">
+          <div className="bg-slate-800/90 rounded-2xl border border-slate-700/80 p-5 shadow-xl space-y-4">
             {/* Table Header Controls */}
-            <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-700">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-700">
               <div className="flex items-center gap-2">
-                <Layers className="w-4 h-4 text-amber-400" />
-                <h3 className="text-sm font-bold text-white">Composição da Calda Base</h3>
-                <span className="text-xs text-slate-400">({items.length} ingredientes)</span>
+                <Layers className="w-5 h-5 text-amber-400" />
+                <h3 className="text-base font-bold text-white">Composição da Calda Base</h3>
+                <span className="text-xs font-medium text-slate-400">({items.length} ingredientes)</span>
               </div>
 
-              {/* Batch Scale Controls */}
-              <div className="flex items-center gap-2 bg-slate-900 p-1.5 rounded-xl border border-slate-700">
-                <span className="text-[11px] font-medium text-slate-400 pl-2">Escalar Batelada:</span>
+              {/* Batch Scale Controls with Quick-Pills */}
+              <div className="flex flex-wrap items-center gap-2 bg-slate-900/90 p-2 rounded-xl border border-slate-700">
+                <span className="text-xs font-bold text-slate-300 pl-1">Batelada:</span>
                 <input
                   type="number"
                   min="100"
                   step="50"
                   value={batchScaleInput}
                   onChange={e => setBatchScaleInput(e.target.value)}
-                  className="w-20 bg-slate-800 border border-slate-700 rounded-lg px-2 py-1 text-xs text-right font-mono text-white focus:outline-none focus:border-amber-500"
+                  className="w-24 bg-slate-800 border border-slate-700 rounded-lg px-2.5 py-1.5 text-sm text-right font-mono font-black text-amber-300 focus:outline-none focus:border-amber-500"
                 />
-                <span className="text-xs text-slate-400 font-mono">g</span>
+                <span className="text-xs text-slate-400 font-mono font-bold">g</span>
                 <button
                   type="button"
                   onClick={() => handleApplyBatchScale(parseFloat(batchScaleInput) || 1000)}
-                  className="px-2.5 py-1 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-lg text-xs transition-colors flex items-center gap-1"
+                  className="px-3 py-1.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black rounded-lg text-xs transition-colors flex items-center gap-1 shadow-sm"
                   title="Recalcular gramagens proporcionalmente"
                 >
-                  <Scale className="w-3 h-3" />
-                  <span>Aplicar</span>
+                  <Scale className="w-3.5 h-3.5" />
+                  <span>Escalar</span>
                 </button>
-                <button
-                  type="button"
-                  onClick={handleNormalize1000g}
-                  className="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium rounded-lg text-[11px] transition-colors"
-                  title="Converter proporções para padrão 1.000g"
-                >
-                  1kg Base
-                </button>
+
+                {/* Quick scale shortcut buttons */}
+                <div className="flex items-center gap-1 border-l border-slate-700 pl-1.5 ml-0.5">
+                  {[1000, 2500, 4000].map(weight => (
+                    <button
+                      key={weight}
+                      type="button"
+                      onClick={() => handleApplyBatchScale(weight)}
+                      className="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white font-mono font-bold rounded text-xs transition-colors"
+                      title={`Escalar para ${weight}g`}
+                    >
+                      {weight / 1000}kg
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
 
-            {/* Ingredients Table */}
+            {/* Ingredients Table with readable font sizes */}
             <div className="overflow-x-auto">
-              <table className="w-full text-left text-xs">
+              <table className="w-full text-left">
                 <thead>
-                  <tr className="text-slate-400 border-b border-slate-700/80 font-semibold">
-                    <th className="py-2.5 pl-2">Ingrediente</th>
-                    <th className="py-2.5 text-right w-28">Peso (g)</th>
-                    <th className="py-2.5 text-right w-20">% Calda</th>
-                    <th className="py-2.5 text-right w-24">Custo R$</th>
-                    <th className="py-2.5 text-center w-12">Ação</th>
+                  <tr className="text-slate-400 border-b border-slate-700 text-xs uppercase tracking-wider font-bold">
+                    <th className="py-3 pl-2">Ingrediente / Matéria-Prima</th>
+                    <th className="py-3 text-right w-32">Peso (g)</th>
+                    <th className="py-3 text-right w-24">% Calda</th>
+                    <th className="py-3 text-right w-28">Custo R$</th>
+                    <th className="py-3 text-center w-12">Ação</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-700/40">
+                <tbody className="divide-y divide-slate-700/50">
                   {items.map((item, idx) => {
                     const ing = ingredientsMap.get(item.name.toLowerCase().trim());
                     const pct = analysis.caldaWeight > 0 ? (item.grams / analysis.caldaWeight) * 100 : 0;
                     const itemCost = ing ? (item.grams * ing.costKg) / 1000 : 0;
 
                     return (
-                      <tr key={idx} className="hover:bg-slate-750/50 transition-colors group">
-                        <td className="py-2 pl-2">
+                      <tr key={idx} className="hover:bg-slate-750/40 transition-colors group">
+                        <td className="py-2.5 pl-2">
                           <input
                             type="text"
                             list="ingredients-datalist"
                             value={item.name}
                             onChange={e => handleNameChange(idx, e.target.value)}
                             placeholder="Digite ou escolha o insumo..."
-                            className="w-full bg-slate-900/80 border border-slate-700/80 rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-amber-500 font-medium"
+                            className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500 font-semibold"
                           />
                         </td>
-                        <td className="py-2 text-right">
+                        <td className="py-2.5 text-right">
                           <input
                             type="number"
                             min="0"
                             step="0.5"
                             value={item.grams || ''}
                             onChange={e => handleGramsChange(idx, parseFloat(e.target.value) || 0)}
-                            className="w-24 bg-slate-900 border border-slate-700 rounded-lg px-2 py-1.5 text-xs text-right font-mono font-bold text-amber-300 focus:outline-none focus:border-amber-500"
+                            className="w-28 bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-right font-mono font-black text-amber-300 focus:outline-none focus:border-amber-500"
                           />
                         </td>
-                        <td className="py-2 text-right font-mono text-slate-300">
+                        <td className="py-2.5 text-right font-mono font-bold text-slate-200 text-sm">
                           {pct.toFixed(1)}%
                         </td>
-                        <td className="py-2 text-right font-mono text-slate-300">
+                        <td className="py-2.5 text-right font-mono font-bold text-slate-200 text-sm">
                           R$ {itemCost.toFixed(2)}
                         </td>
-                        <td className="py-2 text-center">
+                        <td className="py-2.5 text-center">
                           <button
                             type="button"
                             onClick={() => handleRemoveRow(idx)}
-                            className="p-1 text-slate-500 hover:text-rose-400 hover:bg-rose-500/10 rounded transition-colors"
+                            className="p-1.5 text-slate-500 hover:text-rose-400 hover:bg-rose-500/15 rounded-lg transition-colors"
                             title="Remover Ingrediente"
                           >
-                            <Trash2 className="w-3.5 h-3.5" />
+                            <Trash2 className="w-4 h-4" />
                           </button>
                         </td>
                       </tr>
@@ -423,13 +427,13 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
                   })}
                 </tbody>
                 <tfoot>
-                  <tr className="border-t-2 border-slate-700 font-bold text-white text-xs">
-                    <td className="py-3 pl-2">Total Calda Base</td>
-                    <td className="py-3 text-right font-mono text-amber-400">
+                  <tr className="border-t-2 border-slate-600 font-black text-white text-sm">
+                    <td className="py-3.5 pl-2 text-base">Total Calda Base</td>
+                    <td className="py-3.5 text-right font-mono text-amber-300 text-base">
                       {Math.round(analysis.caldaWeight)} g
                     </td>
-                    <td className="py-3 text-right font-mono text-slate-300">100.0%</td>
-                    <td className="py-3 text-right font-mono text-emerald-400">
+                    <td className="py-3.5 text-right font-mono text-slate-300">100.0%</td>
+                    <td className="py-3.5 text-right font-mono text-emerald-400 text-base">
                       R$ {analysis.totals.cost.toFixed(2)}
                     </td>
                     <td></td>
@@ -443,7 +447,7 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
               <button
                 type="button"
                 onClick={handleAddRow}
-                className="w-full py-2.5 border border-dashed border-slate-700 hover:border-amber-500/60 rounded-xl text-xs font-semibold text-slate-300 hover:text-amber-300 hover:bg-amber-500/5 transition-all flex items-center justify-center gap-1.5"
+                className="w-full py-3 border-2 border-dashed border-slate-700 hover:border-amber-500/70 rounded-xl text-xs sm:text-sm font-bold text-slate-300 hover:text-amber-300 hover:bg-amber-500/10 transition-all flex items-center justify-center gap-2"
               >
                 <Plus className="w-4 h-4" />
                 <span>Adicionar Novo Insumo na Calda</span>
@@ -467,90 +471,102 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
 
         {/* Right Column: Financial & Yield Summary (4 Cols) */}
         <div className="lg:col-span-4 space-y-4">
-          <div className="bg-slate-800/90 rounded-2xl border border-slate-700 p-5 shadow-xl space-y-4">
+          <div className="bg-slate-800/90 rounded-2xl border border-slate-700/80 p-5 shadow-xl space-y-4">
             <div className="flex items-center gap-2 border-b border-slate-700 pb-3">
-              <DollarSign className="w-4 h-4 text-emerald-400" />
-              <h3 className="text-sm font-bold text-white">Engenharia de Custos & Precificação</h3>
+              <DollarSign className="w-5 h-5 text-emerald-400" />
+              <h3 className="text-base font-bold text-white">Engenharia de Custos</h3>
             </div>
 
-            {/* KPI Cards */}
+            {/* KPI Cards with Punchy Numbers */}
             <div className="space-y-3">
-              <div className="bg-slate-900/80 p-3.5 rounded-xl border border-slate-700/80 flex items-center justify-between">
+              <div className="bg-slate-900/90 p-4 rounded-xl border border-slate-700 flex items-center justify-between">
                 <div>
-                  <span className="text-xs text-slate-400 block">Custo Calda Base</span>
-                  <span className="text-lg font-extrabold text-white font-mono">
+                  <span className="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-0.5">
+                    Custo Calda Base
+                  </span>
+                  <span className="text-2xl font-black text-white font-mono">
                     R$ {analysis.costing.caldaCostKg.toFixed(2)}
                   </span>
-                  <span className="text-[10px] text-slate-500 block">por kg</span>
+                  <span className="text-xs text-slate-400 block font-medium">por kg de calda</span>
                 </div>
                 <div className="text-right">
-                  <span className="text-xs text-slate-400 block">Peso Total Calda</span>
-                  <span className="text-sm font-bold text-amber-300 font-mono">
+                  <span className="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-0.5">
+                    Peso Calda
+                  </span>
+                  <span className="text-lg font-black text-amber-300 font-mono">
                     {Math.round(analysis.caldaWeight)} g
                   </span>
                 </div>
               </div>
 
               {variegatos.length > 0 && (
-                <div className="bg-amber-500/10 p-3.5 rounded-xl border border-amber-500/30 flex items-center justify-between">
+                <div className="bg-amber-500/15 p-4 rounded-xl border border-amber-500/40 flex items-center justify-between">
                   <div>
-                    <span className="text-xs text-amber-300 block">Custo Final c/ Mesclas</span>
-                    <span className="text-lg font-extrabold text-amber-200 font-mono">
+                    <span className="text-xs font-bold uppercase tracking-wider text-amber-300 block mb-0.5">
+                      Custo Final c/ Mesclas
+                    </span>
+                    <span className="text-2xl font-black text-amber-200 font-mono">
                       R$ {analysis.costing.finalCostKg.toFixed(2)}
                     </span>
-                    <span className="text-[10px] text-amber-400/80 block">por kg</span>
+                    <span className="text-xs text-amber-300/80 block font-medium">por kg produto final</span>
                   </div>
                   <div className="text-right">
-                    <span className="text-xs text-amber-300 block">Mescla no Total</span>
-                    <span className="text-sm font-bold text-amber-200 font-mono">
+                    <span className="text-xs font-bold uppercase tracking-wider text-amber-300 block mb-0.5">
+                      Mescla no Total
+                    </span>
+                    <span className="text-lg font-black text-amber-200 font-mono">
                       {analysis.costing.variegatoRatioPercent}%
                     </span>
                   </div>
                 </div>
               )}
 
-              <div className="grid grid-cols-2 gap-2">
-                <div className="bg-slate-900/60 p-3 rounded-xl border border-slate-700">
-                  <span className="text-[11px] text-slate-400 block">Custo Bola 60g</span>
-                  <span className="text-base font-extrabold text-white font-mono">
+              <div className="grid grid-cols-2 gap-2.5">
+                <div className="bg-slate-900/70 p-3.5 rounded-xl border border-slate-700">
+                  <span className="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-1">
+                    Bola (60g)
+                  </span>
+                  <span className="text-xl font-black text-white font-mono">
                     R$ {analysis.costing.scoopCost60g.toFixed(2)}
                   </span>
                 </div>
 
-                <div className="bg-slate-900/60 p-3 rounded-xl border border-slate-700">
-                  <span className="text-[11px] text-slate-400 block">Custo Batelada</span>
-                  <span className="text-base font-extrabold text-white font-mono">
+                <div className="bg-slate-900/70 p-3.5 rounded-xl border border-slate-700">
+                  <span className="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-1">
+                    Custo Batelada
+                  </span>
+                  <span className="text-xl font-black text-white font-mono">
                     R$ {analysis.costing.totalBatchCost.toFixed(2)}
                   </span>
                 </div>
               </div>
 
-              <div className="p-4 rounded-xl bg-gradient-to-br from-emerald-950/40 to-slate-900 border border-emerald-800/40">
-                <div className="flex items-center justify-between mb-1">
-                  <span className="text-xs font-semibold text-emerald-300">
+              <div className="p-4 rounded-xl bg-gradient-to-br from-emerald-950/60 to-slate-900 border border-emerald-700/50 space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-bold uppercase tracking-wider text-emerald-300">
                     Preço Sugerido (Pote 500g)
                   </span>
-                  <span className="text-[10px] px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-bold">
+                  <span className="text-xs px-2.5 py-0.5 rounded-full bg-emerald-500/25 text-emerald-300 font-bold border border-emerald-500/40">
                     Markup 40%
                   </span>
                 </div>
-                <div className="text-2xl font-black text-emerald-400 font-mono mb-1">
+                <div className="text-3xl font-black text-emerald-400 font-mono tracking-tight">
                   R$ {analysis.costing.suggestedPrice500g.toFixed(2)}
                 </div>
-                <p className="text-[11px] text-slate-400 leading-relaxed">
-                  Inclui R$ 1,50 de pote + R$ 5,40 de rateio de custos fixos, taxa de cartão (33%) e margem líquida de 40%.
+                <p className="text-xs text-slate-300 leading-relaxed pt-1 border-t border-emerald-900/60">
+                  Inclui R$ 1,50 de pote + R$ 5,40 de rateio indireto, taxa de cartão (33%) e margem líquida de 40%.
                 </p>
               </div>
             </div>
 
             {/* Quick tips */}
-            <div className="text-[11px] text-slate-400 space-y-1.5 pt-2 border-t border-slate-700">
-              <div className="flex items-center gap-1.5 text-slate-300 font-medium">
-                <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-                <span>Dica de Vitrine:</span>
+            <div className="text-xs text-slate-300 space-y-1.5 pt-3 border-t border-slate-700">
+              <div className="flex items-center gap-1.5 text-amber-300 font-bold">
+                <Sparkles className="w-4 h-4 text-amber-400" />
+                <span>Dica do Mestre Gelatiere:</span>
               </div>
-              <p>
-                Para servir na mesma vitrine com sorbets e cremes, mantenha o PAC entre 240 e 280 para garantir consistência idêntica na espátula.
+              <p className="leading-relaxed">
+                Para servir na mesma vitrine com sorbets e cremes, mantenha o PAC entre <strong>240 e 280</strong> para garantir textura homogênea e firmeza de espátula idêntica em todas as cubas.
               </p>
             </div>
           </div>
