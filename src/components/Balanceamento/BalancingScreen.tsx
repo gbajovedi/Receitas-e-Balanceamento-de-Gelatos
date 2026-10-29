@@ -562,7 +562,7 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
                 </div>
                 <div className="text-[11px] text-slate-300 leading-relaxed pt-2 border-t border-emerald-900/60 space-y-1">
                   <p>
-                    <strong>Markup sincronizado:</strong> R$ {pricingParams.tubPackCost.toFixed(2)} embalagem + R$ {pricingSettings.indirectOverheadPerTub.toFixed(2)} rateio fixo (inclui MEI), taxa de cartão ({pricingParams.cardFee}%), impostos ({pricingParams.salesTaxPercent}%) e lucro de {pricingParams.targetMargin}%.
+                    <strong>Markup sincronizado:</strong> R$ {pricingParams.tubPackCost.toFixed(2)} embalagem + R$ {pricingSettings.indirectOverheadPerTub.toFixed(2)} rateio fixo (inclui MEI), taxa de maquininha ({pricingSettings.cardFeePercent.toFixed(2)}%), impostos ({pricingParams.salesTaxPercent}%) e lucro de {pricingParams.targetMargin}%.
                   </p>
                   <p className="text-slate-400 text-[10px]">
                     Sincronizado automaticamente com os custos e taxas da aba <strong>Precificação</strong>.

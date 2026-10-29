@@ -14,14 +14,62 @@ export interface PricingParams {
   marketing: number;
   telecom: number;
   fixedTaxes: number;
+  posRentalMonthly: number; // Aluguel da maquininha (R$/mês)
   monthlyUnits: number;
   tubWeightGrams: number;
   tubPackCost: number;
   targetMargin: number;
+
+  // Taxa de Cartão manual (fallback)
   cardFee: number;
+
+  // Maquininha Cielo / Adquirentes detalhadas
+  useSalesMix: boolean;
+  cieloPlan: 'padrao' | 'negociado' | 'fluxo' | 'custom';
+  cardFeePix: number;
+  cardFeeDebit: number;
+  cardFeeCreditSight: number;
+  cardFeeCreditInstallment: number;
+
+  // Mix de Vendas (% do balcão)
+  mixPix: number;
+  mixDebit: number;
+  mixCreditSight: number;
+  mixCreditInstallment: number;
+
   salesTaxPercent: number;
   sampleCaldaCostKg: number;
 }
+
+export const CIELO_PRESETS = {
+  padrao: {
+    name: 'Cielo Padrão D+1 (Sem Aluguel)',
+    description: 'Plano padrão com recebimento no dia útil seguinte para faturamentos até R$ 15 mil.',
+    posRentalMonthly: 0,
+    cardFeePix: 0.00,
+    cardFeeDebit: 1.49,
+    cardFeeCreditSight: 4.30,
+    cardFeeCreditInstallment: 9.90
+  },
+  negociado: {
+    name: 'Cielo Negociado (> R$ 15k / Aluguel Isento)',
+    description: 'Taxas reduzidas para estabelecimentos com faturamento maior negociado.',
+    posRentalMonthly: 0,
+    cardFeePix: 0.00,
+    cardFeeDebit: 1.19,
+    cardFeeCreditSight: 3.19,
+    cardFeeCreditInstallment: 6.90
+  },
+  fluxo: {
+    name: 'Cielo no Fluxo (D+30 tradicional)',
+    description: 'Sem antecipação: recebe o crédito em 30 dias e parcelas a cada mês.',
+    posRentalMonthly: 0,
+    cardFeePix: 0.00,
+    cardFeeDebit: 1.49,
+    cardFeeCreditSight: 2.79,
+    cardFeeCreditInstallment: 5.49
+  }
+} as const;
 
 export const DEFAULT_PRICING_PARAMS: PricingParams = {
   rent: 0,
@@ -34,14 +82,43 @@ export const DEFAULT_PRICING_PARAMS: PricingParams = {
   marketing: 500,
   telecom: 120,
   fixedTaxes: 75,
+  posRentalMonthly: 0,
   monthlyUnits: 4000,
   tubWeightGrams: 500,
   tubPackCost: 1.50,
   targetMargin: 40,
-  cardFee: 3.5,
+  cardFee: 2.03,
+  useSalesMix: true,
+  cieloPlan: 'padrao',
+  // Auto-preenchimento oficial Cielo:
+  cardFeePix: 0.00,
+  cardFeeDebit: 1.49,
+  cardFeeCreditSight: 4.30,
+  cardFeeCreditInstallment: 9.90,
+  // Mix de vendas padrão de uma gelateria brasileira:
+  mixPix: 30,
+  mixDebit: 45,
+  mixCreditSight: 20,
+  mixCreditInstallment: 5,
   salesTaxPercent: 0,
   sampleCaldaCostKg: 15.00
 };
+
+export function calculateEffectiveCardFee(params: PricingParams): number {
+  if (!params.useSalesMix) {
+    return params.cardFee;
+  }
+  const totalMix = params.mixPix + params.mixDebit + params.mixCreditSight + params.mixCreditInstallment;
+  if (totalMix <= 0) return params.cardFee;
+
+  const weightedSum =
+    params.cardFeePix * params.mixPix +
+    params.cardFeeDebit * params.mixDebit +
+    params.cardFeeCreditSight * params.mixCreditSight +
+    params.cardFeeCreditInstallment * params.mixCreditInstallment;
+
+  return Math.round((weightedSum / totalMix) * 100) / 100;
+}
 
 export function getStoredPricingParams(): PricingParams {
   try {
@@ -78,16 +155,18 @@ export function getPricingSettings(params: PricingParams = getStoredPricingParam
     params.secPackaging +
     params.marketing +
     params.telecom +
-    params.fixedTaxes;
+    params.fixedTaxes +
+    (params.posRentalMonthly || 0);
 
   const overheadPerUnit = params.monthlyUnits > 0 ? totalFixedCosts / params.monthlyUnits : 0;
+  const effectiveCardFee = calculateEffectiveCardFee(params);
 
   return {
     tubWeightGrams: params.tubWeightGrams,
     tubPackagingCost: params.tubPackCost,
     indirectOverheadPerTub: overheadPerUnit,
     targetProfitMarginPercent: params.targetMargin,
-    cardFeePercent: params.cardFee,
+    cardFeePercent: effectiveCardFee,
     salesTaxPercent: params.salesTaxPercent
   };
 }
