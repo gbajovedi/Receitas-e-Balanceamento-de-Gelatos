@@ -178,7 +178,7 @@ Receitas-e-Balanceamento-de-Gelatos/
 │   ├── App.tsx                 # Controlador principal da aplicação
 │   ├── index.css               # Estilos Tailwind e regras de impressão para cozinha
 │   └── main.tsx                # Ponto de montagem da aplicação React
-├── Planilha de Gelatos...xlsx  # Planilha original em Excel
+├── Planilha de Gelatos...xlsx  # Planilha original em Excel (mantida localmente)
 ├── index.html                  # Template HTML do PWA
 ├── package.json                # Dependências e scripts
 ├── tailwind.config.js          # Configurações do Tailwind
