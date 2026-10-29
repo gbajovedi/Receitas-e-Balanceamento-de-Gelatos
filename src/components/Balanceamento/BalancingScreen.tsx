@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Recipe, Ingredient, StyleStandard, VariegatoItem, RecipeItem } from '../../types/gelato';
-import { calculateBatchAnalysis, DEFAULT_PRICING } from '../../core/calculator';
+import { calculateBatchAnalysis } from '../../core/calculator';
+import { getStoredPricingParams, getPricingSettings, PRICING_UPDATED_EVENT, PricingParams } from '../../core/pricingStorage';
 import { stylesDataMap, db } from '../../db/database';
 import { NutrientBars } from './NutrientBars';
 import { AllergensBadge } from './AllergensBadge';
@@ -77,10 +78,27 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
     return stylesDataMap[targetStyleName] || stylesDataMap['Gelatos de Leite'];
   }, [targetStyleName]);
 
-  // Real-time calculation analysis
+  // Sincronização em tempo real com os parâmetros da aba Precificação
+  const [pricingParams, setPricingParams] = useState<PricingParams>(getStoredPricingParams);
+
+  useEffect(() => {
+    const handlePricingUpdate = () => {
+      setPricingParams(getStoredPricingParams());
+    };
+    window.addEventListener(PRICING_UPDATED_EVENT, handlePricingUpdate);
+    window.addEventListener('storage', handlePricingUpdate);
+    return () => {
+      window.removeEventListener(PRICING_UPDATED_EVENT, handlePricingUpdate);
+      window.removeEventListener('storage', handlePricingUpdate);
+    };
+  }, []);
+
+  const pricingSettings = useMemo(() => getPricingSettings(pricingParams), [pricingParams]);
+
+  // Real-time calculation analysis usando as regras da aba de Precificação
   const analysis = useMemo(() => {
-    return calculateBatchAnalysis(items, variegatos, currentStyle, ingredientsMap, DEFAULT_PRICING);
-  }, [items, variegatos, currentStyle, ingredientsMap]);
+    return calculateBatchAnalysis(items, variegatos, currentStyle, ingredientsMap, pricingSettings);
+  }, [items, variegatos, currentStyle, ingredientsMap, pricingSettings]);
 
   // Handle recipe change from selector
   const handleSelectRecipe = (id: string) => {
@@ -530,21 +548,26 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
                 </div>
               </div>
 
-              <div className="p-4 rounded-xl bg-gradient-to-br from-emerald-950/60 to-slate-900 border border-emerald-700/50 space-y-2">
+              <div className="p-4 rounded-xl bg-gradient-to-br from-emerald-950/60 to-slate-900 border border-emerald-700/50 space-y-2.5">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-bold uppercase tracking-wider text-emerald-300">
-                    Preço Sugerido (Pote 500g)
+                    Preço Sugerido (Pote {pricingParams.tubWeightGrams}g)
                   </span>
                   <span className="text-xs px-2.5 py-0.5 rounded-full bg-emerald-500/25 text-emerald-300 font-bold border border-emerald-500/40">
-                    Markup 40%
+                    Margem {pricingParams.targetMargin}%
                   </span>
                 </div>
                 <div className="text-3xl font-black text-emerald-400 font-mono tracking-tight">
                   R$ {analysis.costing.suggestedPrice500g.toFixed(2)}
                 </div>
-                <p className="text-xs text-slate-300 leading-relaxed pt-1 border-t border-emerald-900/60">
-                  Inclui R$ 1,50 de pote + R$ 5,40 de rateio indireto, taxa de cartão (33%) e margem líquida de 40%.
-                </p>
+                <div className="text-[11px] text-slate-300 leading-relaxed pt-2 border-t border-emerald-900/60 space-y-1">
+                  <p>
+                    <strong>Markup sincronizado:</strong> R$ {pricingParams.tubPackCost.toFixed(2)} embalagem + R$ {pricingSettings.indirectOverheadPerTub.toFixed(2)} rateio fixo (inclui MEI), taxa de cartão ({pricingParams.cardFee}%), impostos ({pricingParams.salesTaxPercent}%) e lucro de {pricingParams.targetMargin}%.
+                  </p>
+                  <p className="text-slate-400 text-[10px]">
+                    Sincronizado automaticamente com os custos e taxas da aba <strong>Precificação</strong>.
+                  </p>
+                </div>
               </div>
             </div>
 

@@ -131,5 +131,6 @@ export interface PricingSettings {
   indirectOverheadPerTub: number;
   targetProfitMarginPercent: number;
   cardFeePercent: number;
+  salesTaxPercent?: number;
 }
 

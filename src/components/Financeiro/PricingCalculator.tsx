@@ -1,21 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { DollarSign, RotateCcw, Landmark, CreditCard, Receipt } from 'lucide-react';
-
-const STORAGE_KEY = 'gelato_pricing_params_v1';
+import { getStoredPricingParams, saveStoredPricingParams, DEFAULT_PRICING_PARAMS } from '../../core/pricingStorage';
 
 export const PricingCalculator: React.FC = () => {
-  // Load initial params from localStorage or defaults
-  const loadSaved = () => {
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved) return JSON.parse(saved);
-    } catch (e) {
-      console.warn('Failed to load saved pricing params:', e);
-    }
-    return null;
-  };
-
-  const initial = loadSaved();
+  const initial = getStoredPricingParams();
 
   // Overhead parameters based on sheet "Conversor Custo K|G" + MEI
   const [rent, setRent] = useState<number>(initial?.rent ?? 0);
@@ -41,34 +29,27 @@ export const PricingCalculator: React.FC = () => {
   // Simulation test product
   const [sampleCaldaCostKg, setSampleCaldaCostKg] = useState<number>(initial?.sampleCaldaCostKg ?? 15.00);
 
-  // Persist to localStorage whenever parameters change
+  // Persist to localStorage and dispatch update event whenever parameters change
   useEffect(() => {
-    try {
-      localStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify({
-          rent,
-          electricity,
-          water,
-          payroll,
-          accounting,
-          software,
-          secPackaging,
-          marketing,
-          telecom,
-          fixedTaxes,
-          monthlyUnits,
-          tubWeightGrams,
-          tubPackCost,
-          targetMargin,
-          cardFee,
-          salesTaxPercent,
-          sampleCaldaCostKg
-        })
-      );
-    } catch (e) {
-      console.warn('Failed to save pricing params:', e);
-    }
+    saveStoredPricingParams({
+      rent,
+      electricity,
+      water,
+      payroll,
+      accounting,
+      software,
+      secPackaging,
+      marketing,
+      telecom,
+      fixedTaxes,
+      monthlyUnits,
+      tubWeightGrams,
+      tubPackCost,
+      targetMargin,
+      cardFee,
+      salesTaxPercent,
+      sampleCaldaCostKg
+    });
   }, [
     rent,
     electricity,

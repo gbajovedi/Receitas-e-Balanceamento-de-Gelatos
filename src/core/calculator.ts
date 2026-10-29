@@ -13,7 +13,8 @@ export const DEFAULT_PRICING: PricingSettings = {
   tubPackagingCost: 1.50,
   indirectOverheadPerTub: 5.40,
   targetProfitMarginPercent: 40,
-  cardFeePercent: 33
+  cardFeePercent: 3.5,
+  salesTaxPercent: 0
 };
 
 export function calculateBatchAnalysis(
@@ -152,8 +153,9 @@ export function calculateBatchAnalysis(
   const tubProductCost = finalCostKg * (pricing.tubWeightGrams / 1000);
   const directCostWithPack = tubProductCost + pricing.tubPackagingCost;
   const totalCostWithOverhead = directCostWithPack + pricing.indirectOverheadPerTub;
-  const marginDivisor = (1 - (pricing.targetProfitMarginPercent / 100)) * (1 - (pricing.cardFeePercent / 100));
-  const suggestedPrice500g = marginDivisor > 0 ? totalCostWithOverhead / marginDivisor : 0;
+  const totalSalesDeductions = (pricing.cardFeePercent + (pricing.salesTaxPercent || 0)) / 100;
+  const marginDivisor = (1 - (pricing.targetProfitMarginPercent / 100)) * (1 - totalSalesDeductions);
+  const suggestedPrice500g = (marginDivisor > 0 && totalSalesDeductions < 1) ? totalCostWithOverhead / marginDivisor : 0;
   const variegatoRatioPercent = finalWeightGrams > 0 ? (totalVariegatoGrams / finalWeightGrams) * 100 : 0;
 
   return {
