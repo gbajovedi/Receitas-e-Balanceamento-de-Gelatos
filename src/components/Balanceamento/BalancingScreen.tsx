@@ -6,6 +6,7 @@ import { NutrientBars } from './NutrientBars';
 import { AllergensBadge } from './AllergensBadge';
 import { PostProduction } from './PostProduction';
 import { SaveRecipeModal } from './SaveRecipeModal';
+import { RecipeSearchCombobox } from './RecipeSearchCombobox';
 import {
   Save,
   Plus,
@@ -229,23 +230,11 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
             </div>
 
             <div className="flex flex-wrap items-center gap-3">
-              <div className="relative min-w-[280px]">
-                <select
-                  value={selectedRecipeId}
-                  onChange={e => handleSelectRecipe(e.target.value)}
-                  className="w-full appearance-none bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 pr-10 text-sm font-bold text-white focus:outline-none focus:border-amber-500 shadow-inner"
-                >
-                  <option value="new">✨ Criar Nova Receita Personalizada...</option>
-                  <optgroup label="Receitas do Repositório">
-                    {recipes.map(r => (
-                      <option key={r.id} value={r.id}>
-                        {r.name} ({r.category})
-                      </option>
-                    ))}
-                  </optgroup>
-                </select>
-                <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3 top-3.5 pointer-events-none" />
-              </div>
+              <RecipeSearchCombobox
+                recipes={recipes}
+                selectedRecipeId={selectedRecipeId}
+                onSelectRecipe={handleSelectRecipe}
+              />
 
               {/* Editable Name Field */}
               <input
