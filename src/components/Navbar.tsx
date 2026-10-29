@@ -1,5 +1,6 @@
 import React from 'react';
 import { Scale, BookOpen, Utensils, ChefHat, DollarSign, Database } from 'lucide-react';
+import { ThemeToggle } from './ThemeToggle';
 
 export type NavTab = 'balanceamento' | 'receitas' | 'ingredientes' | 'preparos' | 'financeiro';
 
@@ -76,16 +77,18 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onTabChange, onOpenBa
           </button>
         </nav>
 
-        {/* Mobile Header Right Action */}
-        <div className="flex lg:hidden items-center gap-2">
+        {/* Right Corner: 3-Phase Theme Toggle + Mobile Backup */}
+        <div className="flex items-center gap-2 shrink-0">
+          <ThemeToggle />
+
           <button
             type="button"
             onClick={onOpenBackup}
-            className="h-9 px-3 bg-slate-800/90 hover:bg-slate-750 border border-slate-700/80 text-slate-200 text-xs font-bold rounded-xl transition-all flex items-center gap-1.5 shadow-sm active:scale-95"
+            className="h-9 px-3 bg-slate-800/90 hover:bg-slate-750 border border-slate-700/80 text-slate-200 text-xs font-bold rounded-xl transition-all flex lg:hidden items-center gap-1.5 shadow-sm active:scale-95"
             title="Importar ou Exportar Dados (.JSON)"
           >
             <Database className="w-4 h-4 text-amber-400 shrink-0" />
-            <span>Backup</span>
+            <span className="hidden sm:inline">Backup</span>
           </button>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { db } from './db/database';
+import { applyTheme } from './core/theme';
 import { Recipe, Ingredient, Preparation } from './types/gelato';
 import { Navbar, NavTab } from './components/Navbar';
 import { BalancingScreen } from './components/Balanceamento/BalancingScreen';
@@ -40,7 +41,15 @@ export function App() {
   };
 
   useEffect(() => {
+    applyTheme();
     refreshData();
+
+    // Monitora a transição do pôr do sol a cada minuto
+    const timer = setInterval(() => {
+      applyTheme();
+    }, 60000);
+
+    return () => clearInterval(timer);
   }, []);
 
   const handleSelectRecipeFromCatalog = (id: string) => {

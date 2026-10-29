@@ -45,6 +45,186 @@
   background: #475569;
 }
 
+/* ==========================================================================
+   Light Mode Theme Overrides (html.light)
+   ========================================================================== */
+html.light {
+  color-scheme: light;
+}
+
+html.light body,
+html.light .min-h-screen.bg-slate-900 {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+/* Base header and navbars */
+html.light header {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border-color: #e2e8f0 !important;
+}
+
+/* Backgrounds: Slate 900, 800, 950 turn into clean crisp white or off-white */
+html.light .bg-slate-900,
+html.light .bg-slate-900\/95,
+html.light .bg-slate-900\/90,
+html.light .bg-slate-900\/80,
+html.light .bg-slate-900\/70,
+html.light .bg-slate-900\/60,
+html.light .bg-slate-800,
+html.light .bg-slate-800\/95,
+html.light .bg-slate-800\/90,
+html.light .bg-slate-800\/80,
+html.light .bg-slate-800\/70 {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+}
+
+/* Deep nested cards and inner inputs */
+html.light .bg-slate-950,
+html.light .bg-slate-950\/80,
+html.light .bg-slate-950\/70,
+html.light .bg-slate-950\/60 {
+  background-color: #f1f5f9 !important;
+  color: #0f172a !important;
+}
+
+/* Hover states */
+html.light .hover\:bg-slate-750:hover,
+html.light .hover\:bg-slate-700:hover,
+html.light .hover\:bg-slate-700\/60:hover,
+html.light .hover\:bg-slate-700\/50:hover {
+  background-color: #f1f5f9 !important;
+  color: #0f172a !important;
+}
+
+/* Borders */
+html.light .border-slate-800,
+html.light .border-slate-700,
+html.light .border-slate-700\/80,
+html.light .border-slate-700\/60,
+html.light .border-slate-700\/50,
+html.light .border-slate-700\/40 {
+  border-color: #e2e8f0 !important;
+}
+
+/* Typography contrast */
+html.light .text-white,
+html.light .text-slate-100 {
+  color: #0f172a !important;
+}
+
+html.light .text-slate-200 {
+  color: #1e293b !important;
+}
+
+html.light .text-slate-300 {
+  color: #334155 !important;
+}
+
+html.light .text-slate-400 {
+  color: #64748b !important;
+}
+
+html.light .text-slate-500 {
+  color: #94a3b8 !important;
+}
+
+/* Form inputs */
+html.light input:not([type="checkbox"]):not([type="radio"]),
+html.light select,
+html.light textarea {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+
+html.light input:focus,
+html.light select:focus,
+html.light textarea:focus {
+  border-color: #f59e0b !important;
+  box-shadow: 0 0 0 1px #f59e0b !important;
+}
+
+/* Retain high-contrast on buttons and tags with amber and emerald */
+html.light .bg-amber-500 {
+  background-color: #f59e0b !important;
+  color: #020617 !important;
+}
+
+html.light .bg-amber-500 .text-slate-950,
+html.light .bg-amber-500 * {
+  color: #020617 !important;
+}
+
+html.light .bg-emerald-500 {
+  background-color: #10b981 !important;
+  color: #020617 !important;
+}
+
+html.light .bg-emerald-500 * {
+  color: #020617 !important;
+}
+
+/* Badges with light tints */
+html.light .bg-amber-500\/10,
+html.light .bg-amber-500\/15,
+html.light .bg-amber-500\/20,
+html.light .bg-amber-500\/25 {
+  background-color: #fef3c7 !important;
+  color: #92400e !important;
+  border-color: #fcd34d !important;
+}
+
+html.light .bg-emerald-500\/10,
+html.light .bg-emerald-500\/15,
+html.light .bg-emerald-500\/20,
+html.light .bg-emerald-500\/25 {
+  background-color: #d1fae5 !important;
+  color: #065f46 !important;
+  border-color: #6ee7b7 !important;
+}
+
+html.light .bg-cyan-500\/10,
+html.light .bg-cyan-500\/15,
+html.light .bg-cyan-500\/20,
+html.light .bg-cyan-500\/25 {
+  background-color: #e0f2fe !important;
+  color: #075985 !important;
+  border-color: #7dd3fc !important;
+}
+
+html.light .bg-rose-500\/10,
+html.light .bg-rose-500\/15,
+html.light .bg-rose-500\/20,
+html.light .bg-rose-500\/25 {
+  background-color: #ffe4e6 !important;
+  color: #9f1239 !important;
+  border-color: #fca5a5 !important;
+}
+
+/* Subtle shadows for light cards */
+html.light .shadow-xl {
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05), 0 4px 6px -4px rgb(0 0 0 / 0.05) !important;
+}
+
+html.light .shadow-inner {
+  box-shadow: inset 0 1px 2px 0 rgb(0 0 0 / 0.05) !important;
+}
+
+/* Scrollbars for light mode */
+html.light ::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+html.light ::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+}
+
+html.light ::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
 /* Print Styles for Kitchen Production Sheet */
 @media print {
   header, nav, button, .no-print {
