@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Moon, Sun, Laptop } from 'lucide-react';
+import { Moon, Sun } from 'lucide-react';
 import {
   ThemeMode,
   getStoredThemeMode,
@@ -85,11 +85,11 @@ export const ThemeToggle: React.FC = () => {
         <Moon className="w-5 h-5 shrink-0" />
       </button>
 
-      {/* 2. Centro: Automático (Padrão do Sistema Android, iOS, Windows, Mac) */}
+      {/* 2. Centro: Automático (Apenas texto Auto) */}
       <button
         type="button"
         onClick={() => handleSelectMode('auto')}
-        className={`h-8 px-2.5 sm:px-3 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
+        className={`h-8 px-3 rounded-lg text-xs font-bold transition-all flex items-center justify-center ${
           themeMode === 'auto'
             ? 'bg-amber-500 text-slate-950 font-black shadow-md shadow-amber-500/20 scale-[1.03]'
             : 'theme-switch-inactive text-slate-400 hover:text-white hover:bg-slate-700/50'
@@ -98,8 +98,7 @@ export const ThemeToggle: React.FC = () => {
         aria-label={autoTooltip}
         aria-pressed={themeMode === 'auto'}
       >
-        <Laptop className="w-4 h-4 shrink-0" />
-        <span className="text-[11px] font-bold">Auto</span>
+        <span className="text-xs font-bold tracking-tight">Auto</span>
       </button>
 
       {/* 3. Direita: Modo Claro (Ícone de Sol ampliado) */}
