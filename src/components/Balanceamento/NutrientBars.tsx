@@ -1,6 +1,6 @@
 import React from 'react';
 import { BatchAnalysis, NutrientValidation } from '../../types/gelato';
-import { CheckCircle2, AlertCircle, ThermometerSnowflake } from 'lucide-react';
+import { CheckCircle2, AlertCircle, ThermometerSnowflake, ArrowDownCircle, ArrowUpCircle } from 'lucide-react';
 
 interface NutrientBarsProps {
   analysis: BatchAnalysis;
@@ -8,6 +8,39 @@ interface NutrientBarsProps {
 
 export const NutrientBars: React.FC<NutrientBarsProps> = ({ analysis }) => {
   const { validations, isBalanced, servingTemperature } = analysis;
+
+  // Extract any items that are NOT 'Ok'
+  const labelMap: Record<string, string> = {
+    sugars: 'Açúcares',
+    fat: 'Gorduras',
+    msnf: 'SLNG (Leite)',
+    otherSolids: 'Outros Sólidos',
+    totalSolids: 'Sólidos Totais',
+    water: 'Água',
+    pod: 'POD (Poder Adoçante)',
+    pac: 'PAC (Anticongelante)',
+    protein: 'Proteína'
+  };
+
+  const pendingIssues = Object.entries(validations)
+    .filter(([key, item]) => item.status !== 'Ok' && (key !== 'protein' || validations.protein.max > 0))
+    .map(([key, item]) => {
+      const isPercent = key !== 'pod' && key !== 'pac';
+      const unit = isPercent ? '%' : '';
+      const valStr = isPercent ? (item.val * 100).toFixed(1) : item.val.toFixed(0);
+      const minStr = isPercent ? (item.min * 100).toFixed(1) : item.min.toFixed(0);
+      const maxStr = isPercent ? (item.max * 100).toFixed(1) : item.max.toFixed(0);
+
+      return {
+        key,
+        name: labelMap[key] || key,
+        status: item.status,
+        valStr: `${valStr}${unit}`,
+        targetStr: `${minStr}–${maxStr}${unit}`,
+        minStr: `${minStr}${unit}`,
+        maxStr: `${maxStr}${unit}`
+      };
+    });
 
   const renderBar = (
     label: string,
@@ -23,25 +56,28 @@ export const NutrientBars: React.FC<NutrientBarsProps> = ({ analysis }) => {
     let badgeColor = 'bg-emerald-500/15 text-emerald-300 border-emerald-500/40';
     let barColor = 'bg-emerald-400';
     let valColor = 'text-white';
+    let cardBorder = 'border-slate-700/80';
 
     if (status === 'Baixo') {
       badgeColor = 'bg-amber-500/20 text-amber-300 border-amber-500/50';
       barColor = 'bg-amber-400';
       valColor = 'text-amber-200';
+      cardBorder = 'border-amber-500/60 ring-1 ring-amber-500/30';
     } else if (status === 'Alto') {
       badgeColor = 'bg-rose-500/20 text-rose-300 border-rose-500/50';
       barColor = 'bg-rose-400';
       valColor = 'text-rose-200';
+      cardBorder = 'border-rose-500/60 ring-1 ring-rose-500/30';
     }
 
-    // Relative progress within a safe range (0 to max * 1.3)
+    // Relative progress within a safe range (0 to max * 1.35)
     const upperLimit = max > 0 ? max * 1.35 : 1;
     const progressPct = Math.min(Math.max((val / upperLimit) * 100, 0), 100);
     const minMarkerPct = (min / upperLimit) * 100;
     const maxMarkerPct = (max / upperLimit) * 100;
 
     return (
-      <div className="bg-slate-800/80 hover:bg-slate-800 p-4 rounded-xl border border-slate-700/80 transition-all flex flex-col justify-between shadow-sm hover:border-slate-600">
+      <div className={`bg-slate-800/80 hover:bg-slate-800 p-4 rounded-xl border ${cardBorder} transition-all flex flex-col justify-between shadow-sm`}>
         <div className="flex items-center justify-between mb-2">
           <span className="text-xs font-bold uppercase tracking-wider text-slate-300">
             {label}
@@ -82,57 +118,98 @@ export const NutrientBars: React.FC<NutrientBarsProps> = ({ analysis }) => {
   return (
     <div className="space-y-4">
       {/* Header status bar */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 sm:p-5 bg-gradient-to-r from-slate-800/95 to-slate-850/95 rounded-2xl border border-slate-700 shadow-md">
-        <div className="flex items-center gap-3.5">
-          <div
-            className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 shadow-lg ${
-              isBalanced
-                ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 shadow-emerald-500/10'
-                : 'bg-amber-500/20 text-amber-400 border border-amber-500/40 shadow-amber-500/10'
-            }`}
-          >
-            {isBalanced ? (
-              <CheckCircle2 className="w-6 h-6 animate-pulse" />
-            ) : (
-              <AlertCircle className="w-6 h-6 animate-bounce" />
-            )}
+      <div className={`p-4 sm:p-5 rounded-2xl border shadow-md transition-all ${
+        isBalanced
+          ? 'bg-gradient-to-r from-slate-800/95 via-slate-850/95 to-slate-800/95 border-emerald-500/40'
+          : 'bg-gradient-to-r from-amber-950/40 via-slate-850/95 to-slate-800/95 border-amber-500/50'
+      }`}>
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="flex items-start sm:items-center gap-3.5">
+            <div
+              className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0 shadow-lg ${
+                isBalanced
+                  ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 shadow-emerald-500/10'
+                  : 'bg-amber-500/20 text-amber-400 border border-amber-500/40 shadow-amber-500/10'
+              }`}
+            >
+              {isBalanced ? (
+                <CheckCircle2 className="w-6 h-6 animate-pulse" />
+              ) : (
+                <AlertCircle className="w-6 h-6 animate-bounce" />
+              )}
+            </div>
+            <div>
+              <div className="flex items-center gap-2 flex-wrap">
+                <h3 className="text-base sm:text-lg font-black text-white tracking-tight">
+                  {isBalanced ? 'Receita Perfeitamente Balanceada' : 'Ajustes Necessários na Fórmula'}
+                </h3>
+                <span
+                  className={`text-xs px-2.5 py-0.5 rounded-full font-bold uppercase tracking-wider ${
+                    isBalanced
+                      ? 'bg-emerald-500/25 text-emerald-300 border border-emerald-500/40'
+                      : 'bg-amber-500/25 text-amber-300 border border-amber-500/40'
+                  }`}
+                >
+                  {isBalanced ? 'Equilibrado' : 'Revisar'}
+                </span>
+              </div>
+              <p className="text-xs sm:text-sm text-slate-300 mt-1">
+                {isBalanced
+                  ? 'Todos os parâmetros bromatológicos e térmicos estão perfeitamente dentro da faixa ideal do estilo.'
+                  : 'Os parâmetros listados abaixo estão fora das metas de textura, maciez ou dulçor:'}
+              </p>
+            </div>
           </div>
-          <div>
-            <h3 className="text-base font-bold text-white tracking-tight flex items-center gap-2">
-              <span>{isBalanced ? 'Receita Perfeitamente Balanceada' : 'Ajustes Necessários na Fórmula'}</span>
-              <span
-                className={`text-xs px-2 py-0.5 rounded-full font-bold uppercase tracking-wider ${
-                  isBalanced
-                    ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
-                    : 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
-                }`}
-              >
-                {isBalanced ? 'Equilibrado' : 'Revisar'}
-              </span>
-            </h3>
-            <p className="text-xs text-slate-300 mt-0.5">
-              {isBalanced
-                ? 'Todos os parâmetros bromatológicos e térmicos estão perfeitamente calibrados para o estilo.'
-                : 'Alguns parâmetros estão fora dos limites ideais de consistência ou dulçor. Veja as barras abaixo.'}
-            </p>
+
+          {/* Temperature Badge */}
+          <div className="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-cyan-950/50 border border-cyan-800/60 text-cyan-200 self-start sm:self-auto shadow-sm">
+            <ThermometerSnowflake className="w-6 h-6 text-cyan-400 shrink-0" />
+            <div>
+              <div className="text-[11px] uppercase font-bold tracking-wider text-cyan-400">
+                Temp. Serviço (Vitrine)
+              </div>
+              <div className="text-xl font-black font-mono text-cyan-100">
+                {servingTemperature} °C
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Temperature Badge */}
-        <div className="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-cyan-950/50 border border-cyan-800/60 text-cyan-200 self-start sm:self-auto shadow-sm">
-          <ThermometerSnowflake className="w-6 h-6 text-cyan-400 shrink-0" />
-          <div>
-            <div className="text-[11px] uppercase font-bold tracking-wider text-cyan-400">
-              Temp. Serviço (Vitrine)
-            </div>
-            <div className="text-xl font-black font-mono text-cyan-100">
-              {servingTemperature} °C
+        {/* Detailed Explanation Pills of Out-of-Range Parameters */}
+        {!isBalanced && pendingIssues.length > 0 && (
+          <div className="mt-4 pt-3.5 border-t border-slate-700/80 space-y-2">
+            <span className="text-xs font-bold uppercase tracking-wider text-amber-300 flex items-center gap-1.5">
+              <span>⚠️</span>
+              <span>O que precisa ser ajustado:</span>
+            </span>
+            <div className="flex flex-wrap gap-2">
+              {pendingIssues.map(issue => (
+                <div
+                  key={issue.key}
+                  className={`px-3 py-1.5 rounded-xl border text-xs font-bold flex items-center gap-2 ${
+                    issue.status === 'Baixo'
+                      ? 'bg-amber-500/20 text-amber-200 border-amber-500/50'
+                      : 'bg-rose-500/20 text-rose-200 border-rose-500/50'
+                  }`}
+                >
+                  {issue.status === 'Baixo' ? (
+                    <ArrowDownCircle className="w-4 h-4 text-amber-400 shrink-0" />
+                  ) : (
+                    <ArrowUpCircle className="w-4 h-4 text-rose-400 shrink-0" />
+                  )}
+                  <span>
+                    <strong>{issue.name}:</strong> está em <span className="font-mono">{issue.valStr}</span> (
+                    {issue.status === 'Baixo' ? `abaixo do mín. ${issue.minStr}` : `acima do máx. ${issue.maxStr}`}
+                    )
+                  </span>
+                </div>
+              ))}
             </div>
           </div>
-        </div>
+        )}
       </div>
 
-      {/* Grid of parameters with larger fonts and high contrast */}
+      {/* Grid of parameters */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
         {renderBar('Açúcares', validations.sugars, '%', true)}
         {renderBar('Gorduras', validations.fat, '%', true)}

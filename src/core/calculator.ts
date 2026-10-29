@@ -106,7 +106,9 @@ export function calculateBatchAnalysis(
     water: validate(pctWater, style.min.water, style.max.water),
     pod: validate(relPod, style.min.pod, style.max.pod, false),
     pac: validate(relPac, style.min.pac, style.max.pac, false),
-    protein: validate(pctProtein, style.min.protein, style.max.protein)
+    protein: (style.max.protein > 0 && style.name === 'Gelatos Proteicos')
+      ? validate(pctProtein, style.min.protein, style.max.protein)
+      : { val: pctProtein, min: 0, max: 0, status: 'Ok' as const }
   };
 
   const isBalanced = Object.values(validations).every(v => v.status === 'Ok');
