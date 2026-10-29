@@ -1,0 +1,7071 @@
+[
+  {
+    "id": "rec_1",
+    "name": "Fior di Latte (Direto ao Ponto)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 620.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 150.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 45.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 120.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 30.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 30.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Sal",
+        "grams": 1.0
+      }
+    ],
+    "totalGrams": 1001.0
+  },
+  {
+    "id": "rec_2",
+    "name": "Café Bianco Flocado (Direto ao Ponto)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 570.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 200.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 45.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 120.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 30.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 30.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Sal",
+        "grams": 1.0
+      }
+    ],
+    "totalGrams": 1001.0
+  },
+  {
+    "id": "rec_3",
+    "name": "Chocolate com Gostosuras (Direto ao Ponto)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 640.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 65.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 30.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 100.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 50.0
+      },
+      {
+        "name": "Cacau Em Pó 11% gordura",
+        "grams": 30.0
+      },
+      {
+        "name": "Chocolate Amargo 70%",
+        "grams": 80.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 4.0
+      },
+      {
+        "name": "Sal",
+        "grams": 1.0
+      }
+    ],
+    "totalGrams": 1000.0
+  },
+  {
+    "id": "rec_4",
+    "name": "Crema (Direto ao Ponto)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 600.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 120.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 45.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 120.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 30.0
+      },
+      {
+        "name": "Gema Do Ovo",
+        "grams": 80.0
+      },
+      {
+        "name": "Pasta Baunilha - Vanilla Brasil",
+        "grams": 5.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 4.0
+      },
+      {
+        "name": "Sal",
+        "grams": 1.0
+      }
+    ],
+    "totalGrams": 1005.0
+  },
+  {
+    "id": "rec_5",
+    "name": "Crema di Santa Fina (Direto ao Ponto)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 570.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 130.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 45.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 120.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 45.0
+      },
+      {
+        "name": "Gema Do Ovo",
+        "grams": 80.0
+      },
+      {
+        "name": "Pasta Baunilha - Vanilla Brasil",
+        "grams": 5.0
+      },
+      {
+        "name": "Raspa De Limão (Casca)",
+        "grams": 3.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 4.0
+      },
+      {
+        "name": "Sal",
+        "grams": 1.0
+      }
+    ],
+    "totalGrams": 1003.0
+  },
+  {
+    "id": "rec_6",
+    "name": "Baunilha com Mascavo (Direto ao Ponto)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 580.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 155.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 45.0
+      },
+      {
+        "name": "Açúcar Mascavo",
+        "grams": 120.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 35.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 30.0
+      },
+      {
+        "name": "Inulina - Fibra Vegetal",
+        "grams": 25.0
+      },
+      {
+        "name": "Pasta Baunilha - Vanilla Brasil",
+        "grams": 7.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 4.0
+      },
+      {
+        "name": "Sal",
+        "grams": 1.0
+      }
+    ],
+    "totalGrams": 1002.0
+  },
+  {
+    "id": "rec_7",
+    "name": "Doce de Leite (Direto ao Ponto)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Doce De Leite - Lata",
+        "grams": 350.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 145.0
+      },
+      {
+        "name": "Leite Integral",
+        "grams": 485.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Sal",
+        "grams": 1.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 15.0
+      }
+    ],
+    "totalGrams": 1001.0
+  },
+  {
+    "id": "rec_8",
+    "name": "Nesquik (Direto ao Ponto)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 680.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 110.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 35.0
+      },
+      {
+        "name": "Nesquik / Ovomaltine",
+        "grams": 130.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 25.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 15.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Sal",
+        "grams": 1.0
+      }
+    ],
+    "totalGrams": 1001.0
+  },
+  {
+    "id": "rec_9",
+    "name": "Cream Cheese (Direto ao Ponto)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 520.0
+      },
+      {
+        "name": "Cream cheese",
+        "grams": 250.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 35.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 125.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 45.0
+      },
+      {
+        "name": "Suco De Limão",
+        "grams": 20.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Sal",
+        "grams": 1.0
+      }
+    ],
+    "totalGrams": 1001.0
+  },
+  {
+    "id": "rec_10",
+    "name": "Parmesão (Direto ao Ponto)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 580.0
+      },
+      {
+        "name": "Parmesão",
+        "grams": 150.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 50.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 35.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 120.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 55.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Sal",
+        "grams": 2.0
+      }
+    ],
+    "totalGrams": 997.0
+  },
+  {
+    "id": "rec_11",
+    "name": "Gorgonzola (Direto ao Ponto)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 580.0
+      },
+      {
+        "name": "Gorgonzola",
+        "grams": 200.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 35.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 120.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 55.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Sal",
+        "grams": 1.0
+      }
+    ],
+    "totalGrams": 996.0
+  },
+  {
+    "id": "rec_12",
+    "name": "Chocolate Branco Assado com Missô (Direto ao Ponto)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 675.0
+      },
+      {
+        "name": "Chocolate Branco",
+        "grams": 160.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 30.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 50.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 25.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 25.0
+      },
+      {
+        "name": "Missô",
+        "grams": 30.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      }
+    ],
+    "totalGrams": 1000.0
+  },
+  {
+    "id": "rec_13",
+    "name": "Iogurte (Direto ao Ponto)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 200.0
+      },
+      {
+        "name": "Iogurte Integral",
+        "grams": 480.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 80.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 35.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 120.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 60.0
+      },
+      {
+        "name": "Inulina - Fibra Vegetal",
+        "grams": 25.0
+      },
+      {
+        "name": "Sal",
+        "grams": 1.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      }
+    ],
+    "totalGrams": 1006.0
+  },
+  {
+    "id": "rec_14",
+    "name": "Milho (Direto ao Ponto)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 500.0
+      },
+      {
+        "name": "Milho Verde",
+        "grams": 220.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 80.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 45.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 140.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 40.0
+      },
+      {
+        "name": "Inulina - Fibra Vegetal",
+        "grams": 15.0
+      },
+      {
+        "name": "Sal",
+        "grams": 1.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      }
+    ],
+    "totalGrams": 1046.0
+  },
+  {
+    "id": "rec_15",
+    "name": "Coco Fresco (Direto ao Ponto)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 150.0
+      },
+      {
+        "name": "Leite de Coco",
+        "grams": 520.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 100.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 70.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 110.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 35.0
+      },
+      {
+        "name": "Inulina - Fibra Vegetal",
+        "grams": 15.0
+      },
+      {
+        "name": "Sal",
+        "grams": 1.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      }
+    ],
+    "totalGrams": 1006.0
+  },
+  {
+    "id": "rec_16",
+    "name": "Sucrilhos (Direto ao Ponto)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 635.0
+      },
+      {
+        "name": "Sucrilhos",
+        "grams": 100.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 120.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 45.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 120.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 40.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 35.0
+      },
+      {
+        "name": "Sal",
+        "grams": 1.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      }
+    ],
+    "totalGrams": 1101.0
+  },
+  {
+    "id": "rec_17",
+    "name": "Intenso de Cacau (Direto ao Ponto)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 600.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 75.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 35.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 125.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 65.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 4.0
+      },
+      {
+        "name": "Cacau Em Pó 11% gordura",
+        "grams": 70.0
+      },
+      {
+        "name": "Sal",
+        "grams": 1.0
+      }
+    ],
+    "totalGrams": 975.0
+  },
+  {
+    "id": "rec_18",
+    "name": "Chocolate 70% (Direto ao Ponto)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 590.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 75.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 25.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 65.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 45.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 3.0
+      },
+      {
+        "name": "Chocolate Amargo 70%",
+        "grams": 200.0
+      },
+      {
+        "name": "Sal",
+        "grams": 1.0
+      }
+    ],
+    "totalGrams": 1004.0
+  },
+  {
+    "id": "rec_19",
+    "name": "Pistache - Base Oleaginosas (Direto ao Ponto)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 610.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 90.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 40.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 125.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 40.0
+      },
+      {
+        "name": "Pasta De Pistache 100%",
+        "grams": 90.0
+      },
+      {
+        "name": "Sal",
+        "grams": 1.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      }
+    ],
+    "totalGrams": 1001.0
+  },
+  {
+    "id": "rec_20",
+    "name": "Gelato Base Branca (Addolcire)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 552.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 216.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 146.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 19.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 19.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 48.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 4.0
+      }
+    ],
+    "totalGrams": 1004.0
+  },
+  {
+    "id": "rec_21",
+    "name": "Gelato de Caffè Bianco (Addolcire)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 554.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 220.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 131.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 25.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 19.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 38.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 4.0
+      }
+    ],
+    "totalGrams": 991.0
+  },
+  {
+    "id": "rec_22",
+    "name": "Gelato de Iogurte com Amarena (Addolcire)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 165.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 10.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 60.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 82.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 90.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 90.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 3.0
+      },
+      {
+        "name": "Iogurte Integral",
+        "grams": 510.0
+      },
+      {
+        "name": "Suco De Limão",
+        "grams": 30.0
+      }
+    ],
+    "totalGrams": 1040.0
+  },
+  {
+    "id": "rec_23",
+    "name": "Gelato de Cheesecake (Addolcire)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 494.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 72.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 174.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 28.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 16.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 30.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 4.0
+      },
+      {
+        "name": "Cream cheese",
+        "grams": 200.0
+      }
+    ],
+    "totalGrams": 1018.0
+  },
+  {
+    "id": "rec_24",
+    "name": "Gelato de Tiramisù (Addolcire)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 565.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 140.0
+      },
+      {
+        "name": "Gema Do Ovo",
+        "grams": 55.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 145.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 46.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 25.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 40.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      }
+    ],
+    "totalGrams": 1021.0
+  },
+  {
+    "id": "rec_25",
+    "name": "Gelato de Queijo de Cabra e Pecã (Addolcire)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 570.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 125.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 100.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 60.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 15.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 14.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 4.0
+      },
+      {
+        "name": "Queijo Brie / Cabra",
+        "grams": 150.0
+      }
+    ],
+    "totalGrams": 1038.0
+  },
+  {
+    "id": "rec_26",
+    "name": "Gelato de Caramelo Brûlée (Addolcire)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 554.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 250.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 116.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 19.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 38.0
+      },
+      {
+        "name": "Doce De Leite - Lata",
+        "grams": 100.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 4.0
+      }
+    ],
+    "totalGrams": 1081.0
+  },
+  {
+    "id": "rec_27",
+    "name": "Gelato de Pistache (Addolcire)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 554.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 80.0
+      },
+      {
+        "name": "Pasta De Pistache 100%",
+        "grams": 120.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 75.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 50.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 19.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 38.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 4.0
+      },
+      {
+        "name": "Sal",
+        "grams": 2.0
+      }
+    ],
+    "totalGrams": 942.0
+  },
+  {
+    "id": "rec_28",
+    "name": "Gelato de Chocolate Branco e Frutas Vermelhas (Addolcire)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Água",
+        "grams": 322.0
+      },
+      {
+        "name": "Leite Integral",
+        "grams": 256.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 60.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 77.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 8.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 7.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 15.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Chocolate Branco",
+        "grams": 250.0
+      }
+    ],
+    "totalGrams": 1000.0
+  },
+  {
+    "id": "rec_29",
+    "name": "Gelato de Whey Protein com Brownie (Addolcire)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 500.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 100.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 10.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 20.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 40.0
+      },
+      {
+        "name": "Inulina - Fibra Vegetal",
+        "grams": 15.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 4.0
+      },
+      {
+        "name": "Chocolate Amargo 60%",
+        "grams": 200.0
+      },
+      {
+        "name": "Whey protein 80%",
+        "grams": 50.0
+      }
+    ],
+    "totalGrams": 939.0
+  },
+  {
+    "id": "rec_30",
+    "name": "Gelato de Abóbora (Addolcire)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 367.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 160.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 146.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 28.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 14.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 28.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 2.91
+      },
+      {
+        "name": "Abóbora",
+        "grams": 255.0
+      }
+    ],
+    "totalGrams": 1000.91
+  },
+  {
+    "id": "rec_31",
+    "name": "Gelato de Amendoim (Addolcire)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 554.0
+      },
+      {
+        "name": "Pasta De Amendoim 100%",
+        "grams": 100.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 80.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 100.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 30.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 19.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 38.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 4.0
+      }
+    ],
+    "totalGrams": 925.0
+  },
+  {
+    "id": "rec_32",
+    "name": "Gelato de Avelã (Addolcire)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 554.0
+      },
+      {
+        "name": "Pasta De Avelã s/ açúcar",
+        "grams": 100.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 80.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 126.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 19.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 19.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 38.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 4.0
+      }
+    ],
+    "totalGrams": 940.0
+  },
+  {
+    "id": "rec_33",
+    "name": "Gelato de Beijinho (Addolcire)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 147.0
+      },
+      {
+        "name": "Leite de Coco",
+        "grams": 100.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 175.0
+      },
+      {
+        "name": "Água",
+        "grams": 268.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 40.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 31.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 10.0
+      },
+      {
+        "name": "Leite Condensado",
+        "grams": 232.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Coco",
+        "grams": 100.0
+      }
+    ],
+    "totalGrams": 1108.0
+  },
+  {
+    "id": "rec_34",
+    "name": "Gelato de Baba de Moça (Addolcire)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 300.0
+      },
+      {
+        "name": "Leite de Coco",
+        "grams": 153.0
+      },
+      {
+        "name": "Água",
+        "grams": 115.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 66.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 134.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 41.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 16.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 31.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 4.0
+      },
+      {
+        "name": "Gema Do Ovo",
+        "grams": 105.0
+      }
+    ],
+    "totalGrams": 965.0
+  },
+  {
+    "id": "rec_35",
+    "name": "Gelato de Bolo de Cenoura (Addolcire)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 362.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 262.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 110.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 50.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 31.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 33.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 4.0
+      },
+      {
+        "name": "Cenoura",
+        "grams": 75.0
+      }
+    ],
+    "totalGrams": 927.0
+  },
+  {
+    "id": "rec_36",
+    "name": "Gelato de Brie e Damasco (Addolcire)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 479.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 90.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 146.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 35.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 19.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 20.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 4.0
+      },
+      {
+        "name": "Queijo Brie / Cabra",
+        "grams": 150.0
+      }
+    ],
+    "totalGrams": 943.0
+  },
+  {
+    "id": "rec_37",
+    "name": "Gelato de Brigadeiro (Addolcire)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 167.0
+      },
+      {
+        "name": "Água",
+        "grams": 290.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 70.0
+      },
+      {
+        "name": "Leite Condensado",
+        "grams": 200.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 10.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 31.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 30.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Chocolate Amargo 60%",
+        "grams": 150.0
+      }
+    ],
+    "totalGrams": 953.0
+  },
+  {
+    "id": "rec_38",
+    "name": "Gelato de Chiclete (Addolcire)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 584.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 220.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 116.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 29.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 19.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 38.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 4.0
+      }
+    ],
+    "totalGrams": 1010.0
+  },
+  {
+    "id": "rec_39",
+    "name": "Gelato de Chocolate Amargo 60% (Addolcire)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 500.0
+      },
+      {
+        "name": "Água",
+        "grams": 120.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 100.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 80.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 30.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 50.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Chocolate Amargo 60%",
+        "grams": 180.0
+      }
+    ],
+    "totalGrams": 1065.0
+  },
+  {
+    "id": "rec_40",
+    "name": "Gelato de Chocolate ao Leite (Addolcire)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 350.0
+      },
+      {
+        "name": "Água",
+        "grams": 206.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 70.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 61.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 20.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 20.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 10.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Chocolate Ao Leite 33.7%",
+        "grams": 150.0
+      },
+      {
+        "name": "Chocolate Amargo 60%",
+        "grams": 100.0
+      }
+    ],
+    "totalGrams": 992.0
+  },
+  {
+    "id": "rec_41",
+    "name": "Gelato de Chocolate 70% com Amêndoa (Addolcire)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 500.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 70.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 100.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 20.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 30.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 30.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Chocolate Amargo 70%",
+        "grams": 200.0
+      }
+    ],
+    "totalGrams": 955.0
+  },
+  {
+    "id": "rec_42",
+    "name": "Gelato de Creme Inglês (Addolcire)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 453.0
+      },
+      {
+        "name": "Água",
+        "grams": 115.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 66.0
+      },
+      {
+        "name": "Gema Do Ovo",
+        "grams": 105.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 134.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 41.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 16.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 31.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 4.0
+      }
+    ],
+    "totalGrams": 965.0
+  },
+  {
+    "id": "rec_43",
+    "name": "Gelato de Doce de Leite (Addolcire)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 679.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 84.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 60.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 29.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 19.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 38.0
+      },
+      {
+        "name": "Doce De Leite - Lata",
+        "grams": 200.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      }
+    ],
+    "totalGrams": 1114.0
+  },
+  {
+    "id": "rec_44",
+    "name": "Gelato de Gianduia (Addolcire)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 400.0
+      },
+      {
+        "name": "Água",
+        "grams": 200.0
+      },
+      {
+        "name": "Pasta De Avelã s/ açúcar",
+        "grams": 60.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 30.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 50.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 15.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 40.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Chocolate Ao Leite 33.7%",
+        "grams": 120.0
+      },
+      {
+        "name": "Chocolate Amargo 60%",
+        "grams": 60.0
+      }
+    ],
+    "totalGrams": 980.0
+  },
+  {
+    "id": "rec_45",
+    "name": "Gelato de Gingerbread (Addolcire)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 554.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 220.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 146.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 19.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 19.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 38.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 4.0
+      }
+    ],
+    "totalGrams": 1000.0
+  },
+  {
+    "id": "rec_46",
+    "name": "Gelato de Guaraná (Addolcire)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 554.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 220.0
+      },
+      {
+        "name": "Xarope (monin)",
+        "grams": 148.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 31.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 30.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 4.0
+      }
+    ],
+    "totalGrams": 987.0
+  },
+  {
+    "id": "rec_47",
+    "name": "Gelato Kinder Bueno (Addolcire)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 554.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 220.0
+      },
+      {
+        "name": "Pasta De Avelã s/ açúcar",
+        "grams": 30.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 100.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 65.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 19.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 38.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Chocolate Ao Leite 33.7%",
+        "grams": 50.0
+      }
+    ],
+    "totalGrams": 1081.0
+  },
+  {
+    "id": "rec_48",
+    "name": "Gelato de Leite Condensado (Addolcire)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 247.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 175.0
+      },
+      {
+        "name": "Água",
+        "grams": 268.0
+      },
+      {
+        "name": "Leite Condensado",
+        "grams": 232.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 32.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 31.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 10.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      }
+    ],
+    "totalGrams": 1000.0
+  },
+  {
+    "id": "rec_49",
+    "name": "Gelato de Leite Ninho (Addolcire)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Água",
+        "grams": 477.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 220.0
+      },
+      {
+        "name": "Leite Em Pó Integral",
+        "grams": 76.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 146.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 19.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 19.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 38.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 4.0
+      }
+    ],
+    "totalGrams": 999.0
+  },
+  {
+    "id": "rec_50",
+    "name": "Gelato de Matcha (Addolcire)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 554.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 220.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 146.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 19.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 19.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 38.0
+      },
+      {
+        "name": "Matcha",
+        "grams": 10.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 4.0
+      }
+    ],
+    "totalGrams": 1010.0
+  },
+  {
+    "id": "rec_51",
+    "name": "Gelato de Ovomaltine (Addolcire)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 554.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 220.0
+      },
+      {
+        "name": "Nesquik / Ovomaltine",
+        "grams": 190.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 19.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 17.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 35.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 4.0
+      }
+    ],
+    "totalGrams": 1039.0
+  },
+  {
+    "id": "rec_52",
+    "name": "Gelato de Panettone (Addolcire)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 554.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 220.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 146.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 19.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 19.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 38.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 4.0
+      },
+      {
+        "name": "Panettone",
+        "grams": 100.0
+      }
+    ],
+    "totalGrams": 1100.0
+  },
+  {
+    "id": "rec_53",
+    "name": "Gelato de Pão de Mel (Addolcire)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 554.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 220.0
+      },
+      {
+        "name": "Mel",
+        "grams": 80.0
+      },
+      {
+        "name": "Cacau Em Pó 22% gordura",
+        "grams": 15.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 46.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 19.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 19.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 38.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 4.0
+      }
+    ],
+    "totalGrams": 995.0
+  },
+  {
+    "id": "rec_54",
+    "name": "Gelato de Queijadinha (Addolcire)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Água",
+        "grams": 250.0
+      },
+      {
+        "name": "Leite Integral",
+        "grams": 177.0
+      },
+      {
+        "name": "Leite de Coco",
+        "grams": 70.0
+      },
+      {
+        "name": "Leite Condensado",
+        "grams": 240.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 40.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 31.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Parmesão",
+        "grams": 50.0
+      }
+    ],
+    "totalGrams": 863.0
+  },
+  {
+    "id": "rec_55",
+    "name": "Gelato Snickers (Addolcire)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 350.0
+      },
+      {
+        "name": "Água",
+        "grams": 206.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 70.0
+      },
+      {
+        "name": "Pasta De Amendoim 100%",
+        "grams": 50.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 61.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 30.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 20.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 10.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Chocolate Ao Leite 33.7%",
+        "grams": 150.0
+      },
+      {
+        "name": "Chocolate Amargo 60%",
+        "grams": 100.0
+      }
+    ],
+    "totalGrams": 1052.0
+  },
+  {
+    "id": "rec_56",
+    "name": "Gelato Sonho de Valsa (Addolcire)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 554.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 220.0
+      },
+      {
+        "name": "Pasta De Amendoim 100%",
+        "grams": 20.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 100.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 65.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 19.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 38.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Chocolate Ao Leite 33.7%",
+        "grams": 80.0
+      }
+    ],
+    "totalGrams": 1101.0
+  },
+  {
+    "id": "rec_57",
+    "name": "Sorvete Soft - Calda Base de Leite (Addolcire)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 711.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 45.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 145.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 35.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 59.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.52
+      }
+    ],
+    "totalGrams": 1000.52
+  },
+  {
+    "id": "rec_58",
+    "name": "Sorvete Soft de Pistache (Addolcire)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 658.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 35.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 139.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 27.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 46.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 4.28
+      },
+      {
+        "name": "Pasta De Pistache 100%",
+        "grams": 91.0
+      }
+    ],
+    "totalGrams": 1000.28
+  },
+  {
+    "id": "rec_59",
+    "name": "Sorvete Soft de Chocolate (Addolcire)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 465.0
+      },
+      {
+        "name": "Água",
+        "grams": 145.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 59.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 133.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 32.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 23.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 38.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 3.61
+      },
+      {
+        "name": "Cacau Em Pó 22% gordura",
+        "grams": 54.0
+      },
+      {
+        "name": "Chocolate Amargo 70%",
+        "grams": 47.0
+      }
+    ],
+    "totalGrams": 999.61
+  },
+  {
+    "id": "rec_60",
+    "name": "Gelato de Pudim (Direto ao Ponto)",
+    "category": "Gelatos de Leite",
+    "targetStyle": "Gelatos de Leite",
+    "ingredients": [
+      {
+        "name": "Pudim",
+        "grams": 551.0
+      },
+      {
+        "name": "Leite Integral",
+        "grams": 190.0
+      },
+      {
+        "name": "Creme De Leite UHT 17% - Piracanjuba",
+        "grams": 150.0
+      },
+      {
+        "name": "Leite Condensado",
+        "grams": 50.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 35.0
+      },
+      {
+        "name": "Inulina - Fibra Vegetal",
+        "grams": 20.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 3.67
+      }
+    ],
+    "totalGrams": 999.67
+  },
+  {
+    "id": "rec_61",
+    "name": "Mousse Maracujá (Direto ao Ponto)",
+    "category": "Gelatos de Leite com Fruta",
+    "targetStyle": "Gelatos de Leite com Fruta",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 490.0
+      },
+      {
+        "name": "Maracujá",
+        "grams": 175.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 100.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 55.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 115.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 30.0
+      },
+      {
+        "name": "Inulina - Fibra Vegetal",
+        "grams": 15.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 20.0
+      },
+      {
+        "name": "Sal",
+        "grams": 1.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      }
+    ],
+    "totalGrams": 1006.0
+  },
+  {
+    "id": "rec_62",
+    "name": "Banana Assada (Direto ao Ponto)",
+    "category": "Gelatos de Leite com Fruta",
+    "targetStyle": "Gelatos de Leite com Fruta",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 465.0
+      },
+      {
+        "name": "Banana",
+        "grams": 200.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 120.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 50.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 115.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 30.0
+      },
+      {
+        "name": "Inulina - Fibra Vegetal",
+        "grams": 15.0
+      },
+      {
+        "name": "Sal",
+        "grams": 1.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      }
+    ],
+    "totalGrams": 1001.0
+  },
+  {
+    "id": "rec_63",
+    "name": "Morango / Fragola (Direto ao Ponto)",
+    "category": "Gelatos de Leite com Fruta",
+    "targetStyle": "Gelatos de Leite com Fruta",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 165.0
+      },
+      {
+        "name": "Morango",
+        "grams": 530.0
+      },
+      {
+        "name": "Manteiga",
+        "grams": 60.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 80.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 120.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 30.0
+      },
+      {
+        "name": "Inulina - Fibra Vegetal",
+        "grams": 15.0
+      },
+      {
+        "name": "Sal",
+        "grams": 1.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      }
+    ],
+    "totalGrams": 1006.0
+  },
+  {
+    "id": "rec_64",
+    "name": "Gelato de Ameixa, Aveia e Mel (Addolcire)",
+    "category": "Gelatos de Leite com Fruta",
+    "targetStyle": "Gelatos de Leite com Fruta",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 554.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 220.0
+      },
+      {
+        "name": "Mel",
+        "grams": 90.0
+      },
+      {
+        "name": "Aveia em Flocos",
+        "grams": 30.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 19.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 10.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 4.0
+      },
+      {
+        "name": "Ameixa Seca",
+        "grams": 200.0
+      }
+    ],
+    "totalGrams": 1127.0
+  },
+  {
+    "id": "rec_65",
+    "name": "Gelato de Banana (Addolcire)",
+    "category": "Gelatos de Leite com Fruta",
+    "targetStyle": "Gelatos de Leite com Fruta",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 300.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 110.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 48.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 50.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 10.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 9.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 4.0
+      },
+      {
+        "name": "Banana",
+        "grams": 500.0
+      }
+    ],
+    "totalGrams": 1031.0
+  },
+  {
+    "id": "rec_66",
+    "name": "Gelato de Cheesecake de Laranja (Addolcire)",
+    "category": "Gelatos de Leite com Fruta",
+    "targetStyle": "Gelatos de Leite com Fruta",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 440.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 72.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 174.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 32.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 19.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 35.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 4.0
+      },
+      {
+        "name": "Laranja Suco",
+        "grams": 60.0
+      },
+      {
+        "name": "Cream cheese",
+        "grams": 200.0
+      }
+    ],
+    "totalGrams": 1036.0
+  },
+  {
+    "id": "rec_67",
+    "name": "Gelato de Chocolate ao Leite com Morango (Addolcire)",
+    "category": "Gelatos de Leite com Fruta",
+    "targetStyle": "Gelatos de Leite com Fruta",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 220.0
+      },
+      {
+        "name": "Água",
+        "grams": 130.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 45.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 95.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 13.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 13.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 6.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Chocolate ao leite 40%",
+        "grams": 95.0
+      },
+      {
+        "name": "Chocolate Amargo 60%",
+        "grams": 63.0
+      },
+      {
+        "name": "Morango",
+        "grams": 315.0
+      }
+    ],
+    "totalGrams": 1000.0
+  },
+  {
+    "id": "rec_68",
+    "name": "Gelato de Leite com Framboesa (Addolcire)",
+    "category": "Gelatos de Leite com Fruta",
+    "targetStyle": "Gelatos de Leite com Fruta",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 554.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 220.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 150.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 19.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 19.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 38.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 4.0
+      },
+      {
+        "name": "Framboesa",
+        "grams": 50.0
+      }
+    ],
+    "totalGrams": 1054.0
+  },
+  {
+    "id": "rec_69",
+    "name": "Gelato de Mousse de Limão (Addolcire)",
+    "category": "Gelatos de Leite com Fruta",
+    "targetStyle": "Gelatos de Leite com Fruta",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 247.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 175.0
+      },
+      {
+        "name": "Água",
+        "grams": 168.0
+      },
+      {
+        "name": "Leite Condensado",
+        "grams": 232.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 55.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 31.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 10.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Suco De Limão",
+        "grams": 85.0
+      }
+    ],
+    "totalGrams": 1008.0
+  },
+  {
+    "id": "rec_70",
+    "name": "Gelato de Mousse de Maracujá (Addolcire)",
+    "category": "Gelatos de Leite com Fruta",
+    "targetStyle": "Gelatos de Leite com Fruta",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 247.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 175.0
+      },
+      {
+        "name": "Água",
+        "grams": 100.0
+      },
+      {
+        "name": "Leite Condensado",
+        "grams": 250.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 90.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 31.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 10.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Maracujá",
+        "grams": 200.0
+      }
+    ],
+    "totalGrams": 1108.0
+  },
+  {
+    "id": "rec_71",
+    "name": "Sorbet de Cupuaçu (Direto ao Ponto)",
+    "category": "Sorbets",
+    "targetStyle": "Sorbets",
+    "ingredients": [
+      {
+        "name": "Polpa Cupuaçu",
+        "grams": 550.0
+      },
+      {
+        "name": "Água",
+        "grams": 180.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 135.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 30.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 70.0
+      },
+      {
+        "name": "Inulina - Fibra Vegetal",
+        "grams": 15.0
+      },
+      {
+        "name": "Suco De Limão",
+        "grams": 20.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      }
+    ],
+    "totalGrams": 1005.0
+  },
+  {
+    "id": "rec_72",
+    "name": "Sorbet de Manga com Maracujá (Direto ao Ponto)",
+    "category": "Sorbets",
+    "targetStyle": "Sorbets",
+    "ingredients": [
+      {
+        "name": "Manga",
+        "grams": 400.0
+      },
+      {
+        "name": "Água",
+        "grams": 190.0
+      },
+      {
+        "name": "Maracujá",
+        "grams": 175.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 120.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 30.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 50.0
+      },
+      {
+        "name": "Inulina - Fibra Vegetal",
+        "grams": 30.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      }
+    ],
+    "totalGrams": 1000.0
+  },
+  {
+    "id": "rec_73",
+    "name": "Sorbet de Limão (Direto ao Ponto)",
+    "category": "Sorbets",
+    "targetStyle": "Sorbets",
+    "ingredients": [
+      {
+        "name": "Suco De Limão",
+        "grams": 250.0
+      },
+      {
+        "name": "Água",
+        "grams": 470.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 120.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 55.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 60.0
+      },
+      {
+        "name": "Inulina - Fibra Vegetal",
+        "grams": 40.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      }
+    ],
+    "totalGrams": 1000.0
+  },
+  {
+    "id": "rec_74",
+    "name": "Sorbet de Framboesa (Direto ao Ponto)",
+    "category": "Sorbets",
+    "targetStyle": "Sorbets",
+    "ingredients": [
+      {
+        "name": "Framboesa",
+        "grams": 535.0
+      },
+      {
+        "name": "Água",
+        "grams": 225.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 120.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 45.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 35.0
+      },
+      {
+        "name": "Suco De Limão",
+        "grams": 20.0
+      },
+      {
+        "name": "Inulina - Fibra Vegetal",
+        "grams": 15.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      }
+    ],
+    "totalGrams": 1000.0
+  },
+  {
+    "id": "rec_75",
+    "name": "Sorbet de Banana (Direto ao Ponto)",
+    "category": "Sorbets",
+    "targetStyle": "Sorbets",
+    "ingredients": [
+      {
+        "name": "Banana",
+        "grams": 490.0
+      },
+      {
+        "name": "Água",
+        "grams": 300.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 100.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 45.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 35.0
+      },
+      {
+        "name": "Suco De Limão",
+        "grams": 20.0
+      },
+      {
+        "name": "Inulina - Fibra Vegetal",
+        "grams": 5.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      }
+    ],
+    "totalGrams": 1000.0
+  },
+  {
+    "id": "rec_76",
+    "name": "Sorbet de Melancia (Direto ao Ponto)",
+    "category": "Sorbets",
+    "targetStyle": "Sorbets",
+    "ingredients": [
+      {
+        "name": "Melancia",
+        "grams": 650.0
+      },
+      {
+        "name": "Água",
+        "grams": 80.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 120.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 45.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 35.0
+      },
+      {
+        "name": "Suco De Limão",
+        "grams": 20.0
+      },
+      {
+        "name": "Inulina - Fibra Vegetal",
+        "grams": 50.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      }
+    ],
+    "totalGrams": 1005.0
+  },
+  {
+    "id": "rec_77",
+    "name": "Sorbet de Maracujá com Pêssego (Direto ao Ponto)",
+    "category": "Sorbets",
+    "targetStyle": "Sorbets",
+    "ingredients": [
+      {
+        "name": "Maracujá",
+        "grams": 250.0
+      },
+      {
+        "name": "Pêssego",
+        "grams": 315.0
+      },
+      {
+        "name": "Água",
+        "grams": 200.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 120.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 45.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 40.0
+      },
+      {
+        "name": "Inulina - Fibra Vegetal",
+        "grams": 25.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      }
+    ],
+    "totalGrams": 1000.0
+  },
+  {
+    "id": "rec_78",
+    "name": "Sorbet de Mexerica (Direto ao Ponto)",
+    "category": "Sorbets",
+    "targetStyle": "Sorbets",
+    "ingredients": [
+      {
+        "name": "Mexerica",
+        "grams": 600.0
+      },
+      {
+        "name": "Água",
+        "grams": 150.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 120.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 45.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 40.0
+      },
+      {
+        "name": "Inulina - Fibra Vegetal",
+        "grams": 25.0
+      },
+      {
+        "name": "Suco De Limão",
+        "grams": 15.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      }
+    ],
+    "totalGrams": 1000.0
+  },
+  {
+    "id": "rec_79",
+    "name": "Sorbet de Açaí (Direto ao Ponto)",
+    "category": "Sorbets",
+    "targetStyle": "Sorbets",
+    "ingredients": [
+      {
+        "name": "Polpa de Açai(10-14%)",
+        "grams": 540.0
+      },
+      {
+        "name": "Água",
+        "grams": 200.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 135.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 45.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 40.0
+      },
+      {
+        "name": "Inulina - Fibra Vegetal",
+        "grams": 20.0
+      },
+      {
+        "name": "Suco De Limão",
+        "grams": 15.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      }
+    ],
+    "totalGrams": 1000.0
+  },
+  {
+    "id": "rec_80",
+    "name": "Sorbet de Açaí com Banana (Direto ao Ponto)",
+    "category": "Sorbets",
+    "targetStyle": "Sorbets",
+    "ingredients": [
+      {
+        "name": "Polpa de Açai(10-14%)",
+        "grams": 600.0
+      },
+      {
+        "name": "Banana",
+        "grams": 150.0
+      },
+      {
+        "name": "Água",
+        "grams": 155.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 120.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 45.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 40.0
+      },
+      {
+        "name": "Inulina - Fibra Vegetal",
+        "grams": 20.0
+      },
+      {
+        "name": "Suco De Limão",
+        "grams": 15.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      }
+    ],
+    "totalGrams": 1150.0
+  },
+  {
+    "id": "rec_81",
+    "name": "Sorbet Mix de Frutas Vermelhas (Addolcire)",
+    "category": "Sorbets",
+    "targetStyle": "Sorbets",
+    "ingredients": [
+      {
+        "name": "Morango",
+        "grams": 200.0
+      },
+      {
+        "name": "Amora",
+        "grams": 150.0
+      },
+      {
+        "name": "Framboesa",
+        "grams": 150.0
+      },
+      {
+        "name": "Água",
+        "grams": 248.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 145.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 70.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 32.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      }
+    ],
+    "totalGrams": 1000.0
+  },
+  {
+    "id": "rec_82",
+    "name": "Sorbet Pink Lemonade (Addolcire)",
+    "category": "Sorbets",
+    "targetStyle": "Sorbets",
+    "ingredients": [
+      {
+        "name": "Água",
+        "grams": 450.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 175.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 50.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 28.0
+      },
+      {
+        "name": "Inulina - Fibra Vegetal",
+        "grams": 25.0
+      },
+      {
+        "name": "Açúcar - Maltodextrina",
+        "grams": 18.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 4.0
+      },
+      {
+        "name": "Suco De Limão",
+        "grams": 210.0
+      },
+      {
+        "name": "Framboesa",
+        "grams": 20.0
+      }
+    ],
+    "totalGrams": 980.0
+  },
+  {
+    "id": "rec_83",
+    "name": "Sorbet de Abacaxi e Hortelã (Addolcire)",
+    "category": "Sorbets",
+    "targetStyle": "Sorbets",
+    "ingredients": [
+      {
+        "name": "Água",
+        "grams": 295.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 150.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 50.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 20.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Abacaxi",
+        "grams": 500.0
+      },
+      {
+        "name": "Hortelã",
+        "grams": 7.0
+      }
+    ],
+    "totalGrams": 1027.0
+  },
+  {
+    "id": "rec_84",
+    "name": "Sorbet de Atemoia / Fruta do Conde (Addolcire)",
+    "category": "Sorbets",
+    "targetStyle": "Sorbets",
+    "ingredients": [
+      {
+        "name": "Água",
+        "grams": 295.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 100.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 50.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 20.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Atemoia",
+        "grams": 500.0
+      },
+      {
+        "name": "Suco De Limão",
+        "grams": 10.0
+      }
+    ],
+    "totalGrams": 980.0
+  },
+  {
+    "id": "rec_85",
+    "name": "Sorbet de Caqui (Addolcire)",
+    "category": "Sorbets",
+    "targetStyle": "Sorbets",
+    "ingredients": [
+      {
+        "name": "Água",
+        "grams": 295.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 150.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 50.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 20.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Caqui",
+        "grams": 500.0
+      }
+    ],
+    "totalGrams": 1020.0
+  },
+  {
+    "id": "rec_86",
+    "name": "Sorbet de Figo (Addolcire)",
+    "category": "Sorbets",
+    "targetStyle": "Sorbets",
+    "ingredients": [
+      {
+        "name": "Água",
+        "grams": 270.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 125.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 50.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 20.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Figo",
+        "grams": 500.0
+      }
+    ],
+    "totalGrams": 970.0
+  },
+  {
+    "id": "rec_87",
+    "name": "Sorbet de Frutas Vermelhas (Addolcire)",
+    "category": "Sorbets",
+    "targetStyle": "Sorbets",
+    "ingredients": [
+      {
+        "name": "Água",
+        "grams": 247.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 175.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 40.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 20.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Frutas Vermelhas",
+        "grams": 500.0
+      },
+      {
+        "name": "Suco De Limão",
+        "grams": 20.0
+      }
+    ],
+    "totalGrams": 1007.0
+  },
+  {
+    "id": "rec_88",
+    "name": "Sorbet de Jabuticaba (Addolcire)",
+    "category": "Sorbets",
+    "targetStyle": "Sorbets",
+    "ingredients": [
+      {
+        "name": "Água",
+        "grams": 270.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 175.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 40.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 10.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Jabuticaba",
+        "grams": 500.0
+      }
+    ],
+    "totalGrams": 1000.0
+  },
+  {
+    "id": "rec_89",
+    "name": "Sorbet de Laranja e Gengibre (Addolcire)",
+    "category": "Sorbets",
+    "targetStyle": "Sorbets",
+    "ingredients": [
+      {
+        "name": "Água",
+        "grams": 100.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 125.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 60.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 40.0
+      },
+      {
+        "name": "Inulina - Fibra Vegetal",
+        "grams": 20.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Laranja Suco",
+        "grams": 700.0
+      }
+    ],
+    "totalGrams": 1050.0
+  },
+  {
+    "id": "rec_90",
+    "name": "Sorbet de Mamão (Addolcire)",
+    "category": "Sorbets",
+    "targetStyle": "Sorbets",
+    "ingredients": [
+      {
+        "name": "Água",
+        "grams": 220.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 132.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 40.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 20.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Mamão",
+        "grams": 500.0
+      }
+    ],
+    "totalGrams": 917.0
+  },
+  {
+    "id": "rec_91",
+    "name": "Sorbet de Mamão e Laranja (Addolcire)",
+    "category": "Sorbets",
+    "targetStyle": "Sorbets",
+    "ingredients": [
+      {
+        "name": "Água",
+        "grams": 150.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 152.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 30.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 20.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Laranja Suco",
+        "grams": 400.0
+      },
+      {
+        "name": "Mamão",
+        "grams": 200.0
+      }
+    ],
+    "totalGrams": 957.0
+  },
+  {
+    "id": "rec_92",
+    "name": "Sorbet de Manga (Addolcire)",
+    "category": "Sorbets",
+    "targetStyle": "Sorbets",
+    "ingredients": [
+      {
+        "name": "Água",
+        "grams": 250.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 100.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 40.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 40.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Manga",
+        "grams": 500.0
+      },
+      {
+        "name": "Suco De Limão",
+        "grams": 20.0
+      }
+    ],
+    "totalGrams": 955.0
+  },
+  {
+    "id": "rec_93",
+    "name": "Sorbet de Maracujá (Addolcire)",
+    "category": "Sorbets",
+    "targetStyle": "Sorbets",
+    "ingredients": [
+      {
+        "name": "Água",
+        "grams": 330.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 200.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 40.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 20.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Maracujá",
+        "grams": 400.0
+      }
+    ],
+    "totalGrams": 995.0
+  },
+  {
+    "id": "rec_94",
+    "name": "Sorbet de Melancia e Hortelã (Addolcire)",
+    "category": "Sorbets",
+    "targetStyle": "Sorbets",
+    "ingredients": [
+      {
+        "name": "Água",
+        "grams": 100.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 150.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 60.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 40.0
+      },
+      {
+        "name": "Inulina - Fibra Vegetal",
+        "grams": 20.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Melancia",
+        "grams": 700.0
+      },
+      {
+        "name": "Hortelã",
+        "grams": 6.0
+      }
+    ],
+    "totalGrams": 1081.0
+  },
+  {
+    "id": "rec_95",
+    "name": "Sorbet de Mexerica (Addolcire)",
+    "category": "Sorbets",
+    "targetStyle": "Sorbets",
+    "ingredients": [
+      {
+        "name": "Água",
+        "grams": 100.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 125.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 60.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 40.0
+      },
+      {
+        "name": "Inulina - Fibra Vegetal",
+        "grams": 20.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Mexerica",
+        "grams": 700.0
+      },
+      {
+        "name": "Suco De Limão",
+        "grams": 10.0
+      }
+    ],
+    "totalGrams": 1060.0
+  },
+  {
+    "id": "rec_96",
+    "name": "Sorbet de Pêssego e Lavanda (Addolcire)",
+    "category": "Sorbets",
+    "targetStyle": "Sorbets",
+    "ingredients": [
+      {
+        "name": "Água",
+        "grams": 250.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 140.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 50.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 30.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Pêssego",
+        "grams": 500.0
+      },
+      {
+        "name": "Suco De Limão",
+        "grams": 20.0
+      }
+    ],
+    "totalGrams": 995.0
+  },
+  {
+    "id": "rec_97",
+    "name": "Sorbet de Chocolate 70% (Addolcire)",
+    "category": "Chocolate base água",
+    "targetStyle": "Chocolate base água",
+    "ingredients": [
+      {
+        "name": "Água",
+        "grams": 553.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 180.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 27.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 25.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Chocolate Amargo 70%",
+        "grams": 200.0
+      }
+    ],
+    "totalGrams": 990.0
+  },
+  {
+    "id": "rec_98",
+    "name": "Sorbet de Chocolate 40% (Addolcire)",
+    "category": "Chocolate base água",
+    "targetStyle": "Chocolate base água",
+    "ingredients": [
+      {
+        "name": "Água",
+        "grams": 553.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 30.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 27.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 25.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Chocolate ao leite 40%",
+        "grams": 350.0
+      }
+    ],
+    "totalGrams": 990.0
+  },
+  {
+    "id": "rec_99",
+    "name": "Gelato de Cacau Base Água (Direto ao Ponto)",
+    "category": "Chocolate base água",
+    "targetStyle": "Chocolate base água",
+    "ingredients": [
+      {
+        "name": "Água",
+        "grams": 620.0
+      },
+      {
+        "name": "Chocolate Amargo 70%",
+        "grams": 75.0
+      },
+      {
+        "name": "Cacau Em Pó 11% gordura",
+        "grams": 90.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 120.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 50.0
+      },
+      {
+        "name": "Inulina - Fibra Vegetal",
+        "grams": 10.0
+      },
+      {
+        "name": "Manteiga de cacau",
+        "grams": 30.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Sal",
+        "grams": 1.0
+      }
+    ],
+    "totalGrams": 1001.0
+  },
+  {
+    "id": "rec_100",
+    "name": "Gelato de Pistache Vegano (Direto ao Ponto)",
+    "category": "Vegano",
+    "targetStyle": "Vegano",
+    "ingredients": [
+      {
+        "name": "Água",
+        "grams": 600.0
+      },
+      {
+        "name": "Pasta De Pistache 100%",
+        "grams": 120.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 120.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 65.0
+      },
+      {
+        "name": "Inulina - Fibra Vegetal",
+        "grams": 50.0
+      },
+      {
+        "name": "Óleo de coco",
+        "grams": 40.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Sal",
+        "grams": 2.0
+      }
+    ],
+    "totalGrams": 1002.0
+  },
+  {
+    "id": "rec_101",
+    "name": "Gelato de Avelã Vegano (Direto ao Ponto)",
+    "category": "Vegano",
+    "targetStyle": "Vegano",
+    "ingredients": [
+      {
+        "name": "Água",
+        "grams": 590.0
+      },
+      {
+        "name": "Pasta De Avelã s/ açúcar",
+        "grams": 130.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 130.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 50.0
+      },
+      {
+        "name": "Inulina - Fibra Vegetal",
+        "grams": 50.0
+      },
+      {
+        "name": "Óleo de coco",
+        "grams": 40.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Sal",
+        "grams": 2.0
+      }
+    ],
+    "totalGrams": 997.0
+  },
+  {
+    "id": "rec_102",
+    "name": "Gelato de Avelã com Chocolate Vegano (Direto ao Ponto)",
+    "category": "Vegano",
+    "targetStyle": "Vegano",
+    "ingredients": [
+      {
+        "name": "Água",
+        "grams": 600.0
+      },
+      {
+        "name": "Pasta De Avelã s/ açúcar",
+        "grams": 90.0
+      },
+      {
+        "name": "Chocolate Amargo 70%",
+        "grams": 60.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 115.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 50.0
+      },
+      {
+        "name": "Inulina - Fibra Vegetal",
+        "grams": 50.0
+      },
+      {
+        "name": "Óleo de coco",
+        "grams": 20.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Sal",
+        "grams": 2.0
+      }
+    ],
+    "totalGrams": 992.0
+  },
+  {
+    "id": "rec_103",
+    "name": "Gelato de Amendoim Vegano (Direto ao Ponto)",
+    "category": "Vegano",
+    "targetStyle": "Vegano",
+    "ingredients": [
+      {
+        "name": "Água",
+        "grams": 580.0
+      },
+      {
+        "name": "Pasta De Amendoim 100%",
+        "grams": 165.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 130.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 50.0
+      },
+      {
+        "name": "Inulina - Fibra Vegetal",
+        "grams": 50.0
+      },
+      {
+        "name": "Óleo de coco",
+        "grams": 20.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Sal",
+        "grams": 2.0
+      }
+    ],
+    "totalGrams": 1002.0
+  },
+  {
+    "id": "rec_104",
+    "name": "Gelato de Coco Vegano (Direto ao Ponto)",
+    "category": "Vegano",
+    "targetStyle": "Vegano",
+    "ingredients": [
+      {
+        "name": "Água",
+        "grams": 320.0
+      },
+      {
+        "name": "Leite de Coco Sococo",
+        "grams": 350.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 150.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 50.0
+      },
+      {
+        "name": "Inulina - Fibra Vegetal",
+        "grams": 50.0
+      },
+      {
+        "name": "Óleo de coco",
+        "grams": 40.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Sal",
+        "grams": 1.0
+      },
+      {
+        "name": "Leite de coco em pó - IO",
+        "grams": 40.0
+      }
+    ],
+    "totalGrams": 1006.0
+  },
+  {
+    "id": "rec_105",
+    "name": "Gelato de Coco com Cacau Vegano (Direto ao Ponto)",
+    "category": "Vegano",
+    "targetStyle": "Vegano",
+    "ingredients": [
+      {
+        "name": "Água",
+        "grams": 360.0
+      },
+      {
+        "name": "Leite de Coco Sococo",
+        "grams": 300.0
+      },
+      {
+        "name": "Cacau Em Pó 11% gordura",
+        "grams": 30.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 140.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 50.0
+      },
+      {
+        "name": "Inulina - Fibra Vegetal",
+        "grams": 50.0
+      },
+      {
+        "name": "Óleo de coco",
+        "grams": 30.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Sal",
+        "grams": 1.0
+      },
+      {
+        "name": "Leite de coco em pó - IO",
+        "grams": 30.0
+      }
+    ],
+    "totalGrams": 996.0
+  },
+  {
+    "id": "rec_106",
+    "name": "Calda Base Vegana de Aveia (Addolcire)",
+    "category": "Vegano",
+    "targetStyle": "Vegano",
+    "ingredients": [
+      {
+        "name": "Leite de Aveia",
+        "grams": 750.0
+      },
+      {
+        "name": "Óleo de girassol",
+        "grams": 45.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 130.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 30.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 16.0
+      },
+      {
+        "name": "Inulina - Fibra Vegetal",
+        "grams": 22.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 6.0
+      }
+    ],
+    "totalGrams": 999.0
+  },
+  {
+    "id": "rec_107",
+    "name": "Gelato de Avelã Vegano (Addolcire)",
+    "category": "Vegano",
+    "targetStyle": "Vegano",
+    "ingredients": [
+      {
+        "name": "Leite de Aveia",
+        "grams": 750.0
+      },
+      {
+        "name": "Óleo de girassol",
+        "grams": 45.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 130.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 30.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 41.0
+      },
+      {
+        "name": "Inulina - Fibra Vegetal",
+        "grams": 22.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 6.0
+      },
+      {
+        "name": "Pasta De Avelã s/ açúcar",
+        "grams": 100.0
+      }
+    ],
+    "totalGrams": 1124.0
+  },
+  {
+    "id": "rec_108",
+    "name": "Gelato de Pistache Vegano (Addolcire)",
+    "category": "Vegano",
+    "targetStyle": "Vegano",
+    "ingredients": [
+      {
+        "name": "Leite de Aveia",
+        "grams": 750.0
+      },
+      {
+        "name": "Óleo de girassol",
+        "grams": 45.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 130.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 30.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 41.0
+      },
+      {
+        "name": "Inulina - Fibra Vegetal",
+        "grams": 22.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 6.0
+      },
+      {
+        "name": "Pasta De Pistache 100%",
+        "grams": 100.0
+      }
+    ],
+    "totalGrams": 1124.0
+  },
+  {
+    "id": "rec_109",
+    "name": "Gelato Alcoólico de Licor Amaretto (Direto ao Ponto)",
+    "category": "Alcoólicos",
+    "targetStyle": "Alcoólicos",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 500.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 190.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 50.0
+      },
+      {
+        "name": "Whey protein 80%",
+        "grams": 5.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 110.0
+      },
+      {
+        "name": "Açúcar - Maltodextrina",
+        "grams": 50.0
+      },
+      {
+        "name": "Licor Amaretto",
+        "grams": 90.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      }
+    ],
+    "totalGrams": 1000.0
+  },
+  {
+    "id": "rec_110",
+    "name": "Sorbet de Caipirinha (Direto ao Ponto)",
+    "category": "Alcoólicos",
+    "targetStyle": "Alcoólicos",
+    "ingredients": [
+      {
+        "name": "Água",
+        "grams": 500.0
+      },
+      {
+        "name": "Suco De Limão",
+        "grams": 180.0
+      },
+      {
+        "name": "Cachaça",
+        "grams": 100.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 120.0
+      },
+      {
+        "name": "Açúcar - Maltodextrina",
+        "grams": 45.0
+      },
+      {
+        "name": "Inulina - Fibra Vegetal",
+        "grams": 50.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      }
+    ],
+    "totalGrams": 1000.0
+  },
+  {
+    "id": "rec_111",
+    "name": "Gelato de Chocolate com Bailey's (Addolcire)",
+    "category": "Alcoólicos",
+    "targetStyle": "Alcoólicos",
+    "ingredients": [
+      {
+        "name": "Chocolate Amargo 70%",
+        "grams": 100.0
+      },
+      {
+        "name": "Cacau Em Pó 22% gordura",
+        "grams": 50.0
+      },
+      {
+        "name": "Licor Bailey's",
+        "grams": 176.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 34.0
+      },
+      {
+        "name": "Manteiga",
+        "grams": 14.0
+      },
+      {
+        "name": "Água",
+        "grams": 367.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 108.0
+      },
+      {
+        "name": "Açúcar - Maltodextrina",
+        "grams": 31.0
+      },
+      {
+        "name": "Inulina - Fibra Vegetal",
+        "grams": 33.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 82.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      }
+    ],
+    "totalGrams": 1000.0
+  },
+  {
+    "id": "rec_112",
+    "name": "Gelato de Chocolate e Whisky (Addolcire)",
+    "category": "Alcoólicos",
+    "targetStyle": "Alcoólicos",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 200.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 120.0
+      },
+      {
+        "name": "Água",
+        "grams": 315.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 50.0
+      },
+      {
+        "name": "Açúcar - Maltodextrina",
+        "grams": 35.0
+      },
+      {
+        "name": "Inulina - Fibra Vegetal",
+        "grams": 50.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 20.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Chocolate ao leite 40%",
+        "grams": 200.0
+      },
+      {
+        "name": "Chocolate Amargo 60%",
+        "grams": 50.0
+      },
+      {
+        "name": "Whisky / Conhaque 40%",
+        "grams": 35.0
+      }
+    ],
+    "totalGrams": 1080.0
+  },
+  {
+    "id": "rec_113",
+    "name": "Gelato de Bailey's (Addolcire)",
+    "category": "Alcoólicos",
+    "targetStyle": "Alcoólicos",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 585.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 118.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 134.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 20.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 20.0
+      },
+      {
+        "name": "Inulina - Fibra Vegetal",
+        "grams": 18.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 40.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Licor Bailey's",
+        "grams": 60.0
+      }
+    ],
+    "totalGrams": 1000.0
+  },
+  {
+    "id": "rec_114",
+    "name": "Gelato de Cajá e Cachaça (Addolcire)",
+    "category": "Alcoólicos",
+    "targetStyle": "Alcoólicos",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 296.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 40.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 90.0
+      },
+      {
+        "name": "Açúcar - Maltodextrina",
+        "grams": 29.0
+      },
+      {
+        "name": "Inulina - Fibra Vegetal",
+        "grams": 61.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Cajá",
+        "grams": 400.0
+      },
+      {
+        "name": "Cachaça",
+        "grams": 65.0
+      }
+    ],
+    "totalGrams": 986.0
+  },
+  {
+    "id": "rec_115",
+    "name": "Gelato de Conhaque (Addolcire)",
+    "category": "Alcoólicos",
+    "targetStyle": "Alcoólicos",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 600.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 120.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 110.0
+      },
+      {
+        "name": "Açúcar - Maltodextrina",
+        "grams": 60.0
+      },
+      {
+        "name": "Inulina - Fibra Vegetal",
+        "grams": 30.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 60.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Whisky / Conhaque 40%",
+        "grams": 55.0
+      }
+    ],
+    "totalGrams": 1040.0
+  },
+  {
+    "id": "rec_116",
+    "name": "Gelato de Rum (Addolcire)",
+    "category": "Alcoólicos",
+    "targetStyle": "Alcoólicos",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 600.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 120.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 120.0
+      },
+      {
+        "name": "Açúcar - Maltodextrina",
+        "grams": 50.0
+      },
+      {
+        "name": "Inulina - Fibra Vegetal",
+        "grams": 50.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 50.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Rum",
+        "grams": 70.0
+      }
+    ],
+    "totalGrams": 1065.0
+  },
+  {
+    "id": "rec_117",
+    "name": "Sorbet de Caipirinha (Addolcire)",
+    "category": "Alcoólicos",
+    "targetStyle": "Alcoólicos",
+    "ingredients": [
+      {
+        "name": "Água",
+        "grams": 425.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 120.0
+      },
+      {
+        "name": "Açúcar - Glucose em pó",
+        "grams": 70.0
+      },
+      {
+        "name": "Açúcar - Maltodextrina",
+        "grams": 45.0
+      },
+      {
+        "name": "Inulina - Fibra Vegetal",
+        "grams": 45.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Suco De Limão",
+        "grams": 210.0
+      },
+      {
+        "name": "Cachaça",
+        "grams": 70.0
+      }
+    ],
+    "totalGrams": 990.0
+  },
+  {
+    "id": "rec_118",
+    "name": "Sorbet Clericot (Addolcire)",
+    "category": "Alcoólicos",
+    "targetStyle": "Alcoólicos",
+    "ingredients": [
+      {
+        "name": "Água",
+        "grams": 171.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 120.0
+      },
+      {
+        "name": "Inulina - Fibra Vegetal",
+        "grams": 61.0
+      },
+      {
+        "name": "Açúcar - Maltodextrina",
+        "grams": 54.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Vinho Branco / Espumante",
+        "grams": 250.0
+      },
+      {
+        "name": "Morango",
+        "grams": 75.0
+      },
+      {
+        "name": "Laranja Suco",
+        "grams": 75.0
+      },
+      {
+        "name": "Abacaxi",
+        "grams": 75.0
+      },
+      {
+        "name": "Maçã",
+        "grams": 75.0
+      }
+    ],
+    "totalGrams": 961.0
+  },
+  {
+    "id": "rec_119",
+    "name": "Sorbet de Morango e Espumante (Addolcire)",
+    "category": "Alcoólicos",
+    "targetStyle": "Alcoólicos",
+    "ingredients": [
+      {
+        "name": "Água",
+        "grams": 175.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 156.0
+      },
+      {
+        "name": "Inulina - Fibra Vegetal",
+        "grams": 61.0
+      },
+      {
+        "name": "Açúcar - Maltodextrina",
+        "grams": 54.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Vinho Branco / Espumante",
+        "grams": 260.0
+      },
+      {
+        "name": "Morango",
+        "grams": 250.0
+      },
+      {
+        "name": "Suco De Limão",
+        "grams": 50.0
+      }
+    ],
+    "totalGrams": 1011.0
+  },
+  {
+    "id": "rec_120",
+    "name": "Crema de Laranja Zero (Mix Zero)",
+    "category": "Zero",
+    "targetStyle": "Zero",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 400.0
+      },
+      {
+        "name": "Creme De Leite UHT 17% - Piracanjuba",
+        "grams": 100.0
+      },
+      {
+        "name": "Leite Em Pó Integral",
+        "grams": 50.0
+      },
+      {
+        "name": "MIX ZERO",
+        "grams": 115.0
+      },
+      {
+        "name": "Gema Do Ovo",
+        "grams": 40.0
+      },
+      {
+        "name": "Raspa De Limão (Casca)",
+        "grams": 2.0
+      },
+      {
+        "name": "Pasta Baunilha - Vanilla Brasil",
+        "grams": 2.0
+      }
+    ],
+    "totalGrams": 709.0
+  },
+  {
+    "id": "rec_121",
+    "name": "Café Branco Zero (Mix Zero)",
+    "category": "Zero",
+    "targetStyle": "Zero",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 420.0
+      },
+      {
+        "name": "Creme De Leite UHT 17% - Piracanjuba",
+        "grams": 200.0
+      },
+      {
+        "name": "Leite Em Pó Integral",
+        "grams": 60.0
+      },
+      {
+        "name": "MIX ZERO",
+        "grams": 120.0
+      }
+    ],
+    "totalGrams": 800.0
+  },
+  {
+    "id": "rec_122",
+    "name": "Baunilha Zero (Mix Zero)",
+    "category": "Zero",
+    "targetStyle": "Zero",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 420.0
+      },
+      {
+        "name": "Creme De Leite UHT 17% - Piracanjuba",
+        "grams": 200.0
+      },
+      {
+        "name": "Leite Em Pó Integral",
+        "grams": 60.0
+      },
+      {
+        "name": "MIX ZERO",
+        "grams": 120.0
+      },
+      {
+        "name": "Pasta Baunilha - Vanilla Brasil",
+        "grams": 5.0
+      }
+    ],
+    "totalGrams": 805.0
+  },
+  {
+    "id": "rec_123",
+    "name": "Cappuccino com Flocos de Chocolate Zero (Mix Zero)",
+    "category": "Zero",
+    "targetStyle": "Zero",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 420.0
+      },
+      {
+        "name": "Creme De Leite UHT 17% - Piracanjuba",
+        "grams": 200.0
+      },
+      {
+        "name": "Leite Em Pó Integral",
+        "grams": 60.0
+      },
+      {
+        "name": "MIX ZERO",
+        "grams": 120.0
+      },
+      {
+        "name": "Café Solúvel",
+        "grams": 3.0
+      }
+    ],
+    "totalGrams": 803.0
+  },
+  {
+    "id": "rec_124",
+    "name": "Gelato Avelã Zero (Mix Zero)",
+    "category": "Zero",
+    "targetStyle": "Zero",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 455.0
+      },
+      {
+        "name": "Creme De Leite UHT 17% - Piracanjuba",
+        "grams": 25.0
+      },
+      {
+        "name": "Leite Em Pó Integral",
+        "grams": 45.0
+      },
+      {
+        "name": "MIX ZERO",
+        "grams": 105.0
+      },
+      {
+        "name": "Pasta De Avelã s/ açúcar",
+        "grams": 70.0
+      }
+    ],
+    "totalGrams": 700.0
+  },
+  {
+    "id": "rec_125",
+    "name": "Gelato Avelã com Chocolate Zero (Mix Zero)",
+    "category": "Zero",
+    "targetStyle": "Zero",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 460.0
+      },
+      {
+        "name": "Creme De Leite UHT 17% - Piracanjuba",
+        "grams": 25.0
+      },
+      {
+        "name": "Leite Em Pó Integral",
+        "grams": 45.0
+      },
+      {
+        "name": "MIX ZERO",
+        "grams": 105.0
+      },
+      {
+        "name": "Pasta De Avelã s/ açúcar",
+        "grams": 45.0
+      },
+      {
+        "name": "Cacau Em Pó 22% gordura",
+        "grams": 20.0
+      }
+    ],
+    "totalGrams": 700.0
+  },
+  {
+    "id": "rec_126",
+    "name": "Pistache Zero (Mix Zero)",
+    "category": "Zero",
+    "targetStyle": "Zero",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 490.0
+      },
+      {
+        "name": "Creme De Leite UHT 17% - Piracanjuba",
+        "grams": 60.0
+      },
+      {
+        "name": "Leite Em Pó Integral",
+        "grams": 55.0
+      },
+      {
+        "name": "MIX ZERO",
+        "grams": 130.0
+      },
+      {
+        "name": "Pasta De Pistache 100%",
+        "grams": 60.0
+      }
+    ],
+    "totalGrams": 795.0
+  },
+  {
+    "id": "rec_127",
+    "name": "Banana ao Leite Zero (Mix Zero)",
+    "category": "Zero",
+    "targetStyle": "Zero",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 230.0
+      },
+      {
+        "name": "Creme De Leite UHT 17% - Piracanjuba",
+        "grams": 140.0
+      },
+      {
+        "name": "Leite Em Pó Integral",
+        "grams": 45.0
+      },
+      {
+        "name": "MIX ZERO",
+        "grams": 145.0
+      },
+      {
+        "name": "Banana",
+        "grams": 240.0
+      }
+    ],
+    "totalGrams": 800.0
+  },
+  {
+    "id": "rec_128",
+    "name": "Mousse de Maracujá Zero (Mix Zero)",
+    "category": "Zero",
+    "targetStyle": "Zero",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 245.0
+      },
+      {
+        "name": "Creme De Leite UHT 17% - Piracanjuba",
+        "grams": 205.0
+      },
+      {
+        "name": "Leite Em Pó Integral",
+        "grams": 50.0
+      },
+      {
+        "name": "MIX ZERO",
+        "grams": 145.0
+      },
+      {
+        "name": "Maracujá",
+        "grams": 155.0
+      }
+    ],
+    "totalGrams": 800.0
+  },
+  {
+    "id": "rec_129",
+    "name": "Torta de Maçã Zero (Mix Zero)",
+    "category": "Zero",
+    "targetStyle": "Zero",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 230.0
+      },
+      {
+        "name": "Creme De Leite UHT 17% - Piracanjuba",
+        "grams": 140.0
+      },
+      {
+        "name": "Leite Em Pó Integral",
+        "grams": 45.0
+      },
+      {
+        "name": "MIX ZERO",
+        "grams": 145.0
+      },
+      {
+        "name": "Maçã",
+        "grams": 240.0
+      }
+    ],
+    "totalGrams": 800.0
+  },
+  {
+    "id": "rec_130",
+    "name": "Morango ao Leite Zero (Mix Zero)",
+    "category": "Zero",
+    "targetStyle": "Zero",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 65.0
+      },
+      {
+        "name": "Creme De Leite UHT 17% - Piracanjuba",
+        "grams": 140.0
+      },
+      {
+        "name": "Leite Em Pó Integral",
+        "grams": 80.0
+      },
+      {
+        "name": "MIX ZERO",
+        "grams": 140.0
+      },
+      {
+        "name": "Morango",
+        "grams": 375.0
+      }
+    ],
+    "totalGrams": 800.0
+  },
+  {
+    "id": "rec_131",
+    "name": "Sorbet de Cupuaçu Zero (Mix Zero)",
+    "category": "Zero",
+    "targetStyle": "Zero",
+    "ingredients": [
+      {
+        "name": "Água",
+        "grams": 230.0
+      },
+      {
+        "name": "MIX ZERO",
+        "grams": 270.0
+      },
+      {
+        "name": "Polpa Cupuaçu",
+        "grams": 500.0
+      }
+    ],
+    "totalGrams": 1000.0
+  },
+  {
+    "id": "rec_132",
+    "name": "Sorbet de Limão Taiti Zero (Mix Zero)",
+    "category": "Zero",
+    "targetStyle": "Zero",
+    "ingredients": [
+      {
+        "name": "Água",
+        "grams": 230.0
+      },
+      {
+        "name": "MIX ZERO",
+        "grams": 270.0
+      },
+      {
+        "name": "Lima Limão Taiti",
+        "grams": 500.0
+      }
+    ],
+    "totalGrams": 1000.0
+  },
+  {
+    "id": "rec_133",
+    "name": "Sorbet de Manga com Maracujá Zero (Mix Zero)",
+    "category": "Zero",
+    "targetStyle": "Zero",
+    "ingredients": [
+      {
+        "name": "Água",
+        "grams": 160.0
+      },
+      {
+        "name": "MIX ZERO",
+        "grams": 240.0
+      },
+      {
+        "name": "Manga",
+        "grams": 400.0
+      },
+      {
+        "name": "Maracujá",
+        "grams": 200.0
+      }
+    ],
+    "totalGrams": 1000.0
+  },
+  {
+    "id": "rec_134",
+    "name": "Sorbet de Açaí Zero (Mix Zero)",
+    "category": "Zero",
+    "targetStyle": "Zero",
+    "ingredients": [
+      {
+        "name": "Água",
+        "grams": 230.0
+      },
+      {
+        "name": "MIX ZERO",
+        "grams": 250.0
+      },
+      {
+        "name": "Polpa de Açai(10-14%)",
+        "grams": 500.0
+      },
+      {
+        "name": "Suco De Limão",
+        "grams": 20.0
+      }
+    ],
+    "totalGrams": 1000.0
+  },
+  {
+    "id": "rec_135",
+    "name": "Sorbet de Açaí com Banana Zero (Mix Zero)",
+    "category": "Zero",
+    "targetStyle": "Zero",
+    "ingredients": [
+      {
+        "name": "Água",
+        "grams": 160.0
+      },
+      {
+        "name": "MIX ZERO",
+        "grams": 220.0
+      },
+      {
+        "name": "Polpa de Açai(10-14%)",
+        "grams": 400.0
+      },
+      {
+        "name": "Banana",
+        "grams": 200.0
+      },
+      {
+        "name": "Suco De Limão",
+        "grams": 20.0
+      }
+    ],
+    "totalGrams": 1000.0
+  },
+  {
+    "id": "rec_136",
+    "name": "Sorbet de Açaí com Morango Zero (Mix Zero)",
+    "category": "Zero",
+    "targetStyle": "Zero",
+    "ingredients": [
+      {
+        "name": "Água",
+        "grams": 130.0
+      },
+      {
+        "name": "MIX ZERO",
+        "grams": 230.0
+      },
+      {
+        "name": "Polpa de Açai(10-14%)",
+        "grams": 380.0
+      },
+      {
+        "name": "Morango",
+        "grams": 240.0
+      },
+      {
+        "name": "Suco De Limão",
+        "grams": 20.0
+      }
+    ],
+    "totalGrams": 1000.0
+  },
+  {
+    "id": "rec_137",
+    "name": "Sorbet de Framboesa Zero (Mix Zero)",
+    "category": "Zero",
+    "targetStyle": "Zero",
+    "ingredients": [
+      {
+        "name": "Água",
+        "grams": 185.0
+      },
+      {
+        "name": "MIX ZERO",
+        "grams": 240.0
+      },
+      {
+        "name": "Framboesa",
+        "grams": 560.0
+      },
+      {
+        "name": "Suco De Limão",
+        "grams": 15.0
+      }
+    ],
+    "totalGrams": 1000.0
+  },
+  {
+    "id": "rec_138",
+    "name": "Sorbet de Morango Zero (Mix Zero)",
+    "category": "Zero",
+    "targetStyle": "Zero",
+    "ingredients": [
+      {
+        "name": "Água",
+        "grams": 130.0
+      },
+      {
+        "name": "MIX ZERO",
+        "grams": 250.0
+      },
+      {
+        "name": "Morango",
+        "grams": 600.0
+      },
+      {
+        "name": "Suco De Limão",
+        "grams": 20.0
+      }
+    ],
+    "totalGrams": 1000.0
+  },
+  {
+    "id": "rec_139",
+    "name": "Sorbet de Manga Zero (Mix Zero)",
+    "category": "Zero",
+    "targetStyle": "Zero",
+    "ingredients": [
+      {
+        "name": "Água",
+        "grams": 150.0
+      },
+      {
+        "name": "MIX ZERO",
+        "grams": 230.0
+      },
+      {
+        "name": "Manga",
+        "grams": 600.0
+      },
+      {
+        "name": "Suco De Limão",
+        "grams": 20.0
+      }
+    ],
+    "totalGrams": 1000.0
+  },
+  {
+    "id": "rec_140",
+    "name": "Sorbet de Frutas Vermelhas Zero (Mix Zero)",
+    "category": "Zero",
+    "targetStyle": "Zero",
+    "ingredients": [
+      {
+        "name": "Água",
+        "grams": 160.0
+      },
+      {
+        "name": "MIX ZERO",
+        "grams": 240.0
+      },
+      {
+        "name": "Framboesa",
+        "grams": 250.0
+      },
+      {
+        "name": "Morango",
+        "grams": 250.0
+      },
+      {
+        "name": "Mirtilo",
+        "grams": 100.0
+      }
+    ],
+    "totalGrams": 1000.0
+  },
+  {
+    "id": "rec_141",
+    "name": "Sorbet de Limão Siciliano Zero (Mix Zero)",
+    "category": "Zero",
+    "targetStyle": "Zero",
+    "ingredients": [
+      {
+        "name": "Água",
+        "grams": 350.0
+      },
+      {
+        "name": "MIX ZERO",
+        "grams": 250.0
+      },
+      {
+        "name": "Limão Siciliano",
+        "grams": 350.0
+      },
+      {
+        "name": "Raspa De Limão (Casca)",
+        "grams": 2.0
+      }
+    ],
+    "totalGrams": 952.0
+  },
+  {
+    "id": "rec_142",
+    "name": "Sorbet de Morango e Manjericão Diet (Addolcire)",
+    "category": "Zero",
+    "targetStyle": "Zero",
+    "ingredients": [
+      {
+        "name": "Água",
+        "grams": 247.0
+      },
+      {
+        "name": "Maltitol",
+        "grams": 166.0
+      },
+      {
+        "name": "Eritritol",
+        "grams": 40.0
+      },
+      {
+        "name": "Inulina - Fibra Vegetal",
+        "grams": 20.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Morango",
+        "grams": 500.0
+      },
+      {
+        "name": "Suco De Limão",
+        "grams": 20.0
+      },
+      {
+        "name": "Hortelã",
+        "grams": 6.0
+      }
+    ],
+    "totalGrams": 1004.0
+  },
+  {
+    "id": "rec_143",
+    "name": "Gelato de Coco com Cumaru Diet (Addolcire)",
+    "category": "Zero",
+    "targetStyle": "Zero",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 454.0
+      },
+      {
+        "name": "Leite de Coco",
+        "grams": 100.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 80.0
+      },
+      {
+        "name": "Maltitol",
+        "grams": 166.0
+      },
+      {
+        "name": "Eritritol",
+        "grams": 20.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 38.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 4.0
+      }
+    ],
+    "totalGrams": 862.0
+  },
+  {
+    "id": "rec_144",
+    "name": "Sorbet de Framboesa - Polióis (Sem Açúcar)",
+    "category": "Zero",
+    "targetStyle": "Zero",
+    "ingredients": [
+      {
+        "name": "Framboesa",
+        "grams": 450.0
+      },
+      {
+        "name": "Água",
+        "grams": 280.0
+      },
+      {
+        "name": "Maltitol",
+        "grams": 170.0
+      },
+      {
+        "name": "Eritritol",
+        "grams": 30.0
+      },
+      {
+        "name": "Inulina - Fibra Vegetal",
+        "grams": 50.0
+      },
+      {
+        "name": "Polidextrose - Fibra",
+        "grams": 20.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 4.0
+      },
+      {
+        "name": "Suco De Limão",
+        "grams": 20.0
+      }
+    ],
+    "totalGrams": 1024.0
+  },
+  {
+    "id": "rec_145",
+    "name": "Sorbet de Framboesa - Redução de Polióis (Sem Açúcar)",
+    "category": "Zero",
+    "targetStyle": "Zero",
+    "ingredients": [
+      {
+        "name": "Framboesa",
+        "grams": 500.0
+      },
+      {
+        "name": "Água",
+        "grams": 230.0
+      },
+      {
+        "name": "Polidextrose - Fibra",
+        "grams": 150.0
+      },
+      {
+        "name": "Eritritol",
+        "grams": 55.0
+      },
+      {
+        "name": "Inulina - Fibra Vegetal",
+        "grams": 40.0
+      },
+      {
+        "name": "Stevia em pó",
+        "grams": 2.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 4.0
+      },
+      {
+        "name": "Suco De Limão",
+        "grams": 20.0
+      }
+    ],
+    "totalGrams": 1001.0
+  },
+  {
+    "id": "rec_146",
+    "name": "Fior di Latte 17% - Polióis (Sem Açúcar)",
+    "category": "Zero",
+    "targetStyle": "Zero",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 350.0
+      },
+      {
+        "name": "Creme De Leite UHT 17% - Piracanjuba",
+        "grams": 350.0
+      },
+      {
+        "name": "Maltitol",
+        "grams": 110.0
+      },
+      {
+        "name": "Eritritol",
+        "grams": 25.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 4.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 40.0
+      },
+      {
+        "name": "Sal",
+        "grams": 1.0
+      }
+    ],
+    "totalGrams": 880.0
+  },
+  {
+    "id": "rec_147",
+    "name": "Fior di Latte 17% - Menos Polióis (Sem Açúcar)",
+    "category": "Zero",
+    "targetStyle": "Zero",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 350.0
+      },
+      {
+        "name": "Creme De Leite UHT 17% - Piracanjuba",
+        "grams": 350.0
+      },
+      {
+        "name": "Polidextrose - Fibra",
+        "grams": 100.0
+      },
+      {
+        "name": "Eritritol",
+        "grams": 45.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 4.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 40.0
+      },
+      {
+        "name": "Stevia em pó",
+        "grams": 2.0
+      },
+      {
+        "name": "Sal",
+        "grams": 1.0
+      }
+    ],
+    "totalGrams": 892.0
+  },
+  {
+    "id": "rec_148",
+    "name": "Chocolate 17% - Polióis (Sem Açúcar)",
+    "category": "Zero",
+    "targetStyle": "Zero",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 430.0
+      },
+      {
+        "name": "Creme De Leite UHT 17% - Piracanjuba",
+        "grams": 200.0
+      },
+      {
+        "name": "Água",
+        "grams": 75.0
+      },
+      {
+        "name": "Maltitol",
+        "grams": 110.0
+      },
+      {
+        "name": "Eritritol",
+        "grams": 35.0
+      },
+      {
+        "name": "Cacau Em Pó 11% gordura",
+        "grams": 45.0
+      },
+      {
+        "name": "Gema Do Ovo",
+        "grams": 45.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 20.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 3.0
+      },
+      {
+        "name": "Sal",
+        "grams": 1.0
+      }
+    ],
+    "totalGrams": 964.0
+  },
+  {
+    "id": "rec_149",
+    "name": "Chocolate 17% - Redução Polióis (Sem Açúcar)",
+    "category": "Zero",
+    "targetStyle": "Zero",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 430.0
+      },
+      {
+        "name": "Creme De Leite UHT 17% - Piracanjuba",
+        "grams": 200.0
+      },
+      {
+        "name": "Água",
+        "grams": 75.0
+      },
+      {
+        "name": "Polidextrose - Fibra",
+        "grams": 90.0
+      },
+      {
+        "name": "Eritritol",
+        "grams": 55.0
+      },
+      {
+        "name": "Cacau Em Pó 11% gordura",
+        "grams": 45.0
+      },
+      {
+        "name": "Gema Do Ovo",
+        "grams": 55.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 20.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 3.0
+      },
+      {
+        "name": "Stevia em pó",
+        "grams": 2.0
+      },
+      {
+        "name": "Sal",
+        "grams": 1.0
+      }
+    ],
+    "totalGrams": 976.0
+  },
+  {
+    "id": "rec_150",
+    "name": "Fragola / Morango ao Leite - Polióis (Sem Açúcar)",
+    "category": "Zero",
+    "targetStyle": "Zero",
+    "ingredients": [
+      {
+        "name": "Morango",
+        "grams": 400.0
+      },
+      {
+        "name": "Leite Integral",
+        "grams": 100.0
+      },
+      {
+        "name": "Creme De Leite UHT 17% - Piracanjuba",
+        "grams": 300.0
+      },
+      {
+        "name": "Maltitol",
+        "grams": 110.0
+      },
+      {
+        "name": "Eritritol",
+        "grams": 45.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 40.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 3.0
+      },
+      {
+        "name": "Sal",
+        "grams": 1.0
+      }
+    ],
+    "totalGrams": 999.0
+  },
+  {
+    "id": "rec_151",
+    "name": "Fragola / Morango ao Leite - Redução Polióis (Sem Açúcar)",
+    "category": "Zero",
+    "targetStyle": "Zero",
+    "ingredients": [
+      {
+        "name": "Morango",
+        "grams": 400.0
+      },
+      {
+        "name": "Leite Integral",
+        "grams": 100.0
+      },
+      {
+        "name": "Creme De Leite UHT 17% - Piracanjuba",
+        "grams": 300.0
+      },
+      {
+        "name": "Polidextrose - Fibra",
+        "grams": 100.0
+      },
+      {
+        "name": "Eritritol",
+        "grams": 55.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 40.0
+      },
+      {
+        "name": "Stevia em pó",
+        "grams": 2.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 3.0
+      },
+      {
+        "name": "Sal",
+        "grams": 1.0
+      }
+    ],
+    "totalGrams": 1001.0
+  },
+  {
+    "id": "rec_152",
+    "name": "Gelato de Coco - Polióis (Sem Açúcar)",
+    "category": "Zero",
+    "targetStyle": "Zero",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 350.0
+      },
+      {
+        "name": "Leite de Coco Sococo",
+        "grams": 350.0
+      },
+      {
+        "name": "Maltitol",
+        "grams": 110.0
+      },
+      {
+        "name": "Eritritol",
+        "grams": 45.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 40.0
+      },
+      {
+        "name": "Sal",
+        "grams": 1.0
+      }
+    ],
+    "totalGrams": 901.0
+  },
+  {
+    "id": "rec_153",
+    "name": "Gelato de Coco - Menos Polióis (Sem Açúcar)",
+    "category": "Zero",
+    "targetStyle": "Zero",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 350.0
+      },
+      {
+        "name": "Leite de Coco Sococo",
+        "grams": 350.0
+      },
+      {
+        "name": "Polidextrose - Fibra",
+        "grams": 100.0
+      },
+      {
+        "name": "Eritritol",
+        "grams": 45.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 40.0
+      },
+      {
+        "name": "Stevia em pó",
+        "grams": 1.5
+      },
+      {
+        "name": "Sal",
+        "grams": 1.0
+      }
+    ],
+    "totalGrams": 892.5
+  },
+  {
+    "id": "rec_154",
+    "name": "Gelato de Coco Vegano - Polióis (Sem Açúcar)",
+    "category": "Zero",
+    "targetStyle": "Zero",
+    "ingredients": [
+      {
+        "name": "Água",
+        "grams": 350.0
+      },
+      {
+        "name": "Leite de Coco Sococo",
+        "grams": 350.0
+      },
+      {
+        "name": "Óleo de coco",
+        "grams": 15.0
+      },
+      {
+        "name": "Maltitol",
+        "grams": 110.0
+      },
+      {
+        "name": "Eritritol",
+        "grams": 50.0
+      },
+      {
+        "name": "Inulina - Fibra Vegetal",
+        "grams": 15.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 3.0
+      },
+      {
+        "name": "Leite de coco em pó - IO",
+        "grams": 40.0
+      }
+    ],
+    "totalGrams": 933.0
+  },
+  {
+    "id": "rec_155",
+    "name": "Gelato de Coco Vegano - Menos Polióis (Sem Açúcar)",
+    "category": "Zero",
+    "targetStyle": "Zero",
+    "ingredients": [
+      {
+        "name": "Água",
+        "grams": 350.0
+      },
+      {
+        "name": "Leite de Coco Sococo",
+        "grams": 350.0
+      },
+      {
+        "name": "Óleo de coco",
+        "grams": 15.0
+      },
+      {
+        "name": "Polidextrose - Fibra",
+        "grams": 115.0
+      },
+      {
+        "name": "Eritritol",
+        "grams": 50.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 3.0
+      },
+      {
+        "name": "Leite de coco em pó - IO",
+        "grams": 40.0
+      },
+      {
+        "name": "Stevia em pó",
+        "grams": 1.5
+      }
+    ],
+    "totalGrams": 924.5
+  },
+  {
+    "id": "rec_156",
+    "name": "Gelato de Pistache - Polióis (Sem Açúcar)",
+    "category": "Zero",
+    "targetStyle": "Zero",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 585.5
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 40.0
+      },
+      {
+        "name": "Pasta De Pistache 100%",
+        "grams": 80.0
+      },
+      {
+        "name": "Maltitol",
+        "grams": 100.0
+      },
+      {
+        "name": "Eritritol",
+        "grams": 45.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 40.0
+      },
+      {
+        "name": "Sal",
+        "grams": 2.0
+      }
+    ],
+    "totalGrams": 897.5
+  },
+  {
+    "id": "rec_157",
+    "name": "Gelato de Pistache - Menos Polióis (Sem Açúcar)",
+    "category": "Zero",
+    "targetStyle": "Zero",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 545.5
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 80.0
+      },
+      {
+        "name": "Pasta De Pistache 100%",
+        "grams": 80.0
+      },
+      {
+        "name": "Polidextrose - Fibra",
+        "grams": 80.0
+      },
+      {
+        "name": "Eritritol",
+        "grams": 45.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 35.0
+      },
+      {
+        "name": "Stevia em pó",
+        "grams": 2.0
+      },
+      {
+        "name": "Sal",
+        "grams": 2.0
+      }
+    ],
+    "totalGrams": 874.5
+  },
+  {
+    "id": "rec_158",
+    "name": "Gelato de Pistache Vegano - Polióis (Sem Açúcar)",
+    "category": "Zero",
+    "targetStyle": "Zero",
+    "ingredients": [
+      {
+        "name": "Água",
+        "grams": 600.0
+      },
+      {
+        "name": "Pasta De Pistache 100%",
+        "grams": 150.0
+      },
+      {
+        "name": "Maltitol",
+        "grams": 110.0
+      },
+      {
+        "name": "Eritritol",
+        "grams": 50.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Sal",
+        "grams": 2.0
+      }
+    ],
+    "totalGrams": 917.0
+  },
+  {
+    "id": "rec_159",
+    "name": "Gelato de Pistache Vegano - Menos Polióis (Sem Açúcar)",
+    "category": "Zero",
+    "targetStyle": "Zero",
+    "ingredients": [
+      {
+        "name": "Água",
+        "grams": 600.0
+      },
+      {
+        "name": "Pasta De Pistache 100%",
+        "grams": 130.0
+      },
+      {
+        "name": "Polidextrose - Fibra",
+        "grams": 90.0
+      },
+      {
+        "name": "Eritritol",
+        "grams": 50.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 5.0
+      },
+      {
+        "name": "Sucralose",
+        "grams": 2.0
+      },
+      {
+        "name": "Sal",
+        "grams": 2.0
+      }
+    ],
+    "totalGrams": 879.0
+  },
+  {
+    "id": "rec_160",
+    "name": "Gelato de Iogurte - Polióis (Sem Açúcar)",
+    "category": "Zero",
+    "targetStyle": "Zero",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 110.0
+      },
+      {
+        "name": "Creme De Leite UHT 17% - Piracanjuba",
+        "grams": 110.0
+      },
+      {
+        "name": "Maltitol",
+        "grams": 150.0
+      },
+      {
+        "name": "Eritritol",
+        "grams": 45.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 3.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 55.0
+      },
+      {
+        "name": "Inulina - Fibra Vegetal",
+        "grams": 10.0
+      },
+      {
+        "name": "Iogurte Integral",
+        "grams": 540.0
+      }
+    ],
+    "totalGrams": 1023.0
+  },
+  {
+    "id": "rec_161",
+    "name": "Gelato de Iogurte - Redução de Polióis (Sem Açúcar)",
+    "category": "Zero",
+    "targetStyle": "Zero",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 110.0
+      },
+      {
+        "name": "Creme De Leite UHT 17% - Piracanjuba",
+        "grams": 110.0
+      },
+      {
+        "name": "Polidextrose - Fibra",
+        "grams": 140.0
+      },
+      {
+        "name": "Eritritol",
+        "grams": 48.5
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 3.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 55.0
+      },
+      {
+        "name": "Sucralose",
+        "grams": 2.0
+      },
+      {
+        "name": "Iogurte Integral",
+        "grams": 540.0
+      }
+    ],
+    "totalGrams": 1008.5
+  },
+  {
+    "id": "rec_162",
+    "name": "Gelato Intenso de Cacau com Laranja Vegano - Polióis (Sem Açúcar)",
+    "category": "Zero",
+    "targetStyle": "Zero",
+    "ingredients": [
+      {
+        "name": "Água",
+        "grams": 480.0
+      },
+      {
+        "name": "Cacau Em Pó 11% gordura",
+        "grams": 50.0
+      },
+      {
+        "name": "Maltitol",
+        "grams": 125.0
+      },
+      {
+        "name": "Eritritol",
+        "grams": 40.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 4.0
+      },
+      {
+        "name": "Óleo de coco",
+        "grams": 35.0
+      },
+      {
+        "name": "Óleo de girassol",
+        "grams": 15.0
+      }
+    ],
+    "totalGrams": 749.0
+  },
+  {
+    "id": "rec_163",
+    "name": "Gelato Intenso de Cacau com Laranja Vegano - Redução Polióis (Sem Açúcar)",
+    "category": "Zero",
+    "targetStyle": "Zero",
+    "ingredients": [
+      {
+        "name": "Água",
+        "grams": 480.0
+      },
+      {
+        "name": "Cacau Em Pó 11% gordura",
+        "grams": 50.0
+      },
+      {
+        "name": "Polidextrose - Fibra",
+        "grams": 110.0
+      },
+      {
+        "name": "Eritritol",
+        "grams": 55.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 4.0
+      },
+      {
+        "name": "Óleo de coco",
+        "grams": 50.0
+      },
+      {
+        "name": "Sucralose",
+        "grams": 3.0
+      }
+    ],
+    "totalGrams": 752.0
+  },
+  {
+    "id": "rec_164",
+    "name": "Sorbet de Manga - Polióis (Sem Açúcar)",
+    "category": "Zero",
+    "targetStyle": "Zero",
+    "ingredients": [
+      {
+        "name": "Manga",
+        "grams": 430.0
+      },
+      {
+        "name": "Água",
+        "grams": 150.0
+      },
+      {
+        "name": "Maltitol",
+        "grams": 125.0
+      },
+      {
+        "name": "Eritritol",
+        "grams": 35.0
+      },
+      {
+        "name": "Inulina - Fibra Vegetal",
+        "grams": 15.0
+      },
+      {
+        "name": "Limão Suco",
+        "grams": 20.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 3.0
+      }
+    ],
+    "totalGrams": 778.0
+  },
+  {
+    "id": "rec_165",
+    "name": "Sorbet de Manga - Redução de Polióis (Sem Açúcar)",
+    "category": "Zero",
+    "targetStyle": "Zero",
+    "ingredients": [
+      {
+        "name": "Manga",
+        "grams": 430.0
+      },
+      {
+        "name": "Água",
+        "grams": 150.0
+      },
+      {
+        "name": "Polidextrose - Fibra",
+        "grams": 110.0
+      },
+      {
+        "name": "Eritritol",
+        "grams": 45.0
+      },
+      {
+        "name": "Inulina - Fibra Vegetal",
+        "grams": 15.0
+      },
+      {
+        "name": "Sucralose",
+        "grams": 2.0
+      },
+      {
+        "name": "Limão Suco",
+        "grams": 20.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 3.0
+      }
+    ],
+    "totalGrams": 775.0
+  },
+  {
+    "id": "rec_166",
+    "name": "Gelato de Baunilha Proteico (Gelatos Proteicos)",
+    "category": "Gelatos Proteicos",
+    "targetStyle": "Gelatos Proteicos",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 655.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 70.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 140.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 40.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 3.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 55.0
+      },
+      {
+        "name": "Whey protein 80%",
+        "grams": 55.0
+      },
+      {
+        "name": "Sal",
+        "grams": 1.0
+      },
+      {
+        "name": "Pasta Baunilha - Vanilla Brasil",
+        "grams": 3.0
+      }
+    ],
+    "totalGrams": 1022.0
+  },
+  {
+    "id": "rec_167",
+    "name": "Gelato de Baunilha Proteico s/ Açúcar (Gelatos Proteicos)",
+    "category": "Gelatos Proteicos",
+    "targetStyle": "Gelatos Proteicos",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 655.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 70.0
+      },
+      {
+        "name": "Maltitol",
+        "grams": 130.0
+      },
+      {
+        "name": "Eritritol",
+        "grams": 30.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 3.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 55.0
+      },
+      {
+        "name": "Whey protein 80%",
+        "grams": 55.0
+      },
+      {
+        "name": "Sal",
+        "grams": 1.0
+      },
+      {
+        "name": "Pasta Baunilha - Vanilla Brasil",
+        "grams": 3.0
+      }
+    ],
+    "totalGrams": 1002.0
+  },
+  {
+    "id": "rec_168",
+    "name": "Gelato de Baunilha Proteico Redução Polióis (Gelatos Proteicos)",
+    "category": "Gelatos Proteicos",
+    "targetStyle": "Gelatos Proteicos",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 655.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 70.0
+      },
+      {
+        "name": "Polidextrose - Fibra",
+        "grams": 100.0
+      },
+      {
+        "name": "Eritritol",
+        "grams": 50.0
+      },
+      {
+        "name": "Stevia em pó",
+        "grams": 2.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 3.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 55.0
+      },
+      {
+        "name": "Whey protein 80%",
+        "grams": 55.0
+      },
+      {
+        "name": "Sal",
+        "grams": 1.0
+      },
+      {
+        "name": "Pasta Baunilha - Vanilla Brasil",
+        "grams": 3.0
+      }
+    ],
+    "totalGrams": 994.0
+  },
+  {
+    "id": "rec_169",
+    "name": "Gelato de Chocolate Proteico (Gelatos Proteicos)",
+    "category": "Gelatos Proteicos",
+    "targetStyle": "Gelatos Proteicos",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 655.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 70.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 140.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 40.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 3.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 30.0
+      },
+      {
+        "name": "Whey protein 80%",
+        "grams": 55.0
+      },
+      {
+        "name": "Sal",
+        "grams": 1.0
+      },
+      {
+        "name": "Cacau Em Pó 11% gordura",
+        "grams": 25.0
+      }
+    ],
+    "totalGrams": 1019.0
+  },
+  {
+    "id": "rec_170",
+    "name": "Gelato de Chocolate Proteico s/ Açúcar (Gelatos Proteicos)",
+    "category": "Gelatos Proteicos",
+    "targetStyle": "Gelatos Proteicos",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 655.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 70.0
+      },
+      {
+        "name": "Maltitol",
+        "grams": 125.0
+      },
+      {
+        "name": "Eritritol",
+        "grams": 35.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 3.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 55.0
+      },
+      {
+        "name": "Whey protein 80%",
+        "grams": 55.0
+      },
+      {
+        "name": "Sal",
+        "grams": 1.0
+      },
+      {
+        "name": "Cacau Em Pó 11% gordura",
+        "grams": 25.0
+      }
+    ],
+    "totalGrams": 1024.0
+  },
+  {
+    "id": "rec_171",
+    "name": "Gelato de Chocolate Proteico Redução Polióis (Gelatos Proteicos)",
+    "category": "Gelatos Proteicos",
+    "targetStyle": "Gelatos Proteicos",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 655.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 70.0
+      },
+      {
+        "name": "Polidextrose - Fibra",
+        "grams": 100.0
+      },
+      {
+        "name": "Eritritol",
+        "grams": 55.0
+      },
+      {
+        "name": "Stevia em pó",
+        "grams": 2.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 3.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 55.0
+      },
+      {
+        "name": "Whey protein 80%",
+        "grams": 55.0
+      },
+      {
+        "name": "Sal",
+        "grams": 1.0
+      },
+      {
+        "name": "Cacau Em Pó 11% gordura",
+        "grams": 25.0
+      }
+    ],
+    "totalGrams": 1021.0
+  },
+  {
+    "id": "rec_172",
+    "name": "Gelato de Oleaginosas / Pistache Proteico (Gelatos Proteicos)",
+    "category": "Gelatos Proteicos",
+    "targetStyle": "Gelatos Proteicos",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 655.0
+      },
+      {
+        "name": "Pasta De Pistache 100%",
+        "grams": 80.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 140.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 40.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 3.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 30.0
+      },
+      {
+        "name": "Whey protein 80%",
+        "grams": 55.0
+      },
+      {
+        "name": "Sal",
+        "grams": 1.0
+      }
+    ],
+    "totalGrams": 1004.0
+  },
+  {
+    "id": "rec_173",
+    "name": "Gelato de Oleaginosas / Pistache Proteico s/ Açúcar (Gelatos Proteicos)",
+    "category": "Gelatos Proteicos",
+    "targetStyle": "Gelatos Proteicos",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 655.0
+      },
+      {
+        "name": "Pasta De Pistache 100%",
+        "grams": 80.0
+      },
+      {
+        "name": "Maltitol",
+        "grams": 125.0
+      },
+      {
+        "name": "Eritritol",
+        "grams": 35.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 3.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 55.0
+      },
+      {
+        "name": "Whey protein 80%",
+        "grams": 55.0
+      },
+      {
+        "name": "Sal",
+        "grams": 1.0
+      }
+    ],
+    "totalGrams": 1009.0
+  },
+  {
+    "id": "rec_174",
+    "name": "Gelato de Oleaginosas / Pistache Proteico Redução Polióis (Gelatos Proteicos)",
+    "category": "Gelatos Proteicos",
+    "targetStyle": "Gelatos Proteicos",
+    "ingredients": [
+      {
+        "name": "Leite Integral",
+        "grams": 655.0
+      },
+      {
+        "name": "Pasta De Pistache 100%",
+        "grams": 80.0
+      },
+      {
+        "name": "Polidextrose - Fibra",
+        "grams": 100.0
+      },
+      {
+        "name": "Eritritol",
+        "grams": 55.0
+      },
+      {
+        "name": "Stevia em pó",
+        "grams": 2.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 3.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 55.0
+      },
+      {
+        "name": "Whey protein 80%",
+        "grams": 55.0
+      },
+      {
+        "name": "Sal",
+        "grams": 1.0
+      }
+    ],
+    "totalGrams": 1006.0
+  },
+  {
+    "id": "rec_175",
+    "name": "Gelato de Frutas ao Leite Proteico - Banana (Gelatos Proteicos)",
+    "category": "Gelatos Proteicos",
+    "targetStyle": "Gelatos Proteicos",
+    "ingredients": [
+      {
+        "name": "Banana",
+        "grams": 350.0
+      },
+      {
+        "name": "Leite Integral",
+        "grams": 255.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 120.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 55.0
+      },
+      {
+        "name": "Whey protein 80%",
+        "grams": 65.0
+      },
+      {
+        "name": "Açúcar Sacarose",
+        "grams": 110.0
+      },
+      {
+        "name": "Açúcar - Dextrose",
+        "grams": 40.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 3.0
+      }
+    ],
+    "totalGrams": 998.0
+  },
+  {
+    "id": "rec_176",
+    "name": "Gelato de Frutas ao Leite Proteico s/ Açúcar - Banana (Gelatos Proteicos)",
+    "category": "Gelatos Proteicos",
+    "targetStyle": "Gelatos Proteicos",
+    "ingredients": [
+      {
+        "name": "Banana",
+        "grams": 350.0
+      },
+      {
+        "name": "Leite Integral",
+        "grams": 255.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 120.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 55.0
+      },
+      {
+        "name": "Whey protein 80%",
+        "grams": 65.0
+      },
+      {
+        "name": "Maltitol",
+        "grams": 120.0
+      },
+      {
+        "name": "Eritritol",
+        "grams": 30.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 3.0
+      }
+    ],
+    "totalGrams": 998.0
+  },
+  {
+    "id": "rec_177",
+    "name": "Gelato de Frutas ao Leite Proteico Redução Polióis - Banana (Gelatos Proteicos)",
+    "category": "Gelatos Proteicos",
+    "targetStyle": "Gelatos Proteicos",
+    "ingredients": [
+      {
+        "name": "Banana",
+        "grams": 350.0
+      },
+      {
+        "name": "Leite Integral",
+        "grams": 255.0
+      },
+      {
+        "name": "Creme De Leite Fresco 35%",
+        "grams": 120.0
+      },
+      {
+        "name": "Leite Em Pó Desnatado",
+        "grams": 55.0
+      },
+      {
+        "name": "Whey protein 80%",
+        "grams": 65.0
+      },
+      {
+        "name": "Polidextrose - Fibra",
+        "grams": 100.0
+      },
+      {
+        "name": "Eritritol",
+        "grams": 50.0
+      },
+      {
+        "name": "Stevia em pó",
+        "grams": 2.0
+      },
+      {
+        "name": "Neutro Fabbri",
+        "grams": 3.0
+      }
+    ],
+    "totalGrams": 1000.0
+  }
+]

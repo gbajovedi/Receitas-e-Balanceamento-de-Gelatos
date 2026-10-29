@@ -1,0 +1,210 @@
+{
+  "Gelatos de Leite": {
+    "name": "Gelatos de Leite",
+    "pacDivisor": 25,
+    "min": {
+      "sugars": 0.14,
+      "fat": 0.05,
+      "msnf": 0.08,
+      "otherSolids": 0.0,
+      "totalSolids": 0.34,
+      "water": 0.58,
+      "pod": 135.0,
+      "pac": 220.0,
+      "protein": 0.0
+    },
+    "max": {
+      "sugars": 0.22,
+      "fat": 0.12,
+      "msnf": 0.12,
+      "otherSolids": 0.08,
+      "totalSolids": 0.42,
+      "water": 0.66,
+      "pod": 200.0,
+      "pac": 300.0,
+      "protein": 0.0
+    }
+  },
+  "Sorbets": {
+    "name": "Sorbets",
+    "pacDivisor": 24,
+    "min": {
+      "sugars": 0.23,
+      "fat": 0.0,
+      "msnf": 0.0,
+      "otherSolids": 0.01,
+      "totalSolids": 0.27,
+      "water": 0.65,
+      "pod": 175.0,
+      "pac": 275.0,
+      "protein": 0.0
+    },
+    "max": {
+      "sugars": 0.32,
+      "fat": 0.02,
+      "msnf": 0.0,
+      "otherSolids": 0.18,
+      "totalSolids": 0.35,
+      "water": 0.73,
+      "pod": 240.0,
+      "pac": 375.0,
+      "protein": 0.0
+    }
+  },
+  "Gelatos de Leite com Fruta": {
+    "name": "Gelatos de Leite com Fruta",
+    "pacDivisor": 24,
+    "min": {
+      "sugars": 0.17,
+      "fat": 0.04,
+      "msnf": 0.06,
+      "otherSolids": 0.01,
+      "totalSolids": 0.33,
+      "water": 0.57,
+      "pod": 140.0,
+      "pac": 220.0,
+      "protein": 0.0
+    },
+    "max": {
+      "sugars": 0.22,
+      "fat": 0.08,
+      "msnf": 0.1,
+      "otherSolids": 0.08,
+      "totalSolids": 0.42,
+      "water": 0.67,
+      "pod": 200.0,
+      "pac": 300.0,
+      "protein": 0.0
+    }
+  },
+  "Chocolate base água": {
+    "name": "Chocolate base água",
+    "pacDivisor": 20,
+    "min": {
+      "sugars": 0.18,
+      "fat": 0.01,
+      "msnf": 0.0,
+      "otherSolids": 0.04,
+      "totalSolids": 0.34,
+      "water": 0.56,
+      "pod": 140.0,
+      "pac": 220.0,
+      "protein": 0.0
+    },
+    "max": {
+      "sugars": 0.24,
+      "fat": 0.1,
+      "msnf": 0.01,
+      "otherSolids": 0.12,
+      "totalSolids": 0.44,
+      "water": 0.66,
+      "pod": 260.0,
+      "pac": 300.0,
+      "protein": 0.0
+    }
+  },
+  "Vegano": {
+    "name": "Vegano",
+    "pacDivisor": 20,
+    "min": {
+      "sugars": 0.18,
+      "fat": 0.08,
+      "msnf": 0.0,
+      "otherSolids": 0.03,
+      "totalSolids": 0.35,
+      "water": 0.58,
+      "pod": 129.0,
+      "pac": 210.0,
+      "protein": 0.0
+    },
+    "max": {
+      "sugars": 0.24,
+      "fat": 0.13,
+      "msnf": 0.01,
+      "otherSolids": 0.15,
+      "totalSolids": 0.42,
+      "water": 0.65,
+      "pod": 195.0,
+      "pac": 300.0,
+      "protein": 0.0
+    }
+  },
+  "Alcoólicos": {
+    "name": "Alcoólicos",
+    "pacDivisor": 25,
+    "min": {
+      "sugars": 0.16,
+      "fat": 0.05,
+      "msnf": 0.06,
+      "otherSolids": 0.0,
+      "totalSolids": 0.32,
+      "water": 0.54,
+      "pod": 120.0,
+      "pac": 250.0,
+      "protein": 0.0
+    },
+    "max": {
+      "sugars": 0.22,
+      "fat": 0.16,
+      "msnf": 0.12,
+      "otherSolids": 0.14,
+      "totalSolids": 0.46,
+      "water": 0.68,
+      "pod": 210.0,
+      "pac": 380.0,
+      "protein": 0.0
+    }
+  },
+  "Zero": {
+    "name": "Zero",
+    "pacDivisor": 25,
+    "min": {
+      "sugars": 0.04,
+      "fat": 0.0,
+      "msnf": 0.0,
+      "otherSolids": 0.01,
+      "totalSolids": 0.28,
+      "water": 0.58,
+      "pod": 95.0,
+      "pac": 220.0,
+      "protein": 0.0
+    },
+    "max": {
+      "sugars": 0.28,
+      "fat": 0.12,
+      "msnf": 0.13,
+      "otherSolids": 0.23,
+      "totalSolids": 0.42,
+      "water": 0.72,
+      "pod": 305.0,
+      "pac": 395.0,
+      "protein": 0.0
+    }
+  },
+  "Gelatos Proteicos": {
+    "name": "Gelatos Proteicos",
+    "pacDivisor": 25,
+    "min": {
+      "sugars": 0.05,
+      "fat": 0.04,
+      "msnf": 0.12,
+      "otherSolids": 0.0,
+      "totalSolids": 0.35,
+      "water": 0.57,
+      "pod": 110.0,
+      "pac": 220.0,
+      "protein": 0.08
+    },
+    "max": {
+      "sugars": 0.21,
+      "fat": 0.06,
+      "msnf": 0.17,
+      "otherSolids": 0.14,
+      "totalSolids": 0.43,
+      "water": 0.65,
+      "pod": 220.0,
+      "pac": 340.0,
+      "protein": 0.1
+    }
+  }
+}

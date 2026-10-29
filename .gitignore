@@ -16,7 +16,7 @@ Desktop.ini
 *.swp
 *~
 
-# Environments & Dependencies (futuras implementações)
+# Environments & Dependencies
 __pycache__/
 *.py[cod]
 .venv/
@@ -24,5 +24,7 @@ venv/
 env/
 node_modules/
 dist/
+sheet_summary.json
 .env
 .env.local
+
