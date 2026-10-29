@@ -46,7 +46,7 @@
 }
 
 /* ==========================================================================
-   Light Mode Theme Overrides (html.light)
+   Light Mode Theme Overrides (html.light) - Alta Legibilidade e Elegância
    ========================================================================== */
 html.light {
   color-scheme: light;
@@ -64,13 +64,10 @@ html.light header {
   border-color: #e2e8f0 !important;
 }
 
-/* Backgrounds: Slate 900, 800, 950 turn into clean crisp white or off-white */
+/* Primary cards & panels */
 html.light .bg-slate-900,
 html.light .bg-slate-900\/95,
 html.light .bg-slate-900\/90,
-html.light .bg-slate-900\/80,
-html.light .bg-slate-900\/70,
-html.light .bg-slate-900\/60,
 html.light .bg-slate-800,
 html.light .bg-slate-800\/95,
 html.light .bg-slate-800\/90,
@@ -78,22 +75,33 @@ html.light .bg-slate-800\/80,
 html.light .bg-slate-800\/70 {
   background-color: #ffffff !important;
   color: #0f172a !important;
+  border-color: #e2e8f0 !important;
 }
 
-/* Deep nested cards and inner inputs */
+/* Nested cards, secondary containers, and data cards */
 html.light .bg-slate-950,
 html.light .bg-slate-950\/80,
 html.light .bg-slate-950\/70,
-html.light .bg-slate-950\/60 {
-  background-color: #f1f5f9 !important;
+html.light .bg-slate-950\/60,
+html.light .bg-slate-900\/80,
+html.light .bg-slate-900\/70,
+html.light .bg-slate-900\/60,
+html.light .bg-slate-900\/40,
+html.light .bg-slate-850,
+html.light .bg-slate-750,
+html.light .bg-slate-750\/40,
+html.light .bg-slate-750\/50 {
+  background-color: #f8fafc !important;
   color: #0f172a !important;
+  border-color: #e2e8f0 !important;
 }
 
 /* Hover states */
 html.light .hover\:bg-slate-750:hover,
 html.light .hover\:bg-slate-700:hover,
 html.light .hover\:bg-slate-700\/60:hover,
-html.light .hover\:bg-slate-700\/50:hover {
+html.light .hover\:bg-slate-700\/50:hover,
+html.light .hover\:bg-slate-800:hover {
   background-color: #f1f5f9 !important;
   color: #0f172a !important;
 }
@@ -102,13 +110,24 @@ html.light .hover\:bg-slate-700\/50:hover {
 html.light .border-slate-800,
 html.light .border-slate-700,
 html.light .border-slate-700\/80,
+html.light .border-slate-700\/70,
 html.light .border-slate-700\/60,
 html.light .border-slate-700\/50,
 html.light .border-slate-700\/40 {
   border-color: #e2e8f0 !important;
 }
 
-/* Typography contrast */
+/* Dividers in tables and lists */
+html.light .divide-slate-800,
+html.light .divide-slate-800\/60,
+html.light .divide-slate-700,
+html.light .divide-slate-700\/50,
+html.light .divide-slate-700\/40,
+html.light .divide-y > * + * {
+  border-color: #e2e8f0 !important;
+}
+
+/* Typography contrast - High-legibility neutral scale */
 html.light .text-white,
 html.light .text-slate-100 {
   color: #0f172a !important;
@@ -123,14 +142,79 @@ html.light .text-slate-300 {
 }
 
 html.light .text-slate-400 {
-  color: #64748b !important;
+  color: #475569 !important;
 }
 
 html.light .text-slate-500 {
-  color: #94a3b8 !important;
+  color: #64748b !important;
 }
 
-/* Form inputs */
+/* ==========================================================================
+   Colored Typography Overrides for High Contrast (WCAG AAA)
+   ========================================================================== */
+/* Amber / Gold: replace pale yellows with rich warm caramel/bronze */
+html.light .text-amber-200,
+html.light .text-amber-300,
+html.light .text-amber-300\/80 {
+  color: #92400e !important; /* amber-800: excelente legibilidade em fundos claros */
+}
+
+html.light .text-amber-400,
+html.light .text-amber-400\/90,
+html.light .text-amber-500 {
+  color: #b45309 !important; /* amber-700 */
+}
+
+/* Emerald / Green: replace neon greens with deep forest emerald */
+html.light .text-emerald-300 {
+  color: #065f46 !important; /* emerald-800 */
+}
+
+html.light .text-emerald-400 {
+  color: #047857 !important; /* emerald-700 */
+}
+
+/* Cyan / Sky: replace pale ice cyan with deep ocean blue */
+html.light .text-cyan-100,
+html.light .text-cyan-200,
+html.light .text-cyan-300 {
+  color: #0e7490 !important; /* cyan-700 */
+}
+
+html.light .text-cyan-400 {
+  color: #0369a1 !important; /* sky-700 */
+}
+
+/* Rose / Red: replace pale pinks with rich ruby wine */
+html.light .text-rose-200,
+html.light .text-rose-300 {
+  color: #9f1239 !important; /* rose-800 */
+}
+
+html.light .text-rose-400 {
+  color: #be123c !important; /* rose-700 */
+}
+
+/* Blue */
+html.light .text-blue-300 {
+  color: #1d4ed8 !important; /* blue-700 */
+}
+
+/* Hover typography */
+html.light .hover\:text-white:hover {
+  color: #0f172a !important;
+}
+
+html.light .hover\:text-amber-200:hover,
+html.light .hover\:text-amber-300:hover {
+  color: #92400e !important;
+}
+
+html.light .hover\:text-rose-400:hover {
+  color: #be123c !important;
+}
+
+/* Form inputs & selects */
 html.light input:not([type="checkbox"]):not([type="radio"]),
 html.light select,
 html.light textarea {
@@ -146,7 +230,12 @@ html.light textarea:focus {
   box-shadow: 0 0 0 1px #f59e0b !important;
 }
 
-/* Retain high-contrast on buttons and tags with amber and emerald */
+html.light ::placeholder,
+html.light .placeholder-slate-500::placeholder {
+  color: #94a3b8 !important;
+}
+
+/* Action Buttons: solid amber retains high contrast with dark label */
 html.light .bg-amber-500 {
   background-color: #f59e0b !important;
   color: #020617 !important;
@@ -155,6 +244,10 @@ html.light .bg-amber-500 {
 html.light .bg-amber-500 .text-slate-950,
 html.light .bg-amber-500 * {
   color: #020617 !important;
+}
+
+html.light .hover\:bg-amber-400:hover {
+  background-color: #fbbf24 !important;
 }
 
 html.light .bg-emerald-500 {
@@ -166,7 +259,7 @@ html.light .bg-emerald-500 * {
   color: #020617 !important;
 }
 
-/* Badges with light tints */
+/* Badges and metric cards with soft pastel backgrounds */
 html.light .bg-amber-500\/10,
 html.light .bg-amber-500\/15,
 html.light .bg-amber-500\/20,
@@ -179,7 +272,9 @@ html.light .bg-amber-500\/25 {
 html.light .bg-emerald-500\/10,
 html.light .bg-emerald-500\/15,
 html.light .bg-emerald-500\/20,
-html.light .bg-emerald-500\/25 {
+html.light .bg-emerald-500\/25,
+html.light .bg-emerald-950\/40,
+html.light .bg-emerald-950\/20 {
   background-color: #d1fae5 !important;
   color: #065f46 !important;
   border-color: #6ee7b7 !important;
@@ -188,7 +283,9 @@ html.light .bg-emerald-500\/25 {
 html.light .bg-cyan-500\/10,
 html.light .bg-cyan-500\/15,
 html.light .bg-cyan-500\/20,
-html.light .bg-cyan-500\/25 {
+html.light .bg-cyan-500\/25,
+html.light .bg-cyan-950\/60,
+html.light .bg-cyan-950\/50 {
   background-color: #e0f2fe !important;
   color: #075985 !important;
   border-color: #7dd3fc !important;
@@ -203,26 +300,86 @@ html.light .bg-rose-500\/25 {
   border-color: #fca5a5 !important;
 }
 
-/* Subtle shadows for light cards */
+html.light .bg-blue-500\/15 {
+  background-color: #dbeafe !important;
+  color: #1e40af !important;
+  border-color: #bfdbfe !important;
+}
+
+/* ==========================================================================
+   Card Preço Sugerido: Substitui gradiente preto por cartão menta/esmeralda suave
+   ========================================================================== */
+html.light .from-emerald-950\/70,
+html.light .from-emerald-950\/60 {
+  --tw-gradient-from: #f0fdf4 !important;
+  --tw-gradient-to: #ecfdf5 !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+  background-image: linear-gradient(to bottom right, #f0fdf4, #ecfdf5) !important;
+  border-color: #a7f3d0 !important;
+  box-shadow: 0 4px 6px -1px rgb(16 185 129 / 0.08), 0 2px 4px -2px rgb(16 185 129 / 0.08) !important;
+}
+
+html.light .border-emerald-900\/60,
+html.light .border-emerald-700\/50,
+html.light .border-emerald-500\/50,
+html.light .border-emerald-500\/40,
+html.light .border-emerald-500\/30 {
+  border-color: #a7f3d0 !important;
+}
+
+html.light .border-cyan-800\/60,
+html.light .border-cyan-500\/50,
+html.light .border-cyan-500\/40,
+html.light .border-cyan-500\/30 {
+  border-color: #7dd3fc !important;
+}
+
+html.light .border-amber-500\/50,
+html.light .border-amber-500\/40,
+html.light .border-amber-500\/30,
+html.light .border-amber-500\/20 {
+  border-color: #fcd34d !important;
+}
+
+html.light .border-rose-500\/50,
+html.light .border-rose-500\/40,
+html.light .border-rose-500\/30 {
+  border-color: #fca5a5 !important;
+}
+
+/* Tables in Light Mode */
+html.light th {
+  background-color: #f8fafc !important;
+  color: #475569 !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+}
+
+html.light tbody tr:hover {
+  background-color: #f8fafc !important;
+}
+
+/* Navigation tabs in Light Mode */
+html.light nav button.text-slate-300 {
+  color: #475569 !important;
+}
+
+html.light nav button.text-slate-300:hover {
+  color: #0f172a !important;
+  background-color: #f1f5f9 !important;
+}
+
+html.light .bg-slate-900.border-t.border-slate-800 {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+}
+
+/* Shadows */
 html.light .shadow-xl {
   box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05), 0 4px 6px -4px rgb(0 0 0 / 0.05) !important;
 }
 
 html.light .shadow-inner {
   box-shadow: inset 0 1px 2px 0 rgb(0 0 0 / 0.05) !important;
-}
-
-/* Scrollbars for light mode */
-html.light ::-webkit-scrollbar-track {
-  background: #f1f5f9;
-}
-
-html.light ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-}
-
-html.light ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
 }
 
 /* 3-Phase Theme Switch Control */
@@ -240,6 +397,18 @@ html.light .theme-switch-inactive:hover {
   background-color: #f1f5f9 !important;
 }
 
+/* Scrollbars for light mode */
+html.light ::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+html.light ::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+}
+
+html.light ::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
 
 /* Print Styles for Kitchen Production Sheet */
 @media print {
