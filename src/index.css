@@ -225,6 +225,22 @@ html.light ::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
 }
 
+/* 3-Phase Theme Switch Control */
+html.light .theme-switch-track {
+  background-color: #e2e8f0 !important;
+  border-color: #cbd5e1 !important;
+}
+
+html.light .theme-switch-inactive {
+  color: #64748b !important;
+}
+
+html.light .theme-switch-inactive:hover {
+  color: #0f172a !important;
+  background-color: #f1f5f9 !important;
+}
+
+
 /* Print Styles for Kitchen Production Sheet */
 @media print {
   header, nav, button, .no-print {
