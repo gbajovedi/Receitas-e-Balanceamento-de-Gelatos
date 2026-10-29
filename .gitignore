@@ -31,3 +31,4 @@ sheet_summary.json
 .env
 .env.local
 
+.vite/
