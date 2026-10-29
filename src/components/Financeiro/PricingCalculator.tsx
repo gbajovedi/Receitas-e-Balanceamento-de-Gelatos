@@ -1,26 +1,105 @@
-import React, { useState } from 'react';
-import { DollarSign } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { DollarSign, RotateCcw } from 'lucide-react';
+
+const STORAGE_KEY = 'gelato_pricing_params_v1';
 
 export const PricingCalculator: React.FC = () => {
-  // Overhead parameters based on sheet "Conversor Custo K|G"
-  const [rent, setRent] = useState<number>(0);
-  const [electricity, setElectricity] = useState<number>(100);
-  const [water, setWater] = useState<number>(150);
-  const [payroll, setPayroll] = useState<number>(2000);
-  const [accounting, setAccounting] = useState<number>(350);
-  const [software, setSoftware] = useState<number>(100);
-  const [secPackaging, setSecPackaging] = useState<number>(200);
-  const [marketing, setMarketing] = useState<number>(500);
-  const [telecom, setTelecom] = useState<number>(120);
+  // Load initial params from localStorage or spreadsheet defaults
+  const loadSaved = () => {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) return JSON.parse(saved);
+    } catch (e) {
+      console.warn('Failed to load saved pricing params:', e);
+    }
+    return null;
+  };
 
-  const [monthlyUnits, setMonthlyUnits] = useState<number>(4000);
-  const [tubWeightGrams, setTubWeightGrams] = useState<number>(500);
-  const [tubPackCost, setTubPackCost] = useState<number>(1.50);
-  const [targetMargin, setTargetMargin] = useState<number>(40);
-  const [cardFee, setCardFee] = useState<number>(33);
+  const initial = loadSaved();
+
+  // Overhead parameters based on sheet "Conversor Custo K|G"
+  const [rent, setRent] = useState<number>(initial?.rent ?? 0);
+  const [electricity, setElectricity] = useState<number>(initial?.electricity ?? 100);
+  const [water, setWater] = useState<number>(initial?.water ?? 150);
+  const [payroll, setPayroll] = useState<number>(initial?.payroll ?? 2000);
+  const [accounting, setAccounting] = useState<number>(initial?.accounting ?? 350);
+  const [software, setSoftware] = useState<number>(initial?.software ?? 100);
+  const [secPackaging, setSecPackaging] = useState<number>(initial?.secPackaging ?? 200);
+  const [marketing, setMarketing] = useState<number>(initial?.marketing ?? 500);
+  const [telecom, setTelecom] = useState<number>(initial?.telecom ?? 120);
+
+  const [monthlyUnits, setMonthlyUnits] = useState<number>(initial?.monthlyUnits ?? 4000);
+  const [tubWeightGrams, setTubWeightGrams] = useState<number>(initial?.tubWeightGrams ?? 500);
+  const [tubPackCost, setTubPackCost] = useState<number>(initial?.tubPackCost ?? 1.50);
+  const [targetMargin, setTargetMargin] = useState<number>(initial?.targetMargin ?? 40);
+  const [cardFee, setCardFee] = useState<number>(initial?.cardFee ?? 3.5);
 
   // Simulation test product
-  const [sampleCaldaCostKg, setSampleCaldaCostKg] = useState<number>(15.00);
+  const [sampleCaldaCostKg, setSampleCaldaCostKg] = useState<number>(initial?.sampleCaldaCostKg ?? 15.00);
+
+  // Persist to localStorage whenever parameters change
+  useEffect(() => {
+    try {
+      localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify({
+          rent,
+          electricity,
+          water,
+          payroll,
+          accounting,
+          software,
+          secPackaging,
+          marketing,
+          telecom,
+          monthlyUnits,
+          tubWeightGrams,
+          tubPackCost,
+          targetMargin,
+          cardFee,
+          sampleCaldaCostKg
+        })
+      );
+    } catch (e) {
+      console.warn('Failed to save pricing params:', e);
+    }
+  }, [
+    rent,
+    electricity,
+    water,
+    payroll,
+    accounting,
+    software,
+    secPackaging,
+    marketing,
+    telecom,
+    monthlyUnits,
+    tubWeightGrams,
+    tubPackCost,
+    targetMargin,
+    cardFee,
+    sampleCaldaCostKg
+  ]);
+
+  const handleResetToDefaults = () => {
+    if (window.confirm('Deseja restaurar todos os valores para os padrões da planilha?')) {
+      setRent(0);
+      setElectricity(100);
+      setWater(150);
+      setPayroll(2000);
+      setAccounting(350);
+      setSoftware(100);
+      setSecPackaging(200);
+      setMarketing(500);
+      setTelecom(120);
+      setMonthlyUnits(4000);
+      setTubWeightGrams(500);
+      setTubPackCost(1.50);
+      setTargetMargin(40);
+      setCardFee(3.5);
+      setSampleCaldaCostKg(15.00);
+    }
+  };
 
   const totalFixedCosts =
     rent + electricity + water + payroll + accounting + software + secPackaging + marketing + telecom;
@@ -39,14 +118,25 @@ export const PricingCalculator: React.FC = () => {
   return (
     <div className="space-y-6 max-w-7xl mx-auto pb-16">
       {/* Header */}
-      <div className="bg-slate-800/95 rounded-2xl border border-slate-700/80 p-5 shadow-xl">
-        <h2 className="text-xl sm:text-2xl font-black text-white flex items-center gap-2.5">
-          <DollarSign className="w-6 h-6 text-emerald-400" />
-          <span>Gestão Financeira & Engenharia de Preços</span>
-        </h2>
-        <p className="text-xs sm:text-sm text-slate-300 mt-0.5">
-          Simulador de rateio de custos fixos, markup por margem líquida e precificação de potes e porções.
-        </p>
+      <div className="bg-slate-800/95 rounded-2xl border border-slate-700/80 p-5 shadow-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div>
+          <h2 className="text-xl sm:text-2xl font-black text-white flex items-center gap-2.5">
+            <DollarSign className="w-6 h-6 text-emerald-400" />
+            <span>Gestão Financeira & Engenharia de Preços</span>
+          </h2>
+          <p className="text-xs sm:text-sm text-slate-300 mt-0.5">
+            Simulador de rateio de custos fixos, markup por margem líquida e precificação de potes e porções.
+          </p>
+        </div>
+        <button
+          type="button"
+          onClick={handleResetToDefaults}
+          className="self-start sm:self-auto px-3 py-1.5 bg-slate-900 hover:bg-slate-750 border border-slate-700 text-slate-300 hover:text-white rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all active:scale-95 shrink-0"
+          title="Restaurar valores iniciais da planilha"
+        >
+          <RotateCcw className="w-3.5 h-3.5 text-amber-400" />
+          <span>Restaurar Padrões</span>
+        </button>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -132,6 +222,15 @@ export const PricingCalculator: React.FC = () => {
                 className="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-sm text-white font-mono font-bold"
               />
             </div>
+            <div className="col-span-2">
+              <label className="text-slate-300 font-semibold block mb-1">Internet & Telecom:</label>
+              <input
+                type="number"
+                value={telecom || ''}
+                onChange={e => setTelecom(parseFloat(e.target.value) || 0)}
+                className="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-sm text-white font-mono font-bold"
+              />
+            </div>
           </div>
 
           <div className="pt-3.5 border-t border-slate-700 flex items-center justify-between">
@@ -162,7 +261,7 @@ export const PricingCalculator: React.FC = () => {
             </span>
           </div>
 
-          <div className="grid grid-cols-2 gap-3.5 text-xs">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 text-xs">
             <div>
               <label className="text-slate-300 font-semibold block mb-1">Custo da Calda (R$/Kg):</label>
               <input
@@ -200,6 +299,60 @@ export const PricingCalculator: React.FC = () => {
                 onChange={e => setTargetMargin(parseFloat(e.target.value) || 0)}
                 className="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-sm text-white font-mono font-black text-amber-300"
               />
+            </div>
+
+            {/* Taxa de Cartão / Operadora / Venda Editável */}
+            <div className="sm:col-span-2 bg-slate-900/80 p-3.5 rounded-xl border border-emerald-500/30 space-y-2">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div>
+                  <label className="text-white font-bold block text-xs sm:text-sm">
+                    💳 Taxa de Cartão / Operadora (%):
+                  </label>
+                  <span className="text-[11px] text-slate-400 block">
+                    Taxa média da maquininha de cartão ou canal de venda.
+                  </span>
+                </div>
+                <div className="flex items-center gap-1.5 self-start sm:self-auto">
+                  <div className="relative">
+                    <input
+                      type="number"
+                      step="0.1"
+                      min="0"
+                      max="90"
+                      value={cardFee || ''}
+                      onChange={e => setCardFee(parseFloat(e.target.value) || 0)}
+                      className="w-28 bg-slate-950 border-2 border-emerald-500/60 focus:border-emerald-400 focus:outline-none rounded-lg pl-3 pr-6 py-1.5 text-base text-emerald-300 font-mono font-black text-right"
+                      placeholder="0.0"
+                    />
+                    <span className="absolute right-2.5 top-2 text-slate-500 font-bold text-xs pointer-events-none">%</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Botões de Atalhos Rápidos */}
+              <div className="flex flex-wrap items-center gap-1.5 pt-1.5 border-t border-slate-800">
+                <span className="text-[11px] text-slate-400 font-semibold mr-1">Atalhos rápidos:</span>
+                {[
+                  { label: 'Débito 1.5%', val: 1.5 },
+                  { label: 'Crédito 3.2%', val: 3.2 },
+                  { label: 'Crédito 4.5%', val: 4.5 },
+                  { label: 'Delivery/App 12%', val: 12 },
+                  { label: '33% (Planilha)', val: 33 },
+                ].map(p => (
+                  <button
+                    key={p.label}
+                    type="button"
+                    onClick={() => setCardFee(p.val)}
+                    className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all ${
+                      cardFee === p.val
+                        ? 'bg-emerald-500 text-slate-950 shadow-sm shadow-emerald-500/20 font-black scale-105'
+                        : 'bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700/80 active:scale-95'
+                    }`}
+                  >
+                    {p.label}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
 
