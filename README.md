@@ -10,6 +10,17 @@
 
 👉 **Acesse o aplicativo online:** [**https://gbajovedi.github.io/Receitas-e-Balanceamento-de-Gelatos/**](https://gbajovedi.github.io/Receitas-e-Balanceamento-de-Gelatos/)
 
+## 📲 Como Instalar como Aplicativo (PWA)
+
+O **Gelato Balancer** pode ser instalado diretamente no seu smartphone, tablet ou computador, funcionando com visual de aplicativo nativo em tela cheia e **100% offline**:
+
+- **📱 Android (Google Chrome):** Acesse o link acima, toque no menu de **três pontinhos** no canto superior e selecione **"Instalar aplicativo"** ou **"Adicionar à tela inicial"**.
+- **🍏 iPhone / iPad (Safari):** Abra o link no Safari, toque no botão de **Compartilhar** (ícone de quadrado com seta para cima) e selecione **"Adicionar à Tela de Início"**.
+- **💻 Computador (Chrome / Edge):** Abra o link e clique no ícone de **computador com seta para baixo** no canto direito da barra de endereço para **"Instalar Aplicativo"** (ou crie um atalho na Área de Trabalho).
+
+> **💡 Dica para a Cozinha:** Uma vez instalado, o aplicativo abre instantaneamente e não necessita de Wi-Fi ou conexão com a internet para você consultar ou balancear suas receitas.
+
+
 ---
 
 ## 📱 Visão Geral
@@ -137,18 +148,6 @@ http://localhost:5173
 ```bash
 npm run build
 ```
-
----
-
-## 📲 Como Instalar como PWA
-
-O aplicativo funciona como um app nativo em smartphones, tablets e computadores:
-
-- **Google Chrome / Microsoft Edge (Desktop):** Clique no ícone de computador com seta para baixo no canto superior direito da barra de endereço para **"Instalar Aplicativo"**.
-- **Android (Chrome):** Toque nos três pontinhos no topo e selecione **"Adicionar à tela inicial"** ou **"Instalar aplicativo"**.
-- **iOS / iPhone / iPad (Safari):** Toque no botão de compartilhamento (quadrado com seta para cima) e selecione **"Adicionar à Tela de Início"**.
-
-Após instalado, o aplicativo abre em tela cheia, sem barra de navegação, e funciona **mesmo sem conexão com a internet**.
 
 ---
 
