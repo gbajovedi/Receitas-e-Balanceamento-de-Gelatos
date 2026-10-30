@@ -8,6 +8,7 @@ import { AllergensBadge } from './AllergensBadge';
 import { PostProduction } from './PostProduction';
 import { SaveRecipeModal } from './SaveRecipeModal';
 import { RecipeSearchCombobox } from './RecipeSearchCombobox';
+import { CategoryBadge, getCategoryTheme } from '../../core/categoryThemes';
 import {
   Save,
   Plus,
@@ -260,7 +261,9 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
   return (
     <div className="space-y-6 max-w-7xl mx-auto pb-16">
       {/* Top Header Card */}
-      <div className="bg-slate-800/95 rounded-2xl border border-slate-700/80 p-5 shadow-xl">
+      <div className="relative overflow-hidden bg-slate-800/95 rounded-2xl border border-slate-700/80 p-5 shadow-xl">
+        {/* Dynamic Category Accent Line */}
+        <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${getCategoryTheme(targetStyleName).gradient}`} />
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
           {/* Recipe Selection & Title */}
           <div className="space-y-2 flex-1">
@@ -301,21 +304,24 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
                 placeholder="Nome da Receita..."
               />
 
-              {/* Target Style Dropdown */}
-              <select
-                value={targetStyleName}
-                onChange={e => {
-                  setTargetStyleName(e.target.value);
-                  setIsDirty(true);
-                }}
-                className="bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs font-bold text-slate-200 focus:outline-none focus:border-amber-500"
-              >
-                {Object.keys(stylesDataMap).map(s => (
-                  <option key={s} value={s}>
-                    Estilo: {s}
-                  </option>
-                ))}
-              </select>
+              {/* Target Style Dropdown with matching CategoryBadge */}
+              <div className="flex items-center gap-2">
+                <CategoryBadge category={targetStyleName} className="hidden sm:inline-flex" />
+                <select
+                  value={targetStyleName}
+                  onChange={e => {
+                    setTargetStyleName(e.target.value);
+                    setIsDirty(true);
+                  }}
+                  className="bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs font-bold text-slate-200 focus:outline-none focus:border-amber-500"
+                >
+                  {Object.keys(stylesDataMap).map(s => (
+                    <option key={s} value={s}>
+                      Estilo: {s}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
           </div>
 

@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { Recipe } from '../../types/gelato';
+import { CategoryBadge } from '../../core/categoryThemes';
 import { Search, ChevronDown, Check, Plus, X } from 'lucide-react';
 
 interface RecipeSearchComboboxProps {
@@ -83,9 +84,7 @@ export const RecipeSearchCombobox: React.FC<RecipeSearchComboboxProps> = ({
                 <span className="text-sm font-bold text-white truncate">
                   {selectedRecipe.name}
                 </span>
-                <span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700 whitespace-nowrap shrink-0">
-                  {selectedRecipe.category}
-                </span>
+                <CategoryBadge category={selectedRecipe.category} className="text-[10px] py-0.5" />
               </div>
             ) : (
               <span className="text-sm font-medium text-slate-400">
@@ -190,9 +189,7 @@ export const RecipeSearchCombobox: React.FC<RecipeSearchComboboxProps> = ({
                       >
                         {r.name}
                       </span>
-                      <span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700 whitespace-nowrap shrink-0 mt-0.5">
-                        {r.category}
-                      </span>
+                      <CategoryBadge category={r.category} className="text-[10px] py-0.5 mt-0.5" />
                     </div>
                     {ingsPreview && (
                       <div className="text-xs text-slate-400 truncate mt-0.5">

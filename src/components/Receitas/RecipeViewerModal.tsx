@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Recipe } from '../../types/gelato';
+import { CategoryBadge } from '../../core/categoryThemes';
 import {
   X,
   Scale,
@@ -72,9 +73,7 @@ export const RecipeViewerModal: React.FC<RecipeViewerModalProps> = ({
                 <ChefHat className="w-3.5 h-3.5" />
                 Ficha de Produção • Modo Cozinha
               </span>
-              <span className="text-xs px-2.5 py-0.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700 font-semibold">
-                {recipe.category}
-              </span>
+              <CategoryBadge category={recipe.category} />
             </div>
 
             <h2
