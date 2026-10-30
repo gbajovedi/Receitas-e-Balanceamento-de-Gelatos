@@ -186,21 +186,26 @@ export const NutrientBars: React.FC<NutrientBarsProps> = ({ analysis }) => {
               {pendingIssues.map(issue => (
                 <div
                   key={issue.key}
-                  className={`px-3 py-1.5 rounded-xl border text-xs font-medium flex items-center gap-2 transition-colors ${
+                  className={`px-3 py-1.5 rounded-xl border text-xs font-medium flex items-center gap-2 transition-colors shadow-sm ${
                     issue.status === 'Baixo'
-                      ? 'bg-amber-50/90 text-slate-800 border-amber-200 dark:bg-slate-850 dark:text-slate-300 dark:border-amber-500/30'
-                      : 'bg-rose-50/90 text-slate-800 border-rose-200 dark:bg-slate-850 dark:text-slate-300 dark:border-rose-500/30'
+                      ? 'bg-amber-50 text-slate-900 border-amber-300 dark:bg-slate-800 dark:text-slate-100 dark:border-amber-500/40'
+                      : 'bg-rose-50 text-slate-900 border-rose-300 dark:bg-slate-800 dark:text-slate-100 dark:border-rose-500/40'
                   }`}
                 >
                   {issue.status === 'Baixo' ? (
-                    <ArrowDownCircle className="w-3.5 h-3.5 text-amber-500 dark:text-amber-400 shrink-0" />
+                    <ArrowDownCircle className="w-4 h-4 text-amber-600 dark:text-amber-400 shrink-0" />
                   ) : (
-                    <ArrowUpCircle className="w-3.5 h-3.5 text-rose-500 dark:text-rose-400 shrink-0" />
+                    <ArrowUpCircle className="w-4 h-4 text-rose-600 dark:text-rose-400 shrink-0" />
                   )}
                   <span>
-                    <strong className="font-semibold text-slate-900 dark:text-slate-200">{issue.name}:</strong>{' '}
-                    está em <span className="font-mono font-bold text-amber-700 dark:text-amber-400">{issue.valStr}</span>{' '}
-                    <span className="text-slate-500 dark:text-slate-400">
+                    <strong className="font-bold text-slate-900 dark:text-white">{issue.name}:</strong>{' '}
+                    está em{' '}
+                    <span className={`font-mono font-black ${
+                      issue.status === 'Baixo' ? 'text-amber-800 dark:text-amber-300' : 'text-rose-800 dark:text-rose-300'
+                    }`}>
+                      {issue.valStr}
+                    </span>{' '}
+                    <span className="text-slate-600 dark:text-slate-300 font-medium">
                       ({issue.status === 'Baixo' ? `abaixo do mín. ${issue.minStr}` : `acima do máx. ${issue.maxStr}`})
                     </span>
                   </span>

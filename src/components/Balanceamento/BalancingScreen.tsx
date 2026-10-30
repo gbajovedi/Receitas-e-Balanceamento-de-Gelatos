@@ -19,7 +19,8 @@ import {
   Sparkles,
   DollarSign,
   Layers,
-  ChefHat
+  ChefHat,
+  X
 } from 'lucide-react';
 
 interface BalancingScreenProps {
@@ -43,6 +44,7 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
   const [isDirty, setIsDirty] = useState<boolean>(false);
   const [isSaveModalOpen, setIsSaveModalOpen] = useState<boolean>(false);
   const [batchScaleInput, setBatchScaleInput] = useState<string>('1000');
+  const [lastActiveRecipeId, setLastActiveRecipeId] = useState<string>(initialRecipeId || (recipes[0]?.id ?? ''));
 
   // Map of ingredients by lowercase name for fast lookup
   const ingredientsMap = useMemo(() => {
@@ -56,6 +58,7 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
   // Load recipe into editor
   const loadRecipe = (rec: Recipe) => {
     setSelectedRecipeId(rec.id);
+    if (rec.id !== 'new') setLastActiveRecipeId(rec.id);
     setRecipeName(rec.name);
     setTargetStyleName(rec.targetStyle || rec.category || 'Gelatos de Leite');
     setItems(rec.ingredients ? JSON.parse(JSON.stringify(rec.ingredients)) : []);
@@ -101,6 +104,28 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
   }, [items, variegatos, currentStyle, ingredientsMap, pricingSettings]);
 
   // Handle recipe change from selector
+  const handleStartNewRecipe = () => {
+    if (selectedRecipeId !== 'new') {
+      setLastActiveRecipeId(selectedRecipeId);
+    }
+    handleSelectRecipe('new');
+  };
+
+  const handleCancelNewRecipe = () => {
+    if (isDirty) {
+      const confirmCancel = window.confirm(
+        'Deseja cancelar o cadastro desta nova receita e voltar à bancada normal? Quaisquer alterações não salvas serão descartadas.'
+      );
+      if (!confirmCancel) return;
+    }
+
+    const fallbackId = lastActiveRecipeId && lastActiveRecipeId !== 'new' ? lastActiveRecipeId : recipes[0]?.id;
+    const rec = recipes.find(r => r.id === fallbackId) || recipes[0];
+    if (rec) {
+      loadRecipe(rec);
+    }
+  };
+
   const handleSelectRecipe = (id: string) => {
     if (id === 'new') {
       setSelectedRecipeId('new');
@@ -244,12 +269,17 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
                 <ChefHat className="w-3.5 h-3.5" />
                 Bancada de Balanceamento
               </span>
-              {isDirty && (
+              {selectedRecipeId === 'new' ? (
+                <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40 flex items-center gap-1.5 animate-pulse">
+                  <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                  Cadastrando Nova Receita
+                </span>
+              ) : isDirty ? (
                 <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-cyan-500/15 text-cyan-300 border border-cyan-500/40 flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
                   Edições ativas na bancada
                 </span>
-              )}
+              ) : null}
             </div>
 
             <div className="flex flex-wrap items-center gap-3">
@@ -291,10 +321,33 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
 
           {/* Action Buttons */}
           <div className="flex flex-wrap items-center gap-2.5">
+            {selectedRecipeId === 'new' ? (
+              <button
+                type="button"
+                onClick={handleCancelNewRecipe}
+                className="px-4 py-2.5 rounded-xl border border-rose-500/40 bg-rose-500/15 hover:bg-rose-500/25 text-rose-300 hover:text-white text-xs sm:text-sm font-bold transition-all flex items-center gap-1.5 active:scale-95 shadow-sm"
+                title="Cancelar criação da nova receita e voltar à receita anterior"
+              >
+                <X className="w-4 h-4 text-rose-400" />
+                <span>Cancelar / Voltar</span>
+              </button>
+            ) : (
+              <button
+                type="button"
+                onClick={handleStartNewRecipe}
+                className="px-4 py-2.5 rounded-xl border border-amber-500/40 bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 hover:text-white text-xs sm:text-sm font-bold transition-all flex items-center gap-1.5 active:scale-95 shadow-sm"
+                title="Criar uma nova receita personalizada a partir do zero"
+              >
+                <Plus className="w-4 h-4 text-amber-400" />
+                <span>Nova Receita</span>
+              </button>
+            )}
+
             <button
               type="button"
               onClick={handleReset}
-              className="px-4 py-2.5 rounded-xl border border-slate-700 text-slate-300 hover:text-white hover:bg-slate-700/60 text-xs font-bold transition-colors flex items-center gap-1.5"
+              disabled={selectedRecipeId === 'new'}
+              className="px-4 py-2.5 rounded-xl border border-slate-700 text-slate-300 hover:text-white hover:bg-slate-700/60 disabled:opacity-40 disabled:cursor-not-allowed text-xs font-bold transition-colors flex items-center gap-1.5"
               title="Reverter alterações e voltar à receita original"
             >
               <RotateCcw className="w-4 h-4" />

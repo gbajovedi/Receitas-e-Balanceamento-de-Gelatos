@@ -65,7 +65,7 @@ export const RecipeViewerModal: React.FC<RecipeViewerModalProps> = ({
       {/* Full screen on mobile (w-full h-full), elegant rounded modal on desktop */}
       <div className="print-recipe-card bg-slate-900 border border-slate-700/80 w-full h-full sm:h-auto sm:max-h-[92vh] sm:max-w-2xl sm:rounded-3xl shadow-2xl flex flex-col overflow-hidden">
         {/* Sticky Header */}
-        <div className="p-4 sm:p-5 bg-slate-850 border-b border-slate-700/80 flex items-start justify-between gap-3 shrink-0">
+        <div className="p-4 sm:p-5 bg-slate-800 border-b border-slate-700/80 flex items-start justify-between gap-3 shrink-0">
           <div className="space-y-1 min-w-0 pr-2">
             <div className="flex items-center gap-2 flex-wrap">
               <span className="text-xs px-2.5 py-0.5 rounded-full bg-amber-500/15 text-amber-300 border border-amber-500/40 font-bold uppercase tracking-wider flex items-center gap-1.5">
@@ -260,7 +260,7 @@ export const RecipeViewerModal: React.FC<RecipeViewerModalProps> = ({
         </div>
 
         {/* Sticky Footer Actions */}
-        <div className="p-4 sm:p-5 bg-slate-850 border-t border-slate-700/80 flex flex-wrap items-center justify-between gap-3 shrink-0">
+        <div className="p-4 sm:p-5 bg-slate-800 border-t border-slate-700/80 flex flex-wrap items-center justify-between gap-3 shrink-0">
           <div className="text-xs sm:text-sm text-slate-300 font-mono font-bold">
             Total Batelada:{' '}
             <strong className="text-emerald-400 text-base sm:text-lg">
