@@ -28,6 +28,8 @@ export const PrePreparosList: React.FC<PrePreparosListProps> = ({
   const [name, setName] = useState('');
   const [category, setCategory] = useState<'Pré-preparo' | 'Variegato'>('Pré-preparo');
   const [instructions, setInstructions] = useState('');
+  const [modalError, setModalError] = useState('');
+  const [isSaving, setIsSaving] = useState(false);
   const [items, setItems] = useState<PreparationFormItem[]>([
     { name: '', grams: '' },
   ]);
@@ -42,6 +44,8 @@ export const PrePreparosList: React.FC<PrePreparosListProps> = ({
   });
 
   const handleOpenCreate = () => {
+    setModalError('');
+    setIsSaving(false);
     setEditingPrep(null);
     setName('');
     setCategory('Pré-preparo');
@@ -54,6 +58,8 @@ export const PrePreparosList: React.FC<PrePreparosListProps> = ({
   };
 
   const handleOpenEdit = (prep: Preparation) => {
+    setModalError('');
+    setIsSaving(false);
     setEditingPrep(prep);
     setName(prep.name);
     setCategory(prep.category);
@@ -97,7 +103,12 @@ export const PrePreparosList: React.FC<PrePreparosListProps> = ({
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name.trim()) return;
+    setModalError('');
+
+    if (!name.trim()) {
+      setModalError('Por favor, informe o nome do pré-preparo / variegato.');
+      return;
+    }
 
     const validIngredients = items
       .filter(item => item.name.trim() !== '' && typeof item.grams === 'number' && item.grams > 0)
@@ -107,25 +118,33 @@ export const PrePreparosList: React.FC<PrePreparosListProps> = ({
       }));
 
     if (validIngredients.length === 0) {
-      alert('Adicione pelo menos um ingrediente com peso maior que zero.');
+      setModalError('Adicione pelo menos um ingrediente com peso em gramas maior que zero.');
       return;
     }
 
-    const prepId = editingPrep ? editingPrep.id : `prep_${Date.now()}`;
+    setIsSaving(true);
+    try {
+      const prepId = editingPrep ? editingPrep.id : `prep_${Date.now()}`;
 
-    const prepToSave: Preparation = {
-      id: prepId,
-      name: name.trim(),
-      category,
-      instructions: instructions.trim(),
-      ingredients: validIngredients,
-      isCustom: editingPrep ? editingPrep.isCustom : true,
-    };
+      const prepToSave: Preparation = {
+        id: prepId,
+        name: name.trim(),
+        category,
+        instructions: instructions.trim(),
+        ingredients: validIngredients,
+        isCustom: editingPrep ? editingPrep.isCustom : true,
+      };
 
-    await db.preparations.put(prepToSave);
-    setIsModalOpen(false);
-    setEditingPrep(null);
-    if (onRefresh) onRefresh();
+      await db.preparations.put(prepToSave);
+      setIsModalOpen(false);
+      setEditingPrep(null);
+      if (onRefresh) onRefresh();
+    } catch (err: any) {
+      console.error('Erro ao salvar preparação:', err);
+      setModalError(`Erro ao salvar no banco de dados: ${err?.message || err}`);
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   return (
@@ -314,7 +333,7 @@ export const PrePreparosList: React.FC<PrePreparosListProps> = ({
               </button>
             </div>
 
-            <form onSubmit={handleSave} className="space-y-4">
+            <form onSubmit={handleSave} noValidate className="space-y-4">
               {/* Nome e Categoria */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 <div>
@@ -432,6 +451,14 @@ export const PrePreparosList: React.FC<PrePreparosListProps> = ({
                 />
               </div>
 
+              {/* Alerta de Validação ou Erro */}
+              {modalError && (
+                <div className="flex items-center gap-2.5 p-3 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-300 text-xs font-semibold">
+                  <AlertCircle className="w-4 h-4 shrink-0 text-rose-400" />
+                  <span>{modalError}</span>
+                </div>
+              )}
+
               {/* Rodapé do Modal */}
               <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-800">
                 <button
@@ -446,10 +473,20 @@ export const PrePreparosList: React.FC<PrePreparosListProps> = ({
                 </button>
                 <button
                   type="submit"
-                  className="px-6 py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs sm:text-sm rounded-xl shadow-lg shadow-amber-500/20 transition-all flex items-center gap-2 active:scale-95"
+                  disabled={isSaving}
+                  className="px-6 py-2.5 bg-amber-500 hover:bg-amber-400 disabled:opacity-50 text-slate-950 font-black text-xs sm:text-sm rounded-xl shadow-lg shadow-amber-500/20 transition-all flex items-center gap-2 active:scale-95"
                 >
-                  <Save className="w-4 h-4" />
-                  <span>Salvar {category}</span>
+                  {isSaving ? (
+                    <>
+                      <div className="w-4 h-4 border-2 border-slate-950 border-t-transparent rounded-full animate-spin" />
+                      <span>Salvando...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Save className="w-4 h-4" />
+                      <span>Salvar {category}</span>
+                    </>
+                  )}
                 </button>
               </div>
             </form>

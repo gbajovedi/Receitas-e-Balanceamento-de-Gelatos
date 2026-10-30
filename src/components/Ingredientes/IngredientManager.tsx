@@ -39,6 +39,8 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
   const [editingCost, setEditingCost] = useState<number>(0);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [editingIngredient, setEditingIngredient] = useState<Ingredient | null>(null);
+  const [modalError, setModalError] = useState('');
+  const [isSaving, setIsSaving] = useState(false);
 
   // Quick packaging calculator modal for editing existing ingredients
   const [calculatorModalIng, setCalculatorModalIng] = useState<Ingredient | null>(null);
@@ -159,6 +161,8 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
   };
 
   const handleEditIngredient = (ing: Ingredient) => {
+    setModalError('');
+    setIsSaving(false);
     setEditingIngredient(ing);
     setNewName(ing.name);
     setNewCategory(ing.category || 'Outros');
@@ -195,6 +199,8 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
 
   const resetForm = () => {
     setEditingIngredient(null);
+    setModalError('');
+    setIsSaving(false);
     setNewName('');
     setNewCategory('Outros');
     setPackagePrice('');
@@ -213,38 +219,58 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
 
   const handleCreateIngredient = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!newName.trim()) return;
+    setModalError('');
 
-    const totalSolids = (newSugars + newFat + newMsnf + newOtherSolids) / 100;
-    const targetId = editingIngredient ? editingIngredient.id : `ing_custom_${Date.now()}`;
+    if (!newName.trim()) {
+      setModalError('Por favor, informe o nome técnico da matéria-prima.');
+      return;
+    }
 
-    const ingToSave: Ingredient = {
-      id: targetId,
-      name: newName.trim(),
-      category: newCategory,
-      costKg: finalCostKg,
-      packagePrice: typeof packagePrice === 'number' && packagePrice > 0 ? packagePrice : undefined,
-      packageWeight: typeof packageWeightGrams === 'number' && packageWeightGrams > 0 ? packageWeightGrams : undefined,
-      packageUnit: 'g',
-      sugars: newSugars / 100,
-      fat: newFat / 100,
-      msnf: newMsnf / 100,
-      otherSolids: newOtherSolids / 100,
-      totalSolids,
-      water: newWater > 0 ? newWater / 100 : Math.max(0, 1 - totalSolids),
-      pod: newPod,
-      pac: newPac,
-      protein: newProtein / 100,
-      hasAllergen: newHasAllergen,
-      allergenDetails: newHasAllergen && selectedAllergens.length > 0 ? selectedAllergens : undefined,
-      isCustom: editingIngredient ? editingIngredient.isCustom : true,
-    };
+    if (totalSolidsPercent > 100) {
+      const proceed = window.confirm(
+        `Atenção: A soma dos sólidos informados (${totalSolidsPercent}%) ultrapassa 100%. Deseja salvar mesmo assim?`
+      );
+      if (!proceed) return;
+    }
 
-    await db.ingredients.put(ingToSave);
-    setIsAddModalOpen(false);
-    setEditingIngredient(null);
-    resetForm();
-    onRefresh();
+    setIsSaving(true);
+    try {
+      const totalSolids = (newSugars + newFat + newMsnf + newOtherSolids) / 100;
+      const targetId = editingIngredient ? editingIngredient.id : `ing_custom_${Date.now()}`;
+
+      const ingToSave: Ingredient = {
+        id: targetId,
+        name: newName.trim(),
+        category: newCategory,
+        costKg: finalCostKg || 0,
+        packagePrice: typeof packagePrice === 'number' && packagePrice > 0 ? packagePrice : undefined,
+        packageWeight: typeof packageWeightGrams === 'number' && packageWeightGrams > 0 ? packageWeightGrams : undefined,
+        packageUnit: 'g',
+        sugars: (newSugars || 0) / 100,
+        fat: (newFat || 0) / 100,
+        msnf: (newMsnf || 0) / 100,
+        otherSolids: (newOtherSolids || 0) / 100,
+        totalSolids,
+        water: newWater > 0 ? newWater / 100 : Math.max(0, 1 - totalSolids),
+        pod: newPod || 0,
+        pac: newPac || 0,
+        protein: (newProtein || 0) / 100,
+        hasAllergen: newHasAllergen,
+        allergenDetails: newHasAllergen && selectedAllergens.length > 0 ? selectedAllergens : undefined,
+        isCustom: editingIngredient ? editingIngredient.isCustom : true,
+      };
+
+      await db.ingredients.put(ingToSave);
+      setIsAddModalOpen(false);
+      setEditingIngredient(null);
+      resetForm();
+      onRefresh();
+    } catch (err: any) {
+      console.error('Erro ao salvar insumo no banco:', err);
+      setModalError(`Erro ao salvar no banco de dados: ${err?.message || err}`);
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   return (
@@ -480,7 +506,7 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
               </button>
             </div>
 
-            <form onSubmit={handleCreateIngredient} className="space-y-4">
+            <form onSubmit={handleCreateIngredient} noValidate className="space-y-4">
               {/* Seção 1: Identificação Básica */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 <div>
@@ -580,7 +606,7 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
                             type="number"
                             min="0"
                             step="0.01"
-                            required={costMode === 'package'}
+                            
                             placeholder="0,00"
                             value={packagePrice === '' ? '' : packagePrice}
                             onChange={e => {
@@ -601,9 +627,9 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
                         <div className="relative">
                           <input
                             type="number"
-                            min="1"
+                            min="0"
                             step="any"
-                            required={costMode === 'package'}
+                            
                             placeholder="ex: 1000 (para 1 kg), 500, 250..."
                             value={packageWeightGrams === '' ? '' : packageWeightGrams}
                             onChange={e => {
@@ -715,7 +741,7 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
                         type="number"
                         min="0"
                         step="0.1"
-                        required={costMode === 'direct'}
+                        
                         placeholder="0,00"
                         value={manualCostKg === '' ? '' : manualCostKg}
                         onChange={e => {
@@ -1038,6 +1064,14 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
                 )}
               </div>
 
+              {/* Alerta de Validação ou Erro */}
+              {modalError && (
+                <div className="flex items-center gap-2.5 p-3 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-300 text-xs font-semibold">
+                  <AlertCircle className="w-4 h-4 shrink-0 text-rose-400" />
+                  <span>{modalError}</span>
+                </div>
+              )}
+
               {/* Rodapé de Ações */}
               <div className="flex items-center justify-end gap-3 pt-3 border-t border-slate-800">
                 <button
@@ -1052,10 +1086,20 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
                 </button>
                 <button
                   type="submit"
-                  className="px-6 py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs sm:text-sm rounded-xl shadow-lg shadow-amber-500/25 transition-all active:scale-95 flex items-center gap-2"
+                  disabled={isSaving}
+                  className="px-6 py-2.5 bg-amber-500 hover:bg-amber-400 disabled:opacity-50 text-slate-950 font-black text-xs sm:text-sm rounded-xl shadow-lg shadow-amber-500/25 transition-all active:scale-95 flex items-center gap-2"
                 >
-                  <CheckCircle2 className="w-4 h-4" />
-                  <span>{editingIngredient ? 'Salvar Alterações' : 'Cadastrar Insumo'}</span>
+                  {isSaving ? (
+                    <>
+                      <div className="w-4 h-4 border-2 border-slate-950 border-t-transparent rounded-full animate-spin" />
+                      <span>Salvando...</span>
+                    </>
+                  ) : (
+                    <>
+                      <CheckCircle2 className="w-4 h-4" />
+                      <span>{editingIngredient ? 'Salvar Alterações' : 'Cadastrar Insumo'}</span>
+                    </>
+                  )}
                 </button>
               </div>
             </form>
