@@ -118,10 +118,10 @@ export const NutrientBars: React.FC<NutrientBarsProps> = ({ analysis }) => {
   return (
     <div className="space-y-4">
       {/* Header status bar */}
-      <div className={`p-4 sm:p-5 rounded-2xl border shadow-md transition-all ${
+      <div className={`nutrient-status-banner p-4 sm:p-5 rounded-2xl border shadow-md transition-all ${
         isBalanced
-          ? 'bg-gradient-to-r from-slate-800/95 via-slate-850/95 to-slate-800/95 border-emerald-500/40'
-          : 'bg-gradient-to-r from-amber-950/40 via-slate-850/95 to-slate-800/95 border-amber-500/50'
+          ? 'nutrient-banner-balanced bg-gradient-to-r from-slate-800/95 via-slate-850/95 to-slate-800/95 border-emerald-500/40'
+          : 'nutrient-banner-issues bg-gradient-to-r from-amber-950/40 via-slate-850/95 to-slate-800/95 border-amber-500/50'
       }`}>
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="flex items-start sm:items-center gap-3.5">
