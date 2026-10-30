@@ -65,7 +65,7 @@ export const ThemeToggle: React.FC = () => {
 
   return (
     <div
-      className="theme-switch-track flex items-center bg-slate-900/90 p-1 rounded-xl border border-slate-700/80 shadow-inner select-none transition-colors"
+      className="theme-switch-track flex items-center bg-slate-900/90 p-1 rounded-xl border border-slate-700/80 shadow-inner select-none transition-colors shrink-0"
       role="group"
       aria-label="Controle de Tema: Modo Escuro, Automático e Modo Claro"
     >
@@ -73,7 +73,7 @@ export const ThemeToggle: React.FC = () => {
       <button
         type="button"
         onClick={() => handleSelectMode('dark')}
-        className={`h-8 w-8 sm:w-9 rounded-lg transition-all flex items-center justify-center ${
+        className={`h-8 w-8 sm:w-9 rounded-lg transition-all flex items-center justify-center shrink-0 ${
           themeMode === 'dark'
             ? 'bg-amber-500 text-slate-950 shadow-md shadow-amber-500/20 scale-[1.03]'
             : 'theme-switch-inactive text-slate-400 hover:text-white hover:bg-slate-700/50'
@@ -89,7 +89,7 @@ export const ThemeToggle: React.FC = () => {
       <button
         type="button"
         onClick={() => handleSelectMode('auto')}
-        className={`h-8 px-3 rounded-lg text-xs font-bold transition-all flex items-center justify-center ${
+        className={`h-8 px-2.5 sm:px-3 rounded-lg text-xs font-bold transition-all flex items-center justify-center shrink-0 ${
           themeMode === 'auto'
             ? 'bg-amber-500 text-slate-950 font-black shadow-md shadow-amber-500/20 scale-[1.03]'
             : 'theme-switch-inactive text-slate-400 hover:text-white hover:bg-slate-700/50'
@@ -105,7 +105,7 @@ export const ThemeToggle: React.FC = () => {
       <button
         type="button"
         onClick={() => handleSelectMode('light')}
-        className={`h-8 w-8 sm:w-9 rounded-lg transition-all flex items-center justify-center ${
+        className={`h-8 w-8 sm:w-9 rounded-lg transition-all flex items-center justify-center shrink-0 ${
           themeMode === 'light'
             ? 'bg-amber-500 text-slate-950 shadow-md shadow-amber-500/20 scale-[1.03]'
             : 'theme-switch-inactive text-slate-400 hover:text-white hover:bg-slate-700/50'
