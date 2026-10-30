@@ -21,8 +21,35 @@ import {
   DollarSign,
   Layers,
   ChefHat,
-  X
+  X,
+  ArrowDownWideNarrow,
+  AlertTriangle,
+  PieChart
 } from 'lucide-react';
+
+const getIngredientCategoryPill = (category?: string) => {
+  if (!category) return null;
+  switch (category) {
+    case 'Laticínios':
+      return { icon: '🥛', label: 'Lácteo', color: 'bg-sky-500/15 text-sky-300 border-sky-500/30' };
+    case 'Açúcares':
+      return { icon: '🍬', label: 'Açúcar', color: 'bg-amber-500/15 text-amber-300 border-amber-500/30' };
+    case 'Chocolates & Cacau':
+      return { icon: '🍫', label: 'Cacau', color: 'bg-amber-900/30 text-amber-200 border-amber-700/40' };
+    case 'Pastas & Oleaginosas':
+      return { icon: '🌰', label: 'Pasta', color: 'bg-orange-500/15 text-orange-300 border-orange-500/30' };
+    case 'Frutas':
+      return { icon: '🍓', label: 'Fruta', color: 'bg-rose-500/15 text-rose-300 border-rose-500/30' };
+    case 'Neutros & Fibras':
+      return { icon: '🧪', label: 'Neutro', color: 'bg-teal-500/15 text-teal-300 border-teal-500/30' };
+    case 'Bases & Pré-preparos':
+      return { icon: '🥣', label: 'Base', color: 'bg-purple-500/15 text-purple-300 border-purple-500/30' };
+    case 'Variegatos & Recheios':
+      return { icon: '🍯', label: 'Mescla', color: 'bg-yellow-600/15 text-yellow-200 border-yellow-600/30' };
+    default:
+      return { icon: '📦', label: category, color: 'bg-slate-700/40 text-slate-300 border-slate-600/40' };
+  }
+};
 
 interface BalancingScreenProps {
   recipes: Recipe[];
@@ -103,6 +130,37 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
   const analysis = useMemo(() => {
     return calculateBatchAnalysis(items, variegatos, currentStyle, ingredientsMap, pricingSettings);
   }, [items, variegatos, currentStyle, ingredientsMap, pricingSettings]);
+
+  // Decomposição de custos por categoria de insumo
+  const categoryCostBreakdown = useMemo(() => {
+    const map = new Map<string, number>();
+    let totalCaldaCost = 0;
+
+    for (const item of items) {
+      const ing = ingredientsMap.get(item.name.toLowerCase().trim());
+      const itemCost = ing ? (item.grams * ing.costKg) / 1000 : 0;
+      const cat = ing?.category || 'Outros';
+      map.set(cat, (map.get(cat) || 0) + itemCost);
+      totalCaldaCost += itemCost;
+    }
+
+    if (totalCaldaCost <= 0) return [];
+
+    return Array.from(map.entries())
+      .map(([cat, cost]) => ({
+        category: cat,
+        cost,
+        pct: (cost / totalCaldaCost) * 100
+      }))
+      .sort((a, b) => b.cost - a.cost);
+  }, [items, ingredientsMap]);
+
+  // Sort ingredients by descending weight (standard culinary practice)
+  const handleSortByWeight = () => {
+    const sorted = [...items].sort((a, b) => (b.grams || 0) - (a.grams || 0));
+    setItems(sorted);
+    setIsDirty(true);
+  };
 
   // Handle recipe change from selector
   const handleStartNewRecipe = () => {
@@ -392,10 +450,22 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
           <div className="bg-slate-800/90 rounded-2xl border border-slate-700/80 p-5 shadow-xl space-y-4">
             {/* Table Header Controls */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-700">
-              <div className="flex items-center gap-2">
-                <Layers className="w-5 h-5 text-amber-400" />
-                <h3 className="text-base font-bold text-white">Composição da Calda Base</h3>
-                <span className="text-xs font-medium text-slate-400">({items.length} ingredientes)</span>
+              <div className="flex items-center gap-2.5 flex-wrap">
+                <div className="flex items-center gap-2">
+                  <Layers className="w-5 h-5 text-amber-400" />
+                  <h3 className="text-base font-bold text-white">Composição da Calda Base</h3>
+                  <span className="text-xs font-medium text-slate-400">({items.length} insumos)</span>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={handleSortByWeight}
+                  className="px-2.5 py-1 rounded-lg border border-slate-700 bg-slate-900 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-bold transition-all flex items-center gap-1.5 active:scale-95 shadow-sm ml-1"
+                  title="Ordenar ingredientes por maior peso (prática culinária profissional)"
+                >
+                  <ArrowDownWideNarrow className="w-3.5 h-3.5 text-amber-400" />
+                  <span>Ordenar por Peso</span>
+                </button>
               </div>
 
               {/* Batch Scale Controls with Quick-Pills */}
@@ -443,7 +513,7 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
                 <thead>
                   <tr className="text-slate-400 border-b border-slate-700 text-xs uppercase tracking-wider font-bold">
                     <th className="py-3 pl-2">Ingrediente / Matéria-Prima</th>
-                    <th className="py-3 text-right w-32">Peso (g)</th>
+                    <th className="py-3 text-right w-44">Peso (g)</th>
                     <th className="py-3 text-right w-24">% Calda</th>
                     <th className="py-3 text-right w-28">Custo R$</th>
                     <th className="py-3 text-center w-12">Ação</th>
@@ -454,28 +524,70 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
                     const ing = ingredientsMap.get(item.name.toLowerCase().trim());
                     const pct = analysis.caldaWeight > 0 ? (item.grams / analysis.caldaWeight) * 100 : 0;
                     const itemCost = ing ? (item.grams * ing.costKg) / 1000 : 0;
+                    const catPill = ing ? getIngredientCategoryPill(ing.category) : null;
+                    const isUnknown = item.name.trim() !== '' && !ing;
 
                     return (
                       <tr key={idx} className="hover:bg-slate-750/40 transition-colors group">
                         <td className="py-2.5 pl-2">
-                          <input
-                            type="text"
-                            list="ingredients-datalist"
-                            value={item.name}
-                            onChange={e => handleNameChange(idx, e.target.value)}
-                            placeholder="Digite ou escolha o insumo..."
-                            className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500 font-semibold"
-                          />
+                          <div className="space-y-1">
+                            <input
+                              type="text"
+                              list="ingredients-datalist"
+                              value={item.name}
+                              onChange={e => handleNameChange(idx, e.target.value)}
+                              placeholder="Digite ou escolha o insumo..."
+                              className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500 font-semibold"
+                            />
+                            {/* Contextual category chip / validation warning */}
+                            <div className="flex items-center gap-1.5 flex-wrap text-[10px]">
+                              {catPill && (
+                                <span className={`px-2 py-0.5 rounded-md border font-bold flex items-center gap-1 ${catPill.color}`}>
+                                  <span>{catPill.icon}</span>
+                                  <span>{catPill.label}</span>
+                                </span>
+                              )}
+                              {isUnknown && (
+                                <span className="px-2 py-0.5 rounded-md border font-bold bg-amber-500/15 text-amber-300 border-amber-500/30 flex items-center gap-1">
+                                  <AlertTriangle className="w-3 h-3 text-amber-400" />
+                                  <span>Insumo não cadastrado</span>
+                                </span>
+                              )}
+                              {ing && ing.costKg <= 0 && (
+                                <span className="px-1.5 py-0.5 rounded text-slate-400 bg-slate-800">
+                                  Sem custo/kg
+                                </span>
+                              )}
+                            </div>
+                          </div>
                         </td>
-                        <td className="py-2.5 text-right">
-                          <input
-                            type="number"
-                            min="0"
-                            step="0.5"
-                            value={item.grams || ''}
-                            onChange={e => handleGramsChange(idx, parseFloat(e.target.value) || 0)}
-                            className="w-28 bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-right font-mono font-black text-amber-300 focus:outline-none focus:border-amber-500"
-                          />
+                        <td className="py-2.5 text-right whitespace-nowrap">
+                          <div className="flex items-center justify-end gap-1">
+                            <button
+                              type="button"
+                              onClick={() => handleGramsChange(idx, Math.max(0, item.grams - 5))}
+                              className="w-7 h-8 flex items-center justify-center rounded-lg bg-slate-900 border border-slate-700/80 text-slate-300 hover:text-white hover:border-amber-500/60 hover:bg-slate-800 text-xs font-bold active:scale-95 transition-all"
+                              title="Diminuir 5g (-5g)"
+                            >
+                              -5
+                            </button>
+                            <input
+                              type="number"
+                              min="0"
+                              step="0.5"
+                              value={item.grams || ''}
+                              onChange={e => handleGramsChange(idx, parseFloat(e.target.value) || 0)}
+                              className="w-20 bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-1.5 text-sm text-right font-mono font-black text-amber-300 focus:outline-none focus:border-amber-500 shadow-inner"
+                            />
+                            <button
+                              type="button"
+                              onClick={() => handleGramsChange(idx, item.grams + 5)}
+                              className="w-7 h-8 flex items-center justify-center rounded-lg bg-slate-900 border border-slate-700/80 text-slate-300 hover:text-white hover:border-amber-500/60 hover:bg-slate-800 text-xs font-bold active:scale-95 transition-all"
+                              title="Aumentar 5g (+5g)"
+                            >
+                              +5
+                            </button>
+                          </div>
                         </td>
                         <td className="py-2.5 text-right font-mono font-bold text-slate-200 text-sm">
                           {pct.toFixed(1)}%
@@ -611,6 +723,66 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
                   </span>
                 </div>
               </div>
+
+              {/* Category Cost Composition Bar */}
+              {categoryCostBreakdown.length > 0 && (
+                <div className="bg-slate-900/80 p-3.5 rounded-xl border border-slate-700/80 space-y-2">
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+                      <PieChart className="w-3.5 h-3.5 text-amber-400" />
+                      Decomposição do Custo
+                    </span>
+                    <span className="text-slate-400 font-mono text-[11px]">
+                      Base: R$ {analysis.totals.cost.toFixed(2)}
+                    </span>
+                  </div>
+
+                  {/* Multi-segment stacked progress bar */}
+                  <div className="h-2.5 w-full bg-slate-950 rounded-full overflow-hidden flex shadow-inner border border-slate-800">
+                    {categoryCostBreakdown.map((cat, i) => {
+                      const colors = [
+                        'bg-sky-400',
+                        'bg-amber-400',
+                        'bg-orange-400',
+                        'bg-rose-400',
+                        'bg-teal-400',
+                        'bg-purple-400',
+                        'bg-yellow-500'
+                      ];
+                      return (
+                        <div
+                          key={cat.category}
+                          className={`h-full ${colors[i % colors.length]} transition-all`}
+                          style={{ width: `${cat.pct}%` }}
+                          title={`${cat.category}: R$ ${cat.cost.toFixed(2)} (${cat.pct.toFixed(1)}%)`}
+                        />
+                      );
+                    })}
+                  </div>
+
+                  {/* Micro-legend */}
+                  <div className="flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-slate-300 pt-0.5">
+                    {categoryCostBreakdown.slice(0, 4).map((cat, i) => {
+                      const dotColors = [
+                        'bg-sky-400',
+                        'bg-amber-400',
+                        'bg-orange-400',
+                        'bg-rose-400',
+                        'bg-teal-400',
+                        'bg-purple-400',
+                        'bg-yellow-500'
+                      ];
+                      return (
+                        <span key={cat.category} className="flex items-center gap-1">
+                          <span className={`w-2 h-2 rounded-full ${dotColors[i % dotColors.length]}`} />
+                          <span className="text-slate-400">{cat.category}:</span>
+                          <strong className="text-white font-mono">{cat.pct.toFixed(0)}%</strong>
+                        </span>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
 
               <div className="p-4 rounded-xl bg-gradient-to-br from-emerald-950/60 to-slate-900 border border-emerald-700/50 space-y-2.5">
                 <div className="flex items-center justify-between">
