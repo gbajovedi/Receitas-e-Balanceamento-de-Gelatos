@@ -97,19 +97,46 @@ export const NutrientBars: React.FC<NutrientBarsProps> = ({ analysis }) => {
           </span>
         </div>
 
-        {/* Visual progress bar with target range highlight */}
-        <div className="relative w-full h-2.5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden border border-slate-200 dark:border-slate-700/60">
-          {/* Target range marker background */}
-          <div
-            className="absolute top-0 bottom-0 bg-emerald-500/15 border-x border-emerald-500/30"
-            style={{ left: `${minMarkerPct}%`, width: `${Math.max(maxMarkerPct - minMarkerPct, 3)}%` }}
-            title={`Faixa Ideal: ${displayMin} a ${displayMax}${unit}`}
-          />
-          {/* Active bar */}
+        {/* Visual progress bar with prominent Min and Max threshold markers */}
+        <div className="relative w-full h-3 sm:h-3.5 bg-slate-100 dark:bg-slate-800/90 rounded-full overflow-hidden border border-slate-200 dark:border-slate-700/80 shadow-inner">
+          {/* 1. Active progress bar fill (underneath markers) */}
           <div
             className={`h-full rounded-full transition-all duration-300 ${barColor}`}
             style={{ width: `${progressPct}%` }}
           />
+
+          {/* 2. Target range safe zone highlight (layered on top) */}
+          <div
+            className="absolute top-0 bottom-0 bg-emerald-500/15 dark:bg-emerald-400/20 pointer-events-none z-10"
+            style={{ left: `${minMarkerPct}%`, width: `${Math.max(maxMarkerPct - minMarkerPct, 2)}%` }}
+            title={`Faixa Ideal: ${displayMin} a ${displayMax}${unit}`}
+          />
+
+          {/* 3. Minimum Limit Marker: Solid White Glowing Tick Line */}
+          <div
+            className="absolute top-0 bottom-0 w-[2.5px] bg-white shadow-[0_0_4px_rgba(255,255,255,0.9)] z-20 pointer-events-none"
+            style={{ left: `calc(${minMarkerPct}% - 1px)` }}
+            title={`Limite Mínimo: ${displayMin}${unit}`}
+          />
+
+          {/* 4. Maximum Limit Marker: Solid White Tick Line */}
+          <div
+            className="absolute top-0 bottom-0 w-[2px] bg-white/85 shadow-[0_0_3px_rgba(255,255,255,0.6)] z-20 pointer-events-none"
+            style={{ left: `calc(${maxMarkerPct}% - 1px)` }}
+            title={`Limite Máximo: ${displayMax}${unit}`}
+          />
+        </div>
+
+        {/* Legend under the bar clearly identifying Min and Max */}
+        <div className="flex items-center justify-between text-[11px] text-slate-400 font-mono mt-1.5 px-0.5 font-medium">
+          <span className="flex items-center gap-1.5" title={`Limite Mínimo: ${displayMin}${unit}`}>
+            <span className="w-2 h-2 rounded-full bg-white shadow-[0_0_4px_rgba(255,255,255,0.9)] inline-block shrink-0" />
+            <span>Mín: <strong className="text-slate-200 font-bold">{displayMin}{unit}</strong></span>
+          </span>
+          <span className="flex items-center gap-1.5" title={`Limite Máximo: ${displayMax}${unit}`}>
+            <span>Máx: <strong className="text-slate-200 font-bold">{displayMax}{unit}</strong></span>
+            <span className="w-1.5 h-1.5 rounded-full bg-white/70 inline-block shrink-0" />
+          </span>
         </div>
       </div>
     );
