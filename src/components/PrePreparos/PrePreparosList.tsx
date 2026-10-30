@@ -287,7 +287,7 @@ export const PrePreparosList: React.FC<PrePreparosListProps> = ({
                     <span className="text-xs uppercase font-bold text-amber-400/90 block mb-1">
                       Modo de Preparo:
                     </span>
-                    <p className="line-clamp-4 leading-relaxed whitespace-pre-line">{prep.instructions}</p>
+                    <p className="leading-relaxed whitespace-pre-line text-slate-300 break-words">{prep.instructions}</p>
                   </div>
                 )}
               </div>
