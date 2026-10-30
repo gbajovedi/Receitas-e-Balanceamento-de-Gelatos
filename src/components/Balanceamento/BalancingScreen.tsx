@@ -8,6 +8,7 @@ import { AllergensBadge } from './AllergensBadge';
 import { PostProduction } from './PostProduction';
 import { SaveRecipeModal } from './SaveRecipeModal';
 import { RecipeSearchCombobox } from './RecipeSearchCombobox';
+import { ProfitSimulator } from './ProfitSimulator';
 import { CategoryBadge, getCategoryTheme } from '../../core/categoryThemes';
 import {
   Save,
@@ -784,27 +785,16 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
                 </div>
               )}
 
-              <div className="p-4 rounded-xl bg-gradient-to-br from-emerald-950/60 to-slate-900 border border-emerald-700/50 space-y-2.5">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold uppercase tracking-wider text-emerald-300">
-                    Preço Sugerido (Pote {pricingParams.tubWeightGrams}g)
-                  </span>
-                  <span className="text-xs px-2.5 py-0.5 rounded-full bg-emerald-500/25 text-emerald-300 font-bold border border-emerald-500/40">
-                    Margem {pricingParams.targetMargin}%
-                  </span>
-                </div>
-                <div className="text-3xl font-black text-emerald-400 font-mono tracking-tight">
-                  R$ {analysis.costing.suggestedPrice500g.toFixed(2)}
-                </div>
-                <div className="text-[11px] text-slate-300 leading-relaxed pt-2 border-t border-emerald-900/60 space-y-1">
-                  <p>
-                    <strong>Markup sincronizado:</strong> R$ {pricingParams.tubPackCost.toFixed(2)} embalagem + R$ {pricingSettings.indirectOverheadPerTub.toFixed(2)} rateio fixo (inclui MEI), taxa de maquininha ({pricingSettings.cardFeePercent.toFixed(2)}%), impostos ({pricingParams.salesTaxPercent}%) e lucro de {pricingParams.targetMargin}%.
-                  </p>
-                  <p className="text-slate-400 text-[10px]">
-                    Sincronizado automaticamente com os custos e taxas da aba <strong>Precificação</strong>.
-                  </p>
-                </div>
-              </div>
+              {/* Interactive Profit Margin & Price Simulator */}
+              <ProfitSimulator
+                finalCostKg={analysis.costing.finalCostKg}
+                batchWeightGrams={analysis.costing.finalWeightGrams || analysis.caldaWeight}
+                pricingParams={pricingParams}
+                pricingSettings={pricingSettings}
+                onMarginSaved={(newMargin) => {
+                  setPricingParams(prev => ({ ...prev, targetMargin: newMargin }));
+                }}
+              />
             </div>
 
             {/* Quick tips */}
