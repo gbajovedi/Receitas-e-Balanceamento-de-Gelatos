@@ -32,6 +32,27 @@ const COMMON_ALLERGENS = [
   'Amendoim',
 ] as const;
 
+export const INGREDIENT_CATEGORY_CONFIG: { [cat: string]: { order: number; icon: string } } = {
+  'Todas': { order: 0, icon: '📖' },
+  'Laticínios': { order: 1, icon: '🥛' },
+  'Açúcares': { order: 2, icon: '🍬' },
+  'Frutas & Polpas': { order: 3, icon: '🍓' },
+  'Chocolates & Cacau': { order: 4, icon: '🍫' },
+  'Pastas & Oleaginosas': { order: 5, icon: '🌰' },
+  'Bebidas Vegetais & Plant-Based': { order: 6, icon: '🌱' },
+  'Álcoois & Bebidas': { order: 7, icon: '🍸' },
+  'Ovos & Proteínas': { order: 8, icon: '🥚' },
+  'Neutros, Gomas & Fibras': { order: 9, icon: '🧪' },
+  'Confeitaria & Inclusões': { order: 10, icon: '🍪' },
+  'Variegatos & Recheios': { order: 11, icon: '🍯' },
+  'Bases & Pré-preparos': { order: 12, icon: '🥣' },
+  'Outros': { order: 99, icon: '📦' }
+};
+
+export const getIngredientCategoryIcon = (category: string) => {
+  return INGREDIENT_CATEGORY_CONFIG[category]?.icon || '📦';
+};
+
 export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredients, onRefresh }) => {
   const [search, setSearch] = useState('');
   const [categoryFilter, setCategoryFilter] = useState('Todas');
@@ -74,7 +95,12 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
     for (const i of ingredients) {
       if (i.category) set.add(i.category);
     }
-    return ['Todas', ...Array.from(set)];
+    const list = Array.from(set).sort((a, b) => {
+      const orderA = INGREDIENT_CATEGORY_CONFIG[a]?.order ?? 50;
+      const orderB = INGREDIENT_CATEGORY_CONFIG[b]?.order ?? 50;
+      return orderA - orderB;
+    });
+    return ['Todas', ...list];
   }, [ingredients]);
 
   const filtered = useMemo(() => {
@@ -325,20 +351,31 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
           </div>
 
           <div className="flex flex-wrap items-center gap-2">
-            {categories.map(cat => (
-              <button
-                key={cat}
-                type="button"
-                onClick={() => setCategoryFilter(cat)}
-                className={`px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all ${
-                  categoryFilter === cat
-                    ? 'bg-amber-500 text-slate-950 shadow-md shadow-amber-500/20'
-                    : 'bg-slate-900 border border-slate-700 text-slate-300 hover:text-white hover:border-slate-600'
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
+            {categories.map(cat => {
+              const count = cat === 'Todas' ? ingredients.length : ingredients.filter(i => i.category === cat).length;
+              return (
+                <button
+                  key={cat}
+                  type="button"
+                  onClick={() => setCategoryFilter(cat)}
+                  className={`px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all flex items-center gap-1.5 ${
+                    categoryFilter === cat
+                      ? 'bg-amber-500 text-slate-950 shadow-md shadow-amber-500/20'
+                      : 'bg-slate-900 border border-slate-700 text-slate-300 hover:text-white hover:border-slate-600'
+                  }`}
+                >
+                  <span>{getIngredientCategoryIcon(cat)}</span>
+                  <span>{cat}</span>
+                  <span
+                    className={`text-[10px] px-1.5 py-0.5 rounded-full font-black ${
+                      categoryFilter === cat ? 'bg-slate-950/20 text-slate-950' : 'bg-slate-800 text-slate-400'
+                    }`}
+                  >
+                    {count}
+                  </span>
+                </button>
+              );
+            })}
           </div>
         </div>
       </div>
@@ -373,7 +410,12 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
                       </span>
                     )}
                   </td>
-                  <td className="py-3 px-3 text-slate-300 text-xs font-semibold">{ing.category}</td>
+                  <td className="py-3 px-3 text-slate-300 text-xs font-semibold">
+                    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-900/90 border border-slate-700/80 text-xs font-bold text-slate-200">
+                      <span>{getIngredientCategoryIcon(ing.category)}</span>
+                      <span>{ing.category}</span>
+                    </span>
+                  </td>
                   <td className="py-3 px-3 text-right font-mono font-black text-emerald-400">
                     {editingId === ing.id ? (
                       <div className="flex items-center justify-end gap-1.5">
@@ -531,14 +573,19 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
                     onChange={e => setNewCategory(e.target.value)}
                     className="w-full bg-slate-800/90 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white font-medium focus:border-amber-500 focus:outline-none transition-colors"
                   >
-                    <option value="Açúcares">Açúcares</option>
-                    <option value="Laticínios">Laticínios</option>
-                    <option value="Chocolates & Cacau">Chocolates & Cacau</option>
-                    <option value="Pastas & Oleaginosas">Pastas & Oleaginosas</option>
-                    <option value="Neutros & Fibras">Neutros & Fibras</option>
-                    <option value="Frutas">Frutas</option>
-                    <option value="Variegatos & Recheios">Variegatos & Recheios</option>
-                    <option value="Outros">Outros</option>
+                    <option value="Laticínios">🥛 Laticínios</option>
+                    <option value="Açúcares">🍬 Açúcares</option>
+                    <option value="Frutas & Polpas">🍓 Frutas & Polpas</option>
+                    <option value="Chocolates & Cacau">🍫 Chocolates & Cacau</option>
+                    <option value="Pastas & Oleaginosas">🌰 Pastas & Oleaginosas</option>
+                    <option value="Bebidas Vegetais & Plant-Based">🌱 Bebidas Vegetais & Plant-Based</option>
+                    <option value="Álcoois & Bebidas">🍸 Álcoois & Bebidas</option>
+                    <option value="Ovos & Proteínas">🥚 Ovos & Proteínas</option>
+                    <option value="Neutros, Gomas & Fibras">🧪 Neutros, Gomas & Fibras</option>
+                    <option value="Confeitaria & Inclusões">🍪 Confeitaria & Inclusões</option>
+                    <option value="Variegatos & Recheios">🍯 Variegatos & Recheios</option>
+                    <option value="Bases & Pré-preparos">🥣 Bases & Pré-preparos</option>
+                    <option value="Outros">📦 Outros</option>
                   </select>
                 </div>
               </div>

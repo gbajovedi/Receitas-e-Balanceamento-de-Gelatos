@@ -62,6 +62,27 @@ export class GelatoDatabase extends Dexie {
         console.warn('Migration to v3 preparations:', e);
       }
     });
+
+    // Versão 4: Atualização taxonômica das categorias dos 190 insumos
+    this.version(4).stores({
+      ingredients: 'id, name, category, costKg',
+      recipes: 'id, name, category, targetStyle, isCustom',
+      preparations: 'id, name, category, isCustom',
+      settings: 'key'
+    }).upgrade(async tx => {
+      try {
+        const initialMap = new Map((initialIngredients as Ingredient[]).map(i => [i.id, i.category]));
+        const currentIngs = await tx.table('ingredients').toArray();
+        for (const ing of currentIngs) {
+          const newCat = initialMap.get(ing.id);
+          if (newCat && newCat !== ing.category) {
+            await tx.table('ingredients').update(ing.id, { category: newCat });
+          }
+        }
+      } catch (e) {
+        console.warn('Migration to v4 ingredient categories:', e);
+      }
+    });
   }
 
   async initializeSeedData(): Promise<void> {
@@ -85,6 +106,21 @@ export class GelatoDatabase extends Dexie {
       if (ingCount === 0) {
         console.log('Populando insumos iniciais...');
         await this.ingredients.bulkPut(initialIngredients as Ingredient[]);
+      } else {
+        // Sincronizar categorias atualizadas para insumos do catálogo inicial sem perder custo customizado
+        const catSyncSetting = await this.settings.get('ingredient_categories_version');
+        if (!catSyncSetting || catSyncSetting.value < 2) {
+          console.log('Sincronizando novas categorias de insumos no banco...');
+          const initialMap = new Map((initialIngredients as Ingredient[]).map(i => [i.id, i.category]));
+          const allCurrentIngs = await this.ingredients.toArray();
+          for (const ing of allCurrentIngs) {
+            const newCat = initialMap.get(ing.id);
+            if (newCat && newCat !== ing.category) {
+              await this.ingredients.update(ing.id, { category: newCat });
+            }
+          }
+          await this.settings.put({ key: 'ingredient_categories_version', value: 2 });
+        }
       }
 
       // 2. Receitas

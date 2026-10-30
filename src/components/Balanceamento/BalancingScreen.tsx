@@ -40,13 +40,23 @@ const getIngredientCategoryPill = (category?: string) => {
     case 'Pastas & Oleaginosas':
       return { icon: '🌰', label: 'Pasta', color: 'bg-orange-500/15 text-orange-300 border-orange-500/30' };
     case 'Frutas':
+    case 'Frutas & Polpas':
       return { icon: '🍓', label: 'Fruta', color: 'bg-rose-500/15 text-rose-300 border-rose-500/30' };
     case 'Neutros & Fibras':
+    case 'Neutros, Gomas & Fibras':
       return { icon: '🧪', label: 'Neutro', color: 'bg-teal-500/15 text-teal-300 border-teal-500/30' };
     case 'Bases & Pré-preparos':
       return { icon: '🥣', label: 'Base', color: 'bg-purple-500/15 text-purple-300 border-purple-500/30' };
     case 'Variegatos & Recheios':
       return { icon: '🍯', label: 'Mescla', color: 'bg-yellow-600/15 text-yellow-200 border-yellow-600/30' };
+    case 'Álcoois & Bebidas':
+      return { icon: '🍸', label: 'Álcool', color: 'bg-amber-600/20 text-amber-300 border-amber-500/40' };
+    case 'Bebidas Vegetais & Plant-Based':
+      return { icon: '🌱', label: 'Vegetal', color: 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30' };
+    case 'Ovos & Proteínas':
+      return { icon: '🥚', label: 'Ovo/Prot', color: 'bg-yellow-500/15 text-yellow-300 border-yellow-500/30' };
+    case 'Confeitaria & Inclusões':
+      return { icon: '🍪', label: 'Confeitaria', color: 'bg-orange-600/20 text-orange-200 border-orange-500/40' };
     default:
       return { icon: '📦', label: category, color: 'bg-slate-700/40 text-slate-300 border-slate-600/40' };
   }
