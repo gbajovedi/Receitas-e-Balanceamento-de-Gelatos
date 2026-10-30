@@ -223,7 +223,7 @@ export const RecipeList: React.FC<RecipeListProps> = ({
             </div>
 
             {/* Category filter pills with counters and unique icons */}
-            <div className="flex items-center gap-2 overflow-x-auto pb-1 max-w-full">
+            <div className="flex flex-wrap items-center gap-2">
               {categories.map(cat => {
                 const isSelected = selectedCategory === cat;
                 const count = categoryCounts[cat] || 0;
@@ -233,7 +233,7 @@ export const RecipeList: React.FC<RecipeListProps> = ({
                     key={cat}
                     type="button"
                     onClick={() => setSelectedCategory(cat)}
-                    className={`px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap shrink-0 transition-all flex items-center gap-1.5 ${
+                    className={`px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all flex items-center gap-1.5 ${
                       isSelected
                         ? 'bg-amber-500 text-slate-950 shadow-md shadow-amber-500/20 font-black'
                         : 'bg-slate-900 border border-slate-700 text-slate-300 hover:text-white hover:border-slate-600'

@@ -194,13 +194,13 @@ export const PrePreparosList: React.FC<PrePreparosListProps> = ({
             )}
           </div>
 
-          <div className="flex items-center gap-2 overflow-x-auto pb-1 max-w-full">
+          <div className="flex flex-wrap items-center gap-2">
             {(['Todas', 'Pré-preparo', 'Variegato'] as const).map(cat => (
               <button
                 key={cat}
                 type="button"
                 onClick={() => setCatFilter(cat)}
-                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap shrink-0 transition-all ${
+                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all ${
                   catFilter === cat
                     ? 'bg-amber-500 text-slate-950 shadow-md shadow-amber-500/20'
                     : 'bg-slate-900 border border-slate-700 text-slate-300 hover:text-white hover:border-slate-600'

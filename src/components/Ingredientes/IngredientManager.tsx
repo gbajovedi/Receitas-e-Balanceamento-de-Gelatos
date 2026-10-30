@@ -324,13 +324,13 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
             )}
           </div>
 
-          <div className="flex items-center gap-2 overflow-x-auto pb-1 max-w-full">
+          <div className="flex flex-wrap items-center gap-2">
             {categories.map(cat => (
               <button
                 key={cat}
                 type="button"
                 onClick={() => setCategoryFilter(cat)}
-                className={`px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap shrink-0 transition-all ${
+                className={`px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all ${
                   categoryFilter === cat
                     ? 'bg-amber-500 text-slate-950 shadow-md shadow-amber-500/20'
                     : 'bg-slate-900 border border-slate-700 text-slate-300 hover:text-white hover:border-slate-600'
