@@ -29,6 +29,8 @@ export class GelatoDatabase extends Dexie {
 
   constructor() {
     super('GelatoBalancerDB');
+
+    // Versão 1: Esquema original
     this.version(1).stores({
       ingredients: 'id, name, category, costKg',
       recipes: 'id, name, category, targetStyle, isCustom',
@@ -36,43 +38,76 @@ export class GelatoDatabase extends Dexie {
       settings: 'key'
     });
 
+    // Versão 2: Deleta a tabela antiga preparations cujo primary key era 'name'
+    // No IndexedDB, mudar a primary key exige deletar a tabela antes de recriá-la
     this.version(2).stores({
+      ingredients: 'id, name, category, costKg',
+      recipes: 'id, name, category, targetStyle, isCustom',
+      preparations: null,
+      settings: 'key'
+    });
+
+    // Versão 3: Recria a tabela preparations com primary key 'id'
+    this.version(3).stores({
       ingredients: 'id, name, category, costKg',
       recipes: 'id, name, category, targetStyle, isCustom',
       preparations: 'id, name, category, isCustom',
       settings: 'key'
     }).upgrade(async tx => {
       try {
-        await tx.table('preparations').clear();
         for (const p of initialPreparations) {
           await tx.table('preparations').put(p);
         }
       } catch (e) {
-        console.warn('Migration to v2 preparations:', e);
+        console.warn('Migration to v3 preparations:', e);
       }
     });
   }
 
   async initializeSeedData(): Promise<void> {
-    const count = await this.recipes.count();
-    if (count === 0) {
-      console.log('Seeding initial data into IndexedDB...');
-      await this.transaction('rw', this.ingredients, this.recipes, this.preparations, this.settings, async () => {
-        // Seed ingredients
+    try {
+      await this.open();
+    } catch (openErr) {
+      console.warn('Erro ao abrir Dexie diretamente, iniciando auto-reparo do banco:', openErr);
+      try {
+        await Dexie.delete('GelatoBalancerDB');
+        await this.open();
+        console.log('GelatoBalancerDB recriado e aberto com sucesso.');
+      } catch (delErr) {
+        console.error('Erro crítico no IndexedDB:', delErr);
+        throw delErr;
+      }
+    }
+
+    try {
+      // 1. Insumos
+      const ingCount = await this.ingredients.count();
+      if (ingCount === 0) {
+        console.log('Populando insumos iniciais...');
         await this.ingredients.bulkPut(initialIngredients as Ingredient[]);
-        // Seed recipes
+      }
+
+      // 2. Receitas
+      const recCount = await this.recipes.count();
+      if (recCount === 0) {
+        console.log('Populando receitas iniciais...');
         await this.recipes.bulkPut(initialRecipes as Recipe[]);
-        // Seed preparations
-        await this.preparations.bulkPut(initialPreparations as Preparation[]);
-        // Seed default pricing settings
-        await this.settings.put({ key: 'pricing', value: DEFAULT_PRICING });
-      });
-      console.log('IndexedDB seeded successfully!');
-    } else {
+      }
+
+      // 3. Pré-preparos & Variegatos
       const prepCount = await this.preparations.count();
       if (prepCount < initialPreparations.length) {
+        console.log('Populando/atualizando pré-preparos...');
         await this.preparations.bulkPut(initialPreparations as Preparation[]);
       }
+
+      // 4. Parâmetros de Precificação
+      const settingsCount = await this.settings.count();
+      if (settingsCount === 0) {
+        await this.settings.put({ key: 'pricing', value: DEFAULT_PRICING });
+      }
+    } catch (seedErr) {
+      console.error('Erro durante o povoamento inicial de dados:', seedErr);
     }
   }
 
@@ -102,7 +137,7 @@ export class GelatoDatabase extends Dexie {
     }
 
     const backup = {
-      version: 2,
+      version: 3,
       exportedAt: new Date().toISOString(),
       ingredients,
       recipes,
