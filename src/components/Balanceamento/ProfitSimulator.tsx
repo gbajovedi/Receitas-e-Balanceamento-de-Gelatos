@@ -30,6 +30,8 @@ export type SalesFormat = 'tub500' | 'scoop1' | 'scoop2' | 'cuba4k' | 'custom';
 interface FormatConfig {
   id: SalesFormat;
   name: string;
+  title: string;
+  subtitle: string;
   icon: string;
   weightGrams: number;
   packagingCost: number;
@@ -40,6 +42,8 @@ const FORMAT_CONFIGS: Record<SalesFormat, FormatConfig> = {
   tub500: {
     id: 'tub500',
     name: 'Pote 500g',
+    title: 'Pote',
+    subtitle: '500g',
     icon: '🍨',
     weightGrams: 500,
     packagingCost: 2.50,
@@ -48,6 +52,8 @@ const FORMAT_CONFIGS: Record<SalesFormat, FormatConfig> = {
   scoop1: {
     id: 'scoop1',
     name: '1 Bola (60g)',
+    title: '1 Bola',
+    subtitle: '60g',
     icon: '🍦',
     weightGrams: 60,
     packagingCost: 0.60,
@@ -56,6 +62,8 @@ const FORMAT_CONFIGS: Record<SalesFormat, FormatConfig> = {
   scoop2: {
     id: 'scoop2',
     name: '2 Bolas (120g)',
+    title: '2 Bolas',
+    subtitle: '120g',
     icon: '🍧',
     weightGrams: 120,
     packagingCost: 0.85,
@@ -64,6 +72,8 @@ const FORMAT_CONFIGS: Record<SalesFormat, FormatConfig> = {
   cuba4k: {
     id: 'cuba4k',
     name: 'Cuba 4kg',
+    title: 'Cuba',
+    subtitle: '4kg',
     icon: '📦',
     weightGrams: 4000,
     packagingCost: 5.00,
@@ -72,6 +82,8 @@ const FORMAT_CONFIGS: Record<SalesFormat, FormatConfig> = {
   custom: {
     id: 'custom',
     name: 'Personalizado',
+    title: 'Personalizado',
+    subtitle: '100g',
     icon: '⚖️',
     weightGrams: 100,
     packagingCost: 1.00,
@@ -267,24 +279,33 @@ export const ProfitSimulator: React.FC<ProfitSimulatorProps> = ({
           {(Object.keys(FORMAT_CONFIGS) as SalesFormat[]).map(fmt => {
             const config = FORMAT_CONFIGS[fmt];
             const isSelected = selectedFormat === fmt;
-            const displayName =
+            const subtitleText =
               fmt === 'custom' && customWeightInput > 0
-                ? `Personalizado (${customWeightInput}g)`
-                : config.name;
+                ? `${customWeightInput}g`
+                : config.subtitle;
 
             return (
               <button
                 key={fmt}
                 type="button"
                 onClick={() => setSelectedFormat(fmt)}
-                className={`p-2 rounded-xl border text-xs font-bold transition-all flex flex-col items-center justify-center gap-1 text-center ${
+                className={`py-2 px-1 rounded-xl border text-center transition-all flex flex-col items-center justify-center gap-0.5 ${
                   isSelected
                     ? 'bg-amber-500/15 border-amber-500/60 text-amber-200 shadow-sm'
                     : 'bg-slate-900/60 border-slate-800 text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'
                 }`}
               >
-                <span className="text-base select-none">{config.icon}</span>
-                <span className="leading-tight text-[11px]">{displayName}</span>
+                <span className="text-base select-none leading-none mb-0.5">{config.icon}</span>
+                <span className="text-[10px] font-bold leading-tight truncate max-w-full">
+                  {config.title}
+                </span>
+                <span
+                  className={`text-[10px] font-mono leading-tight ${
+                    isSelected ? 'text-amber-300 font-bold' : 'text-slate-500'
+                  }`}
+                >
+                  (${subtitleText})
+                </span>
               </button>
             );
           })}
@@ -292,46 +313,69 @@ export const ProfitSimulator: React.FC<ProfitSimulatorProps> = ({
 
         {/* Custom Weight & Packaging Inputs when 'custom' format is selected */}
         {selectedFormat === 'custom' && (
-          <div className="bg-slate-900/90 border border-amber-500/40 rounded-xl p-3 flex flex-wrap items-center gap-3 animate-in fade-in duration-150 shadow-inner">
-            <div className="flex-1 min-w-[130px]">
-              <label className="text-[10px] font-bold text-amber-300 uppercase tracking-wider block mb-1">
-                ⚖️ Peso da Porção (g):
-              </label>
-              <div className="relative flex items-center">
-                <input
-                  type="number"
-                  min="1"
-                  max="10000"
-                  step="1"
-                  value={customWeightInput || ''}
-                  onChange={e => setCustomWeightInput(Math.max(1, parseFloat(e.target.value) || 0))}
-                  className="w-full bg-slate-950 border border-slate-700 focus:border-amber-500 rounded-lg pl-3 pr-10 py-1.5 text-xs font-mono font-bold text-amber-300 focus:outline-none"
-                  placeholder="Ex: 80"
-                />
-                <span className="absolute right-2.5 text-[10px] text-slate-400 font-bold pointer-events-none">
-                  gramas
-                </span>
+          <div className="bg-slate-900/90 border border-amber-500/40 rounded-xl p-3 space-y-2.5 animate-in fade-in duration-150 shadow-inner">
+            <div className="grid grid-cols-2 gap-2.5 items-start">
+              {/* Portion Weight Input */}
+              <div>
+                <label className="text-[10px] font-bold text-amber-300 uppercase tracking-wider block mb-1 truncate">
+                  ⚖️ Peso Porção
+                </label>
+                <div className="relative flex items-center">
+                  <input
+                    type="number"
+                    min="1"
+                    max="10000"
+                    step="5"
+                    value={customWeightInput || ''}
+                    onChange={e => setCustomWeightInput(Math.max(1, parseFloat(e.target.value) || 0))}
+                    className="w-full bg-slate-950 border border-slate-700 focus:border-amber-500 rounded-lg pl-3 pr-8 py-2 text-xs font-mono font-bold text-amber-300 focus:outline-none"
+                    placeholder="200"
+                  />
+                  <span className="absolute right-2.5 text-[10px] text-slate-500 font-bold pointer-events-none">
+                    g
+                  </span>
+                </div>
+              </div>
+
+              {/* Packaging Cost Input */}
+              <div>
+                <label className="text-[10px] font-bold text-slate-300 uppercase tracking-wider block mb-1 truncate">
+                  📦 Embalagem
+                </label>
+                <div className="relative flex items-center">
+                  <span className="absolute left-2.5 text-[11px] text-slate-500 font-bold pointer-events-none">
+                    R$
+                  </span>
+                  <input
+                    type="number"
+                    min="0"
+                    step="0.10"
+                    value={customPackCostInput === 0 ? '' : customPackCostInput}
+                    onChange={e => setCustomPackCostInput(Math.max(0, parseFloat(e.target.value) || 0))}
+                    className="w-full bg-slate-950 border border-slate-700 focus:border-amber-500 rounded-lg pl-8 pr-3 py-2 text-xs font-mono font-bold text-white focus:outline-none"
+                    placeholder="1.00"
+                  />
+                </div>
               </div>
             </div>
 
-            <div className="flex-1 min-w-[130px]">
-              <label className="text-[10px] font-bold text-slate-300 uppercase tracking-wider block mb-1">
-                📦 Custo Embalagem (R$):
-              </label>
-              <div className="relative flex items-center">
-                <input
-                  type="number"
-                  min="0"
-                  step="0.05"
-                  value={customPackCostInput === 0 ? '' : customPackCostInput}
-                  onChange={e => setCustomPackCostInput(Math.max(0, parseFloat(e.target.value) || 0))}
-                  className="w-full bg-slate-950 border border-slate-700 focus:border-amber-500 rounded-lg pl-3 pr-8 py-1.5 text-xs font-mono font-bold text-white focus:outline-none"
-                  placeholder="0.00"
-                />
-                <span className="absolute right-2.5 text-[10px] text-slate-400 font-bold pointer-events-none">
-                  R$
-                </span>
-              </div>
+            {/* Quick Weight Presets */}
+            <div className="flex items-center gap-1 pt-0.5">
+              <span className="text-[10px] text-slate-500 font-medium mr-0.5 shrink-0">Atalhos:</span>
+              {[70, 80, 100, 150, 200].map(w => (
+                <button
+                  key={w}
+                  type="button"
+                  onClick={() => setCustomWeightInput(w)}
+                  className={`flex-1 py-1 rounded-md text-[10px] font-mono font-bold transition-all border ${
+                    customWeightInput === w
+                      ? 'bg-amber-500 text-slate-950 border-amber-400 font-black shadow-sm'
+                      : 'bg-slate-950/60 border-slate-800 text-slate-400 hover:text-white hover:border-slate-700'
+                  }`}
+                >
+                  {w}g
+                </button>
+              ))}
             </div>
           </div>
         )}
@@ -422,7 +466,7 @@ export const ProfitSimulator: React.FC<ProfitSimulatorProps> = ({
               R$ {effectivePrice.toFixed(2)}
             </div>
             <span className="text-[10px] text-slate-400 font-mono">
-              por {activeFormat.name.toLowerCase()}
+              por {selectedFormat === 'custom' ? `porção (${customWeightInput}g)` : activeFormat.name.toLowerCase()}
             </span>
           </div>
 
@@ -536,7 +580,7 @@ export const ProfitSimulator: React.FC<ProfitSimulatorProps> = ({
             Potencial da Batelada Atual ({Math.round(batchWeightGrams)}g)
           </span>
           <span className="text-xs text-slate-300 font-medium block mt-0.5">
-            Rendimento: <strong className="text-amber-300 font-mono font-bold">{unitsInBatch.toFixed(1)}</strong> {activeFormat.name.toLowerCase()}s
+            Rendimento: <strong className="text-amber-300 font-mono font-bold">{unitsInBatch.toFixed(1)}</strong> {selectedFormat === 'custom' ? 'porções' : `${activeFormat.name.toLowerCase()}s`}
           </span>
         </div>
 
