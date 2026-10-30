@@ -15,6 +15,24 @@ export default defineConfig(({ command }) => {
       host: true, // Permite acesso também pelo IP da rede local (ex: celular ou tablet no Wi-Fi)
       strictPort: false
     },
+    build: {
+      chunkSizeWarningLimit: 600,
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            if (id.includes('node_modules')) {
+              if (id.includes('react') || id.includes('react-dom')) {
+                return 'vendor-react';
+              }
+              if (id.includes('dexie')) {
+                return 'vendor-dexie';
+              }
+              return 'vendor-ui';
+            }
+          }
+        }
+      }
+    },
     plugins: [
       react(),
       VitePWA({

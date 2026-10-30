@@ -341,8 +341,9 @@ export const PricingCalculator: React.FC = () => {
                 <label className="text-slate-300 font-semibold block mb-0.5">Aluguel do Espaço:</label>
                 <input
                   type="number"
+                  min="0"
                   value={rent || ''}
-                  onChange={e => setRent(parseFloat(e.target.value) || 0)}
+                  onChange={e => setRent(Math.max(0, parseFloat(e.target.value) || 0))}
                   className="w-full bg-slate-950 border border-slate-700 rounded-lg p-1.5 text-xs text-white font-mono font-bold"
                 />
               </div>
@@ -350,8 +351,9 @@ export const PricingCalculator: React.FC = () => {
                 <label className="text-slate-300 font-semibold block mb-0.5">Energia Elétrica (Freezers 24h):</label>
                 <input
                   type="number"
+                  min="0"
                   value={electricity || ''}
-                  onChange={e => setElectricity(parseFloat(e.target.value) || 0)}
+                  onChange={e => setElectricity(Math.max(0, parseFloat(e.target.value) || 0))}
                   className="w-full bg-slate-950 border border-slate-700 rounded-lg p-1.5 text-xs text-white font-mono font-bold"
                 />
               </div>
@@ -359,8 +361,9 @@ export const PricingCalculator: React.FC = () => {
                 <label className="text-slate-300 font-semibold block mb-0.5">Água & Esgoto:</label>
                 <input
                   type="number"
+                  min="0"
                   value={water || ''}
-                  onChange={e => setWater(parseFloat(e.target.value) || 0)}
+                  onChange={e => setWater(Math.max(0, parseFloat(e.target.value) || 0))}
                   className="w-full bg-slate-950 border border-slate-700 rounded-lg p-1.5 text-xs text-white font-mono font-bold"
                 />
               </div>
@@ -368,8 +371,9 @@ export const PricingCalculator: React.FC = () => {
                 <label className="text-slate-300 font-semibold block mb-0.5">Internet & Telecom:</label>
                 <input
                   type="number"
+                  min="0"
                   value={telecom || ''}
-                  onChange={e => setTelecom(parseFloat(e.target.value) || 0)}
+                  onChange={e => setTelecom(Math.max(0, parseFloat(e.target.value) || 0))}
                   className="w-full bg-slate-950 border border-slate-700 rounded-lg p-1.5 text-xs text-white font-mono font-bold"
                 />
               </div>
@@ -392,8 +396,9 @@ export const PricingCalculator: React.FC = () => {
                 <label className="text-slate-300 font-semibold block mb-0.5">Folha da Equipe (CLT/Extra):</label>
                 <input
                   type="number"
+                  min="0"
                   value={payroll || ''}
-                  onChange={e => setPayroll(parseFloat(e.target.value) || 0)}
+                  onChange={e => setPayroll(Math.max(0, parseFloat(e.target.value) || 0))}
                   className="w-full bg-slate-950 border border-slate-700 rounded-lg p-1.5 text-xs text-white font-mono font-bold"
                 />
               </div>
@@ -404,8 +409,9 @@ export const PricingCalculator: React.FC = () => {
                 </div>
                 <input
                   type="number"
+                  min="0"
                   value={ownerSalary || ''}
-                  onChange={e => setOwnerSalary(parseFloat(e.target.value) || 0)}
+                  onChange={e => setOwnerSalary(Math.max(0, parseFloat(e.target.value) || 0))}
                   className="w-full bg-slate-950 border border-cyan-500/50 rounded-lg p-1.5 text-xs text-white font-mono font-bold"
                   placeholder="Ex: 2500.00"
                   title="Salário mensal retirado pelo dono/mestre gelatiere"
@@ -415,8 +421,9 @@ export const PricingCalculator: React.FC = () => {
                 <label className="text-slate-300 font-semibold block mb-0.5">Contabilidade & Honorários:</label>
                 <input
                   type="number"
+                  min="0"
                   value={accounting || ''}
-                  onChange={e => setAccounting(parseFloat(e.target.value) || 0)}
+                  onChange={e => setAccounting(Math.max(0, parseFloat(e.target.value) || 0))}
                   className="w-full bg-slate-950 border border-slate-700 rounded-lg p-1.5 text-xs text-white font-mono font-bold"
                 />
               </div>
@@ -424,8 +431,9 @@ export const PricingCalculator: React.FC = () => {
                 <label className="text-slate-300 font-semibold block mb-0.5">Software, PDV & Cardápio:</label>
                 <input
                   type="number"
+                  min="0"
                   value={software || ''}
-                  onChange={e => setSoftware(parseFloat(e.target.value) || 0)}
+                  onChange={e => setSoftware(Math.max(0, parseFloat(e.target.value) || 0))}
                   className="w-full bg-slate-950 border border-slate-700 rounded-lg p-1.5 text-xs text-white font-mono font-bold"
                 />
               </div>
@@ -450,8 +458,9 @@ export const PricingCalculator: React.FC = () => {
                 </label>
                 <input
                   type="number"
+                  min="0"
                   value={equipmentMaintenance || ''}
-                  onChange={e => setEquipmentMaintenance(parseFloat(e.target.value) || 0)}
+                  onChange={e => setEquipmentMaintenance(Math.max(0, parseFloat(e.target.value) || 0))}
                   className="w-full bg-slate-950 border border-slate-700 rounded-lg p-1.5 text-xs text-white font-mono font-bold"
                   placeholder="Ex: 250.00"
                 />
@@ -462,8 +471,9 @@ export const PricingCalculator: React.FC = () => {
                 </label>
                 <input
                   type="number"
+                  min="0"
                   value={equipmentDepreciation || ''}
-                  onChange={e => setEquipmentDepreciation(parseFloat(e.target.value) || 0)}
+                  onChange={e => setEquipmentDepreciation(Math.max(0, parseFloat(e.target.value) || 0))}
                   className="w-full bg-slate-950 border border-slate-700 rounded-lg p-1.5 text-xs text-white font-mono font-bold"
                   placeholder="Ex: 350.00"
                 />
@@ -474,8 +484,9 @@ export const PricingCalculator: React.FC = () => {
                 </label>
                 <input
                   type="number"
+                  min="0"
                   value={cleaningHygiene || ''}
-                  onChange={e => setCleaningHygiene(parseFloat(e.target.value) || 0)}
+                  onChange={e => setCleaningHygiene(Math.max(0, parseFloat(e.target.value) || 0))}
                   className="w-full bg-slate-950 border border-slate-700 rounded-lg p-1.5 text-xs text-white font-mono font-bold"
                   placeholder="Ex: 150.00"
                 />
@@ -486,8 +497,9 @@ export const PricingCalculator: React.FC = () => {
                 </label>
                 <input
                   type="number"
+                  min="0"
                   value={secPackaging || ''}
-                  onChange={e => setSecPackaging(parseFloat(e.target.value) || 0)}
+                  onChange={e => setSecPackaging(Math.max(0, parseFloat(e.target.value) || 0))}
                   className="w-full bg-slate-950 border border-slate-700 rounded-lg p-1.5 text-xs text-white font-mono font-bold"
                 />
               </div>
@@ -510,9 +522,10 @@ export const PricingCalculator: React.FC = () => {
                 <label className="text-amber-300 font-bold block mb-0.5">Impostos Fixos (DAS MEI):</label>
                 <input
                   type="number"
+                  min="0"
                   step="5"
                   value={fixedTaxes || ''}
-                  onChange={e => setFixedTaxes(parseFloat(e.target.value) || 0)}
+                  onChange={e => setFixedTaxes(Math.max(0, parseFloat(e.target.value) || 0))}
                   className="w-full bg-slate-950 border border-amber-500/50 rounded-lg p-1.5 text-xs text-white font-mono font-bold"
                   placeholder="Ex: 75.00"
                 />
@@ -523,8 +536,9 @@ export const PricingCalculator: React.FC = () => {
                 </label>
                 <input
                   type="number"
+                  min="0"
                   value={licensesAndPermits || ''}
-                  onChange={e => setLicensesAndPermits(parseFloat(e.target.value) || 0)}
+                  onChange={e => setLicensesAndPermits(Math.max(0, parseFloat(e.target.value) || 0))}
                   className="w-full bg-slate-950 border border-slate-700 rounded-lg p-1.5 text-xs text-white font-mono font-bold"
                   placeholder="Ex: 100.00"
                 />
@@ -535,8 +549,9 @@ export const PricingCalculator: React.FC = () => {
                 </label>
                 <input
                   type="number"
+                  min="0"
                   value={commercialInsurance || ''}
-                  onChange={e => setCommercialInsurance(parseFloat(e.target.value) || 0)}
+                  onChange={e => setCommercialInsurance(Math.max(0, parseFloat(e.target.value) || 0))}
                   className="w-full bg-slate-950 border border-slate-700 rounded-lg p-1.5 text-xs text-white font-mono font-bold"
                   placeholder="0.00"
                 />
@@ -545,8 +560,9 @@ export const PricingCalculator: React.FC = () => {
                 <label className="text-slate-300 font-semibold block mb-0.5">Marketing & Redes Sociais:</label>
                 <input
                   type="number"
+                  min="0"
                   value={marketing || ''}
-                  onChange={e => setMarketing(parseFloat(e.target.value) || 0)}
+                  onChange={e => setMarketing(Math.max(0, parseFloat(e.target.value) || 0))}
                   className="w-full bg-slate-950 border border-slate-700 rounded-lg p-1.5 text-xs text-white font-mono font-bold"
                 />
               </div>
@@ -555,9 +571,10 @@ export const PricingCalculator: React.FC = () => {
                 <div className="flex items-center gap-1.5">
                   <input
                     type="number"
+                  min="0"
                     step="10"
                     value={posRentalMonthly || ''}
-                    onChange={e => setPosRentalMonthly(parseFloat(e.target.value) || 0)}
+                    onChange={e => setPosRentalMonthly(Math.max(0, parseFloat(e.target.value) || 0))}
                     className="w-20 bg-slate-950 border border-slate-700 rounded p-1 text-xs text-white font-mono font-bold text-right"
                     placeholder="0.00"
                   />
@@ -579,6 +596,7 @@ export const PricingCalculator: React.FC = () => {
               <label className="text-xs font-semibold text-slate-300 block">Produção / Venda Mensal (Unidades ou Potes):</label>
               <input
                 type="number"
+                  min="0"
                 value={monthlyUnits || ''}
                 onChange={e => setMonthlyUnits(parseFloat(e.target.value) || 1)}
                 className="w-40 bg-slate-900 border border-slate-700 rounded-lg p-2 text-sm text-white font-mono font-bold mt-1"
@@ -608,9 +626,10 @@ export const PricingCalculator: React.FC = () => {
                 <label className="text-slate-300 font-semibold block mb-1">Custo da Calda (R$/Kg):</label>
                 <input
                   type="number"
+                  min="0"
                   step="0.5"
                   value={sampleCaldaCostKg || ''}
-                  onChange={e => setSampleCaldaCostKg(parseFloat(e.target.value) || 0)}
+                  onChange={e => setSampleCaldaCostKg(Math.max(0, parseFloat(e.target.value) || 0))}
                   className="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-sm text-white font-mono font-black"
                 />
               </div>
@@ -618,6 +637,7 @@ export const PricingCalculator: React.FC = () => {
                 <label className="text-slate-300 font-semibold block mb-1">Peso do Pote (g):</label>
                 <input
                   type="number"
+                  min="0"
                   value={tubWeightGrams || ''}
                   onChange={e => setTubWeightGrams(parseFloat(e.target.value) || 500)}
                   className="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-sm text-white font-mono font-bold"
@@ -627,9 +647,10 @@ export const PricingCalculator: React.FC = () => {
                 <label className="text-slate-300 font-semibold block mb-1">Embalagem Direta (R$):</label>
                 <input
                   type="number"
+                  min="0"
                   step="0.1"
                   value={tubPackCost || ''}
-                  onChange={e => setTubPackCost(parseFloat(e.target.value) || 0)}
+                  onChange={e => setTubPackCost(Math.max(0, parseFloat(e.target.value) || 0))}
                   className="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-sm text-white font-mono font-bold"
                 />
               </div>
@@ -637,8 +658,9 @@ export const PricingCalculator: React.FC = () => {
                 <label className="text-slate-300 font-semibold block mb-1">Margem Desejada (%):</label>
                 <input
                   type="number"
+                  min="0"
                   value={targetMargin || ''}
-                  onChange={e => setTargetMargin(parseFloat(e.target.value) || 0)}
+                  onChange={e => setTargetMargin(Math.max(0, parseFloat(e.target.value) || 0))}
                   className="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-sm text-white font-mono font-black text-amber-300"
                 />
               </div>
@@ -744,10 +766,11 @@ export const PricingCalculator: React.FC = () => {
                         <span className="text-[10px] text-slate-400 block">Taxa (%):</span>
                         <input
                           type="number"
+                  min="0"
                           step="0.05"
                           value={cardFeePix}
                           onChange={e => {
-                            setCardFeePix(parseFloat(e.target.value) || 0);
+                            setCardFeePix(Math.max(0, parseFloat(e.target.value) || 0));
                             setCieloPlan('custom');
                           }}
                           className="w-full bg-slate-900 border border-slate-700 rounded p-1 text-sm font-mono font-bold text-white"
@@ -757,8 +780,9 @@ export const PricingCalculator: React.FC = () => {
                         <span className="text-[10px] text-slate-400 block">% no Balcão:</span>
                         <input
                           type="number"
+                  min="0"
                           value={mixPix}
-                          onChange={e => setMixPix(parseFloat(e.target.value) || 0)}
+                          onChange={e => setMixPix(Math.max(0, parseFloat(e.target.value) || 0))}
                           className="w-full bg-slate-900 border border-slate-700 rounded p-1 text-sm font-mono font-bold text-emerald-300"
                         />
                       </div>
@@ -774,10 +798,11 @@ export const PricingCalculator: React.FC = () => {
                         <span className="text-[10px] text-slate-400 block">Taxa (%):</span>
                         <input
                           type="number"
+                  min="0"
                           step="0.05"
                           value={cardFeeDebit}
                           onChange={e => {
-                            setCardFeeDebit(parseFloat(e.target.value) || 0);
+                            setCardFeeDebit(Math.max(0, parseFloat(e.target.value) || 0));
                             setCieloPlan('custom');
                           }}
                           className="w-full bg-slate-900 border border-slate-700 rounded p-1 text-sm font-mono font-bold text-white"
@@ -787,8 +812,9 @@ export const PricingCalculator: React.FC = () => {
                         <span className="text-[10px] text-slate-400 block">% no Balcão:</span>
                         <input
                           type="number"
+                  min="0"
                           value={mixDebit}
-                          onChange={e => setMixDebit(parseFloat(e.target.value) || 0)}
+                          onChange={e => setMixDebit(Math.max(0, parseFloat(e.target.value) || 0))}
                           className="w-full bg-slate-900 border border-slate-700 rounded p-1 text-sm font-mono font-bold text-cyan-300"
                         />
                       </div>
@@ -804,10 +830,11 @@ export const PricingCalculator: React.FC = () => {
                         <span className="text-[10px] text-slate-400 block">Taxa (%):</span>
                         <input
                           type="number"
+                  min="0"
                           step="0.05"
                           value={cardFeeCreditSight}
                           onChange={e => {
-                            setCardFeeCreditSight(parseFloat(e.target.value) || 0);
+                            setCardFeeCreditSight(Math.max(0, parseFloat(e.target.value) || 0));
                             setCieloPlan('custom');
                           }}
                           className="w-full bg-slate-900 border border-slate-700 rounded p-1 text-sm font-mono font-bold text-white"
@@ -817,8 +844,9 @@ export const PricingCalculator: React.FC = () => {
                         <span className="text-[10px] text-slate-400 block">% no Balcão:</span>
                         <input
                           type="number"
+                  min="0"
                           value={mixCreditSight}
-                          onChange={e => setMixCreditSight(parseFloat(e.target.value) || 0)}
+                          onChange={e => setMixCreditSight(Math.max(0, parseFloat(e.target.value) || 0))}
                           className="w-full bg-slate-900 border border-slate-700 rounded p-1 text-sm font-mono font-bold text-amber-300"
                         />
                       </div>
@@ -834,10 +862,11 @@ export const PricingCalculator: React.FC = () => {
                         <span className="text-[10px] text-slate-400 block">Taxa (%):</span>
                         <input
                           type="number"
+                  min="0"
                           step="0.1"
                           value={cardFeeCreditInstallment}
                           onChange={e => {
-                            setCardFeeCreditInstallment(parseFloat(e.target.value) || 0);
+                            setCardFeeCreditInstallment(Math.max(0, parseFloat(e.target.value) || 0));
                             setCieloPlan('custom');
                           }}
                           className="w-full bg-slate-900 border border-slate-700 rounded p-1 text-sm font-mono font-bold text-white"
@@ -847,8 +876,9 @@ export const PricingCalculator: React.FC = () => {
                         <span className="text-[10px] text-slate-400 block">% no Balcão:</span>
                         <input
                           type="number"
+                  min="0"
                           value={mixCreditInstallment}
-                          onChange={e => setMixCreditInstallment(parseFloat(e.target.value) || 0)}
+                          onChange={e => setMixCreditInstallment(Math.max(0, parseFloat(e.target.value) || 0))}
                           className="w-full bg-slate-900 border border-slate-700 rounded p-1 text-sm font-mono font-bold text-rose-300"
                         />
                       </div>
@@ -899,9 +929,10 @@ export const PricingCalculator: React.FC = () => {
                   <div className="relative">
                     <input
                       type="number"
+                  min="0"
                       step="0.1"
                       value={cardFeeManual}
-                      onChange={e => setCardFeeManual(parseFloat(e.target.value) || 0)}
+                      onChange={e => setCardFeeManual(Math.max(0, parseFloat(e.target.value) || 0))}
                       className="w-28 bg-slate-950 border border-amber-500/60 rounded-lg p-1.5 text-sm font-mono font-bold text-amber-300 text-right pr-6"
                     />
                     <span className="absolute right-2 top-2 text-slate-500 font-bold text-xs">%</span>
@@ -930,7 +961,7 @@ export const PricingCalculator: React.FC = () => {
                       min="0"
                       max="90"
                       value={salesTaxPercent || ''}
-                      onChange={e => setSalesTaxPercent(parseFloat(e.target.value) || 0)}
+                      onChange={e => setSalesTaxPercent(Math.max(0, parseFloat(e.target.value) || 0))}
                       className="w-28 bg-slate-950 border-2 border-cyan-500/60 focus:border-cyan-400 focus:outline-none rounded-lg pl-3 pr-6 py-1.5 text-sm text-cyan-300 font-mono font-black text-right"
                       placeholder="0.0"
                     />

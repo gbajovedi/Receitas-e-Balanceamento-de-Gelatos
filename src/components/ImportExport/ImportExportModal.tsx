@@ -54,8 +54,13 @@ export const ImportExportModal: React.FC<ImportExportModalProps> = ({
       setLoading(true);
       const text = await file.text();
       const result = await db.importBackup(text, importMode);
+      const extras: string[] = [];
+      if (result.pricingImported) extras.push('custos/Cielo');
+      if (result.themeImported) extras.push('tema');
+      const extraMsg = extras.length > 0 ? ` (incluindo ${extras.join(' e ')})` : '';
+
       setStatusMessage({
-        text: `Importação concluída! ${result.recipesCount} receitas e ${result.ingredientsCount} insumos carregados.`,
+        text: `Importação concluída com sucesso! ${result.recipesCount} receitas e ${result.ingredientsCount} insumos carregados${extraMsg}.`,
         type: 'success'
       });
       onDataChanged();

@@ -6,10 +6,19 @@ import initialRecipes from '../data/recipes.json';
 import initialStyles from '../data/styles.json';
 import initialPreparations from '../data/preparations.json';
 import { DEFAULT_PRICING } from '../core/calculator';
+import { STORAGE_KEY as PRICING_STORAGE_KEY, PRICING_UPDATED_EVENT } from '../core/pricingStorage';
+import { THEME_STORAGE_KEY, THEME_CHANGE_EVENT } from '../core/theme';
 
 export interface AppSetting {
   key: string;
   value: any;
+}
+
+export interface BackupResult {
+  recipesCount: number;
+  ingredientsCount: number;
+  pricingImported: boolean;
+  themeImported: boolean;
 }
 
 export class GelatoDatabase extends Dexie {
@@ -52,19 +61,40 @@ export class GelatoDatabase extends Dexie {
     const preparations = await this.preparations.toArray();
     const settings = await this.settings.toArray();
 
+    // Capturar também parâmetros de precificação do usuário (localStorage)
+    let pricingParams = null;
+    try {
+      const rawPricing = localStorage.getItem(PRICING_STORAGE_KEY);
+      if (rawPricing) {
+        pricingParams = JSON.parse(rawPricing);
+      }
+    } catch (e) {
+      console.warn('Erro ao ler pricingParams para backup:', e);
+    }
+
+    // Capturar tema
+    let themeMode = null;
+    try {
+      themeMode = localStorage.getItem(THEME_STORAGE_KEY);
+    } catch (e) {
+      console.warn('Erro ao ler themeMode para backup:', e);
+    }
+
     const backup = {
-      version: 1,
+      version: 2,
       exportedAt: new Date().toISOString(),
       ingredients,
       recipes,
       preparations,
-      settings
+      settings,
+      pricingParams,
+      themeMode
     };
 
     return JSON.stringify(backup, null, 2);
   }
 
-  async importBackup(jsonString: string, mode: 'merge' | 'replace' = 'merge'): Promise<{ recipesCount: number, ingredientsCount: number }> {
+  async importBackup(jsonString: string, mode: 'merge' | 'replace' = 'merge'): Promise<BackupResult> {
     const data = JSON.parse(jsonString);
 
     if (!data.recipes || !data.ingredients) {
@@ -91,9 +121,36 @@ export class GelatoDatabase extends Dexie {
       }
     });
 
+    let pricingImported = false;
+    let themeImported = false;
+
+    // Restaurar custos fixos e taxas Cielo caso existam no backup
+    if (data.pricingParams && typeof window !== 'undefined') {
+      try {
+        localStorage.setItem(PRICING_STORAGE_KEY, JSON.stringify(data.pricingParams));
+        window.dispatchEvent(new Event(PRICING_UPDATED_EVENT));
+        pricingImported = true;
+      } catch (err) {
+        console.warn('Erro ao restaurar pricingParams do backup:', err);
+      }
+    }
+
+    // Restaurar preferência de tema caso exista no backup
+    if (data.themeMode && typeof window !== 'undefined') {
+      try {
+        localStorage.setItem(THEME_STORAGE_KEY, data.themeMode);
+        window.dispatchEvent(new Event(THEME_CHANGE_EVENT));
+        themeImported = true;
+      } catch (err) {
+        console.warn('Erro ao restaurar themeMode do backup:', err);
+      }
+    }
+
     return {
       recipesCount: data.recipes.length,
-      ingredientsCount: data.ingredients.length
+      ingredientsCount: data.ingredients.length,
+      pricingImported,
+      themeImported
     };
   }
 
@@ -109,6 +166,15 @@ export class GelatoDatabase extends Dexie {
       await this.preparations.bulkPut(initialPreparations as Preparation[]);
       await this.settings.put({ key: 'pricing', value: DEFAULT_PRICING });
     });
+
+    if (typeof window !== 'undefined') {
+      try {
+        localStorage.removeItem(PRICING_STORAGE_KEY);
+        window.dispatchEvent(new Event(PRICING_UPDATED_EVENT));
+      } catch (e) {
+        console.warn('Erro ao redefinir pricingParams no reset:', e);
+      }
+    }
   }
 }
 

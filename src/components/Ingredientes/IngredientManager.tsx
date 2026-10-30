@@ -190,6 +190,7 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
                       <div className="flex items-center justify-end gap-1.5">
                         <input
                           type="number"
+                    min="0"
                           step="0.5"
                           value={editingCost}
                           onChange={e => setEditingCost(parseFloat(e.target.value) || 0)}
@@ -290,6 +291,7 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
                   <label className="block text-xs font-semibold text-slate-300 mb-1">Custo / Kg (R$):</label>
                   <input
                     type="number"
+                    min="0"
                     step="0.1"
                     value={newCostKg || ''}
                     onChange={e => setNewCostKg(parseFloat(e.target.value) || 0)}
@@ -300,6 +302,7 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
                   <label className="block text-xs font-semibold text-slate-300 mb-1">POD (Adoçante):</label>
                   <input
                     type="number"
+                    min="0"
                     step="0.01"
                     value={newPod || ''}
                     onChange={e => setNewPod(parseFloat(e.target.value) || 0)}
@@ -310,6 +313,7 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
                   <label className="block text-xs font-semibold text-slate-300 mb-1">PAC (Anticongelante):</label>
                   <input
                     type="number"
+                    min="0"
                     step="0.01"
                     value={newPac || ''}
                     onChange={e => setNewPac(parseFloat(e.target.value) || 0)}
@@ -323,6 +327,7 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
                   <label className="block text-xs font-semibold text-slate-400 mb-1">% Açúcares:</label>
                   <input
                     type="number"
+                    min="0"
                     step="1"
                     placeholder="%"
                     value={newSugars || ''}
@@ -334,6 +339,7 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
                   <label className="block text-xs font-semibold text-slate-400 mb-1">% Gorduras:</label>
                   <input
                     type="number"
+                    min="0"
                     step="1"
                     placeholder="%"
                     value={newFat || ''}
@@ -345,6 +351,7 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
                   <label className="block text-xs font-semibold text-slate-400 mb-1">% SLNG:</label>
                   <input
                     type="number"
+                    min="0"
                     step="1"
                     placeholder="%"
                     value={newMsnf || ''}
@@ -356,6 +363,7 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
                   <label className="block text-xs font-semibold text-slate-400 mb-1">% Outros Sólidos:</label>
                   <input
                     type="number"
+                    min="0"
                     step="1"
                     placeholder="%"
                     value={newOtherSolids || ''}
