@@ -290,6 +290,29 @@ export class GelatoDatabase extends Dexie {
         console.warn('Migration to v7 ingredient audit:', e);
       }
     });
+
+    // Versão 8: Estilo Gelatos de Oleaginosas e parâmetros clássicos de balanceamento
+    this.version(8).stores({
+      ingredients: 'id, name, category, costKg',
+      recipes: 'id, name, category, targetStyle, isCustom',
+      preparations: 'id, name, category, isCustom',
+      settings: 'key'
+    }).upgrade(async tx => {
+      try {
+        const nutRecipeIds = ['rec_19', 'rec_27', 'rec_31', 'rec_32', 'rec_44', 'rec_58'];
+        const recs = await tx.table('recipes').toArray();
+        for (const rec of recs) {
+          if (nutRecipeIds.includes(rec.id) && !rec.isCustom) {
+            await tx.table('recipes').update(rec.id, {
+              category: 'Gelatos de Oleaginosas',
+              targetStyle: 'Gelatos de Oleaginosas'
+            });
+          }
+        }
+      } catch (e) {
+        console.warn('Migration to v8 nut styles:', e);
+      }
+    });
   }
 
   async initializeSeedData(): Promise<void> {
@@ -494,6 +517,22 @@ export class GelatoDatabase extends Dexie {
           }
           await this.settings.put({ key: 'ingredient_audit_v7', value: 1 });
         }
+      }
+
+      // Verificação de sincronização v8: Estilo Gelatos de Oleaginosas
+      const stylesUpdated = await this.settings.get('styles_updated_v8');
+      if (!stylesUpdated) {
+        const nutRecipeIds = ['rec_19', 'rec_27', 'rec_31', 'rec_32', 'rec_44', 'rec_58'];
+        const allRecs = await this.recipes.toArray();
+        for (const rec of allRecs) {
+          if (nutRecipeIds.includes(rec.id) && !rec.isCustom) {
+            await this.recipes.update(rec.id, {
+              category: 'Gelatos de Oleaginosas',
+              targetStyle: 'Gelatos de Oleaginosas'
+            });
+          }
+        }
+        await this.settings.put({ key: 'styles_updated_v8', value: 1 });
       }
 
       // 2. Receitas

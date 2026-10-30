@@ -7,7 +7,8 @@ import {
   Cherry,
   Citrus,
   Apple,
-  IceCream
+  IceCream,
+  Nut
 } from 'lucide-react';
 
 // Custom SVG icon for chocolate bars: 6 distinct embossed tablets, bold, clean lines
@@ -40,7 +41,16 @@ export interface CategoryTheme {
 export const getCategoryTheme = (category: string = ''): CategoryTheme => {
   const cat = (category || '').toLowerCase();
 
-  // 1. Gelatos de Leite com Fruta -> Cherry (Cerejas)
+  // 1. Gelatos de Oleaginosas -> Nut (Castanhas / Pistache / Avelã / Nozes)
+  if (cat.includes('oleaginosa') || cat.includes('noz') || cat.includes('pistache') || cat.includes('avelã') || cat.includes('avela')) {
+    return {
+      gradient: 'from-amber-600 via-amber-500 to-lime-600',
+      badge: 'bg-amber-600/15 text-amber-300 border-amber-500/40',
+      icon: <Nut className="w-3.5 h-3.5 text-amber-300 shrink-0" />
+    };
+  }
+
+  // 2. Gelatos de Leite com Fruta -> Cherry (Cerejas)
   if (cat.includes('leite com fruta')) {
     return {
       gradient: 'from-pink-500 via-rose-400 to-sky-400',

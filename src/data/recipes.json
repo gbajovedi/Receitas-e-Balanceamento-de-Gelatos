@@ -768,8 +768,8 @@
   {
     "id": "rec_19",
     "name": "Pistache - Base Oleaginosas (Direto ao Ponto)",
-    "category": "Gelatos de Leite",
-    "targetStyle": "Gelatos de Leite",
+    "category": "Gelatos de Oleaginosas",
+    "targetStyle": "Gelatos de Oleaginosas",
     "ingredients": [
       {
         "name": "Leite Integral",
@@ -1088,8 +1088,8 @@
   {
     "id": "rec_27",
     "name": "Gelato de Pistache (Addolcire)",
-    "category": "Gelatos de Leite",
-    "targetStyle": "Gelatos de Leite",
+    "category": "Gelatos de Oleaginosas",
+    "targetStyle": "Gelatos de Oleaginosas",
     "ingredients": [
       {
         "name": "Leite Integral",
@@ -1264,8 +1264,8 @@
   {
     "id": "rec_31",
     "name": "Gelato de Amendoim (Addolcire)",
-    "category": "Gelatos de Leite",
-    "targetStyle": "Gelatos de Leite",
+    "category": "Gelatos de Oleaginosas",
+    "targetStyle": "Gelatos de Oleaginosas",
     "ingredients": [
       {
         "name": "Leite Integral",
@@ -1305,8 +1305,8 @@
   {
     "id": "rec_32",
     "name": "Gelato de Avelã (Addolcire)",
-    "category": "Gelatos de Leite",
-    "targetStyle": "Gelatos de Leite",
+    "category": "Gelatos de Oleaginosas",
+    "targetStyle": "Gelatos de Oleaginosas",
     "ingredients": [
       {
         "name": "Leite Integral",
@@ -1825,8 +1825,8 @@
   {
     "id": "rec_44",
     "name": "Gelato de Gianduia (Addolcire)",
-    "category": "Gelatos de Leite",
-    "targetStyle": "Gelatos de Leite",
+    "category": "Gelatos de Oleaginosas",
+    "targetStyle": "Gelatos de Oleaginosas",
     "ingredients": [
       {
         "name": "Leite Integral",
@@ -2407,8 +2407,8 @@
   {
     "id": "rec_58",
     "name": "Sorvete Soft de Pistache (Addolcire)",
-    "category": "Gelatos de Leite",
-    "targetStyle": "Gelatos de Leite",
+    "category": "Gelatos de Oleaginosas",
+    "targetStyle": "Gelatos de Oleaginosas",
     "ingredients": [
       {
         "name": "Leite Integral",
