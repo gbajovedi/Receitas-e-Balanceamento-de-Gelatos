@@ -154,8 +154,13 @@ export function calculateBatchAnalysis(
   const directCostWithPack = tubProductCost + pricing.tubPackagingCost;
   const totalCostWithOverhead = directCostWithPack + pricing.indirectOverheadPerTub;
   const totalSalesDeductions = (pricing.cardFeePercent + (pricing.salesTaxPercent || 0)) / 100;
-  const marginDivisor = (1 - (pricing.targetProfitMarginPercent / 100)) * (1 - totalSalesDeductions);
-  const suggestedPrice500g = (marginDivisor > 0 && totalSalesDeductions < 1) ? totalCostWithOverhead / marginDivisor : 0;
+  const targetMarginDecimal = (pricing.targetProfitMarginPercent || 0) / 100;
+  const totalDeductionsAndMargin = targetMarginDecimal + totalSalesDeductions;
+  const marginDivisor = 1 - totalDeductionsAndMargin;
+  const suggestedPrice500g =
+    marginDivisor > 0 && totalDeductionsAndMargin < 1
+      ? totalCostWithOverhead / marginDivisor
+      : 0;
   const variegatoRatioPercent = finalWeightGrams > 0 ? (totalVariegatoGrams / finalWeightGrams) * 100 : 0;
 
   return {

@@ -236,10 +236,11 @@ export const PricingCalculator: React.FC = () => {
   const totalCostWithOverhead = directCostPerTub + overheadPerUnit;
 
   const totalSalesDeductionsPercent = activeFeePercent + salesTaxPercent;
-  const marginDivisor = (1 - targetMargin / 100) * (1 - totalSalesDeductionsPercent / 100);
+  const totalDeductionsAndMarginPercent = targetMargin + totalSalesDeductionsPercent;
+  const marginDivisor = (100 - totalDeductionsAndMarginPercent) / 100;
 
   const suggestedTubPrice =
-    marginDivisor > 0 && totalSalesDeductionsPercent < 100
+    marginDivisor > 0 && totalDeductionsAndMarginPercent < 100
       ? totalCostWithOverhead / marginDivisor
       : 0;
 
@@ -277,8 +278,8 @@ export const PricingCalculator: React.FC = () => {
     const feeVal = suggestedTubPrice * (s.rate / 100);
     const profit = suggestedTubPrice - taxValue - feeVal - totalCostWithOverhead;
     const marginPct =
-      suggestedTubPrice - taxValue - feeVal > 0
-        ? (profit / (suggestedTubPrice - taxValue - feeVal)) * 100
+      suggestedTubPrice > 0
+        ? (profit / suggestedTubPrice) * 100
         : 0;
     return {
       ...s,

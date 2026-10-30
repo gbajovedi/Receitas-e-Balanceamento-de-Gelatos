@@ -112,16 +112,17 @@ export const ProfitSimulator: React.FC<ProfitSimulatorProps> = ({
   const directCostWithPack = productCost + formatPackCost;
   const totalCostUnit = directCostWithPack + overheadPerUnit;
 
-  // Direct Calculation: Price from Simulated Margin
-  const marginDivisor = Math.max(0.01, (1 - simulatedMargin / 100) * netRevenueFactor);
-  const calculatedPrice = totalCostUnit / marginDivisor;
+  // Direct Calculation: Price from Simulated Margin (Official Sebrae Markup Divisor)
+  const totalMarginAndDeductions = (simulatedMargin / 100) + salesDeductionsRate;
+  const marginDivisor = Math.max(0.001, 1 - totalMarginAndDeductions);
+  const calculatedPrice = totalMarginAndDeductions < 1 ? totalCostUnit / marginDivisor : 0;
 
-  // Reverse Calculation: Margin from Simulated Price
+  // Reverse Calculation: Margin from Simulated Price (Lucro Líquido / Preço de Venda)
   const manualPrice = parseFloat(simulatedPriceInput) || 0;
-  const netRevenueFromManual = manualPrice * netRevenueFactor;
+  const netRevenueFromManual = manualPrice * (1 - salesDeductionsRate);
   const calculatedMarginFromPrice =
-    netRevenueFromManual > 0
-      ? Math.max(-100, Math.min(95, (1 - totalCostUnit / netRevenueFromManual) * 100))
+    manualPrice > 0
+      ? Math.max(-100, Math.min(95, ((netRevenueFromManual - totalCostUnit) / manualPrice) * 100))
       : 0;
 
   // Current Active Metrics based on current mode
