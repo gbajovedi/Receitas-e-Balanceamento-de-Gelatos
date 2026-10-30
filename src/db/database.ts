@@ -14,6 +14,26 @@ export interface AppSetting {
   value: any;
 }
 
+export const BRAND_NAME_REPLACEMENTS: Record<string, string> = {
+  'Neutro Fabbri': 'Neutro',
+  'Creme De Leite UHT 17% - Piracanjuba': 'Creme De Leite UHT 17%',
+  'Pasta Baunilha - Vanilla Brasil': 'Pasta de Baunilha',
+  'Leite de Coco Sococo': 'Leite de Coco Tradicional (20% gordura)',
+  'Leite de coco em pó - IO': 'Leite de Coco em Pó',
+  'Doce de leite Rocca': 'Doce de Leite Artesanal (Sem Amido)',
+  'DPO 165 Premium - Aroma Italia': 'Base DPO 165 Premium',
+  'IMO 900 + Taumatina (moonsugar)': 'IMO 900 + Taumatina',
+  'Nesquik / Ovomaltine': 'Achocolatado em Pó',
+  'Nutella': 'Creme de Avelã com Cacau',
+  'Variegato de Nutella': 'Variegato de Creme de Avelã com Cacau',
+  'Sucrilhos': 'Cereal de Milho Açucarado',
+  'Xarope (monin)': 'Xarope de Açúcar Saborizado',
+  'Biscoff': 'Biscoito Speculoos (Caramelizado)',
+  "Licor Bailey's": 'Licor de Creme Irlandês (Irish Cream)',
+  'Cointreau': 'Licor Triple Sec (Laranja)',
+  'Xylitol': 'Xilitol'
+};
+
 export interface BackupResult {
   recipesCount: number;
   ingredientsCount: number;
@@ -101,6 +121,71 @@ export class GelatoDatabase extends Dexie {
         console.warn('Migration to v5 ingredients:', e);
       }
     });
+
+    // Versão 6: Remoção de marcas comerciais dos nomes de insumos, receitas e pré-preparos
+    this.version(6).stores({
+      ingredients: 'id, name, category, costKg',
+      recipes: 'id, name, category, targetStyle, isCustom',
+      preparations: 'id, name, category, isCustom',
+      settings: 'key'
+    }).upgrade(async tx => {
+      try {
+        const ings = await tx.table('ingredients').toArray();
+        for (const ing of ings) {
+          if (BRAND_NAME_REPLACEMENTS[ing.name]) {
+            await tx.table('ingredients').update(ing.id, { name: BRAND_NAME_REPLACEMENTS[ing.name] });
+          }
+        }
+        const recs = await tx.table('recipes').toArray();
+        for (const rec of recs) {
+          let dirty = false;
+          const updatedItems = rec.ingredients.map((item: any) => {
+            if (BRAND_NAME_REPLACEMENTS[item.name]) {
+              dirty = true;
+              return { ...item, name: BRAND_NAME_REPLACEMENTS[item.name] };
+            }
+            return item;
+          });
+          const updatedVars = rec.variegatos?.map((v: any) => {
+            if (BRAND_NAME_REPLACEMENTS[v.name]) {
+              dirty = true;
+              return { ...v, name: BRAND_NAME_REPLACEMENTS[v.name] };
+            }
+            return v;
+          });
+          if (dirty) {
+            await tx.table('recipes').update(rec.id, {
+              ingredients: updatedItems,
+              ...(updatedVars ? { variegatos: updatedVars } : {})
+            });
+          }
+        }
+        const preps = await tx.table('preparations').toArray();
+        for (const prep of preps) {
+          let dirty = false;
+          let newName = prep.name;
+          if (BRAND_NAME_REPLACEMENTS[prep.name]) {
+            newName = BRAND_NAME_REPLACEMENTS[prep.name];
+            dirty = true;
+          }
+          const updatedItems = prep.ingredients?.map((item: any) => {
+            if (BRAND_NAME_REPLACEMENTS[item.name]) {
+              dirty = true;
+              return { ...item, name: BRAND_NAME_REPLACEMENTS[item.name] };
+            }
+            return item;
+          });
+          if (dirty) {
+            await tx.table('preparations').update(prep.id, {
+              name: newName,
+              ...(updatedItems ? { ingredients: updatedItems } : {})
+            });
+          }
+        }
+      } catch (e) {
+        console.warn('Migration to v6 brand name cleaning:', e);
+      }
+    });
   }
 
   async initializeSeedData(): Promise<void> {
@@ -166,6 +251,65 @@ export class GelatoDatabase extends Dexie {
             }
           }
           await this.settings.put({ key: 'ingredient_technical_params_version', value: 1 });
+        }
+
+        // Sincronizar limpeza de nomes de marcas em bancos existentes
+        const cleanNamesSetting = await this.settings.get('ingredient_clean_names_version');
+        if (!cleanNamesSetting || cleanNamesSetting.value < 1) {
+          console.log('Sincronizando limpeza de marcas nos nomes de insumos, receitas e pré-preparos...');
+          const currentIngs = await this.ingredients.toArray();
+          for (const ing of currentIngs) {
+            if (BRAND_NAME_REPLACEMENTS[ing.name]) {
+              await this.ingredients.update(ing.id, { name: BRAND_NAME_REPLACEMENTS[ing.name] });
+            }
+          }
+          const allRecs = await this.recipes.toArray();
+          for (const rec of allRecs) {
+            let dirty = false;
+            const updatedItems = rec.ingredients.map(item => {
+              if (BRAND_NAME_REPLACEMENTS[item.name]) {
+                dirty = true;
+                return { ...item, name: BRAND_NAME_REPLACEMENTS[item.name] };
+              }
+              return item;
+            });
+            const updatedVars = rec.variegatos?.map(v => {
+              if (BRAND_NAME_REPLACEMENTS[v.name]) {
+                dirty = true;
+                return { ...v, name: BRAND_NAME_REPLACEMENTS[v.name] };
+              }
+              return v;
+            });
+            if (dirty) {
+              await this.recipes.update(rec.id, {
+                ingredients: updatedItems,
+                ...(updatedVars ? { variegatos: updatedVars } : {})
+              });
+            }
+          }
+          const allPreps = await this.preparations.toArray();
+          for (const prep of allPreps) {
+            let dirty = false;
+            let newName = prep.name;
+            if (BRAND_NAME_REPLACEMENTS[prep.name]) {
+              newName = BRAND_NAME_REPLACEMENTS[prep.name];
+              dirty = true;
+            }
+            const updatedItems = prep.ingredients?.map(item => {
+              if (BRAND_NAME_REPLACEMENTS[item.name]) {
+                dirty = true;
+                return { ...item, name: BRAND_NAME_REPLACEMENTS[item.name] };
+              }
+              return item;
+            });
+            if (dirty) {
+              await this.preparations.update(prep.id, {
+                name: newName,
+                ...(updatedItems ? { ingredients: updatedItems } : {})
+              });
+            }
+          }
+          await this.settings.put({ key: 'ingredient_clean_names_version', value: 1 });
         }
       }
 

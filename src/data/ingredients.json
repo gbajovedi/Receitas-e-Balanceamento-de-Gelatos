@@ -80,6 +80,22 @@
     "hasAllergen": false
   },
   {
+    "id": "ing_184",
+    "name": "Achocolatado em Pó",
+    "category": "Confeitaria & Inclusões",
+    "costKg": 35,
+    "sugars": 0.75,
+    "fat": 0.03,
+    "msnf": 0.05,
+    "otherSolids": 0.14,
+    "totalSolids": 0.97,
+    "water": 0.03,
+    "pod": 0.75,
+    "pac": 0.8,
+    "protein": 0.04,
+    "hasAllergen": true
+  },
+  {
     "id": "ing_8",
     "name": "Açúcar - Dextrose",
     "category": "Açúcares",
@@ -464,6 +480,22 @@
     "hasAllergen": true
   },
   {
+    "id": "ing_63",
+    "name": "Base DPO 165 Premium",
+    "category": "Neutros, Gomas & Fibras",
+    "costKg": 97.5,
+    "sugars": 0.4,
+    "fat": 0.2,
+    "msnf": 0.32,
+    "otherSolids": 0.05,
+    "totalSolids": 0.97,
+    "water": 0.03,
+    "pod": 0.4,
+    "pac": 0.68,
+    "protein": 0.115,
+    "hasAllergen": true
+  },
+  {
     "id": "ing_28",
     "name": "Batata doce roxa",
     "category": "Outros",
@@ -496,22 +528,6 @@
     "hasAllergen": false
   },
   {
-    "id": "ing_29",
-    "name": "Biscoff",
-    "category": "Confeitaria & Inclusões",
-    "costKg": 175,
-    "sugars": 0.37,
-    "fat": 0.38,
-    "msnf": 0,
-    "otherSolids": 0.17,
-    "totalSolids": 0.92,
-    "water": 0.08,
-    "pod": 0.37,
-    "pac": 0.37,
-    "protein": 0.029,
-    "hasAllergen": true
-  },
-  {
     "id": "ing_30",
     "name": "Biscoito Champanhe",
     "category": "Confeitaria & Inclusões",
@@ -541,6 +557,22 @@
     "pod": 0,
     "pac": 0,
     "protein": 0.073,
+    "hasAllergen": true
+  },
+  {
+    "id": "ing_29",
+    "name": "Biscoito Speculoos (Caramelizado)",
+    "category": "Confeitaria & Inclusões",
+    "costKg": 175,
+    "sugars": 0.37,
+    "fat": 0.38,
+    "msnf": 0,
+    "otherSolids": 0.17,
+    "totalSolids": 0.92,
+    "water": 0.08,
+    "pod": 0.37,
+    "pac": 0.37,
+    "protein": 0.029,
     "hasAllergen": true
   },
   {
@@ -686,6 +718,22 @@
     "pac": 0.075,
     "protein": 0.01,
     "hasAllergen": false
+  },
+  {
+    "id": "ing_183",
+    "name": "Cereal de Milho Açucarado",
+    "category": "Confeitaria & Inclusões",
+    "costKg": 35,
+    "sugars": 0.37,
+    "fat": 0,
+    "msnf": 0,
+    "otherSolids": 0.58,
+    "totalSolids": 0.95,
+    "water": 0.05,
+    "pod": 0.37,
+    "pac": 0.37,
+    "protein": 0.05,
+    "hasAllergen": true
   },
   {
     "id": "ing_40",
@@ -896,22 +944,6 @@
     "hasAllergen": false
   },
   {
-    "id": "ing_52",
-    "name": "Cointreau",
-    "category": "Álcoois & Bebidas",
-    "costKg": 230,
-    "sugars": 0.2,
-    "fat": 0,
-    "msnf": 0,
-    "otherSolids": 0,
-    "totalSolids": 0.2,
-    "water": 0.8,
-    "pod": 0.02,
-    "pac": 3.8,
-    "protein": 0,
-    "hasAllergen": false
-  },
-  {
     "id": "ing_53",
     "name": "Cream cheese",
     "category": "Laticínios",
@@ -925,6 +957,22 @@
     "pod": 0,
     "pac": 0,
     "protein": 0.086,
+    "hasAllergen": true
+  },
+  {
+    "id": "ing_130",
+    "name": "Creme de Avelã com Cacau",
+    "category": "Variegatos & Recheios",
+    "costKg": 125,
+    "sugars": 0.5,
+    "fat": 0.31,
+    "msnf": 0.0843,
+    "otherSolids": 0.04,
+    "totalSolids": 0.93,
+    "water": 0.07,
+    "pod": 0.5,
+    "pac": 0.5,
+    "protein": 0.063,
     "hasAllergen": true
   },
   {
@@ -1015,7 +1063,7 @@
   },
   {
     "id": "ing_57",
-    "name": "Creme De Leite UHT 17% - Piracanjuba",
+    "name": "Creme De Leite UHT 17%",
     "category": "Laticínios",
     "costKg": 12.5,
     "sugars": 0,
@@ -1095,7 +1143,7 @@
   },
   {
     "id": "ing_62",
-    "name": "Doce de leite Rocca",
+    "name": "Doce de Leite Artesanal (Sem Amido)",
     "category": "Laticínios",
     "costKg": 43,
     "sugars": 0.28,
@@ -1107,22 +1155,6 @@
     "pod": 0.31,
     "pac": 0.37,
     "protein": 0.075,
-    "hasAllergen": true
-  },
-  {
-    "id": "ing_63",
-    "name": "DPO 165 Premium - Aroma Italia",
-    "category": "Neutros, Gomas & Fibras",
-    "costKg": 97.5,
-    "sugars": 0.4,
-    "fat": 0.2,
-    "msnf": 0.32,
-    "otherSolids": 0.05,
-    "totalSolids": 0.97,
-    "water": 0.03,
-    "pod": 0.4,
-    "pac": 0.68,
-    "protein": 0.115,
     "hasAllergen": true
   },
   {
@@ -1549,7 +1581,7 @@
   },
   {
     "id": "ing_87",
-    "name": "IMO 900 + Taumatina (moonsugar)",
+    "name": "IMO 900 + Taumatina",
     "category": "Açúcares",
     "costKg": 56,
     "sugars": 1,
@@ -1840,7 +1872,7 @@
   },
   {
     "id": "ing_100",
-    "name": "Leite de coco em pó - IO",
+    "name": "Leite de Coco em Pó",
     "category": "Bebidas Vegetais & Plant-Based",
     "costKg": 120,
     "sugars": 0.44,
@@ -1856,7 +1888,7 @@
   },
   {
     "id": "ing_101",
-    "name": "Leite de Coco Sococo",
+    "name": "Leite de Coco Tradicional (20% gordura)",
     "category": "Bebidas Vegetais & Plant-Based",
     "costKg": 15,
     "sugars": 0.02,
@@ -2041,7 +2073,7 @@
   },
   {
     "id": "ing_171",
-    "name": "Licor Bailey's",
+    "name": "Licor de Creme Irlandês (Irish Cream)",
     "category": "Álcoois & Bebidas",
     "costKg": 110,
     "sugars": 0.18,
@@ -2054,6 +2086,22 @@
     "pac": 1.18,
     "protein": 0.03,
     "hasAllergen": true
+  },
+  {
+    "id": "ing_52",
+    "name": "Licor Triple Sec (Laranja)",
+    "category": "Álcoois & Bebidas",
+    "costKg": 230,
+    "sugars": 0.2,
+    "fat": 0,
+    "msnf": 0,
+    "otherSolids": 0,
+    "totalSolids": 0.2,
+    "water": 0.8,
+    "pod": 0.02,
+    "pac": 3.8,
+    "protein": 0,
+    "hasAllergen": false
   },
   {
     "id": "ing_109",
@@ -2478,24 +2526,8 @@
     "hasAllergen": true
   },
   {
-    "id": "ing_184",
-    "name": "Nesquik / Ovomaltine",
-    "category": "Confeitaria & Inclusões",
-    "costKg": 35,
-    "sugars": 0.75,
-    "fat": 0.03,
-    "msnf": 0.05,
-    "otherSolids": 0.14,
-    "totalSolids": 0.97,
-    "water": 0.03,
-    "pod": 0.75,
-    "pac": 0.8,
-    "protein": 0.04,
-    "hasAllergen": true
-  },
-  {
     "id": "ing_129",
-    "name": "Neutro Fabbri",
+    "name": "Neutro",
     "category": "Neutros, Gomas & Fibras",
     "costKg": 200,
     "sugars": 0,
@@ -2508,22 +2540,6 @@
     "pac": 0,
     "protein": 0,
     "hasAllergen": false
-  },
-  {
-    "id": "ing_130",
-    "name": "Nutella",
-    "category": "Variegatos & Recheios",
-    "costKg": 125,
-    "sugars": 0.5,
-    "fat": 0.31,
-    "msnf": 0.0843,
-    "otherSolids": 0.04,
-    "totalSolids": 0.93,
-    "water": 0.07,
-    "pod": 0.5,
-    "pac": 0.5,
-    "protein": 0.063,
-    "hasAllergen": true
   },
   {
     "id": "ing_131",
@@ -2641,22 +2657,6 @@
     "hasAllergen": true
   },
   {
-    "id": "ing_136",
-    "name": "Pasta Baunilha - Vanilla Brasil",
-    "category": "Outros",
-    "costKg": 1000,
-    "sugars": 0.8,
-    "fat": 0,
-    "msnf": 0,
-    "otherSolids": 0,
-    "totalSolids": 0.8,
-    "water": 0.2,
-    "pod": 0.45,
-    "pac": 0.75,
-    "protein": 0,
-    "hasAllergen": false
-  },
-  {
     "id": "ing_137",
     "name": "Pasta De Amêndoas s/ açúcar",
     "category": "Pastas & Oleaginosas",
@@ -2719,6 +2719,22 @@
     "pac": 0,
     "protein": 0.14,
     "hasAllergen": true
+  },
+  {
+    "id": "ing_136",
+    "name": "Pasta de Baunilha",
+    "category": "Outros",
+    "costKg": 1000,
+    "sugars": 0.8,
+    "fat": 0,
+    "msnf": 0,
+    "otherSolids": 0,
+    "totalSolids": 0.8,
+    "water": 0.2,
+    "pod": 0.45,
+    "pac": 0.75,
+    "protein": 0,
+    "hasAllergen": false
   },
   {
     "id": "ing_141",
@@ -3157,22 +3173,6 @@
     "hasAllergen": false
   },
   {
-    "id": "ing_183",
-    "name": "Sucrilhos",
-    "category": "Confeitaria & Inclusões",
-    "costKg": 35,
-    "sugars": 0.37,
-    "fat": 0,
-    "msnf": 0,
-    "otherSolids": 0.58,
-    "totalSolids": 0.95,
-    "water": 0.05,
-    "pod": 0.37,
-    "pac": 0.37,
-    "protein": 0.05,
-    "hasAllergen": true
-  },
-  {
     "id": "ing_162",
     "name": "Tâmara Seca",
     "category": "Frutas & Polpas",
@@ -3318,7 +3318,7 @@
   },
   {
     "id": "ing_192",
-    "name": "Variegato de Nutella",
+    "name": "Variegato de Creme de Avelã com Cacau",
     "category": "Variegatos & Recheios",
     "costKg": 80.1005,
     "sugars": 0.3706,
@@ -3382,7 +3382,7 @@
   },
   {
     "id": "ing_167",
-    "name": "Xarope (monin)",
+    "name": "Xarope de Açúcar Saborizado",
     "category": "Açúcares",
     "costKg": 0,
     "sugars": 0.8,
@@ -3397,24 +3397,8 @@
     "hasAllergen": false
   },
   {
-    "name": "Xilitol",
-    "category": "Açúcares",
-    "costKg": 0,
-    "sugars": 1,
-    "fat": 0,
-    "msnf": 0,
-    "otherSolids": 0,
-    "totalSolids": 1,
-    "water": 0,
-    "pod": 1,
-    "pac": 2.2,
-    "protein": 0,
-    "hasAllergen": false,
-    "id": "ing_197"
-  },
-  {
     "id": "ing_168",
-    "name": "Xylitol",
+    "name": "Xilitol",
     "category": "Açúcares",
     "costKg": 30,
     "sugars": 1,
@@ -3424,7 +3408,7 @@
     "totalSolids": 1,
     "water": 0,
     "pod": 1,
-    "pac": 2.25,
+    "pac": 2.2,
     "protein": 0,
     "hasAllergen": false
   }

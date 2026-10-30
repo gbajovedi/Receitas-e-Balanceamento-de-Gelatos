@@ -7,38 +7,38 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 620.0
+        "grams": 620
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 150.0
+        "grams": 150
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 45.0
+        "grams": 45
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 120.0
+        "grams": 120
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 30.0
+        "grams": 30
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 30.0
+        "grams": 30
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Sal",
-        "grams": 1.0
+        "grams": 1
       }
     ],
-    "totalGrams": 1001.0
+    "totalGrams": 1001
   },
   {
     "id": "rec_2",
@@ -48,38 +48,38 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 570.0
+        "grams": 570
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 200.0
+        "grams": 200
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 45.0
+        "grams": 45
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 120.0
+        "grams": 120
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 30.0
+        "grams": 30
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 30.0
+        "grams": 30
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Sal",
-        "grams": 1.0
+        "grams": 1
       }
     ],
-    "totalGrams": 1001.0
+    "totalGrams": 1001
   },
   {
     "id": "rec_3",
@@ -89,42 +89,42 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 640.0
+        "grams": 640
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 65.0
+        "grams": 65
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 30.0
+        "grams": 30
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 100.0
+        "grams": 100
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 50.0
+        "grams": 50
       },
       {
         "name": "Cacau Em Pó 11% gordura",
-        "grams": 30.0
+        "grams": 30
       },
       {
         "name": "Chocolate Amargo 70%",
-        "grams": 80.0
+        "grams": 80
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 4.0
+        "name": "Neutro",
+        "grams": 4
       },
       {
         "name": "Sal",
-        "grams": 1.0
+        "grams": 1
       }
     ],
-    "totalGrams": 1000.0
+    "totalGrams": 1000
   },
   {
     "id": "rec_4",
@@ -134,42 +134,42 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 600.0
+        "grams": 600
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 120.0
+        "grams": 120
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 45.0
+        "grams": 45
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 120.0
+        "grams": 120
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 30.0
+        "grams": 30
       },
       {
         "name": "Gema Do Ovo",
-        "grams": 80.0
+        "grams": 80
       },
       {
-        "name": "Pasta Baunilha - Vanilla Brasil",
-        "grams": 5.0
+        "name": "Pasta de Baunilha",
+        "grams": 5
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 4.0
+        "name": "Neutro",
+        "grams": 4
       },
       {
         "name": "Sal",
-        "grams": 1.0
+        "grams": 1
       }
     ],
-    "totalGrams": 1005.0
+    "totalGrams": 1005
   },
   {
     "id": "rec_5",
@@ -179,46 +179,46 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 570.0
+        "grams": 570
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 130.0
+        "grams": 130
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 45.0
+        "grams": 45
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 120.0
+        "grams": 120
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 45.0
+        "grams": 45
       },
       {
         "name": "Gema Do Ovo",
-        "grams": 80.0
+        "grams": 80
       },
       {
-        "name": "Pasta Baunilha - Vanilla Brasil",
-        "grams": 5.0
+        "name": "Pasta de Baunilha",
+        "grams": 5
       },
       {
         "name": "Raspa De Limão (Casca)",
-        "grams": 3.0
+        "grams": 3
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 4.0
+        "name": "Neutro",
+        "grams": 4
       },
       {
         "name": "Sal",
-        "grams": 1.0
+        "grams": 1
       }
     ],
-    "totalGrams": 1003.0
+    "totalGrams": 1003
   },
   {
     "id": "rec_6",
@@ -228,46 +228,46 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 580.0
+        "grams": 580
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 155.0
+        "grams": 155
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 45.0
+        "grams": 45
       },
       {
         "name": "Açúcar Mascavo",
-        "grams": 120.0
+        "grams": 120
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 35.0
+        "grams": 35
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 30.0
+        "grams": 30
       },
       {
         "name": "Inulina - Fibra Vegetal",
-        "grams": 25.0
+        "grams": 25
       },
       {
-        "name": "Pasta Baunilha - Vanilla Brasil",
-        "grams": 7.0
+        "name": "Pasta de Baunilha",
+        "grams": 7
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 4.0
+        "name": "Neutro",
+        "grams": 4
       },
       {
         "name": "Sal",
-        "grams": 1.0
+        "grams": 1
       }
     ],
-    "totalGrams": 1002.0
+    "totalGrams": 1002
   },
   {
     "id": "rec_7",
@@ -277,30 +277,30 @@
     "ingredients": [
       {
         "name": "Doce De Leite - Lata",
-        "grams": 350.0
+        "grams": 350
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 145.0
+        "grams": 145
       },
       {
         "name": "Leite Integral",
-        "grams": 485.0
+        "grams": 485
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Sal",
-        "grams": 1.0
+        "grams": 1
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 15.0
+        "grams": 15
       }
     ],
-    "totalGrams": 1001.0
+    "totalGrams": 1001
   },
   {
     "id": "rec_8",
@@ -310,38 +310,38 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 680.0
+        "grams": 680
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 110.0
+        "grams": 110
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 35.0
+        "grams": 35
       },
       {
-        "name": "Nesquik / Ovomaltine",
-        "grams": 130.0
+        "name": "Achocolatado em Pó",
+        "grams": 130
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 25.0
+        "grams": 25
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 15.0
+        "grams": 15
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Sal",
-        "grams": 1.0
+        "grams": 1
       }
     ],
-    "totalGrams": 1001.0
+    "totalGrams": 1001
   },
   {
     "id": "rec_9",
@@ -351,38 +351,38 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 520.0
+        "grams": 520
       },
       {
         "name": "Cream cheese",
-        "grams": 250.0
+        "grams": 250
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 35.0
+        "grams": 35
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 125.0
+        "grams": 125
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 45.0
+        "grams": 45
       },
       {
         "name": "Suco De Limão",
-        "grams": 20.0
+        "grams": 20
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Sal",
-        "grams": 1.0
+        "grams": 1
       }
     ],
-    "totalGrams": 1001.0
+    "totalGrams": 1001
   },
   {
     "id": "rec_10",
@@ -392,38 +392,38 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 580.0
+        "grams": 580
       },
       {
         "name": "Parmesão",
-        "grams": 150.0
+        "grams": 150
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 50.0
+        "grams": 50
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 35.0
+        "grams": 35
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 120.0
+        "grams": 120
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 55.0
+        "grams": 55
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Sal",
-        "grams": 2.0
+        "grams": 2
       }
     ],
-    "totalGrams": 997.0
+    "totalGrams": 997
   },
   {
     "id": "rec_11",
@@ -433,34 +433,34 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 580.0
+        "grams": 580
       },
       {
         "name": "Gorgonzola",
-        "grams": 200.0
+        "grams": 200
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 35.0
+        "grams": 35
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 120.0
+        "grams": 120
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 55.0
+        "grams": 55
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Sal",
-        "grams": 1.0
+        "grams": 1
       }
     ],
-    "totalGrams": 996.0
+    "totalGrams": 996
   },
   {
     "id": "rec_12",
@@ -470,38 +470,38 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 675.0
+        "grams": 675
       },
       {
         "name": "Chocolate Branco",
-        "grams": 160.0
+        "grams": 160
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 30.0
+        "grams": 30
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 50.0
+        "grams": 50
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 25.0
+        "grams": 25
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 25.0
+        "grams": 25
       },
       {
         "name": "Missô",
-        "grams": 30.0
+        "grams": 30
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       }
     ],
-    "totalGrams": 1000.0
+    "totalGrams": 1000
   },
   {
     "id": "rec_13",
@@ -511,42 +511,42 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 200.0
+        "grams": 200
       },
       {
         "name": "Iogurte Integral",
-        "grams": 480.0
+        "grams": 480
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 80.0
+        "grams": 80
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 35.0
+        "grams": 35
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 120.0
+        "grams": 120
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 60.0
+        "grams": 60
       },
       {
         "name": "Inulina - Fibra Vegetal",
-        "grams": 25.0
+        "grams": 25
       },
       {
         "name": "Sal",
-        "grams": 1.0
+        "grams": 1
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       }
     ],
-    "totalGrams": 1006.0
+    "totalGrams": 1006
   },
   {
     "id": "rec_14",
@@ -556,42 +556,42 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 500.0
+        "grams": 500
       },
       {
         "name": "Milho Verde",
-        "grams": 220.0
+        "grams": 220
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 80.0
+        "grams": 80
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 45.0
+        "grams": 45
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 140.0
+        "grams": 140
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 40.0
+        "grams": 40
       },
       {
         "name": "Inulina - Fibra Vegetal",
-        "grams": 15.0
+        "grams": 15
       },
       {
         "name": "Sal",
-        "grams": 1.0
+        "grams": 1
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       }
     ],
-    "totalGrams": 1046.0
+    "totalGrams": 1046
   },
   {
     "id": "rec_15",
@@ -601,42 +601,42 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 150.0
+        "grams": 150
       },
       {
         "name": "Leite de Coco",
-        "grams": 520.0
+        "grams": 520
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 100.0
+        "grams": 100
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 70.0
+        "grams": 70
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 110.0
+        "grams": 110
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 35.0
+        "grams": 35
       },
       {
         "name": "Inulina - Fibra Vegetal",
-        "grams": 15.0
+        "grams": 15
       },
       {
         "name": "Sal",
-        "grams": 1.0
+        "grams": 1
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       }
     ],
-    "totalGrams": 1006.0
+    "totalGrams": 1006
   },
   {
     "id": "rec_16",
@@ -646,42 +646,42 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 635.0
+        "grams": 635
       },
       {
-        "name": "Sucrilhos",
-        "grams": 100.0
+        "name": "Cereal de Milho Açucarado",
+        "grams": 100
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 120.0
+        "grams": 120
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 45.0
+        "grams": 45
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 120.0
+        "grams": 120
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 40.0
+        "grams": 40
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 35.0
+        "grams": 35
       },
       {
         "name": "Sal",
-        "grams": 1.0
+        "grams": 1
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       }
     ],
-    "totalGrams": 1101.0
+    "totalGrams": 1101
   },
   {
     "id": "rec_17",
@@ -691,38 +691,38 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 600.0
+        "grams": 600
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 75.0
+        "grams": 75
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 35.0
+        "grams": 35
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 125.0
+        "grams": 125
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 65.0
+        "grams": 65
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 4.0
+        "name": "Neutro",
+        "grams": 4
       },
       {
         "name": "Cacau Em Pó 11% gordura",
-        "grams": 70.0
+        "grams": 70
       },
       {
         "name": "Sal",
-        "grams": 1.0
+        "grams": 1
       }
     ],
-    "totalGrams": 975.0
+    "totalGrams": 975
   },
   {
     "id": "rec_18",
@@ -732,38 +732,38 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 590.0
+        "grams": 590
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 75.0
+        "grams": 75
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 25.0
+        "grams": 25
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 65.0
+        "grams": 65
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 45.0
+        "grams": 45
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 3.0
+        "name": "Neutro",
+        "grams": 3
       },
       {
         "name": "Chocolate Amargo 70%",
-        "grams": 200.0
+        "grams": 200
       },
       {
         "name": "Sal",
-        "grams": 1.0
+        "grams": 1
       }
     ],
-    "totalGrams": 1004.0
+    "totalGrams": 1004
   },
   {
     "id": "rec_19",
@@ -773,38 +773,38 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 610.0
+        "grams": 610
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 90.0
+        "grams": 90
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 40.0
+        "grams": 40
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 125.0
+        "grams": 125
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 40.0
+        "grams": 40
       },
       {
         "name": "Pasta De Pistache 100%",
-        "grams": 90.0
+        "grams": 90
       },
       {
         "name": "Sal",
-        "grams": 1.0
+        "grams": 1
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       }
     ],
-    "totalGrams": 1001.0
+    "totalGrams": 1001
   },
   {
     "id": "rec_20",
@@ -814,34 +814,34 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 552.0
+        "grams": 552
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 216.0
+        "grams": 216
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 146.0
+        "grams": 146
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 19.0
+        "grams": 19
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 19.0
+        "grams": 19
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 48.0
+        "grams": 48
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 4.0
+        "name": "Neutro",
+        "grams": 4
       }
     ],
-    "totalGrams": 1004.0
+    "totalGrams": 1004
   },
   {
     "id": "rec_21",
@@ -851,34 +851,34 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 554.0
+        "grams": 554
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 220.0
+        "grams": 220
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 131.0
+        "grams": 131
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 25.0
+        "grams": 25
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 19.0
+        "grams": 19
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 38.0
+        "grams": 38
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 4.0
+        "name": "Neutro",
+        "grams": 4
       }
     ],
-    "totalGrams": 991.0
+    "totalGrams": 991
   },
   {
     "id": "rec_22",
@@ -888,42 +888,42 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 165.0
+        "grams": 165
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 10.0
+        "grams": 10
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 60.0
+        "grams": 60
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 82.0
+        "grams": 82
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 90.0
+        "grams": 90
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 90.0
+        "grams": 90
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 3.0
+        "name": "Neutro",
+        "grams": 3
       },
       {
         "name": "Iogurte Integral",
-        "grams": 510.0
+        "grams": 510
       },
       {
         "name": "Suco De Limão",
-        "grams": 30.0
+        "grams": 30
       }
     ],
-    "totalGrams": 1040.0
+    "totalGrams": 1040
   },
   {
     "id": "rec_23",
@@ -933,38 +933,38 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 494.0
+        "grams": 494
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 72.0
+        "grams": 72
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 174.0
+        "grams": 174
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 28.0
+        "grams": 28
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 16.0
+        "grams": 16
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 30.0
+        "grams": 30
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 4.0
+        "name": "Neutro",
+        "grams": 4
       },
       {
         "name": "Cream cheese",
-        "grams": 200.0
+        "grams": 200
       }
     ],
-    "totalGrams": 1018.0
+    "totalGrams": 1018
   },
   {
     "id": "rec_24",
@@ -974,38 +974,38 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 565.0
+        "grams": 565
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 140.0
+        "grams": 140
       },
       {
         "name": "Gema Do Ovo",
-        "grams": 55.0
+        "grams": 55
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 145.0
+        "grams": 145
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 46.0
+        "grams": 46
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 25.0
+        "grams": 25
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 40.0
+        "grams": 40
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       }
     ],
-    "totalGrams": 1021.0
+    "totalGrams": 1021
   },
   {
     "id": "rec_25",
@@ -1015,38 +1015,38 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 570.0
+        "grams": 570
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 125.0
+        "grams": 125
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 100.0
+        "grams": 100
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 60.0
+        "grams": 60
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 15.0
+        "grams": 15
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 14.0
+        "grams": 14
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 4.0
+        "name": "Neutro",
+        "grams": 4
       },
       {
         "name": "Queijo Brie / Cabra",
-        "grams": 150.0
+        "grams": 150
       }
     ],
-    "totalGrams": 1038.0
+    "totalGrams": 1038
   },
   {
     "id": "rec_26",
@@ -1056,34 +1056,34 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 554.0
+        "grams": 554
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 250.0
+        "grams": 250
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 116.0
+        "grams": 116
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 19.0
+        "grams": 19
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 38.0
+        "grams": 38
       },
       {
         "name": "Doce De Leite - Lata",
-        "grams": 100.0
+        "grams": 100
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 4.0
+        "name": "Neutro",
+        "grams": 4
       }
     ],
-    "totalGrams": 1081.0
+    "totalGrams": 1081
   },
   {
     "id": "rec_27",
@@ -1093,42 +1093,42 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 554.0
+        "grams": 554
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 80.0
+        "grams": 80
       },
       {
         "name": "Pasta De Pistache 100%",
-        "grams": 120.0
+        "grams": 120
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 75.0
+        "grams": 75
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 50.0
+        "grams": 50
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 19.0
+        "grams": 19
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 38.0
+        "grams": 38
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 4.0
+        "name": "Neutro",
+        "grams": 4
       },
       {
         "name": "Sal",
-        "grams": 2.0
+        "grams": 2
       }
     ],
-    "totalGrams": 942.0
+    "totalGrams": 942
   },
   {
     "id": "rec_28",
@@ -1138,42 +1138,42 @@
     "ingredients": [
       {
         "name": "Água",
-        "grams": 322.0
+        "grams": 322
       },
       {
         "name": "Leite Integral",
-        "grams": 256.0
+        "grams": 256
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 60.0
+        "grams": 60
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 77.0
+        "grams": 77
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 8.0
+        "grams": 8
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 7.0
+        "grams": 7
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 15.0
+        "grams": 15
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Chocolate Branco",
-        "grams": 250.0
+        "grams": 250
       }
     ],
-    "totalGrams": 1000.0
+    "totalGrams": 1000
   },
   {
     "id": "rec_29",
@@ -1183,42 +1183,42 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 500.0
+        "grams": 500
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 100.0
+        "grams": 100
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 10.0
+        "grams": 10
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 20.0
+        "grams": 20
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 40.0
+        "grams": 40
       },
       {
         "name": "Inulina - Fibra Vegetal",
-        "grams": 15.0
+        "grams": 15
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 4.0
+        "name": "Neutro",
+        "grams": 4
       },
       {
         "name": "Chocolate Amargo 60%",
-        "grams": 200.0
+        "grams": 200
       },
       {
         "name": "Whey protein 80%",
-        "grams": 50.0
+        "grams": 50
       }
     ],
-    "totalGrams": 939.0
+    "totalGrams": 939
   },
   {
     "id": "rec_30",
@@ -1228,35 +1228,35 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 367.0
+        "grams": 367
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 160.0
+        "grams": 160
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 146.0
+        "grams": 146
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 28.0
+        "grams": 28
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 14.0
+        "grams": 14
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 28.0
+        "grams": 28
       },
       {
-        "name": "Neutro Fabbri",
+        "name": "Neutro",
         "grams": 2.91
       },
       {
         "name": "Abóbora",
-        "grams": 255.0
+        "grams": 255
       }
     ],
     "totalGrams": 1000.91
@@ -1269,38 +1269,38 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 554.0
+        "grams": 554
       },
       {
         "name": "Pasta De Amendoim 100%",
-        "grams": 100.0
+        "grams": 100
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 80.0
+        "grams": 80
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 100.0
+        "grams": 100
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 30.0
+        "grams": 30
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 19.0
+        "grams": 19
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 38.0
+        "grams": 38
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 4.0
+        "name": "Neutro",
+        "grams": 4
       }
     ],
-    "totalGrams": 925.0
+    "totalGrams": 925
   },
   {
     "id": "rec_32",
@@ -1310,38 +1310,38 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 554.0
+        "grams": 554
       },
       {
         "name": "Pasta De Avelã s/ açúcar",
-        "grams": 100.0
+        "grams": 100
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 80.0
+        "grams": 80
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 126.0
+        "grams": 126
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 19.0
+        "grams": 19
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 19.0
+        "grams": 19
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 38.0
+        "grams": 38
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 4.0
+        "name": "Neutro",
+        "grams": 4
       }
     ],
-    "totalGrams": 940.0
+    "totalGrams": 940
   },
   {
     "id": "rec_33",
@@ -1351,46 +1351,46 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 147.0
+        "grams": 147
       },
       {
         "name": "Leite de Coco",
-        "grams": 100.0
+        "grams": 100
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 175.0
+        "grams": 175
       },
       {
         "name": "Água",
-        "grams": 268.0
+        "grams": 268
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 40.0
+        "grams": 40
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 31.0
+        "grams": 31
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 10.0
+        "grams": 10
       },
       {
         "name": "Leite Condensado",
-        "grams": 232.0
+        "grams": 232
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Coco",
-        "grams": 100.0
+        "grams": 100
       }
     ],
-    "totalGrams": 1108.0
+    "totalGrams": 1108
   },
   {
     "id": "rec_34",
@@ -1400,46 +1400,46 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 300.0
+        "grams": 300
       },
       {
         "name": "Leite de Coco",
-        "grams": 153.0
+        "grams": 153
       },
       {
         "name": "Água",
-        "grams": 115.0
+        "grams": 115
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 66.0
+        "grams": 66
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 134.0
+        "grams": 134
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 41.0
+        "grams": 41
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 16.0
+        "grams": 16
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 31.0
+        "grams": 31
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 4.0
+        "name": "Neutro",
+        "grams": 4
       },
       {
         "name": "Gema Do Ovo",
-        "grams": 105.0
+        "grams": 105
       }
     ],
-    "totalGrams": 965.0
+    "totalGrams": 965
   },
   {
     "id": "rec_35",
@@ -1449,38 +1449,38 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 362.0
+        "grams": 362
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 262.0
+        "grams": 262
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 110.0
+        "grams": 110
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 50.0
+        "grams": 50
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 31.0
+        "grams": 31
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 33.0
+        "grams": 33
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 4.0
+        "name": "Neutro",
+        "grams": 4
       },
       {
         "name": "Cenoura",
-        "grams": 75.0
+        "grams": 75
       }
     ],
-    "totalGrams": 927.0
+    "totalGrams": 927
   },
   {
     "id": "rec_36",
@@ -1490,38 +1490,38 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 479.0
+        "grams": 479
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 90.0
+        "grams": 90
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 146.0
+        "grams": 146
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 35.0
+        "grams": 35
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 19.0
+        "grams": 19
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 20.0
+        "grams": 20
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 4.0
+        "name": "Neutro",
+        "grams": 4
       },
       {
         "name": "Queijo Brie / Cabra",
-        "grams": 150.0
+        "grams": 150
       }
     ],
-    "totalGrams": 943.0
+    "totalGrams": 943
   },
   {
     "id": "rec_37",
@@ -1531,42 +1531,42 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 167.0
+        "grams": 167
       },
       {
         "name": "Água",
-        "grams": 290.0
+        "grams": 290
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 70.0
+        "grams": 70
       },
       {
         "name": "Leite Condensado",
-        "grams": 200.0
+        "grams": 200
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 10.0
+        "grams": 10
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 31.0
+        "grams": 31
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 30.0
+        "grams": 30
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Chocolate Amargo 60%",
-        "grams": 150.0
+        "grams": 150
       }
     ],
-    "totalGrams": 953.0
+    "totalGrams": 953
   },
   {
     "id": "rec_38",
@@ -1576,34 +1576,34 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 584.0
+        "grams": 584
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 220.0
+        "grams": 220
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 116.0
+        "grams": 116
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 29.0
+        "grams": 29
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 19.0
+        "grams": 19
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 38.0
+        "grams": 38
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 4.0
+        "name": "Neutro",
+        "grams": 4
       }
     ],
-    "totalGrams": 1010.0
+    "totalGrams": 1010
   },
   {
     "id": "rec_39",
@@ -1613,38 +1613,38 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 500.0
+        "grams": 500
       },
       {
         "name": "Água",
-        "grams": 120.0
+        "grams": 120
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 100.0
+        "grams": 100
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 80.0
+        "grams": 80
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 30.0
+        "grams": 30
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 50.0
+        "grams": 50
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Chocolate Amargo 60%",
-        "grams": 180.0
+        "grams": 180
       }
     ],
-    "totalGrams": 1065.0
+    "totalGrams": 1065
   },
   {
     "id": "rec_40",
@@ -1654,46 +1654,46 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 350.0
+        "grams": 350
       },
       {
         "name": "Água",
-        "grams": 206.0
+        "grams": 206
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 70.0
+        "grams": 70
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 61.0
+        "grams": 61
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 20.0
+        "grams": 20
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 20.0
+        "grams": 20
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 10.0
+        "grams": 10
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Chocolate Ao Leite 33.7%",
-        "grams": 150.0
+        "grams": 150
       },
       {
         "name": "Chocolate Amargo 60%",
-        "grams": 100.0
+        "grams": 100
       }
     ],
-    "totalGrams": 992.0
+    "totalGrams": 992
   },
   {
     "id": "rec_41",
@@ -1703,38 +1703,38 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 500.0
+        "grams": 500
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 70.0
+        "grams": 70
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 100.0
+        "grams": 100
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 20.0
+        "grams": 20
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 30.0
+        "grams": 30
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 30.0
+        "grams": 30
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Chocolate Amargo 70%",
-        "grams": 200.0
+        "grams": 200
       }
     ],
-    "totalGrams": 955.0
+    "totalGrams": 955
   },
   {
     "id": "rec_42",
@@ -1744,42 +1744,42 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 453.0
+        "grams": 453
       },
       {
         "name": "Água",
-        "grams": 115.0
+        "grams": 115
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 66.0
+        "grams": 66
       },
       {
         "name": "Gema Do Ovo",
-        "grams": 105.0
+        "grams": 105
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 134.0
+        "grams": 134
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 41.0
+        "grams": 41
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 16.0
+        "grams": 16
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 31.0
+        "grams": 31
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 4.0
+        "name": "Neutro",
+        "grams": 4
       }
     ],
-    "totalGrams": 965.0
+    "totalGrams": 965
   },
   {
     "id": "rec_43",
@@ -1789,38 +1789,38 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 679.0
+        "grams": 679
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 84.0
+        "grams": 84
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 60.0
+        "grams": 60
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 29.0
+        "grams": 29
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 19.0
+        "grams": 19
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 38.0
+        "grams": 38
       },
       {
         "name": "Doce De Leite - Lata",
-        "grams": 200.0
+        "grams": 200
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       }
     ],
-    "totalGrams": 1114.0
+    "totalGrams": 1114
   },
   {
     "id": "rec_44",
@@ -1830,46 +1830,46 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 400.0
+        "grams": 400
       },
       {
         "name": "Água",
-        "grams": 200.0
+        "grams": 200
       },
       {
         "name": "Pasta De Avelã s/ açúcar",
-        "grams": 60.0
+        "grams": 60
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 30.0
+        "grams": 30
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 50.0
+        "grams": 50
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 15.0
+        "grams": 15
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 40.0
+        "grams": 40
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Chocolate Ao Leite 33.7%",
-        "grams": 120.0
+        "grams": 120
       },
       {
         "name": "Chocolate Amargo 60%",
-        "grams": 60.0
+        "grams": 60
       }
     ],
-    "totalGrams": 980.0
+    "totalGrams": 980
   },
   {
     "id": "rec_45",
@@ -1879,34 +1879,34 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 554.0
+        "grams": 554
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 220.0
+        "grams": 220
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 146.0
+        "grams": 146
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 19.0
+        "grams": 19
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 19.0
+        "grams": 19
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 38.0
+        "grams": 38
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 4.0
+        "name": "Neutro",
+        "grams": 4
       }
     ],
-    "totalGrams": 1000.0
+    "totalGrams": 1000
   },
   {
     "id": "rec_46",
@@ -1916,30 +1916,30 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 554.0
+        "grams": 554
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 220.0
+        "grams": 220
       },
       {
-        "name": "Xarope (monin)",
-        "grams": 148.0
+        "name": "Xarope de Açúcar Saborizado",
+        "grams": 148
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 31.0
+        "grams": 31
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 30.0
+        "grams": 30
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 4.0
+        "name": "Neutro",
+        "grams": 4
       }
     ],
-    "totalGrams": 987.0
+    "totalGrams": 987
   },
   {
     "id": "rec_47",
@@ -1949,42 +1949,42 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 554.0
+        "grams": 554
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 220.0
+        "grams": 220
       },
       {
         "name": "Pasta De Avelã s/ açúcar",
-        "grams": 30.0
+        "grams": 30
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 100.0
+        "grams": 100
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 65.0
+        "grams": 65
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 19.0
+        "grams": 19
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 38.0
+        "grams": 38
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Chocolate Ao Leite 33.7%",
-        "grams": 50.0
+        "grams": 50
       }
     ],
-    "totalGrams": 1081.0
+    "totalGrams": 1081
   },
   {
     "id": "rec_48",
@@ -1994,38 +1994,38 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 247.0
+        "grams": 247
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 175.0
+        "grams": 175
       },
       {
         "name": "Água",
-        "grams": 268.0
+        "grams": 268
       },
       {
         "name": "Leite Condensado",
-        "grams": 232.0
+        "grams": 232
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 32.0
+        "grams": 32
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 31.0
+        "grams": 31
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 10.0
+        "grams": 10
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       }
     ],
-    "totalGrams": 1000.0
+    "totalGrams": 1000
   },
   {
     "id": "rec_49",
@@ -2035,38 +2035,38 @@
     "ingredients": [
       {
         "name": "Água",
-        "grams": 477.0
+        "grams": 477
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 220.0
+        "grams": 220
       },
       {
         "name": "Leite Em Pó Integral",
-        "grams": 76.0
+        "grams": 76
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 146.0
+        "grams": 146
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 19.0
+        "grams": 19
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 19.0
+        "grams": 19
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 38.0
+        "grams": 38
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 4.0
+        "name": "Neutro",
+        "grams": 4
       }
     ],
-    "totalGrams": 999.0
+    "totalGrams": 999
   },
   {
     "id": "rec_50",
@@ -2076,38 +2076,38 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 554.0
+        "grams": 554
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 220.0
+        "grams": 220
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 146.0
+        "grams": 146
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 19.0
+        "grams": 19
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 19.0
+        "grams": 19
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 38.0
+        "grams": 38
       },
       {
         "name": "Matcha",
-        "grams": 10.0
+        "grams": 10
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 4.0
+        "name": "Neutro",
+        "grams": 4
       }
     ],
-    "totalGrams": 1010.0
+    "totalGrams": 1010
   },
   {
     "id": "rec_51",
@@ -2117,34 +2117,34 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 554.0
+        "grams": 554
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 220.0
+        "grams": 220
       },
       {
-        "name": "Nesquik / Ovomaltine",
-        "grams": 190.0
+        "name": "Achocolatado em Pó",
+        "grams": 190
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 19.0
+        "grams": 19
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 17.0
+        "grams": 17
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 35.0
+        "grams": 35
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 4.0
+        "name": "Neutro",
+        "grams": 4
       }
     ],
-    "totalGrams": 1039.0
+    "totalGrams": 1039
   },
   {
     "id": "rec_52",
@@ -2154,38 +2154,38 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 554.0
+        "grams": 554
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 220.0
+        "grams": 220
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 146.0
+        "grams": 146
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 19.0
+        "grams": 19
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 19.0
+        "grams": 19
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 38.0
+        "grams": 38
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 4.0
+        "name": "Neutro",
+        "grams": 4
       },
       {
         "name": "Panettone",
-        "grams": 100.0
+        "grams": 100
       }
     ],
-    "totalGrams": 1100.0
+    "totalGrams": 1100
   },
   {
     "id": "rec_53",
@@ -2195,42 +2195,42 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 554.0
+        "grams": 554
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 220.0
+        "grams": 220
       },
       {
         "name": "Mel",
-        "grams": 80.0
+        "grams": 80
       },
       {
         "name": "Cacau Em Pó 22% gordura",
-        "grams": 15.0
+        "grams": 15
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 46.0
+        "grams": 46
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 19.0
+        "grams": 19
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 19.0
+        "grams": 19
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 38.0
+        "grams": 38
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 4.0
+        "name": "Neutro",
+        "grams": 4
       }
     ],
-    "totalGrams": 995.0
+    "totalGrams": 995
   },
   {
     "id": "rec_54",
@@ -2240,38 +2240,38 @@
     "ingredients": [
       {
         "name": "Água",
-        "grams": 250.0
+        "grams": 250
       },
       {
         "name": "Leite Integral",
-        "grams": 177.0
+        "grams": 177
       },
       {
         "name": "Leite de Coco",
-        "grams": 70.0
+        "grams": 70
       },
       {
         "name": "Leite Condensado",
-        "grams": 240.0
+        "grams": 240
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 40.0
+        "grams": 40
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 31.0
+        "grams": 31
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Parmesão",
-        "grams": 50.0
+        "grams": 50
       }
     ],
-    "totalGrams": 863.0
+    "totalGrams": 863
   },
   {
     "id": "rec_55",
@@ -2281,50 +2281,50 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 350.0
+        "grams": 350
       },
       {
         "name": "Água",
-        "grams": 206.0
+        "grams": 206
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 70.0
+        "grams": 70
       },
       {
         "name": "Pasta De Amendoim 100%",
-        "grams": 50.0
+        "grams": 50
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 61.0
+        "grams": 61
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 30.0
+        "grams": 30
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 20.0
+        "grams": 20
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 10.0
+        "grams": 10
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Chocolate Ao Leite 33.7%",
-        "grams": 150.0
+        "grams": 150
       },
       {
         "name": "Chocolate Amargo 60%",
-        "grams": 100.0
+        "grams": 100
       }
     ],
-    "totalGrams": 1052.0
+    "totalGrams": 1052
   },
   {
     "id": "rec_56",
@@ -2334,42 +2334,42 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 554.0
+        "grams": 554
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 220.0
+        "grams": 220
       },
       {
         "name": "Pasta De Amendoim 100%",
-        "grams": 20.0
+        "grams": 20
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 100.0
+        "grams": 100
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 65.0
+        "grams": 65
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 19.0
+        "grams": 19
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 38.0
+        "grams": 38
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Chocolate Ao Leite 33.7%",
-        "grams": 80.0
+        "grams": 80
       }
     ],
-    "totalGrams": 1101.0
+    "totalGrams": 1101
   },
   {
     "id": "rec_57",
@@ -2379,26 +2379,26 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 711.0
+        "grams": 711
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 45.0
+        "grams": 45
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 145.0
+        "grams": 145
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 35.0
+        "grams": 35
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 59.0
+        "grams": 59
       },
       {
-        "name": "Neutro Fabbri",
+        "name": "Neutro",
         "grams": 5.52
       }
     ],
@@ -2412,31 +2412,31 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 658.0
+        "grams": 658
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 35.0
+        "grams": 35
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 139.0
+        "grams": 139
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 27.0
+        "grams": 27
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 46.0
+        "grams": 46
       },
       {
-        "name": "Neutro Fabbri",
+        "name": "Neutro",
         "grams": 4.28
       },
       {
         "name": "Pasta De Pistache 100%",
-        "grams": 91.0
+        "grams": 91
       }
     ],
     "totalGrams": 1000.28
@@ -2449,43 +2449,43 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 465.0
+        "grams": 465
       },
       {
         "name": "Água",
-        "grams": 145.0
+        "grams": 145
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 59.0
+        "grams": 59
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 133.0
+        "grams": 133
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 32.0
+        "grams": 32
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 23.0
+        "grams": 23
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 38.0
+        "grams": 38
       },
       {
-        "name": "Neutro Fabbri",
+        "name": "Neutro",
         "grams": 3.61
       },
       {
         "name": "Cacau Em Pó 22% gordura",
-        "grams": 54.0
+        "grams": 54
       },
       {
         "name": "Chocolate Amargo 70%",
-        "grams": 47.0
+        "grams": 47
       }
     ],
     "totalGrams": 999.61
@@ -2498,30 +2498,30 @@
     "ingredients": [
       {
         "name": "Pudim",
-        "grams": 551.0
+        "grams": 551
       },
       {
         "name": "Leite Integral",
-        "grams": 190.0
+        "grams": 190
       },
       {
-        "name": "Creme De Leite UHT 17% - Piracanjuba",
-        "grams": 150.0
+        "name": "Creme De Leite UHT 17%",
+        "grams": 150
       },
       {
         "name": "Leite Condensado",
-        "grams": 50.0
+        "grams": 50
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 35.0
+        "grams": 35
       },
       {
         "name": "Inulina - Fibra Vegetal",
-        "grams": 20.0
+        "grams": 20
       },
       {
-        "name": "Neutro Fabbri",
+        "name": "Neutro",
         "grams": 3.67
       }
     ],
@@ -2535,46 +2535,46 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 490.0
+        "grams": 490
       },
       {
         "name": "Maracujá",
-        "grams": 175.0
+        "grams": 175
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 100.0
+        "grams": 100
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 55.0
+        "grams": 55
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 115.0
+        "grams": 115
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 30.0
+        "grams": 30
       },
       {
         "name": "Inulina - Fibra Vegetal",
-        "grams": 15.0
+        "grams": 15
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 20.0
+        "grams": 20
       },
       {
         "name": "Sal",
-        "grams": 1.0
+        "grams": 1
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       }
     ],
-    "totalGrams": 1006.0
+    "totalGrams": 1006
   },
   {
     "id": "rec_62",
@@ -2584,42 +2584,42 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 465.0
+        "grams": 465
       },
       {
         "name": "Banana",
-        "grams": 200.0
+        "grams": 200
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 120.0
+        "grams": 120
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 50.0
+        "grams": 50
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 115.0
+        "grams": 115
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 30.0
+        "grams": 30
       },
       {
         "name": "Inulina - Fibra Vegetal",
-        "grams": 15.0
+        "grams": 15
       },
       {
         "name": "Sal",
-        "grams": 1.0
+        "grams": 1
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       }
     ],
-    "totalGrams": 1001.0
+    "totalGrams": 1001
   },
   {
     "id": "rec_63",
@@ -2629,42 +2629,42 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 165.0
+        "grams": 165
       },
       {
         "name": "Morango",
-        "grams": 530.0
+        "grams": 530
       },
       {
         "name": "Manteiga",
-        "grams": 60.0
+        "grams": 60
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 80.0
+        "grams": 80
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 120.0
+        "grams": 120
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 30.0
+        "grams": 30
       },
       {
         "name": "Inulina - Fibra Vegetal",
-        "grams": 15.0
+        "grams": 15
       },
       {
         "name": "Sal",
-        "grams": 1.0
+        "grams": 1
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       }
     ],
-    "totalGrams": 1006.0
+    "totalGrams": 1006
   },
   {
     "id": "rec_64",
@@ -2674,38 +2674,38 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 554.0
+        "grams": 554
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 220.0
+        "grams": 220
       },
       {
         "name": "Mel",
-        "grams": 90.0
+        "grams": 90
       },
       {
         "name": "Aveia em Flocos",
-        "grams": 30.0
+        "grams": 30
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 19.0
+        "grams": 19
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 10.0
+        "grams": 10
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 4.0
+        "name": "Neutro",
+        "grams": 4
       },
       {
         "name": "Ameixa Seca",
-        "grams": 200.0
+        "grams": 200
       }
     ],
-    "totalGrams": 1127.0
+    "totalGrams": 1127
   },
   {
     "id": "rec_65",
@@ -2715,38 +2715,38 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 300.0
+        "grams": 300
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 110.0
+        "grams": 110
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 48.0
+        "grams": 48
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 50.0
+        "grams": 50
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 10.0
+        "grams": 10
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 9.0
+        "grams": 9
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 4.0
+        "name": "Neutro",
+        "grams": 4
       },
       {
         "name": "Banana",
-        "grams": 500.0
+        "grams": 500
       }
     ],
-    "totalGrams": 1031.0
+    "totalGrams": 1031
   },
   {
     "id": "rec_66",
@@ -2756,42 +2756,42 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 440.0
+        "grams": 440
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 72.0
+        "grams": 72
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 174.0
+        "grams": 174
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 32.0
+        "grams": 32
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 19.0
+        "grams": 19
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 35.0
+        "grams": 35
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 4.0
+        "name": "Neutro",
+        "grams": 4
       },
       {
         "name": "Laranja Suco",
-        "grams": 60.0
+        "grams": 60
       },
       {
         "name": "Cream cheese",
-        "grams": 200.0
+        "grams": 200
       }
     ],
-    "totalGrams": 1036.0
+    "totalGrams": 1036
   },
   {
     "id": "rec_67",
@@ -2801,50 +2801,50 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 220.0
+        "grams": 220
       },
       {
         "name": "Água",
-        "grams": 130.0
+        "grams": 130
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 45.0
+        "grams": 45
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 95.0
+        "grams": 95
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 13.0
+        "grams": 13
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 13.0
+        "grams": 13
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 6.0
+        "grams": 6
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Chocolate ao leite 40%",
-        "grams": 95.0
+        "grams": 95
       },
       {
         "name": "Chocolate Amargo 60%",
-        "grams": 63.0
+        "grams": 63
       },
       {
         "name": "Morango",
-        "grams": 315.0
+        "grams": 315
       }
     ],
-    "totalGrams": 1000.0
+    "totalGrams": 1000
   },
   {
     "id": "rec_68",
@@ -2854,38 +2854,38 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 554.0
+        "grams": 554
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 220.0
+        "grams": 220
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 150.0
+        "grams": 150
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 19.0
+        "grams": 19
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 19.0
+        "grams": 19
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 38.0
+        "grams": 38
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 4.0
+        "name": "Neutro",
+        "grams": 4
       },
       {
         "name": "Framboesa",
-        "grams": 50.0
+        "grams": 50
       }
     ],
-    "totalGrams": 1054.0
+    "totalGrams": 1054
   },
   {
     "id": "rec_69",
@@ -2895,42 +2895,42 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 247.0
+        "grams": 247
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 175.0
+        "grams": 175
       },
       {
         "name": "Água",
-        "grams": 168.0
+        "grams": 168
       },
       {
         "name": "Leite Condensado",
-        "grams": 232.0
+        "grams": 232
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 55.0
+        "grams": 55
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 31.0
+        "grams": 31
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 10.0
+        "grams": 10
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Suco De Limão",
-        "grams": 85.0
+        "grams": 85
       }
     ],
-    "totalGrams": 1008.0
+    "totalGrams": 1008
   },
   {
     "id": "rec_70",
@@ -2940,42 +2940,42 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 247.0
+        "grams": 247
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 175.0
+        "grams": 175
       },
       {
         "name": "Água",
-        "grams": 100.0
+        "grams": 100
       },
       {
         "name": "Leite Condensado",
-        "grams": 250.0
+        "grams": 250
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 90.0
+        "grams": 90
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 31.0
+        "grams": 31
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 10.0
+        "grams": 10
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Maracujá",
-        "grams": 200.0
+        "grams": 200
       }
     ],
-    "totalGrams": 1108.0
+    "totalGrams": 1108
   },
   {
     "id": "rec_71",
@@ -2985,38 +2985,38 @@
     "ingredients": [
       {
         "name": "Polpa Cupuaçu",
-        "grams": 550.0
+        "grams": 550
       },
       {
         "name": "Água",
-        "grams": 180.0
+        "grams": 180
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 135.0
+        "grams": 135
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 30.0
+        "grams": 30
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 70.0
+        "grams": 70
       },
       {
         "name": "Inulina - Fibra Vegetal",
-        "grams": 15.0
+        "grams": 15
       },
       {
         "name": "Suco De Limão",
-        "grams": 20.0
+        "grams": 20
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       }
     ],
-    "totalGrams": 1005.0
+    "totalGrams": 1005
   },
   {
     "id": "rec_72",
@@ -3026,38 +3026,38 @@
     "ingredients": [
       {
         "name": "Manga",
-        "grams": 400.0
+        "grams": 400
       },
       {
         "name": "Água",
-        "grams": 190.0
+        "grams": 190
       },
       {
         "name": "Maracujá",
-        "grams": 175.0
+        "grams": 175
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 120.0
+        "grams": 120
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 30.0
+        "grams": 30
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 50.0
+        "grams": 50
       },
       {
         "name": "Inulina - Fibra Vegetal",
-        "grams": 30.0
+        "grams": 30
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       }
     ],
-    "totalGrams": 1000.0
+    "totalGrams": 1000
   },
   {
     "id": "rec_73",
@@ -3067,34 +3067,34 @@
     "ingredients": [
       {
         "name": "Suco De Limão",
-        "grams": 250.0
+        "grams": 250
       },
       {
         "name": "Água",
-        "grams": 470.0
+        "grams": 470
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 120.0
+        "grams": 120
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 55.0
+        "grams": 55
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 60.0
+        "grams": 60
       },
       {
         "name": "Inulina - Fibra Vegetal",
-        "grams": 40.0
+        "grams": 40
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       }
     ],
-    "totalGrams": 1000.0
+    "totalGrams": 1000
   },
   {
     "id": "rec_74",
@@ -3104,38 +3104,38 @@
     "ingredients": [
       {
         "name": "Framboesa",
-        "grams": 535.0
+        "grams": 535
       },
       {
         "name": "Água",
-        "grams": 225.0
+        "grams": 225
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 120.0
+        "grams": 120
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 45.0
+        "grams": 45
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 35.0
+        "grams": 35
       },
       {
         "name": "Suco De Limão",
-        "grams": 20.0
+        "grams": 20
       },
       {
         "name": "Inulina - Fibra Vegetal",
-        "grams": 15.0
+        "grams": 15
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       }
     ],
-    "totalGrams": 1000.0
+    "totalGrams": 1000
   },
   {
     "id": "rec_75",
@@ -3145,38 +3145,38 @@
     "ingredients": [
       {
         "name": "Banana",
-        "grams": 490.0
+        "grams": 490
       },
       {
         "name": "Água",
-        "grams": 300.0
+        "grams": 300
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 100.0
+        "grams": 100
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 45.0
+        "grams": 45
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 35.0
+        "grams": 35
       },
       {
         "name": "Suco De Limão",
-        "grams": 20.0
+        "grams": 20
       },
       {
         "name": "Inulina - Fibra Vegetal",
-        "grams": 5.0
+        "grams": 5
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       }
     ],
-    "totalGrams": 1000.0
+    "totalGrams": 1000
   },
   {
     "id": "rec_76",
@@ -3186,38 +3186,38 @@
     "ingredients": [
       {
         "name": "Melancia",
-        "grams": 650.0
+        "grams": 650
       },
       {
         "name": "Água",
-        "grams": 80.0
+        "grams": 80
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 120.0
+        "grams": 120
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 45.0
+        "grams": 45
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 35.0
+        "grams": 35
       },
       {
         "name": "Suco De Limão",
-        "grams": 20.0
+        "grams": 20
       },
       {
         "name": "Inulina - Fibra Vegetal",
-        "grams": 50.0
+        "grams": 50
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       }
     ],
-    "totalGrams": 1005.0
+    "totalGrams": 1005
   },
   {
     "id": "rec_77",
@@ -3227,38 +3227,38 @@
     "ingredients": [
       {
         "name": "Maracujá",
-        "grams": 250.0
+        "grams": 250
       },
       {
         "name": "Pêssego",
-        "grams": 315.0
+        "grams": 315
       },
       {
         "name": "Água",
-        "grams": 200.0
+        "grams": 200
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 120.0
+        "grams": 120
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 45.0
+        "grams": 45
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 40.0
+        "grams": 40
       },
       {
         "name": "Inulina - Fibra Vegetal",
-        "grams": 25.0
+        "grams": 25
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       }
     ],
-    "totalGrams": 1000.0
+    "totalGrams": 1000
   },
   {
     "id": "rec_78",
@@ -3268,38 +3268,38 @@
     "ingredients": [
       {
         "name": "Mexerica",
-        "grams": 600.0
+        "grams": 600
       },
       {
         "name": "Água",
-        "grams": 150.0
+        "grams": 150
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 120.0
+        "grams": 120
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 45.0
+        "grams": 45
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 40.0
+        "grams": 40
       },
       {
         "name": "Inulina - Fibra Vegetal",
-        "grams": 25.0
+        "grams": 25
       },
       {
         "name": "Suco De Limão",
-        "grams": 15.0
+        "grams": 15
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       }
     ],
-    "totalGrams": 1000.0
+    "totalGrams": 1000
   },
   {
     "id": "rec_79",
@@ -3309,38 +3309,38 @@
     "ingredients": [
       {
         "name": "Polpa de Açai(10-14%)",
-        "grams": 540.0
+        "grams": 540
       },
       {
         "name": "Água",
-        "grams": 200.0
+        "grams": 200
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 135.0
+        "grams": 135
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 45.0
+        "grams": 45
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 40.0
+        "grams": 40
       },
       {
         "name": "Inulina - Fibra Vegetal",
-        "grams": 20.0
+        "grams": 20
       },
       {
         "name": "Suco De Limão",
-        "grams": 15.0
+        "grams": 15
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       }
     ],
-    "totalGrams": 1000.0
+    "totalGrams": 1000
   },
   {
     "id": "rec_80",
@@ -3350,42 +3350,42 @@
     "ingredients": [
       {
         "name": "Polpa de Açai(10-14%)",
-        "grams": 600.0
+        "grams": 600
       },
       {
         "name": "Banana",
-        "grams": 150.0
+        "grams": 150
       },
       {
         "name": "Água",
-        "grams": 155.0
+        "grams": 155
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 120.0
+        "grams": 120
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 45.0
+        "grams": 45
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 40.0
+        "grams": 40
       },
       {
         "name": "Inulina - Fibra Vegetal",
-        "grams": 20.0
+        "grams": 20
       },
       {
         "name": "Suco De Limão",
-        "grams": 15.0
+        "grams": 15
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       }
     ],
-    "totalGrams": 1150.0
+    "totalGrams": 1150
   },
   {
     "id": "rec_81",
@@ -3395,38 +3395,38 @@
     "ingredients": [
       {
         "name": "Morango",
-        "grams": 200.0
+        "grams": 200
       },
       {
         "name": "Amora",
-        "grams": 150.0
+        "grams": 150
       },
       {
         "name": "Framboesa",
-        "grams": 150.0
+        "grams": 150
       },
       {
         "name": "Água",
-        "grams": 248.0
+        "grams": 248
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 145.0
+        "grams": 145
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 70.0
+        "grams": 70
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 32.0
+        "grams": 32
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       }
     ],
-    "totalGrams": 1000.0
+    "totalGrams": 1000
   },
   {
     "id": "rec_82",
@@ -3436,42 +3436,42 @@
     "ingredients": [
       {
         "name": "Água",
-        "grams": 450.0
+        "grams": 450
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 175.0
+        "grams": 175
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 50.0
+        "grams": 50
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 28.0
+        "grams": 28
       },
       {
         "name": "Inulina - Fibra Vegetal",
-        "grams": 25.0
+        "grams": 25
       },
       {
         "name": "Açúcar - Maltodextrina",
-        "grams": 18.0
+        "grams": 18
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 4.0
+        "name": "Neutro",
+        "grams": 4
       },
       {
         "name": "Suco De Limão",
-        "grams": 210.0
+        "grams": 210
       },
       {
         "name": "Framboesa",
-        "grams": 20.0
+        "grams": 20
       }
     ],
-    "totalGrams": 980.0
+    "totalGrams": 980
   },
   {
     "id": "rec_83",
@@ -3481,34 +3481,34 @@
     "ingredients": [
       {
         "name": "Água",
-        "grams": 295.0
+        "grams": 295
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 150.0
+        "grams": 150
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 50.0
+        "grams": 50
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 20.0
+        "grams": 20
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Abacaxi",
-        "grams": 500.0
+        "grams": 500
       },
       {
         "name": "Hortelã",
-        "grams": 7.0
+        "grams": 7
       }
     ],
-    "totalGrams": 1027.0
+    "totalGrams": 1027
   },
   {
     "id": "rec_84",
@@ -3518,34 +3518,34 @@
     "ingredients": [
       {
         "name": "Água",
-        "grams": 295.0
+        "grams": 295
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 100.0
+        "grams": 100
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 50.0
+        "grams": 50
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 20.0
+        "grams": 20
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Atemoia",
-        "grams": 500.0
+        "grams": 500
       },
       {
         "name": "Suco De Limão",
-        "grams": 10.0
+        "grams": 10
       }
     ],
-    "totalGrams": 980.0
+    "totalGrams": 980
   },
   {
     "id": "rec_85",
@@ -3555,30 +3555,30 @@
     "ingredients": [
       {
         "name": "Água",
-        "grams": 295.0
+        "grams": 295
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 150.0
+        "grams": 150
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 50.0
+        "grams": 50
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 20.0
+        "grams": 20
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Caqui",
-        "grams": 500.0
+        "grams": 500
       }
     ],
-    "totalGrams": 1020.0
+    "totalGrams": 1020
   },
   {
     "id": "rec_86",
@@ -3588,30 +3588,30 @@
     "ingredients": [
       {
         "name": "Água",
-        "grams": 270.0
+        "grams": 270
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 125.0
+        "grams": 125
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 50.0
+        "grams": 50
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 20.0
+        "grams": 20
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Figo",
-        "grams": 500.0
+        "grams": 500
       }
     ],
-    "totalGrams": 970.0
+    "totalGrams": 970
   },
   {
     "id": "rec_87",
@@ -3621,34 +3621,34 @@
     "ingredients": [
       {
         "name": "Água",
-        "grams": 247.0
+        "grams": 247
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 175.0
+        "grams": 175
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 40.0
+        "grams": 40
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 20.0
+        "grams": 20
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Frutas Vermelhas",
-        "grams": 500.0
+        "grams": 500
       },
       {
         "name": "Suco De Limão",
-        "grams": 20.0
+        "grams": 20
       }
     ],
-    "totalGrams": 1007.0
+    "totalGrams": 1007
   },
   {
     "id": "rec_88",
@@ -3658,30 +3658,30 @@
     "ingredients": [
       {
         "name": "Água",
-        "grams": 270.0
+        "grams": 270
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 175.0
+        "grams": 175
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 40.0
+        "grams": 40
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 10.0
+        "grams": 10
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Jabuticaba",
-        "grams": 500.0
+        "grams": 500
       }
     ],
-    "totalGrams": 1000.0
+    "totalGrams": 1000
   },
   {
     "id": "rec_89",
@@ -3691,34 +3691,34 @@
     "ingredients": [
       {
         "name": "Água",
-        "grams": 100.0
+        "grams": 100
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 125.0
+        "grams": 125
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 60.0
+        "grams": 60
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 40.0
+        "grams": 40
       },
       {
         "name": "Inulina - Fibra Vegetal",
-        "grams": 20.0
+        "grams": 20
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Laranja Suco",
-        "grams": 700.0
+        "grams": 700
       }
     ],
-    "totalGrams": 1050.0
+    "totalGrams": 1050
   },
   {
     "id": "rec_90",
@@ -3728,30 +3728,30 @@
     "ingredients": [
       {
         "name": "Água",
-        "grams": 220.0
+        "grams": 220
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 132.0
+        "grams": 132
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 40.0
+        "grams": 40
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 20.0
+        "grams": 20
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Mamão",
-        "grams": 500.0
+        "grams": 500
       }
     ],
-    "totalGrams": 917.0
+    "totalGrams": 917
   },
   {
     "id": "rec_91",
@@ -3761,34 +3761,34 @@
     "ingredients": [
       {
         "name": "Água",
-        "grams": 150.0
+        "grams": 150
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 152.0
+        "grams": 152
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 30.0
+        "grams": 30
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 20.0
+        "grams": 20
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Laranja Suco",
-        "grams": 400.0
+        "grams": 400
       },
       {
         "name": "Mamão",
-        "grams": 200.0
+        "grams": 200
       }
     ],
-    "totalGrams": 957.0
+    "totalGrams": 957
   },
   {
     "id": "rec_92",
@@ -3798,34 +3798,34 @@
     "ingredients": [
       {
         "name": "Água",
-        "grams": 250.0
+        "grams": 250
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 100.0
+        "grams": 100
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 40.0
+        "grams": 40
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 40.0
+        "grams": 40
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Manga",
-        "grams": 500.0
+        "grams": 500
       },
       {
         "name": "Suco De Limão",
-        "grams": 20.0
+        "grams": 20
       }
     ],
-    "totalGrams": 955.0
+    "totalGrams": 955
   },
   {
     "id": "rec_93",
@@ -3835,30 +3835,30 @@
     "ingredients": [
       {
         "name": "Água",
-        "grams": 330.0
+        "grams": 330
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 200.0
+        "grams": 200
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 40.0
+        "grams": 40
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 20.0
+        "grams": 20
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Maracujá",
-        "grams": 400.0
+        "grams": 400
       }
     ],
-    "totalGrams": 995.0
+    "totalGrams": 995
   },
   {
     "id": "rec_94",
@@ -3868,38 +3868,38 @@
     "ingredients": [
       {
         "name": "Água",
-        "grams": 100.0
+        "grams": 100
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 150.0
+        "grams": 150
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 60.0
+        "grams": 60
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 40.0
+        "grams": 40
       },
       {
         "name": "Inulina - Fibra Vegetal",
-        "grams": 20.0
+        "grams": 20
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Melancia",
-        "grams": 700.0
+        "grams": 700
       },
       {
         "name": "Hortelã",
-        "grams": 6.0
+        "grams": 6
       }
     ],
-    "totalGrams": 1081.0
+    "totalGrams": 1081
   },
   {
     "id": "rec_95",
@@ -3909,38 +3909,38 @@
     "ingredients": [
       {
         "name": "Água",
-        "grams": 100.0
+        "grams": 100
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 125.0
+        "grams": 125
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 60.0
+        "grams": 60
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 40.0
+        "grams": 40
       },
       {
         "name": "Inulina - Fibra Vegetal",
-        "grams": 20.0
+        "grams": 20
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Mexerica",
-        "grams": 700.0
+        "grams": 700
       },
       {
         "name": "Suco De Limão",
-        "grams": 10.0
+        "grams": 10
       }
     ],
-    "totalGrams": 1060.0
+    "totalGrams": 1060
   },
   {
     "id": "rec_96",
@@ -3950,34 +3950,34 @@
     "ingredients": [
       {
         "name": "Água",
-        "grams": 250.0
+        "grams": 250
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 140.0
+        "grams": 140
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 50.0
+        "grams": 50
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 30.0
+        "grams": 30
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Pêssego",
-        "grams": 500.0
+        "grams": 500
       },
       {
         "name": "Suco De Limão",
-        "grams": 20.0
+        "grams": 20
       }
     ],
-    "totalGrams": 995.0
+    "totalGrams": 995
   },
   {
     "id": "rec_97",
@@ -3987,30 +3987,30 @@
     "ingredients": [
       {
         "name": "Água",
-        "grams": 553.0
+        "grams": 553
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 180.0
+        "grams": 180
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 27.0
+        "grams": 27
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 25.0
+        "grams": 25
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Chocolate Amargo 70%",
-        "grams": 200.0
+        "grams": 200
       }
     ],
-    "totalGrams": 990.0
+    "totalGrams": 990
   },
   {
     "id": "rec_98",
@@ -4020,30 +4020,30 @@
     "ingredients": [
       {
         "name": "Água",
-        "grams": 553.0
+        "grams": 553
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 30.0
+        "grams": 30
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 27.0
+        "grams": 27
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 25.0
+        "grams": 25
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Chocolate ao leite 40%",
-        "grams": 350.0
+        "grams": 350
       }
     ],
-    "totalGrams": 990.0
+    "totalGrams": 990
   },
   {
     "id": "rec_99",
@@ -4053,42 +4053,42 @@
     "ingredients": [
       {
         "name": "Água",
-        "grams": 620.0
+        "grams": 620
       },
       {
         "name": "Chocolate Amargo 70%",
-        "grams": 75.0
+        "grams": 75
       },
       {
         "name": "Cacau Em Pó 11% gordura",
-        "grams": 90.0
+        "grams": 90
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 120.0
+        "grams": 120
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 50.0
+        "grams": 50
       },
       {
         "name": "Inulina - Fibra Vegetal",
-        "grams": 10.0
+        "grams": 10
       },
       {
         "name": "Manteiga de cacau",
-        "grams": 30.0
+        "grams": 30
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Sal",
-        "grams": 1.0
+        "grams": 1
       }
     ],
-    "totalGrams": 1001.0
+    "totalGrams": 1001
   },
   {
     "id": "rec_100",
@@ -4098,38 +4098,38 @@
     "ingredients": [
       {
         "name": "Água",
-        "grams": 600.0
+        "grams": 600
       },
       {
         "name": "Pasta De Pistache 100%",
-        "grams": 120.0
+        "grams": 120
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 120.0
+        "grams": 120
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 65.0
+        "grams": 65
       },
       {
         "name": "Inulina - Fibra Vegetal",
-        "grams": 50.0
+        "grams": 50
       },
       {
         "name": "Óleo de coco",
-        "grams": 40.0
+        "grams": 40
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Sal",
-        "grams": 2.0
+        "grams": 2
       }
     ],
-    "totalGrams": 1002.0
+    "totalGrams": 1002
   },
   {
     "id": "rec_101",
@@ -4139,38 +4139,38 @@
     "ingredients": [
       {
         "name": "Água",
-        "grams": 590.0
+        "grams": 590
       },
       {
         "name": "Pasta De Avelã s/ açúcar",
-        "grams": 130.0
+        "grams": 130
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 130.0
+        "grams": 130
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 50.0
+        "grams": 50
       },
       {
         "name": "Inulina - Fibra Vegetal",
-        "grams": 50.0
+        "grams": 50
       },
       {
         "name": "Óleo de coco",
-        "grams": 40.0
+        "grams": 40
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Sal",
-        "grams": 2.0
+        "grams": 2
       }
     ],
-    "totalGrams": 997.0
+    "totalGrams": 997
   },
   {
     "id": "rec_102",
@@ -4180,42 +4180,42 @@
     "ingredients": [
       {
         "name": "Água",
-        "grams": 600.0
+        "grams": 600
       },
       {
         "name": "Pasta De Avelã s/ açúcar",
-        "grams": 90.0
+        "grams": 90
       },
       {
         "name": "Chocolate Amargo 70%",
-        "grams": 60.0
+        "grams": 60
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 115.0
+        "grams": 115
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 50.0
+        "grams": 50
       },
       {
         "name": "Inulina - Fibra Vegetal",
-        "grams": 50.0
+        "grams": 50
       },
       {
         "name": "Óleo de coco",
-        "grams": 20.0
+        "grams": 20
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Sal",
-        "grams": 2.0
+        "grams": 2
       }
     ],
-    "totalGrams": 992.0
+    "totalGrams": 992
   },
   {
     "id": "rec_103",
@@ -4225,38 +4225,38 @@
     "ingredients": [
       {
         "name": "Água",
-        "grams": 580.0
+        "grams": 580
       },
       {
         "name": "Pasta De Amendoim 100%",
-        "grams": 165.0
+        "grams": 165
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 130.0
+        "grams": 130
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 50.0
+        "grams": 50
       },
       {
         "name": "Inulina - Fibra Vegetal",
-        "grams": 50.0
+        "grams": 50
       },
       {
         "name": "Óleo de coco",
-        "grams": 20.0
+        "grams": 20
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Sal",
-        "grams": 2.0
+        "grams": 2
       }
     ],
-    "totalGrams": 1002.0
+    "totalGrams": 1002
   },
   {
     "id": "rec_104",
@@ -4266,42 +4266,42 @@
     "ingredients": [
       {
         "name": "Água",
-        "grams": 320.0
+        "grams": 320
       },
       {
-        "name": "Leite de Coco Sococo",
-        "grams": 350.0
+        "name": "Leite de Coco Tradicional (20% gordura)",
+        "grams": 350
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 150.0
+        "grams": 150
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 50.0
+        "grams": 50
       },
       {
         "name": "Inulina - Fibra Vegetal",
-        "grams": 50.0
+        "grams": 50
       },
       {
         "name": "Óleo de coco",
-        "grams": 40.0
+        "grams": 40
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Sal",
-        "grams": 1.0
+        "grams": 1
       },
       {
-        "name": "Leite de coco em pó - IO",
-        "grams": 40.0
+        "name": "Leite de Coco em Pó",
+        "grams": 40
       }
     ],
-    "totalGrams": 1006.0
+    "totalGrams": 1006
   },
   {
     "id": "rec_105",
@@ -4311,46 +4311,46 @@
     "ingredients": [
       {
         "name": "Água",
-        "grams": 360.0
+        "grams": 360
       },
       {
-        "name": "Leite de Coco Sococo",
-        "grams": 300.0
+        "name": "Leite de Coco Tradicional (20% gordura)",
+        "grams": 300
       },
       {
         "name": "Cacau Em Pó 11% gordura",
-        "grams": 30.0
+        "grams": 30
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 140.0
+        "grams": 140
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 50.0
+        "grams": 50
       },
       {
         "name": "Inulina - Fibra Vegetal",
-        "grams": 50.0
+        "grams": 50
       },
       {
         "name": "Óleo de coco",
-        "grams": 30.0
+        "grams": 30
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Sal",
-        "grams": 1.0
+        "grams": 1
       },
       {
-        "name": "Leite de coco em pó - IO",
-        "grams": 30.0
+        "name": "Leite de Coco em Pó",
+        "grams": 30
       }
     ],
-    "totalGrams": 996.0
+    "totalGrams": 996
   },
   {
     "id": "rec_106",
@@ -4360,34 +4360,34 @@
     "ingredients": [
       {
         "name": "Leite de Aveia",
-        "grams": 750.0
+        "grams": 750
       },
       {
         "name": "Óleo de girassol",
-        "grams": 45.0
+        "grams": 45
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 130.0
+        "grams": 130
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 30.0
+        "grams": 30
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 16.0
+        "grams": 16
       },
       {
         "name": "Inulina - Fibra Vegetal",
-        "grams": 22.0
+        "grams": 22
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 6.0
+        "name": "Neutro",
+        "grams": 6
       }
     ],
-    "totalGrams": 999.0
+    "totalGrams": 999
   },
   {
     "id": "rec_107",
@@ -4397,38 +4397,38 @@
     "ingredients": [
       {
         "name": "Leite de Aveia",
-        "grams": 750.0
+        "grams": 750
       },
       {
         "name": "Óleo de girassol",
-        "grams": 45.0
+        "grams": 45
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 130.0
+        "grams": 130
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 30.0
+        "grams": 30
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 41.0
+        "grams": 41
       },
       {
         "name": "Inulina - Fibra Vegetal",
-        "grams": 22.0
+        "grams": 22
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 6.0
+        "name": "Neutro",
+        "grams": 6
       },
       {
         "name": "Pasta De Avelã s/ açúcar",
-        "grams": 100.0
+        "grams": 100
       }
     ],
-    "totalGrams": 1124.0
+    "totalGrams": 1124
   },
   {
     "id": "rec_108",
@@ -4438,38 +4438,38 @@
     "ingredients": [
       {
         "name": "Leite de Aveia",
-        "grams": 750.0
+        "grams": 750
       },
       {
         "name": "Óleo de girassol",
-        "grams": 45.0
+        "grams": 45
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 130.0
+        "grams": 130
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 30.0
+        "grams": 30
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 41.0
+        "grams": 41
       },
       {
         "name": "Inulina - Fibra Vegetal",
-        "grams": 22.0
+        "grams": 22
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 6.0
+        "name": "Neutro",
+        "grams": 6
       },
       {
         "name": "Pasta De Pistache 100%",
-        "grams": 100.0
+        "grams": 100
       }
     ],
-    "totalGrams": 1124.0
+    "totalGrams": 1124
   },
   {
     "id": "rec_109",
@@ -4479,38 +4479,38 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 500.0
+        "grams": 500
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 190.0
+        "grams": 190
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 50.0
+        "grams": 50
       },
       {
         "name": "Whey protein 80%",
-        "grams": 5.0
+        "grams": 5
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 110.0
+        "grams": 110
       },
       {
         "name": "Açúcar - Maltodextrina",
-        "grams": 50.0
+        "grams": 50
       },
       {
         "name": "Licor Amaretto",
-        "grams": 90.0
+        "grams": 90
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       }
     ],
-    "totalGrams": 1000.0
+    "totalGrams": 1000
   },
   {
     "id": "rec_110",
@@ -4520,34 +4520,34 @@
     "ingredients": [
       {
         "name": "Água",
-        "grams": 500.0
+        "grams": 500
       },
       {
         "name": "Suco De Limão",
-        "grams": 180.0
+        "grams": 180
       },
       {
         "name": "Cachaça",
-        "grams": 100.0
+        "grams": 100
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 120.0
+        "grams": 120
       },
       {
         "name": "Açúcar - Maltodextrina",
-        "grams": 45.0
+        "grams": 45
       },
       {
         "name": "Inulina - Fibra Vegetal",
-        "grams": 50.0
+        "grams": 50
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       }
     ],
-    "totalGrams": 1000.0
+    "totalGrams": 1000
   },
   {
     "id": "rec_111",
@@ -4557,50 +4557,50 @@
     "ingredients": [
       {
         "name": "Chocolate Amargo 70%",
-        "grams": 100.0
+        "grams": 100
       },
       {
         "name": "Cacau Em Pó 22% gordura",
-        "grams": 50.0
+        "grams": 50
       },
       {
-        "name": "Licor Bailey's",
-        "grams": 176.0
+        "name": "Licor de Creme Irlandês (Irish Cream)",
+        "grams": 176
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 34.0
+        "grams": 34
       },
       {
         "name": "Manteiga",
-        "grams": 14.0
+        "grams": 14
       },
       {
         "name": "Água",
-        "grams": 367.0
+        "grams": 367
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 108.0
+        "grams": 108
       },
       {
         "name": "Açúcar - Maltodextrina",
-        "grams": 31.0
+        "grams": 31
       },
       {
         "name": "Inulina - Fibra Vegetal",
-        "grams": 33.0
+        "grams": 33
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 82.0
+        "grams": 82
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       }
     ],
-    "totalGrams": 1000.0
+    "totalGrams": 1000
   },
   {
     "id": "rec_112",
@@ -4610,50 +4610,50 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 200.0
+        "grams": 200
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 120.0
+        "grams": 120
       },
       {
         "name": "Água",
-        "grams": 315.0
+        "grams": 315
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 50.0
+        "grams": 50
       },
       {
         "name": "Açúcar - Maltodextrina",
-        "grams": 35.0
+        "grams": 35
       },
       {
         "name": "Inulina - Fibra Vegetal",
-        "grams": 50.0
+        "grams": 50
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 20.0
+        "grams": 20
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Chocolate ao leite 40%",
-        "grams": 200.0
+        "grams": 200
       },
       {
         "name": "Chocolate Amargo 60%",
-        "grams": 50.0
+        "grams": 50
       },
       {
         "name": "Whisky / Conhaque 40%",
-        "grams": 35.0
+        "grams": 35
       }
     ],
-    "totalGrams": 1080.0
+    "totalGrams": 1080
   },
   {
     "id": "rec_113",
@@ -4663,42 +4663,42 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 585.0
+        "grams": 585
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 118.0
+        "grams": 118
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 134.0
+        "grams": 134
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 20.0
+        "grams": 20
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 20.0
+        "grams": 20
       },
       {
         "name": "Inulina - Fibra Vegetal",
-        "grams": 18.0
+        "grams": 18
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 40.0
+        "grams": 40
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
-        "name": "Licor Bailey's",
-        "grams": 60.0
+        "name": "Licor de Creme Irlandês (Irish Cream)",
+        "grams": 60
       }
     ],
-    "totalGrams": 1000.0
+    "totalGrams": 1000
   },
   {
     "id": "rec_114",
@@ -4708,38 +4708,38 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 296.0
+        "grams": 296
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 40.0
+        "grams": 40
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 90.0
+        "grams": 90
       },
       {
         "name": "Açúcar - Maltodextrina",
-        "grams": 29.0
+        "grams": 29
       },
       {
         "name": "Inulina - Fibra Vegetal",
-        "grams": 61.0
+        "grams": 61
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Cajá",
-        "grams": 400.0
+        "grams": 400
       },
       {
         "name": "Cachaça",
-        "grams": 65.0
+        "grams": 65
       }
     ],
-    "totalGrams": 986.0
+    "totalGrams": 986
   },
   {
     "id": "rec_115",
@@ -4749,38 +4749,38 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 600.0
+        "grams": 600
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 120.0
+        "grams": 120
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 110.0
+        "grams": 110
       },
       {
         "name": "Açúcar - Maltodextrina",
-        "grams": 60.0
+        "grams": 60
       },
       {
         "name": "Inulina - Fibra Vegetal",
-        "grams": 30.0
+        "grams": 30
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 60.0
+        "grams": 60
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Whisky / Conhaque 40%",
-        "grams": 55.0
+        "grams": 55
       }
     ],
-    "totalGrams": 1040.0
+    "totalGrams": 1040
   },
   {
     "id": "rec_116",
@@ -4790,38 +4790,38 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 600.0
+        "grams": 600
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 120.0
+        "grams": 120
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 120.0
+        "grams": 120
       },
       {
         "name": "Açúcar - Maltodextrina",
-        "grams": 50.0
+        "grams": 50
       },
       {
         "name": "Inulina - Fibra Vegetal",
-        "grams": 50.0
+        "grams": 50
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 50.0
+        "grams": 50
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Rum",
-        "grams": 70.0
+        "grams": 70
       }
     ],
-    "totalGrams": 1065.0
+    "totalGrams": 1065
   },
   {
     "id": "rec_117",
@@ -4831,38 +4831,38 @@
     "ingredients": [
       {
         "name": "Água",
-        "grams": 425.0
+        "grams": 425
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 120.0
+        "grams": 120
       },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 70.0
+        "grams": 70
       },
       {
         "name": "Açúcar - Maltodextrina",
-        "grams": 45.0
+        "grams": 45
       },
       {
         "name": "Inulina - Fibra Vegetal",
-        "grams": 45.0
+        "grams": 45
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Suco De Limão",
-        "grams": 210.0
+        "grams": 210
       },
       {
         "name": "Cachaça",
-        "grams": 70.0
+        "grams": 70
       }
     ],
-    "totalGrams": 990.0
+    "totalGrams": 990
   },
   {
     "id": "rec_118",
@@ -4872,46 +4872,46 @@
     "ingredients": [
       {
         "name": "Água",
-        "grams": 171.0
+        "grams": 171
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 120.0
+        "grams": 120
       },
       {
         "name": "Inulina - Fibra Vegetal",
-        "grams": 61.0
+        "grams": 61
       },
       {
         "name": "Açúcar - Maltodextrina",
-        "grams": 54.0
+        "grams": 54
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Vinho Branco / Espumante",
-        "grams": 250.0
+        "grams": 250
       },
       {
         "name": "Morango",
-        "grams": 75.0
+        "grams": 75
       },
       {
         "name": "Laranja Suco",
-        "grams": 75.0
+        "grams": 75
       },
       {
         "name": "Abacaxi",
-        "grams": 75.0
+        "grams": 75
       },
       {
         "name": "Maçã",
-        "grams": 75.0
+        "grams": 75
       }
     ],
-    "totalGrams": 961.0
+    "totalGrams": 961
   },
   {
     "id": "rec_119",
@@ -4921,38 +4921,38 @@
     "ingredients": [
       {
         "name": "Água",
-        "grams": 175.0
+        "grams": 175
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 156.0
+        "grams": 156
       },
       {
         "name": "Inulina - Fibra Vegetal",
-        "grams": 61.0
+        "grams": 61
       },
       {
         "name": "Açúcar - Maltodextrina",
-        "grams": 54.0
+        "grams": 54
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Vinho Branco / Espumante",
-        "grams": 260.0
+        "grams": 260
       },
       {
         "name": "Morango",
-        "grams": 250.0
+        "grams": 250
       },
       {
         "name": "Suco De Limão",
-        "grams": 50.0
+        "grams": 50
       }
     ],
-    "totalGrams": 1011.0
+    "totalGrams": 1011
   },
   {
     "id": "rec_120",
@@ -4962,34 +4962,34 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 400.0
+        "grams": 400
       },
       {
-        "name": "Creme De Leite UHT 17% - Piracanjuba",
-        "grams": 100.0
+        "name": "Creme De Leite UHT 17%",
+        "grams": 100
       },
       {
         "name": "Leite Em Pó Integral",
-        "grams": 50.0
+        "grams": 50
       },
       {
         "name": "MIX ZERO",
-        "grams": 115.0
+        "grams": 115
       },
       {
         "name": "Gema Do Ovo",
-        "grams": 40.0
+        "grams": 40
       },
       {
         "name": "Raspa De Limão (Casca)",
-        "grams": 2.0
+        "grams": 2
       },
       {
-        "name": "Pasta Baunilha - Vanilla Brasil",
-        "grams": 2.0
+        "name": "Pasta de Baunilha",
+        "grams": 2
       }
     ],
-    "totalGrams": 709.0
+    "totalGrams": 709
   },
   {
     "id": "rec_121",
@@ -4999,22 +4999,22 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 420.0
+        "grams": 420
       },
       {
-        "name": "Creme De Leite UHT 17% - Piracanjuba",
-        "grams": 200.0
+        "name": "Creme De Leite UHT 17%",
+        "grams": 200
       },
       {
         "name": "Leite Em Pó Integral",
-        "grams": 60.0
+        "grams": 60
       },
       {
         "name": "MIX ZERO",
-        "grams": 120.0
+        "grams": 120
       }
     ],
-    "totalGrams": 800.0
+    "totalGrams": 800
   },
   {
     "id": "rec_122",
@@ -5024,26 +5024,26 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 420.0
+        "grams": 420
       },
       {
-        "name": "Creme De Leite UHT 17% - Piracanjuba",
-        "grams": 200.0
+        "name": "Creme De Leite UHT 17%",
+        "grams": 200
       },
       {
         "name": "Leite Em Pó Integral",
-        "grams": 60.0
+        "grams": 60
       },
       {
         "name": "MIX ZERO",
-        "grams": 120.0
+        "grams": 120
       },
       {
-        "name": "Pasta Baunilha - Vanilla Brasil",
-        "grams": 5.0
+        "name": "Pasta de Baunilha",
+        "grams": 5
       }
     ],
-    "totalGrams": 805.0
+    "totalGrams": 805
   },
   {
     "id": "rec_123",
@@ -5053,26 +5053,26 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 420.0
+        "grams": 420
       },
       {
-        "name": "Creme De Leite UHT 17% - Piracanjuba",
-        "grams": 200.0
+        "name": "Creme De Leite UHT 17%",
+        "grams": 200
       },
       {
         "name": "Leite Em Pó Integral",
-        "grams": 60.0
+        "grams": 60
       },
       {
         "name": "MIX ZERO",
-        "grams": 120.0
+        "grams": 120
       },
       {
         "name": "Café Solúvel",
-        "grams": 3.0
+        "grams": 3
       }
     ],
-    "totalGrams": 803.0
+    "totalGrams": 803
   },
   {
     "id": "rec_124",
@@ -5082,26 +5082,26 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 455.0
+        "grams": 455
       },
       {
-        "name": "Creme De Leite UHT 17% - Piracanjuba",
-        "grams": 25.0
+        "name": "Creme De Leite UHT 17%",
+        "grams": 25
       },
       {
         "name": "Leite Em Pó Integral",
-        "grams": 45.0
+        "grams": 45
       },
       {
         "name": "MIX ZERO",
-        "grams": 105.0
+        "grams": 105
       },
       {
         "name": "Pasta De Avelã s/ açúcar",
-        "grams": 70.0
+        "grams": 70
       }
     ],
-    "totalGrams": 700.0
+    "totalGrams": 700
   },
   {
     "id": "rec_125",
@@ -5111,30 +5111,30 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 460.0
+        "grams": 460
       },
       {
-        "name": "Creme De Leite UHT 17% - Piracanjuba",
-        "grams": 25.0
+        "name": "Creme De Leite UHT 17%",
+        "grams": 25
       },
       {
         "name": "Leite Em Pó Integral",
-        "grams": 45.0
+        "grams": 45
       },
       {
         "name": "MIX ZERO",
-        "grams": 105.0
+        "grams": 105
       },
       {
         "name": "Pasta De Avelã s/ açúcar",
-        "grams": 45.0
+        "grams": 45
       },
       {
         "name": "Cacau Em Pó 22% gordura",
-        "grams": 20.0
+        "grams": 20
       }
     ],
-    "totalGrams": 700.0
+    "totalGrams": 700
   },
   {
     "id": "rec_126",
@@ -5144,26 +5144,26 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 490.0
+        "grams": 490
       },
       {
-        "name": "Creme De Leite UHT 17% - Piracanjuba",
-        "grams": 60.0
+        "name": "Creme De Leite UHT 17%",
+        "grams": 60
       },
       {
         "name": "Leite Em Pó Integral",
-        "grams": 55.0
+        "grams": 55
       },
       {
         "name": "MIX ZERO",
-        "grams": 130.0
+        "grams": 130
       },
       {
         "name": "Pasta De Pistache 100%",
-        "grams": 60.0
+        "grams": 60
       }
     ],
-    "totalGrams": 795.0
+    "totalGrams": 795
   },
   {
     "id": "rec_127",
@@ -5173,26 +5173,26 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 230.0
+        "grams": 230
       },
       {
-        "name": "Creme De Leite UHT 17% - Piracanjuba",
-        "grams": 140.0
+        "name": "Creme De Leite UHT 17%",
+        "grams": 140
       },
       {
         "name": "Leite Em Pó Integral",
-        "grams": 45.0
+        "grams": 45
       },
       {
         "name": "MIX ZERO",
-        "grams": 145.0
+        "grams": 145
       },
       {
         "name": "Banana",
-        "grams": 240.0
+        "grams": 240
       }
     ],
-    "totalGrams": 800.0
+    "totalGrams": 800
   },
   {
     "id": "rec_128",
@@ -5202,26 +5202,26 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 245.0
+        "grams": 245
       },
       {
-        "name": "Creme De Leite UHT 17% - Piracanjuba",
-        "grams": 205.0
+        "name": "Creme De Leite UHT 17%",
+        "grams": 205
       },
       {
         "name": "Leite Em Pó Integral",
-        "grams": 50.0
+        "grams": 50
       },
       {
         "name": "MIX ZERO",
-        "grams": 145.0
+        "grams": 145
       },
       {
         "name": "Maracujá",
-        "grams": 155.0
+        "grams": 155
       }
     ],
-    "totalGrams": 800.0
+    "totalGrams": 800
   },
   {
     "id": "rec_129",
@@ -5231,26 +5231,26 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 230.0
+        "grams": 230
       },
       {
-        "name": "Creme De Leite UHT 17% - Piracanjuba",
-        "grams": 140.0
+        "name": "Creme De Leite UHT 17%",
+        "grams": 140
       },
       {
         "name": "Leite Em Pó Integral",
-        "grams": 45.0
+        "grams": 45
       },
       {
         "name": "MIX ZERO",
-        "grams": 145.0
+        "grams": 145
       },
       {
         "name": "Maçã",
-        "grams": 240.0
+        "grams": 240
       }
     ],
-    "totalGrams": 800.0
+    "totalGrams": 800
   },
   {
     "id": "rec_130",
@@ -5260,26 +5260,26 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 65.0
+        "grams": 65
       },
       {
-        "name": "Creme De Leite UHT 17% - Piracanjuba",
-        "grams": 140.0
+        "name": "Creme De Leite UHT 17%",
+        "grams": 140
       },
       {
         "name": "Leite Em Pó Integral",
-        "grams": 80.0
+        "grams": 80
       },
       {
         "name": "MIX ZERO",
-        "grams": 140.0
+        "grams": 140
       },
       {
         "name": "Morango",
-        "grams": 375.0
+        "grams": 375
       }
     ],
-    "totalGrams": 800.0
+    "totalGrams": 800
   },
   {
     "id": "rec_131",
@@ -5289,18 +5289,18 @@
     "ingredients": [
       {
         "name": "Água",
-        "grams": 230.0
+        "grams": 230
       },
       {
         "name": "MIX ZERO",
-        "grams": 270.0
+        "grams": 270
       },
       {
         "name": "Polpa Cupuaçu",
-        "grams": 500.0
+        "grams": 500
       }
     ],
-    "totalGrams": 1000.0
+    "totalGrams": 1000
   },
   {
     "id": "rec_132",
@@ -5310,18 +5310,18 @@
     "ingredients": [
       {
         "name": "Água",
-        "grams": 230.0
+        "grams": 230
       },
       {
         "name": "MIX ZERO",
-        "grams": 270.0
+        "grams": 270
       },
       {
         "name": "Lima Limão Taiti",
-        "grams": 500.0
+        "grams": 500
       }
     ],
-    "totalGrams": 1000.0
+    "totalGrams": 1000
   },
   {
     "id": "rec_133",
@@ -5331,22 +5331,22 @@
     "ingredients": [
       {
         "name": "Água",
-        "grams": 160.0
+        "grams": 160
       },
       {
         "name": "MIX ZERO",
-        "grams": 240.0
+        "grams": 240
       },
       {
         "name": "Manga",
-        "grams": 400.0
+        "grams": 400
       },
       {
         "name": "Maracujá",
-        "grams": 200.0
+        "grams": 200
       }
     ],
-    "totalGrams": 1000.0
+    "totalGrams": 1000
   },
   {
     "id": "rec_134",
@@ -5356,22 +5356,22 @@
     "ingredients": [
       {
         "name": "Água",
-        "grams": 230.0
+        "grams": 230
       },
       {
         "name": "MIX ZERO",
-        "grams": 250.0
+        "grams": 250
       },
       {
         "name": "Polpa de Açai(10-14%)",
-        "grams": 500.0
+        "grams": 500
       },
       {
         "name": "Suco De Limão",
-        "grams": 20.0
+        "grams": 20
       }
     ],
-    "totalGrams": 1000.0
+    "totalGrams": 1000
   },
   {
     "id": "rec_135",
@@ -5381,26 +5381,26 @@
     "ingredients": [
       {
         "name": "Água",
-        "grams": 160.0
+        "grams": 160
       },
       {
         "name": "MIX ZERO",
-        "grams": 220.0
+        "grams": 220
       },
       {
         "name": "Polpa de Açai(10-14%)",
-        "grams": 400.0
+        "grams": 400
       },
       {
         "name": "Banana",
-        "grams": 200.0
+        "grams": 200
       },
       {
         "name": "Suco De Limão",
-        "grams": 20.0
+        "grams": 20
       }
     ],
-    "totalGrams": 1000.0
+    "totalGrams": 1000
   },
   {
     "id": "rec_136",
@@ -5410,26 +5410,26 @@
     "ingredients": [
       {
         "name": "Água",
-        "grams": 130.0
+        "grams": 130
       },
       {
         "name": "MIX ZERO",
-        "grams": 230.0
+        "grams": 230
       },
       {
         "name": "Polpa de Açai(10-14%)",
-        "grams": 380.0
+        "grams": 380
       },
       {
         "name": "Morango",
-        "grams": 240.0
+        "grams": 240
       },
       {
         "name": "Suco De Limão",
-        "grams": 20.0
+        "grams": 20
       }
     ],
-    "totalGrams": 1000.0
+    "totalGrams": 1000
   },
   {
     "id": "rec_137",
@@ -5439,22 +5439,22 @@
     "ingredients": [
       {
         "name": "Água",
-        "grams": 185.0
+        "grams": 185
       },
       {
         "name": "MIX ZERO",
-        "grams": 240.0
+        "grams": 240
       },
       {
         "name": "Framboesa",
-        "grams": 560.0
+        "grams": 560
       },
       {
         "name": "Suco De Limão",
-        "grams": 15.0
+        "grams": 15
       }
     ],
-    "totalGrams": 1000.0
+    "totalGrams": 1000
   },
   {
     "id": "rec_138",
@@ -5464,22 +5464,22 @@
     "ingredients": [
       {
         "name": "Água",
-        "grams": 130.0
+        "grams": 130
       },
       {
         "name": "MIX ZERO",
-        "grams": 250.0
+        "grams": 250
       },
       {
         "name": "Morango",
-        "grams": 600.0
+        "grams": 600
       },
       {
         "name": "Suco De Limão",
-        "grams": 20.0
+        "grams": 20
       }
     ],
-    "totalGrams": 1000.0
+    "totalGrams": 1000
   },
   {
     "id": "rec_139",
@@ -5489,22 +5489,22 @@
     "ingredients": [
       {
         "name": "Água",
-        "grams": 150.0
+        "grams": 150
       },
       {
         "name": "MIX ZERO",
-        "grams": 230.0
+        "grams": 230
       },
       {
         "name": "Manga",
-        "grams": 600.0
+        "grams": 600
       },
       {
         "name": "Suco De Limão",
-        "grams": 20.0
+        "grams": 20
       }
     ],
-    "totalGrams": 1000.0
+    "totalGrams": 1000
   },
   {
     "id": "rec_140",
@@ -5514,26 +5514,26 @@
     "ingredients": [
       {
         "name": "Água",
-        "grams": 160.0
+        "grams": 160
       },
       {
         "name": "MIX ZERO",
-        "grams": 240.0
+        "grams": 240
       },
       {
         "name": "Framboesa",
-        "grams": 250.0
+        "grams": 250
       },
       {
         "name": "Morango",
-        "grams": 250.0
+        "grams": 250
       },
       {
         "name": "Mirtilo",
-        "grams": 100.0
+        "grams": 100
       }
     ],
-    "totalGrams": 1000.0
+    "totalGrams": 1000
   },
   {
     "id": "rec_141",
@@ -5543,22 +5543,22 @@
     "ingredients": [
       {
         "name": "Água",
-        "grams": 350.0
+        "grams": 350
       },
       {
         "name": "MIX ZERO",
-        "grams": 250.0
+        "grams": 250
       },
       {
         "name": "Limão Siciliano",
-        "grams": 350.0
+        "grams": 350
       },
       {
         "name": "Raspa De Limão (Casca)",
-        "grams": 2.0
+        "grams": 2
       }
     ],
-    "totalGrams": 952.0
+    "totalGrams": 952
   },
   {
     "id": "rec_142",
@@ -5568,38 +5568,38 @@
     "ingredients": [
       {
         "name": "Água",
-        "grams": 247.0
+        "grams": 247
       },
       {
         "name": "Maltitol",
-        "grams": 166.0
+        "grams": 166
       },
       {
         "name": "Eritritol",
-        "grams": 40.0
+        "grams": 40
       },
       {
         "name": "Inulina - Fibra Vegetal",
-        "grams": 20.0
+        "grams": 20
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Morango",
-        "grams": 500.0
+        "grams": 500
       },
       {
         "name": "Suco De Limão",
-        "grams": 20.0
+        "grams": 20
       },
       {
         "name": "Hortelã",
-        "grams": 6.0
+        "grams": 6
       }
     ],
-    "totalGrams": 1004.0
+    "totalGrams": 1004
   },
   {
     "id": "rec_143",
@@ -5609,34 +5609,34 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 454.0
+        "grams": 454
       },
       {
         "name": "Leite de Coco",
-        "grams": 100.0
+        "grams": 100
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 80.0
+        "grams": 80
       },
       {
         "name": "Maltitol",
-        "grams": 166.0
+        "grams": 166
       },
       {
         "name": "Eritritol",
-        "grams": 20.0
+        "grams": 20
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 38.0
+        "grams": 38
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 4.0
+        "name": "Neutro",
+        "grams": 4
       }
     ],
-    "totalGrams": 862.0
+    "totalGrams": 862
   },
   {
     "id": "rec_144",
@@ -5646,38 +5646,38 @@
     "ingredients": [
       {
         "name": "Framboesa",
-        "grams": 450.0
+        "grams": 450
       },
       {
         "name": "Água",
-        "grams": 280.0
+        "grams": 280
       },
       {
         "name": "Maltitol",
-        "grams": 170.0
+        "grams": 170
       },
       {
         "name": "Eritritol",
-        "grams": 30.0
+        "grams": 30
       },
       {
         "name": "Inulina - Fibra Vegetal",
-        "grams": 50.0
+        "grams": 50
       },
       {
         "name": "Polidextrose - Fibra",
-        "grams": 20.0
+        "grams": 20
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 4.0
+        "name": "Neutro",
+        "grams": 4
       },
       {
         "name": "Suco De Limão",
-        "grams": 20.0
+        "grams": 20
       }
     ],
-    "totalGrams": 1024.0
+    "totalGrams": 1024
   },
   {
     "id": "rec_145",
@@ -5687,38 +5687,38 @@
     "ingredients": [
       {
         "name": "Framboesa",
-        "grams": 500.0
+        "grams": 500
       },
       {
         "name": "Água",
-        "grams": 230.0
+        "grams": 230
       },
       {
         "name": "Polidextrose - Fibra",
-        "grams": 150.0
+        "grams": 150
       },
       {
         "name": "Eritritol",
-        "grams": 55.0
+        "grams": 55
       },
       {
         "name": "Inulina - Fibra Vegetal",
-        "grams": 40.0
+        "grams": 40
       },
       {
         "name": "Stevia em pó",
-        "grams": 2.0
+        "grams": 2
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 4.0
+        "name": "Neutro",
+        "grams": 4
       },
       {
         "name": "Suco De Limão",
-        "grams": 20.0
+        "grams": 20
       }
     ],
-    "totalGrams": 1001.0
+    "totalGrams": 1001
   },
   {
     "id": "rec_146",
@@ -5728,34 +5728,34 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 350.0
+        "grams": 350
       },
       {
-        "name": "Creme De Leite UHT 17% - Piracanjuba",
-        "grams": 350.0
+        "name": "Creme De Leite UHT 17%",
+        "grams": 350
       },
       {
         "name": "Maltitol",
-        "grams": 110.0
+        "grams": 110
       },
       {
         "name": "Eritritol",
-        "grams": 25.0
+        "grams": 25
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 4.0
+        "name": "Neutro",
+        "grams": 4
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 40.0
+        "grams": 40
       },
       {
         "name": "Sal",
-        "grams": 1.0
+        "grams": 1
       }
     ],
-    "totalGrams": 880.0
+    "totalGrams": 880
   },
   {
     "id": "rec_147",
@@ -5765,38 +5765,38 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 350.0
+        "grams": 350
       },
       {
-        "name": "Creme De Leite UHT 17% - Piracanjuba",
-        "grams": 350.0
+        "name": "Creme De Leite UHT 17%",
+        "grams": 350
       },
       {
         "name": "Polidextrose - Fibra",
-        "grams": 100.0
+        "grams": 100
       },
       {
         "name": "Eritritol",
-        "grams": 45.0
+        "grams": 45
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 4.0
+        "name": "Neutro",
+        "grams": 4
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 40.0
+        "grams": 40
       },
       {
         "name": "Stevia em pó",
-        "grams": 2.0
+        "grams": 2
       },
       {
         "name": "Sal",
-        "grams": 1.0
+        "grams": 1
       }
     ],
-    "totalGrams": 892.0
+    "totalGrams": 892
   },
   {
     "id": "rec_148",
@@ -5806,46 +5806,46 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 430.0
+        "grams": 430
       },
       {
-        "name": "Creme De Leite UHT 17% - Piracanjuba",
-        "grams": 200.0
+        "name": "Creme De Leite UHT 17%",
+        "grams": 200
       },
       {
         "name": "Água",
-        "grams": 75.0
+        "grams": 75
       },
       {
         "name": "Maltitol",
-        "grams": 110.0
+        "grams": 110
       },
       {
         "name": "Eritritol",
-        "grams": 35.0
+        "grams": 35
       },
       {
         "name": "Cacau Em Pó 11% gordura",
-        "grams": 45.0
+        "grams": 45
       },
       {
         "name": "Gema Do Ovo",
-        "grams": 45.0
+        "grams": 45
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 20.0
+        "grams": 20
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 3.0
+        "name": "Neutro",
+        "grams": 3
       },
       {
         "name": "Sal",
-        "grams": 1.0
+        "grams": 1
       }
     ],
-    "totalGrams": 964.0
+    "totalGrams": 964
   },
   {
     "id": "rec_149",
@@ -5855,50 +5855,50 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 430.0
+        "grams": 430
       },
       {
-        "name": "Creme De Leite UHT 17% - Piracanjuba",
-        "grams": 200.0
+        "name": "Creme De Leite UHT 17%",
+        "grams": 200
       },
       {
         "name": "Água",
-        "grams": 75.0
+        "grams": 75
       },
       {
         "name": "Polidextrose - Fibra",
-        "grams": 90.0
+        "grams": 90
       },
       {
         "name": "Eritritol",
-        "grams": 55.0
+        "grams": 55
       },
       {
         "name": "Cacau Em Pó 11% gordura",
-        "grams": 45.0
+        "grams": 45
       },
       {
         "name": "Gema Do Ovo",
-        "grams": 55.0
+        "grams": 55
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 20.0
+        "grams": 20
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 3.0
+        "name": "Neutro",
+        "grams": 3
       },
       {
         "name": "Stevia em pó",
-        "grams": 2.0
+        "grams": 2
       },
       {
         "name": "Sal",
-        "grams": 1.0
+        "grams": 1
       }
     ],
-    "totalGrams": 976.0
+    "totalGrams": 976
   },
   {
     "id": "rec_150",
@@ -5908,38 +5908,38 @@
     "ingredients": [
       {
         "name": "Morango",
-        "grams": 400.0
+        "grams": 400
       },
       {
         "name": "Leite Integral",
-        "grams": 100.0
+        "grams": 100
       },
       {
-        "name": "Creme De Leite UHT 17% - Piracanjuba",
-        "grams": 300.0
+        "name": "Creme De Leite UHT 17%",
+        "grams": 300
       },
       {
         "name": "Maltitol",
-        "grams": 110.0
+        "grams": 110
       },
       {
         "name": "Eritritol",
-        "grams": 45.0
+        "grams": 45
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 40.0
+        "grams": 40
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 3.0
+        "name": "Neutro",
+        "grams": 3
       },
       {
         "name": "Sal",
-        "grams": 1.0
+        "grams": 1
       }
     ],
-    "totalGrams": 999.0
+    "totalGrams": 999
   },
   {
     "id": "rec_151",
@@ -5949,42 +5949,42 @@
     "ingredients": [
       {
         "name": "Morango",
-        "grams": 400.0
+        "grams": 400
       },
       {
         "name": "Leite Integral",
-        "grams": 100.0
+        "grams": 100
       },
       {
-        "name": "Creme De Leite UHT 17% - Piracanjuba",
-        "grams": 300.0
+        "name": "Creme De Leite UHT 17%",
+        "grams": 300
       },
       {
         "name": "Polidextrose - Fibra",
-        "grams": 100.0
+        "grams": 100
       },
       {
         "name": "Eritritol",
-        "grams": 55.0
+        "grams": 55
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 40.0
+        "grams": 40
       },
       {
         "name": "Stevia em pó",
-        "grams": 2.0
+        "grams": 2
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 3.0
+        "name": "Neutro",
+        "grams": 3
       },
       {
         "name": "Sal",
-        "grams": 1.0
+        "grams": 1
       }
     ],
-    "totalGrams": 1001.0
+    "totalGrams": 1001
   },
   {
     "id": "rec_152",
@@ -5994,34 +5994,34 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 350.0
+        "grams": 350
       },
       {
-        "name": "Leite de Coco Sococo",
-        "grams": 350.0
+        "name": "Leite de Coco Tradicional (20% gordura)",
+        "grams": 350
       },
       {
         "name": "Maltitol",
-        "grams": 110.0
+        "grams": 110
       },
       {
         "name": "Eritritol",
-        "grams": 45.0
+        "grams": 45
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 40.0
+        "grams": 40
       },
       {
         "name": "Sal",
-        "grams": 1.0
+        "grams": 1
       }
     ],
-    "totalGrams": 901.0
+    "totalGrams": 901
   },
   {
     "id": "rec_153",
@@ -6031,27 +6031,27 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 350.0
+        "grams": 350
       },
       {
-        "name": "Leite de Coco Sococo",
-        "grams": 350.0
+        "name": "Leite de Coco Tradicional (20% gordura)",
+        "grams": 350
       },
       {
         "name": "Polidextrose - Fibra",
-        "grams": 100.0
+        "grams": 100
       },
       {
         "name": "Eritritol",
-        "grams": 45.0
+        "grams": 45
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 40.0
+        "grams": 40
       },
       {
         "name": "Stevia em pó",
@@ -6059,7 +6059,7 @@
       },
       {
         "name": "Sal",
-        "grams": 1.0
+        "grams": 1
       }
     ],
     "totalGrams": 892.5
@@ -6072,38 +6072,38 @@
     "ingredients": [
       {
         "name": "Água",
-        "grams": 350.0
+        "grams": 350
       },
       {
-        "name": "Leite de Coco Sococo",
-        "grams": 350.0
+        "name": "Leite de Coco Tradicional (20% gordura)",
+        "grams": 350
       },
       {
         "name": "Óleo de coco",
-        "grams": 15.0
+        "grams": 15
       },
       {
         "name": "Maltitol",
-        "grams": 110.0
+        "grams": 110
       },
       {
         "name": "Eritritol",
-        "grams": 50.0
+        "grams": 50
       },
       {
         "name": "Inulina - Fibra Vegetal",
-        "grams": 15.0
+        "grams": 15
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 3.0
+        "name": "Neutro",
+        "grams": 3
       },
       {
-        "name": "Leite de coco em pó - IO",
-        "grams": 40.0
+        "name": "Leite de Coco em Pó",
+        "grams": 40
       }
     ],
-    "totalGrams": 933.0
+    "totalGrams": 933
   },
   {
     "id": "rec_155",
@@ -6113,31 +6113,31 @@
     "ingredients": [
       {
         "name": "Água",
-        "grams": 350.0
+        "grams": 350
       },
       {
-        "name": "Leite de Coco Sococo",
-        "grams": 350.0
+        "name": "Leite de Coco Tradicional (20% gordura)",
+        "grams": 350
       },
       {
         "name": "Óleo de coco",
-        "grams": 15.0
+        "grams": 15
       },
       {
         "name": "Polidextrose - Fibra",
-        "grams": 115.0
+        "grams": 115
       },
       {
         "name": "Eritritol",
-        "grams": 50.0
+        "grams": 50
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 3.0
+        "name": "Neutro",
+        "grams": 3
       },
       {
-        "name": "Leite de coco em pó - IO",
-        "grams": 40.0
+        "name": "Leite de Coco em Pó",
+        "grams": 40
       },
       {
         "name": "Stevia em pó",
@@ -6158,31 +6158,31 @@
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 40.0
+        "grams": 40
       },
       {
         "name": "Pasta De Pistache 100%",
-        "grams": 80.0
+        "grams": 80
       },
       {
         "name": "Maltitol",
-        "grams": 100.0
+        "grams": 100
       },
       {
         "name": "Eritritol",
-        "grams": 45.0
+        "grams": 45
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 40.0
+        "grams": 40
       },
       {
         "name": "Sal",
-        "grams": 2.0
+        "grams": 2
       }
     ],
     "totalGrams": 897.5
@@ -6199,35 +6199,35 @@
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 80.0
+        "grams": 80
       },
       {
         "name": "Pasta De Pistache 100%",
-        "grams": 80.0
+        "grams": 80
       },
       {
         "name": "Polidextrose - Fibra",
-        "grams": 80.0
+        "grams": 80
       },
       {
         "name": "Eritritol",
-        "grams": 45.0
+        "grams": 45
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 35.0
+        "grams": 35
       },
       {
         "name": "Stevia em pó",
-        "grams": 2.0
+        "grams": 2
       },
       {
         "name": "Sal",
-        "grams": 2.0
+        "grams": 2
       }
     ],
     "totalGrams": 874.5
@@ -6240,30 +6240,30 @@
     "ingredients": [
       {
         "name": "Água",
-        "grams": 600.0
+        "grams": 600
       },
       {
         "name": "Pasta De Pistache 100%",
-        "grams": 150.0
+        "grams": 150
       },
       {
         "name": "Maltitol",
-        "grams": 110.0
+        "grams": 110
       },
       {
         "name": "Eritritol",
-        "grams": 50.0
+        "grams": 50
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Sal",
-        "grams": 2.0
+        "grams": 2
       }
     ],
-    "totalGrams": 917.0
+    "totalGrams": 917
   },
   {
     "id": "rec_159",
@@ -6273,34 +6273,34 @@
     "ingredients": [
       {
         "name": "Água",
-        "grams": 600.0
+        "grams": 600
       },
       {
         "name": "Pasta De Pistache 100%",
-        "grams": 130.0
+        "grams": 130
       },
       {
         "name": "Polidextrose - Fibra",
-        "grams": 90.0
+        "grams": 90
       },
       {
         "name": "Eritritol",
-        "grams": 50.0
+        "grams": 50
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 5.0
+        "name": "Neutro",
+        "grams": 5
       },
       {
         "name": "Sucralose",
-        "grams": 2.0
+        "grams": 2
       },
       {
         "name": "Sal",
-        "grams": 2.0
+        "grams": 2
       }
     ],
-    "totalGrams": 879.0
+    "totalGrams": 879
   },
   {
     "id": "rec_160",
@@ -6310,38 +6310,38 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 110.0
+        "grams": 110
       },
       {
-        "name": "Creme De Leite UHT 17% - Piracanjuba",
-        "grams": 110.0
+        "name": "Creme De Leite UHT 17%",
+        "grams": 110
       },
       {
         "name": "Maltitol",
-        "grams": 150.0
+        "grams": 150
       },
       {
         "name": "Eritritol",
-        "grams": 45.0
+        "grams": 45
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 3.0
+        "name": "Neutro",
+        "grams": 3
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 55.0
+        "grams": 55
       },
       {
         "name": "Inulina - Fibra Vegetal",
-        "grams": 10.0
+        "grams": 10
       },
       {
         "name": "Iogurte Integral",
-        "grams": 540.0
+        "grams": 540
       }
     ],
-    "totalGrams": 1023.0
+    "totalGrams": 1023
   },
   {
     "id": "rec_161",
@@ -6351,35 +6351,35 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 110.0
+        "grams": 110
       },
       {
-        "name": "Creme De Leite UHT 17% - Piracanjuba",
-        "grams": 110.0
+        "name": "Creme De Leite UHT 17%",
+        "grams": 110
       },
       {
         "name": "Polidextrose - Fibra",
-        "grams": 140.0
+        "grams": 140
       },
       {
         "name": "Eritritol",
         "grams": 48.5
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 3.0
+        "name": "Neutro",
+        "grams": 3
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 55.0
+        "grams": 55
       },
       {
         "name": "Sucralose",
-        "grams": 2.0
+        "grams": 2
       },
       {
         "name": "Iogurte Integral",
-        "grams": 540.0
+        "grams": 540
       }
     ],
     "totalGrams": 1008.5
@@ -6392,34 +6392,34 @@
     "ingredients": [
       {
         "name": "Água",
-        "grams": 480.0
+        "grams": 480
       },
       {
         "name": "Cacau Em Pó 11% gordura",
-        "grams": 50.0
+        "grams": 50
       },
       {
         "name": "Maltitol",
-        "grams": 125.0
+        "grams": 125
       },
       {
         "name": "Eritritol",
-        "grams": 40.0
+        "grams": 40
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 4.0
+        "name": "Neutro",
+        "grams": 4
       },
       {
         "name": "Óleo de coco",
-        "grams": 35.0
+        "grams": 35
       },
       {
         "name": "Óleo de girassol",
-        "grams": 15.0
+        "grams": 15
       }
     ],
-    "totalGrams": 749.0
+    "totalGrams": 749
   },
   {
     "id": "rec_163",
@@ -6429,34 +6429,34 @@
     "ingredients": [
       {
         "name": "Água",
-        "grams": 480.0
+        "grams": 480
       },
       {
         "name": "Cacau Em Pó 11% gordura",
-        "grams": 50.0
+        "grams": 50
       },
       {
         "name": "Polidextrose - Fibra",
-        "grams": 110.0
+        "grams": 110
       },
       {
         "name": "Eritritol",
-        "grams": 55.0
+        "grams": 55
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 4.0
+        "name": "Neutro",
+        "grams": 4
       },
       {
         "name": "Óleo de coco",
-        "grams": 50.0
+        "grams": 50
       },
       {
         "name": "Sucralose",
-        "grams": 3.0
+        "grams": 3
       }
     ],
-    "totalGrams": 752.0
+    "totalGrams": 752
   },
   {
     "id": "rec_164",
@@ -6466,34 +6466,34 @@
     "ingredients": [
       {
         "name": "Manga",
-        "grams": 430.0
+        "grams": 430
       },
       {
         "name": "Água",
-        "grams": 150.0
+        "grams": 150
       },
       {
         "name": "Maltitol",
-        "grams": 125.0
+        "grams": 125
       },
       {
         "name": "Eritritol",
-        "grams": 35.0
+        "grams": 35
       },
       {
         "name": "Inulina - Fibra Vegetal",
-        "grams": 15.0
+        "grams": 15
       },
       {
         "name": "Limão Suco",
-        "grams": 20.0
+        "grams": 20
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 3.0
+        "name": "Neutro",
+        "grams": 3
       }
     ],
-    "totalGrams": 778.0
+    "totalGrams": 778
   },
   {
     "id": "rec_165",
@@ -6503,38 +6503,38 @@
     "ingredients": [
       {
         "name": "Manga",
-        "grams": 430.0
+        "grams": 430
       },
       {
         "name": "Água",
-        "grams": 150.0
+        "grams": 150
       },
       {
         "name": "Polidextrose - Fibra",
-        "grams": 110.0
+        "grams": 110
       },
       {
         "name": "Eritritol",
-        "grams": 45.0
+        "grams": 45
       },
       {
         "name": "Inulina - Fibra Vegetal",
-        "grams": 15.0
+        "grams": 15
       },
       {
         "name": "Sucralose",
-        "grams": 2.0
+        "grams": 2
       },
       {
         "name": "Limão Suco",
-        "grams": 20.0
+        "grams": 20
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 3.0
+        "name": "Neutro",
+        "grams": 3
       }
     ],
-    "totalGrams": 775.0
+    "totalGrams": 775
   },
   {
     "id": "rec_166",
@@ -6544,42 +6544,42 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 655.0
+        "grams": 655
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 70.0
+        "grams": 70
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 140.0
+        "grams": 140
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 40.0
+        "grams": 40
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 3.0
+        "name": "Neutro",
+        "grams": 3
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 55.0
+        "grams": 55
       },
       {
         "name": "Whey protein 80%",
-        "grams": 55.0
+        "grams": 55
       },
       {
         "name": "Sal",
-        "grams": 1.0
+        "grams": 1
       },
       {
-        "name": "Pasta Baunilha - Vanilla Brasil",
-        "grams": 3.0
+        "name": "Pasta de Baunilha",
+        "grams": 3
       }
     ],
-    "totalGrams": 1022.0
+    "totalGrams": 1022
   },
   {
     "id": "rec_167",
@@ -6589,42 +6589,42 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 655.0
+        "grams": 655
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 70.0
+        "grams": 70
       },
       {
         "name": "Maltitol",
-        "grams": 130.0
+        "grams": 130
       },
       {
         "name": "Eritritol",
-        "grams": 30.0
+        "grams": 30
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 3.0
+        "name": "Neutro",
+        "grams": 3
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 55.0
+        "grams": 55
       },
       {
         "name": "Whey protein 80%",
-        "grams": 55.0
+        "grams": 55
       },
       {
         "name": "Sal",
-        "grams": 1.0
+        "grams": 1
       },
       {
-        "name": "Pasta Baunilha - Vanilla Brasil",
-        "grams": 3.0
+        "name": "Pasta de Baunilha",
+        "grams": 3
       }
     ],
-    "totalGrams": 1002.0
+    "totalGrams": 1002
   },
   {
     "id": "rec_168",
@@ -6634,46 +6634,46 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 655.0
+        "grams": 655
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 70.0
+        "grams": 70
       },
       {
         "name": "Polidextrose - Fibra",
-        "grams": 100.0
+        "grams": 100
       },
       {
         "name": "Eritritol",
-        "grams": 50.0
+        "grams": 50
       },
       {
         "name": "Stevia em pó",
-        "grams": 2.0
+        "grams": 2
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 3.0
+        "name": "Neutro",
+        "grams": 3
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 55.0
+        "grams": 55
       },
       {
         "name": "Whey protein 80%",
-        "grams": 55.0
+        "grams": 55
       },
       {
         "name": "Sal",
-        "grams": 1.0
+        "grams": 1
       },
       {
-        "name": "Pasta Baunilha - Vanilla Brasil",
-        "grams": 3.0
+        "name": "Pasta de Baunilha",
+        "grams": 3
       }
     ],
-    "totalGrams": 994.0
+    "totalGrams": 994
   },
   {
     "id": "rec_169",
@@ -6683,42 +6683,42 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 655.0
+        "grams": 655
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 70.0
+        "grams": 70
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 140.0
+        "grams": 140
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 40.0
+        "grams": 40
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 3.0
+        "name": "Neutro",
+        "grams": 3
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 30.0
+        "grams": 30
       },
       {
         "name": "Whey protein 80%",
-        "grams": 55.0
+        "grams": 55
       },
       {
         "name": "Sal",
-        "grams": 1.0
+        "grams": 1
       },
       {
         "name": "Cacau Em Pó 11% gordura",
-        "grams": 25.0
+        "grams": 25
       }
     ],
-    "totalGrams": 1019.0
+    "totalGrams": 1019
   },
   {
     "id": "rec_170",
@@ -6728,42 +6728,42 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 655.0
+        "grams": 655
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 70.0
+        "grams": 70
       },
       {
         "name": "Maltitol",
-        "grams": 125.0
+        "grams": 125
       },
       {
         "name": "Eritritol",
-        "grams": 35.0
+        "grams": 35
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 3.0
+        "name": "Neutro",
+        "grams": 3
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 55.0
+        "grams": 55
       },
       {
         "name": "Whey protein 80%",
-        "grams": 55.0
+        "grams": 55
       },
       {
         "name": "Sal",
-        "grams": 1.0
+        "grams": 1
       },
       {
         "name": "Cacau Em Pó 11% gordura",
-        "grams": 25.0
+        "grams": 25
       }
     ],
-    "totalGrams": 1024.0
+    "totalGrams": 1024
   },
   {
     "id": "rec_171",
@@ -6773,46 +6773,46 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 655.0
+        "grams": 655
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 70.0
+        "grams": 70
       },
       {
         "name": "Polidextrose - Fibra",
-        "grams": 100.0
+        "grams": 100
       },
       {
         "name": "Eritritol",
-        "grams": 55.0
+        "grams": 55
       },
       {
         "name": "Stevia em pó",
-        "grams": 2.0
+        "grams": 2
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 3.0
+        "name": "Neutro",
+        "grams": 3
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 55.0
+        "grams": 55
       },
       {
         "name": "Whey protein 80%",
-        "grams": 55.0
+        "grams": 55
       },
       {
         "name": "Sal",
-        "grams": 1.0
+        "grams": 1
       },
       {
         "name": "Cacau Em Pó 11% gordura",
-        "grams": 25.0
+        "grams": 25
       }
     ],
-    "totalGrams": 1021.0
+    "totalGrams": 1021
   },
   {
     "id": "rec_172",
@@ -6822,38 +6822,38 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 655.0
+        "grams": 655
       },
       {
         "name": "Pasta De Pistache 100%",
-        "grams": 80.0
+        "grams": 80
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 140.0
+        "grams": 140
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 40.0
+        "grams": 40
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 3.0
+        "name": "Neutro",
+        "grams": 3
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 30.0
+        "grams": 30
       },
       {
         "name": "Whey protein 80%",
-        "grams": 55.0
+        "grams": 55
       },
       {
         "name": "Sal",
-        "grams": 1.0
+        "grams": 1
       }
     ],
-    "totalGrams": 1004.0
+    "totalGrams": 1004
   },
   {
     "id": "rec_173",
@@ -6863,38 +6863,38 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 655.0
+        "grams": 655
       },
       {
         "name": "Pasta De Pistache 100%",
-        "grams": 80.0
+        "grams": 80
       },
       {
         "name": "Maltitol",
-        "grams": 125.0
+        "grams": 125
       },
       {
         "name": "Eritritol",
-        "grams": 35.0
+        "grams": 35
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 3.0
+        "name": "Neutro",
+        "grams": 3
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 55.0
+        "grams": 55
       },
       {
         "name": "Whey protein 80%",
-        "grams": 55.0
+        "grams": 55
       },
       {
         "name": "Sal",
-        "grams": 1.0
+        "grams": 1
       }
     ],
-    "totalGrams": 1009.0
+    "totalGrams": 1009
   },
   {
     "id": "rec_174",
@@ -6904,42 +6904,42 @@
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 655.0
+        "grams": 655
       },
       {
         "name": "Pasta De Pistache 100%",
-        "grams": 80.0
+        "grams": 80
       },
       {
         "name": "Polidextrose - Fibra",
-        "grams": 100.0
+        "grams": 100
       },
       {
         "name": "Eritritol",
-        "grams": 55.0
+        "grams": 55
       },
       {
         "name": "Stevia em pó",
-        "grams": 2.0
+        "grams": 2
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 3.0
+        "name": "Neutro",
+        "grams": 3
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 55.0
+        "grams": 55
       },
       {
         "name": "Whey protein 80%",
-        "grams": 55.0
+        "grams": 55
       },
       {
         "name": "Sal",
-        "grams": 1.0
+        "grams": 1
       }
     ],
-    "totalGrams": 1006.0
+    "totalGrams": 1006
   },
   {
     "id": "rec_175",
@@ -6949,38 +6949,38 @@
     "ingredients": [
       {
         "name": "Banana",
-        "grams": 350.0
+        "grams": 350
       },
       {
         "name": "Leite Integral",
-        "grams": 255.0
+        "grams": 255
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 120.0
+        "grams": 120
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 55.0
+        "grams": 55
       },
       {
         "name": "Whey protein 80%",
-        "grams": 65.0
+        "grams": 65
       },
       {
         "name": "Açúcar Sacarose",
-        "grams": 110.0
+        "grams": 110
       },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 40.0
+        "grams": 40
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 3.0
+        "name": "Neutro",
+        "grams": 3
       }
     ],
-    "totalGrams": 998.0
+    "totalGrams": 998
   },
   {
     "id": "rec_176",
@@ -6990,38 +6990,38 @@
     "ingredients": [
       {
         "name": "Banana",
-        "grams": 350.0
+        "grams": 350
       },
       {
         "name": "Leite Integral",
-        "grams": 255.0
+        "grams": 255
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 120.0
+        "grams": 120
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 55.0
+        "grams": 55
       },
       {
         "name": "Whey protein 80%",
-        "grams": 65.0
+        "grams": 65
       },
       {
         "name": "Maltitol",
-        "grams": 120.0
+        "grams": 120
       },
       {
         "name": "Eritritol",
-        "grams": 30.0
+        "grams": 30
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 3.0
+        "name": "Neutro",
+        "grams": 3
       }
     ],
-    "totalGrams": 998.0
+    "totalGrams": 998
   },
   {
     "id": "rec_177",
@@ -7031,41 +7031,41 @@
     "ingredients": [
       {
         "name": "Banana",
-        "grams": 350.0
+        "grams": 350
       },
       {
         "name": "Leite Integral",
-        "grams": 255.0
+        "grams": 255
       },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 120.0
+        "grams": 120
       },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 55.0
+        "grams": 55
       },
       {
         "name": "Whey protein 80%",
-        "grams": 65.0
+        "grams": 65
       },
       {
         "name": "Polidextrose - Fibra",
-        "grams": 100.0
+        "grams": 100
       },
       {
         "name": "Eritritol",
-        "grams": 50.0
+        "grams": 50
       },
       {
         "name": "Stevia em pó",
-        "grams": 2.0
+        "grams": 2
       },
       {
-        "name": "Neutro Fabbri",
-        "grams": 3.0
+        "name": "Neutro",
+        "grams": 3
       }
     ],
-    "totalGrams": 1000.0
+    "totalGrams": 1000
   }
 ]

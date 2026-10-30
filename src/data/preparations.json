@@ -218,7 +218,7 @@
         "grams": 10
       },
       {
-        "name": "Neutro Fabbri",
+        "name": "Neutro",
         "grams": 7
       }
     ]
@@ -258,7 +258,7 @@
         "grams": 33
       },
       {
-        "name": "Neutro Fabbri",
+        "name": "Neutro",
         "grams": 4
       }
     ]
@@ -274,7 +274,7 @@
         "grams": 489
       },
       {
-        "name": "Creme De Leite UHT 17% - Piracanjuba",
+        "name": "Creme De Leite UHT 17%",
         "grams": 240
       },
       {
@@ -298,7 +298,7 @@
         "grams": 40
       },
       {
-        "name": "Neutro Fabbri",
+        "name": "Neutro",
         "grams": 5
       },
       {
@@ -338,7 +338,7 @@
         "grams": 30
       },
       {
-        "name": "Neutro Fabbri",
+        "name": "Neutro",
         "grams": 5
       },
       {
@@ -386,7 +386,7 @@
         "grams": 500
       },
       {
-        "name": "Creme De Leite UHT 17% - Piracanjuba",
+        "name": "Creme De Leite UHT 17%",
         "grams": 250
       },
       {
@@ -485,12 +485,12 @@
   },
   {
     "id": "prep_variegato_de_nutella",
-    "name": "Variegato de Nutella",
+    "name": "Variegato de Creme de Avelã com Cacau",
     "category": "Variegato",
     "instructions": "1. Aqueça o creme de leite junto com a glucose, o sal (e o cacau, se usar) em uma panela até atingir cerca de 80°C (início de fervura).\n2. Despeje a mistura quente sobre a Nutella em um recipiente.\n3. Deixe descansar por 1 minuto para o calor amolecer a Nutella.\n4. Utilize um mixer de imersão por alguns minutos até obter uma emulsão lisa, brilhante e homogênea.\n5. Deixe esfriar completamente antes de utilizar para mesclar no gelato.",
     "ingredients": [
       {
-        "name": "Nutella",
+        "name": "Creme de Avelã com Cacau",
         "grams": 750
       },
       {

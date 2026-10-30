@@ -207,7 +207,7 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
         { name: 'Leite Em Pó Desnatado', grams: 45 },
         { name: 'Açúcar Sacarose', grams: 120 },
         { name: 'Açúcar - Dextrose', grams: 35 },
-        { name: 'Neutro Fabbri', grams: 5 }
+        { name: 'Neutro', grams: 5 }
       ]);
       setVariegatos([]);
       setBatchScaleInput('975');
