@@ -83,6 +83,24 @@ export class GelatoDatabase extends Dexie {
         console.warn('Migration to v4 ingredient categories:', e);
       }
     });
+
+    // Versão 5: Adição de 22 insumos técnicos e refinamentos de parâmetros físico-químicos
+    this.version(5).stores({
+      ingredients: 'id, name, category, costKg',
+      recipes: 'id, name, category, targetStyle, isCustom',
+      preparations: 'id, name, category, isCustom',
+      settings: 'key'
+    }).upgrade(async tx => {
+      try {
+        const currentIds = new Set((await tx.table('ingredients').toArray()).map(i => i.id));
+        const newCatalogIngs = (initialIngredients as Ingredient[]).filter(i => !currentIds.has(i.id));
+        if (newCatalogIngs.length > 0) {
+          await tx.table('ingredients').bulkPut(newCatalogIngs);
+        }
+      } catch (e) {
+        console.warn('Migration to v5 ingredients:', e);
+      }
+    });
   }
 
   async initializeSeedData(): Promise<void> {
@@ -120,6 +138,34 @@ export class GelatoDatabase extends Dexie {
             }
           }
           await this.settings.put({ key: 'ingredient_categories_version', value: 2 });
+        }
+
+        // Inserir novos insumos do catálogo técnico ausentes no banco do usuário
+        const existingIds = new Set((await this.ingredients.toArray()).map(i => i.id));
+        const newCatalogIngs = (initialIngredients as Ingredient[]).filter(i => !existingIds.has(i.id));
+        if (newCatalogIngs.length > 0) {
+          console.log(`Adicionando ${newCatalogIngs.length} novos insumos técnicos ao banco...`);
+          await this.ingredients.bulkPut(newCatalogIngs);
+        }
+
+        // Sincronizar refinamentos técnicos de POD/PAC em itens do catálogo preservando custo customizado
+        const paramSyncSetting = await this.settings.get('ingredient_technical_params_version');
+        if (!paramSyncSetting || paramSyncSetting.value < 1) {
+          console.log('Atualizando refinamentos técnicos de POD/PAC em insumos do catálogo...');
+          const catalogMap = new Map((initialIngredients as Ingredient[]).map(i => [i.id, i]));
+          const currentIngs = await this.ingredients.toArray();
+          for (const ing of currentIngs) {
+            const catItem = catalogMap.get(ing.id);
+            if (catItem && !ing.isCustom) {
+              if (ing.pac !== catItem.pac || ing.pod !== catItem.pod) {
+                await this.ingredients.update(ing.id, {
+                  pac: catItem.pac,
+                  pod: catItem.pod
+                });
+              }
+            }
+          }
+          await this.settings.put({ key: 'ingredient_technical_params_version', value: 1 });
         }
       }
 
