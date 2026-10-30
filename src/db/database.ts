@@ -21,17 +21,20 @@ export const BRAND_NAME_REPLACEMENTS: Record<string, string> = {
   'Leite de Coco Sococo': 'Leite de Coco Tradicional (20% gordura)',
   'Leite de coco em pó - IO': 'Leite de Coco em Pó',
   'Doce de leite Rocca': 'Doce de Leite Artesanal (Sem Amido)',
-  'DPO 165 Premium - Aroma Italia': 'Base DPO 165 Premium',
-  'IMO 900 + Taumatina (moonsugar)': 'IMO 900 + Taumatina',
-  'Nesquik / Ovomaltine': 'Achocolatado em Pó',
-  'Nutella': 'Creme de Avelã com Cacau',
-  'Variegato de Nutella': 'Variegato de Creme de Avelã com Cacau',
-  'Sucrilhos': 'Cereal de Milho Açucarado',
-  'Xarope (monin)': 'Xarope de Açúcar Saborizado',
-  'Biscoff': 'Biscoito Speculoos (Caramelizado)',
-  "Licor Bailey's": 'Licor de Creme Irlandês (Irish Cream)',
-  'Cointreau': 'Licor Triple Sec (Laranja)',
   'Xylitol': 'Xilitol'
+};
+
+export const RESTORED_BRAND_NAMES: Record<string, { newName: string; newCategory?: string }> = {
+  'Base DPO 165 Premium': { newName: 'DPO 165 Premium - Aroma Italia', newCategory: 'Bases & Pré-preparos' },
+  'IMO 900 + Taumatina': { newName: 'IMO 900 + Taumatina (moonsugar)', newCategory: 'Açúcares' },
+  'Achocolatado em Pó': { newName: 'Nesquik / Ovomaltine', newCategory: 'Confeitaria & Inclusões' },
+  'Creme de Avelã com Cacau': { newName: 'Nutella', newCategory: 'Pastas & Oleaginosas' },
+  'Variegato de Creme de Avelã com Cacau': { newName: 'Variegato de Nutella', newCategory: 'Variegatos & Recheios' },
+  'Cereal de Milho Açucarado': { newName: 'Sucrilhos', newCategory: 'Confeitaria & Inclusões' },
+  'Xarope de Açúcar Saborizado': { newName: 'Xarope (monin)', newCategory: 'Açúcares' },
+  'Biscoito Speculoos (Caramelizado)': { newName: 'Biscoff', newCategory: 'Confeitaria & Inclusões' },
+  'Licor de Creme Irlandês (Irish Cream)': { newName: "Licor Bailey's", newCategory: 'Álcoois & Bebidas' },
+  'Licor Triple Sec (Laranja)': { newName: 'Cointreau', newCategory: 'Álcoois & Bebidas' }
 };
 
 export const CANONICAL_NAME_REPLACEMENTS: Record<string, string> = {
@@ -344,6 +347,75 @@ export class GelatoDatabase extends Dexie {
         console.warn('Migration to v9 sorbet styles:', e);
       }
     });
+
+    // Versão 10: Restauração de marcas originais selecionadas
+    this.version(10).stores({
+      ingredients: 'id, name, category, costKg',
+      recipes: 'id, name, category, targetStyle, isCustom',
+      preparations: 'id, name, category, isCustom',
+      settings: 'key'
+    }).upgrade(async tx => {
+      try {
+        const ings = await tx.table('ingredients').toArray();
+        for (const ing of ings) {
+          if (RESTORED_BRAND_NAMES[ing.name]) {
+            const r = RESTORED_BRAND_NAMES[ing.name];
+            await tx.table('ingredients').update(ing.id, {
+              name: r.newName,
+              ...(r.newCategory ? { category: r.newCategory } : {})
+            });
+          }
+        }
+        const recs = await tx.table('recipes').toArray();
+        for (const rec of recs) {
+          let dirty = false;
+          const updatedItems = rec.ingredients.map((item: any) => {
+            if (RESTORED_BRAND_NAMES[item.name]) {
+              dirty = true;
+              return { ...item, name: RESTORED_BRAND_NAMES[item.name].newName };
+            }
+            return item;
+          });
+          const updatedVars = rec.variegatos?.map((v: any) => {
+            if (RESTORED_BRAND_NAMES[v.name]) {
+              dirty = true;
+              return { ...v, name: RESTORED_BRAND_NAMES[v.name].newName };
+            }
+            return v;
+          });
+          if (dirty) {
+            await tx.table('recipes').update(rec.id, {
+              ingredients: updatedItems,
+              ...(updatedVars ? { variegatos: updatedVars } : {})
+            });
+          }
+        }
+        const preps = await tx.table('preparations').toArray();
+        for (const prep of preps) {
+          let dirty = false;
+          let newName = prep.name;
+          if (RESTORED_BRAND_NAMES[prep.name]) {
+            newName = RESTORED_BRAND_NAMES[prep.name].newName;
+            dirty = true;
+          }
+          const updatedItems = prep.ingredients?.map((item: any) => {
+            if (RESTORED_BRAND_NAMES[item.name]) {
+              dirty = true;
+              return { ...item, name: RESTORED_BRAND_NAMES[item.name].newName };
+            }
+            return item;
+          });
+          if (dirty) {
+            await tx.table('preparations').update(prep.id, {
+              name: newName,
+              ...(updatedItems ? { ingredients: updatedItems } : {})
+            });
+          }
+        }
+      } catch (e) {
+        console.warn('Migration to v10 brand restoration:', e);
+      }
+    });
   }
 
   async initializeSeedData(): Promise<void> {
@@ -588,6 +660,69 @@ export class GelatoDatabase extends Dexie {
           }
         }
         await this.settings.put({ key: 'sorbets_updated_v9', value: 1 });
+      }
+
+      // Verificação de sincronização v10: Restauração de marcas nos insumos, receitas e pré-preparos
+      const brandRestoreSetting = await this.settings.get('brands_restored_v10');
+      if (!brandRestoreSetting) {
+        console.log('Restaurando marcas selecionadas nos insumos, receitas e pré-preparos...');
+        const currentIngs = await this.ingredients.toArray();
+        for (const ing of currentIngs) {
+          if (RESTORED_BRAND_NAMES[ing.name]) {
+            const r = RESTORED_BRAND_NAMES[ing.name];
+            await this.ingredients.update(ing.id, {
+              name: r.newName,
+              ...(r.newCategory ? { category: r.newCategory } : {})
+            });
+          }
+        }
+        const allRecs = await this.recipes.toArray();
+        for (const rec of allRecs) {
+          let dirty = false;
+          const updatedItems = rec.ingredients.map(item => {
+            if (RESTORED_BRAND_NAMES[item.name]) {
+              dirty = true;
+              return { ...item, name: RESTORED_BRAND_NAMES[item.name].newName };
+            }
+            return item;
+          });
+          const updatedVars = rec.variegatos?.map(v => {
+            if (RESTORED_BRAND_NAMES[v.name]) {
+              dirty = true;
+              return { ...v, name: RESTORED_BRAND_NAMES[v.name].newName };
+            }
+            return v;
+          });
+          if (dirty) {
+            await this.recipes.update(rec.id, {
+              ingredients: updatedItems,
+              ...(updatedVars ? { variegatos: updatedVars } : {})
+            });
+          }
+        }
+        const allPreps = await this.preparations.toArray();
+        for (const prep of allPreps) {
+          let dirty = false;
+          let newName = prep.name;
+          if (RESTORED_BRAND_NAMES[prep.name]) {
+            newName = RESTORED_BRAND_NAMES[prep.name].newName;
+            dirty = true;
+          }
+          const updatedItems = prep.ingredients?.map(item => {
+            if (RESTORED_BRAND_NAMES[item.name]) {
+              dirty = true;
+              return { ...item, name: RESTORED_BRAND_NAMES[item.name].newName };
+            }
+            return item;
+          });
+          if (dirty) {
+            await this.preparations.update(prep.id, {
+              name: newName,
+              ...(updatedItems ? { ingredients: updatedItems } : {})
+            });
+          }
+        }
+        await this.settings.put({ key: 'brands_restored_v10', value: 1 });
       }
 
       // 2. Receitas

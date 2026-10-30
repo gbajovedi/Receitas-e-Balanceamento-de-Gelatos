@@ -65,7 +65,7 @@
   },
   {
     "id": "ing_184",
-    "name": "Achocolatado em Pó",
+    "name": "Nesquik / Ovomaltine",
     "category": "Confeitaria & Inclusões",
     "costKg": 35,
     "sugars": 0.75,
@@ -465,8 +465,8 @@
   },
   {
     "id": "ing_63",
-    "name": "Base DPO 165 Premium",
-    "category": "Neutros, Gomas & Fibras",
+    "name": "DPO 165 Premium - Aroma Italia",
+    "category": "Bases & Pré-preparos",
     "costKg": 97.5,
     "sugars": 0.4,
     "fat": 0.2,
@@ -545,7 +545,7 @@
   },
   {
     "id": "ing_29",
-    "name": "Biscoito Speculoos (Caramelizado)",
+    "name": "Biscoff",
     "category": "Confeitaria & Inclusões",
     "costKg": 175,
     "sugars": 0.37,
@@ -705,7 +705,7 @@
   },
   {
     "id": "ing_183",
-    "name": "Cereal de Milho Açucarado",
+    "name": "Sucrilhos",
     "category": "Confeitaria & Inclusões",
     "costKg": 35,
     "sugars": 0.37,
@@ -945,8 +945,8 @@
   },
   {
     "id": "ing_130",
-    "name": "Creme de Avelã com Cacau",
-    "category": "Variegatos & Recheios",
+    "name": "Nutella",
+    "category": "Pastas & Oleaginosas",
     "costKg": 125,
     "sugars": 0.5,
     "fat": 0.31,
@@ -1565,7 +1565,7 @@
   },
   {
     "id": "ing_87",
-    "name": "IMO 900 + Taumatina",
+    "name": "IMO 900 + Taumatina (moonsugar)",
     "category": "Açúcares",
     "costKg": 56,
     "sugars": 1,
@@ -2041,7 +2041,7 @@
   },
   {
     "id": "ing_171",
-    "name": "Licor de Creme Irlandês (Irish Cream)",
+    "name": "Licor Bailey's",
     "category": "Álcoois & Bebidas",
     "costKg": 110,
     "sugars": 0.18,
@@ -2057,7 +2057,7 @@
   },
   {
     "id": "ing_52",
-    "name": "Licor Triple Sec (Laranja)",
+    "name": "Cointreau",
     "category": "Álcoois & Bebidas",
     "costKg": 230,
     "sugars": 0.2,
@@ -3270,7 +3270,7 @@
   },
   {
     "id": "ing_192",
-    "name": "Variegato de Creme de Avelã com Cacau",
+    "name": "Variegato de Nutella",
     "category": "Variegatos & Recheios",
     "costKg": 80.1005,
     "sugars": 0.3706,
@@ -3334,7 +3334,7 @@
   },
   {
     "id": "ing_167",
-    "name": "Xarope de Açúcar Saborizado",
+    "name": "Xarope (monin)",
     "category": "Açúcares",
     "costKg": 0,
     "sugars": 0.8,
