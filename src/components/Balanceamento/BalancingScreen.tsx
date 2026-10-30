@@ -540,39 +540,46 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
 
                     return (
                       <tr key={idx} className="hover:bg-slate-750/40 transition-colors group">
-                        <td className="py-2.5 pl-2">
-                          <div className="space-y-1">
+                        <td className="py-2 pl-2">
+                          <div className="relative flex items-center w-full">
                             <input
                               type="text"
                               list="ingredients-datalist"
                               value={item.name}
                               onChange={e => handleNameChange(idx, e.target.value)}
                               placeholder="Digite ou escolha o insumo..."
-                              className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500 font-semibold"
+                              className={`w-full bg-slate-900 border ${
+                                isUnknown ? 'border-amber-500/60 focus:border-amber-500' : 'border-slate-700 focus:border-amber-500'
+                              } rounded-xl pl-3 ${
+                                catPill || isUnknown ? 'pr-28 sm:pr-32' : 'pr-3'
+                              } py-2 text-sm text-white focus:outline-none font-semibold transition-colors`}
                             />
-                            {/* Contextual category chip / validation warning */}
-                            <div className="flex items-center gap-1.5 flex-wrap text-[10px]">
+
+                            {/* Embedded Category Chip / Warning Pill inside the right end of the input */}
+                            <div className="absolute right-2 flex items-center gap-1.5 pointer-events-none">
                               {catPill && (
-                                <span className={`px-2 py-0.5 rounded-md border font-bold flex items-center gap-1 ${catPill.color}`}>
+                                <span
+                                  className={`px-2 py-0.5 rounded-lg border text-[11px] font-bold flex items-center gap-1 shadow-sm select-none ${catPill.color}`}
+                                  title={`Categoria: ${ing?.category}`}
+                                >
                                   <span>{catPill.icon}</span>
                                   <span>{catPill.label}</span>
                                 </span>
                               )}
                               {isUnknown && (
-                                <span className="px-2 py-0.5 rounded-md border font-bold bg-amber-500/15 text-amber-300 border-amber-500/30 flex items-center gap-1">
-                                  <AlertTriangle className="w-3 h-3 text-amber-400" />
-                                  <span>Insumo não cadastrado</span>
-                                </span>
-                              )}
-                              {ing && ing.costKg <= 0 && (
-                                <span className="px-1.5 py-0.5 rounded text-slate-400 bg-slate-800">
-                                  Sem custo/kg
+                                <span
+                                  className="px-2 py-0.5 rounded-lg border border-amber-500/40 bg-amber-500/15 text-amber-300 text-[11px] font-bold flex items-center gap-1 shadow-sm select-none"
+                                  title="Insumo não cadastrado no banco comercial"
+                                >
+                                  <AlertTriangle className="w-3 h-3 text-amber-400 shrink-0" />
+                                  <span className="hidden sm:inline">Não cadastrado</span>
+                                  <span className="sm:hidden">Novo</span>
                                 </span>
                               )}
                             </div>
                           </div>
                         </td>
-                        <td className="py-2.5 text-right whitespace-nowrap">
+                        <td className="py-2 text-right whitespace-nowrap">
                           <div className="flex items-center justify-end gap-1">
                             <button
                               type="button"
@@ -584,11 +591,10 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
                             </button>
                             <input
                               type="number"
-                              min="0"
-                              step="0.5"
-                              value={item.grams || ''}
+                              value={item.grams === 0 ? '' : item.grams}
                               onChange={e => handleGramsChange(idx, parseFloat(e.target.value) || 0)}
-                              className="w-20 bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-1.5 text-sm text-right font-mono font-black text-amber-300 focus:outline-none focus:border-amber-500 shadow-inner"
+                              className="w-20 bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-1.5 text-right font-mono text-sm text-white focus:outline-none focus:border-amber-500 font-bold"
+                              placeholder="0"
                             />
                             <button
                               type="button"
@@ -600,13 +606,18 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
                             </button>
                           </div>
                         </td>
-                        <td className="py-2.5 text-right font-mono font-bold text-slate-200 text-sm">
+                        <td className="py-2 text-right font-mono font-bold text-slate-200 text-sm">
                           {pct.toFixed(1)}%
                         </td>
-                        <td className="py-2.5 text-right font-mono font-bold text-slate-200 text-sm">
-                          R$ {itemCost.toFixed(2)}
+                        <td className="py-2 text-right font-mono font-bold text-slate-200 text-sm">
+                          <span
+                            title={ing && ing.costKg <= 0 ? 'Sem custo/kg cadastrado' : undefined}
+                            className={ing && ing.costKg <= 0 ? 'text-slate-400' : 'text-slate-200'}
+                          >
+                            R$ {itemCost.toFixed(2)}
+                          </span>
                         </td>
-                        <td className="py-2.5 text-center">
+                        <td className="py-2 text-center">
                           <button
                             type="button"
                             onClick={() => handleRemoveRow(idx)}
@@ -823,11 +834,14 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
 
       {/* Datalist for fast ingredient autocompletion */}
       <datalist id="ingredients-datalist">
-        {ingredients.map(ing => (
-          <option key={ing.id} value={ing.name}>
-            {ing.category} (R$ {ing.costKg.toFixed(2)}/kg)
-          </option>
-        ))}
+        {ingredients.map(ing => {
+          const pill = getIngredientCategoryPill(ing.category);
+          return (
+            <option key={ing.id} value={ing.name}>
+              {pill ? pill.icon + ' ' : ''}{ing.category} (R$ {ing.costKg.toFixed(2)}/kg)
+            </option>
+          );
+        })}
       </datalist>
 
       {/* Save Modal */}
