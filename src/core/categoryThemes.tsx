@@ -8,7 +8,8 @@ import {
   Citrus,
   Apple,
   IceCream,
-  Nut
+  Nut,
+  Palmtree
 } from 'lucide-react';
 
 // Custom SVG icon for chocolate bars: 6 distinct embossed tablets, bold, clean lines
@@ -68,7 +69,25 @@ export const getCategoryTheme = (category: string = ''): CategoryTheme => {
     };
   }
 
-  // 3. Sorbets -> Citrus (Fatia de fruta cítrica fresca)
+  // 3. Sorbets Cítricos / Frutas Ácidas -> Citrus (Fatia de cítrico fresca)
+  if (cat.includes('cítric') || cat.includes('citric') || cat.includes('ácid') || cat.includes('acida')) {
+    return {
+      gradient: 'from-amber-400 via-lime-400 to-emerald-400',
+      badge: 'bg-lime-500/15 text-lime-300 border-lime-500/40',
+      icon: <Citrus className="w-3.5 h-3.5 text-lime-400 shrink-0" />
+    };
+  }
+
+  // 4. Sorbets Polposos / Frutas Densas -> Palmtree (Palmeira tropical)
+  if (cat.includes('polpos') || cat.includes('densa') || cat.includes('tropical')) {
+    return {
+      gradient: 'from-amber-500 via-orange-500 to-rose-400',
+      badge: 'bg-orange-500/15 text-orange-300 border-orange-500/40',
+      icon: <Palmtree className="w-3.5 h-3.5 text-orange-400 shrink-0" />
+    };
+  }
+
+  // 5. Sorbets Geral -> Citrus
   if (cat.includes('sorbet') || cat.includes('fruta')) {
     return {
       gradient: 'from-rose-500 via-orange-400 to-amber-400',

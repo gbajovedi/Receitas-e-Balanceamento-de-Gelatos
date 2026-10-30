@@ -313,6 +313,37 @@ export class GelatoDatabase extends Dexie {
         console.warn('Migration to v8 nut styles:', e);
       }
     });
+
+    // Versão 9: Subdivisão de Sorbets (Cítricos / Ácidos vs. Polposos / Densos)
+    this.version(9).stores({
+      ingredients: 'id, name, category, costKg',
+      recipes: 'id, name, category, targetStyle, isCustom',
+      preparations: 'id, name, category, isCustom',
+      settings: 'key'
+    }).upgrade(async tx => {
+      try {
+        const citricosIds = ['rec_73', 'rec_74', 'rec_78', 'rec_81', 'rec_82', 'rec_83', 'rec_87', 'rec_88', 'rec_89', 'rec_93', 'rec_95'];
+        const polpososIds = ['rec_71', 'rec_72', 'rec_75', 'rec_76', 'rec_77', 'rec_79', 'rec_80', 'rec_84', 'rec_85', 'rec_86', 'rec_90', 'rec_91', 'rec_92', 'rec_94', 'rec_96'];
+        const recs = await tx.table('recipes').toArray();
+        for (const rec of recs) {
+          if (!rec.isCustom) {
+            if (citricosIds.includes(rec.id)) {
+              await tx.table('recipes').update(rec.id, {
+                category: 'Sorbets Cítricos / Frutas Ácidas',
+                targetStyle: 'Sorbets Cítricos / Frutas Ácidas'
+              });
+            } else if (polpososIds.includes(rec.id)) {
+              await tx.table('recipes').update(rec.id, {
+                category: 'Sorbets Polposos / Frutas Densas',
+                targetStyle: 'Sorbets Polposos / Frutas Densas'
+              });
+            }
+          }
+        }
+      } catch (e) {
+        console.warn('Migration to v9 sorbet styles:', e);
+      }
+    });
   }
 
   async initializeSeedData(): Promise<void> {
@@ -533,6 +564,30 @@ export class GelatoDatabase extends Dexie {
           }
         }
         await this.settings.put({ key: 'styles_updated_v8', value: 1 });
+      }
+
+      // Verificação de sincronização v9: Subdivisão de Sorbets
+      const sorbetsUpdated = await this.settings.get('sorbets_updated_v9');
+      if (!sorbetsUpdated) {
+        const citricosIds = ['rec_73', 'rec_74', 'rec_78', 'rec_81', 'rec_82', 'rec_83', 'rec_87', 'rec_88', 'rec_89', 'rec_93', 'rec_95'];
+        const polpososIds = ['rec_71', 'rec_72', 'rec_75', 'rec_76', 'rec_77', 'rec_79', 'rec_80', 'rec_84', 'rec_85', 'rec_86', 'rec_90', 'rec_91', 'rec_92', 'rec_94', 'rec_96'];
+        const allRecs = await this.recipes.toArray();
+        for (const rec of allRecs) {
+          if (!rec.isCustom) {
+            if (citricosIds.includes(rec.id)) {
+              await this.recipes.update(rec.id, {
+                category: 'Sorbets Cítricos / Frutas Ácidas',
+                targetStyle: 'Sorbets Cítricos / Frutas Ácidas'
+              });
+            } else if (polpososIds.includes(rec.id)) {
+              await this.recipes.update(rec.id, {
+                category: 'Sorbets Polposos / Frutas Densas',
+                targetStyle: 'Sorbets Polposos / Frutas Densas'
+              });
+            }
+          }
+        }
+        await this.settings.put({ key: 'sorbets_updated_v9', value: 1 });
       }
 
       // 2. Receitas

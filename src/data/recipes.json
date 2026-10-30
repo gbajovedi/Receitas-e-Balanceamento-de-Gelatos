@@ -2980,8 +2980,8 @@
   {
     "id": "rec_71",
     "name": "Sorbet de Cupuaçu (Direto ao Ponto)",
-    "category": "Sorbets",
-    "targetStyle": "Sorbets",
+    "category": "Sorbets Polposos / Frutas Densas",
+    "targetStyle": "Sorbets Polposos / Frutas Densas",
     "ingredients": [
       {
         "name": "Polpa Cupuaçu",
@@ -3021,8 +3021,8 @@
   {
     "id": "rec_72",
     "name": "Sorbet de Manga com Maracujá (Direto ao Ponto)",
-    "category": "Sorbets",
-    "targetStyle": "Sorbets",
+    "category": "Sorbets Polposos / Frutas Densas",
+    "targetStyle": "Sorbets Polposos / Frutas Densas",
     "ingredients": [
       {
         "name": "Manga",
@@ -3062,8 +3062,8 @@
   {
     "id": "rec_73",
     "name": "Sorbet de Limão (Direto ao Ponto)",
-    "category": "Sorbets",
-    "targetStyle": "Sorbets",
+    "category": "Sorbets Cítricos / Frutas Ácidas",
+    "targetStyle": "Sorbets Cítricos / Frutas Ácidas",
     "ingredients": [
       {
         "name": "Suco de Limão",
@@ -3099,8 +3099,8 @@
   {
     "id": "rec_74",
     "name": "Sorbet de Framboesa (Direto ao Ponto)",
-    "category": "Sorbets",
-    "targetStyle": "Sorbets",
+    "category": "Sorbets Cítricos / Frutas Ácidas",
+    "targetStyle": "Sorbets Cítricos / Frutas Ácidas",
     "ingredients": [
       {
         "name": "Framboesa",
@@ -3140,8 +3140,8 @@
   {
     "id": "rec_75",
     "name": "Sorbet de Banana (Direto ao Ponto)",
-    "category": "Sorbets",
-    "targetStyle": "Sorbets",
+    "category": "Sorbets Polposos / Frutas Densas",
+    "targetStyle": "Sorbets Polposos / Frutas Densas",
     "ingredients": [
       {
         "name": "Banana",
@@ -3181,8 +3181,8 @@
   {
     "id": "rec_76",
     "name": "Sorbet de Melancia (Direto ao Ponto)",
-    "category": "Sorbets",
-    "targetStyle": "Sorbets",
+    "category": "Sorbets Polposos / Frutas Densas",
+    "targetStyle": "Sorbets Polposos / Frutas Densas",
     "ingredients": [
       {
         "name": "Melancia",
@@ -3222,8 +3222,8 @@
   {
     "id": "rec_77",
     "name": "Sorbet de Maracujá com Pêssego (Direto ao Ponto)",
-    "category": "Sorbets",
-    "targetStyle": "Sorbets",
+    "category": "Sorbets Polposos / Frutas Densas",
+    "targetStyle": "Sorbets Polposos / Frutas Densas",
     "ingredients": [
       {
         "name": "Maracujá",
@@ -3263,8 +3263,8 @@
   {
     "id": "rec_78",
     "name": "Sorbet de Mexerica (Direto ao Ponto)",
-    "category": "Sorbets",
-    "targetStyle": "Sorbets",
+    "category": "Sorbets Cítricos / Frutas Ácidas",
+    "targetStyle": "Sorbets Cítricos / Frutas Ácidas",
     "ingredients": [
       {
         "name": "Tangerina / Mexerica",
@@ -3304,8 +3304,8 @@
   {
     "id": "rec_79",
     "name": "Sorbet de Açaí (Direto ao Ponto)",
-    "category": "Sorbets",
-    "targetStyle": "Sorbets",
+    "category": "Sorbets Polposos / Frutas Densas",
+    "targetStyle": "Sorbets Polposos / Frutas Densas",
     "ingredients": [
       {
         "name": "Polpa de Açaí (10-14% Sólidos)",
@@ -3345,8 +3345,8 @@
   {
     "id": "rec_80",
     "name": "Sorbet de Açaí com Banana (Direto ao Ponto)",
-    "category": "Sorbets",
-    "targetStyle": "Sorbets",
+    "category": "Sorbets Polposos / Frutas Densas",
+    "targetStyle": "Sorbets Polposos / Frutas Densas",
     "ingredients": [
       {
         "name": "Polpa de Açaí (10-14% Sólidos)",
@@ -3390,8 +3390,8 @@
   {
     "id": "rec_81",
     "name": "Sorbet Mix de Frutas Vermelhas (Addolcire)",
-    "category": "Sorbets",
-    "targetStyle": "Sorbets",
+    "category": "Sorbets Cítricos / Frutas Ácidas",
+    "targetStyle": "Sorbets Cítricos / Frutas Ácidas",
     "ingredients": [
       {
         "name": "Morango",
@@ -3431,8 +3431,8 @@
   {
     "id": "rec_82",
     "name": "Sorbet Pink Lemonade (Addolcire)",
-    "category": "Sorbets",
-    "targetStyle": "Sorbets",
+    "category": "Sorbets Cítricos / Frutas Ácidas",
+    "targetStyle": "Sorbets Cítricos / Frutas Ácidas",
     "ingredients": [
       {
         "name": "Água",
@@ -3476,8 +3476,8 @@
   {
     "id": "rec_83",
     "name": "Sorbet de Abacaxi e Hortelã (Addolcire)",
-    "category": "Sorbets",
-    "targetStyle": "Sorbets",
+    "category": "Sorbets Cítricos / Frutas Ácidas",
+    "targetStyle": "Sorbets Cítricos / Frutas Ácidas",
     "ingredients": [
       {
         "name": "Água",
@@ -3513,8 +3513,8 @@
   {
     "id": "rec_84",
     "name": "Sorbet de Atemoia / Fruta do Conde (Addolcire)",
-    "category": "Sorbets",
-    "targetStyle": "Sorbets",
+    "category": "Sorbets Polposos / Frutas Densas",
+    "targetStyle": "Sorbets Polposos / Frutas Densas",
     "ingredients": [
       {
         "name": "Água",
@@ -3550,8 +3550,8 @@
   {
     "id": "rec_85",
     "name": "Sorbet de Caqui (Addolcire)",
-    "category": "Sorbets",
-    "targetStyle": "Sorbets",
+    "category": "Sorbets Polposos / Frutas Densas",
+    "targetStyle": "Sorbets Polposos / Frutas Densas",
     "ingredients": [
       {
         "name": "Água",
@@ -3583,8 +3583,8 @@
   {
     "id": "rec_86",
     "name": "Sorbet de Figo (Addolcire)",
-    "category": "Sorbets",
-    "targetStyle": "Sorbets",
+    "category": "Sorbets Polposos / Frutas Densas",
+    "targetStyle": "Sorbets Polposos / Frutas Densas",
     "ingredients": [
       {
         "name": "Água",
@@ -3616,8 +3616,8 @@
   {
     "id": "rec_87",
     "name": "Sorbet de Frutas Vermelhas (Addolcire)",
-    "category": "Sorbets",
-    "targetStyle": "Sorbets",
+    "category": "Sorbets Cítricos / Frutas Ácidas",
+    "targetStyle": "Sorbets Cítricos / Frutas Ácidas",
     "ingredients": [
       {
         "name": "Água",
@@ -3653,8 +3653,8 @@
   {
     "id": "rec_88",
     "name": "Sorbet de Jabuticaba (Addolcire)",
-    "category": "Sorbets",
-    "targetStyle": "Sorbets",
+    "category": "Sorbets Cítricos / Frutas Ácidas",
+    "targetStyle": "Sorbets Cítricos / Frutas Ácidas",
     "ingredients": [
       {
         "name": "Água",
@@ -3686,8 +3686,8 @@
   {
     "id": "rec_89",
     "name": "Sorbet de Laranja e Gengibre (Addolcire)",
-    "category": "Sorbets",
-    "targetStyle": "Sorbets",
+    "category": "Sorbets Cítricos / Frutas Ácidas",
+    "targetStyle": "Sorbets Cítricos / Frutas Ácidas",
     "ingredients": [
       {
         "name": "Água",
@@ -3723,8 +3723,8 @@
   {
     "id": "rec_90",
     "name": "Sorbet de Mamão (Addolcire)",
-    "category": "Sorbets",
-    "targetStyle": "Sorbets",
+    "category": "Sorbets Polposos / Frutas Densas",
+    "targetStyle": "Sorbets Polposos / Frutas Densas",
     "ingredients": [
       {
         "name": "Água",
@@ -3756,8 +3756,8 @@
   {
     "id": "rec_91",
     "name": "Sorbet de Mamão e Laranja (Addolcire)",
-    "category": "Sorbets",
-    "targetStyle": "Sorbets",
+    "category": "Sorbets Polposos / Frutas Densas",
+    "targetStyle": "Sorbets Polposos / Frutas Densas",
     "ingredients": [
       {
         "name": "Água",
@@ -3793,8 +3793,8 @@
   {
     "id": "rec_92",
     "name": "Sorbet de Manga (Addolcire)",
-    "category": "Sorbets",
-    "targetStyle": "Sorbets",
+    "category": "Sorbets Polposos / Frutas Densas",
+    "targetStyle": "Sorbets Polposos / Frutas Densas",
     "ingredients": [
       {
         "name": "Água",
@@ -3830,8 +3830,8 @@
   {
     "id": "rec_93",
     "name": "Sorbet de Maracujá (Addolcire)",
-    "category": "Sorbets",
-    "targetStyle": "Sorbets",
+    "category": "Sorbets Cítricos / Frutas Ácidas",
+    "targetStyle": "Sorbets Cítricos / Frutas Ácidas",
     "ingredients": [
       {
         "name": "Água",
@@ -3863,8 +3863,8 @@
   {
     "id": "rec_94",
     "name": "Sorbet de Melancia e Hortelã (Addolcire)",
-    "category": "Sorbets",
-    "targetStyle": "Sorbets",
+    "category": "Sorbets Polposos / Frutas Densas",
+    "targetStyle": "Sorbets Polposos / Frutas Densas",
     "ingredients": [
       {
         "name": "Água",
@@ -3904,8 +3904,8 @@
   {
     "id": "rec_95",
     "name": "Sorbet de Mexerica (Addolcire)",
-    "category": "Sorbets",
-    "targetStyle": "Sorbets",
+    "category": "Sorbets Cítricos / Frutas Ácidas",
+    "targetStyle": "Sorbets Cítricos / Frutas Ácidas",
     "ingredients": [
       {
         "name": "Água",
@@ -3945,8 +3945,8 @@
   {
     "id": "rec_96",
     "name": "Sorbet de Pêssego e Lavanda (Addolcire)",
-    "category": "Sorbets",
-    "targetStyle": "Sorbets",
+    "category": "Sorbets Polposos / Frutas Densas",
+    "targetStyle": "Sorbets Polposos / Frutas Densas",
     "ingredients": [
       {
         "name": "Água",
