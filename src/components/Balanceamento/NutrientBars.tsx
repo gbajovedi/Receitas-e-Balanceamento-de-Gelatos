@@ -291,44 +291,37 @@ export const NutrientBars: React.FC<NutrientBarsProps> = ({ analysis }) => {
           </div>
         </div>
 
-        {/* Precision Bullet Graph Bar */}
+        {/* Precision Target Range Bar & Needle Marker */}
         <div>
-          <div className="relative w-full h-3.5 bg-slate-950 rounded-full overflow-hidden border border-slate-700/80 shadow-inner">
-            {/* 1. Target range safe zone highlight (luminous background track) */}
+          <div className="relative w-full h-4 bg-slate-950/90 rounded-full border border-slate-800 shadow-inner flex items-center">
+            {/* 1. Faixa Colorida: Intervalo Recomendado [Mínimo -> Máximo] */}
             <div
-              className="absolute top-0 bottom-0 bg-emerald-500/15 border-x border-emerald-400/40 pointer-events-none z-10 transition-all"
+              className={`absolute top-0.5 bottom-0.5 rounded-full transition-all duration-300 bg-gradient-to-r ${meta.barGradient} shadow-md opacity-90`}
               style={{
                 left: `${minMarkerPct}%`,
                 width: `${Math.max(maxMarkerPct - minMarkerPct, 2)}%`
               }}
-              title={`Faixa Ideal: ${displayMin} a ${displayMax}${unit}`}
-            />
+              title={`Faixa Recomendada: ${displayMin} a ${displayMax}${unit}`}
+            >
+              {/* Delimitadores discretos nas pontas da faixa */}
+              <div className="absolute left-0 top-0 bottom-0 w-[1.5px] bg-white/60 rounded-l" />
+              <div className="absolute right-0 top-0 bottom-0 w-[1.5px] bg-white/60 rounded-r" />
 
-            {/* 2. Sweet spot center marker */}
-            <div
-              className="absolute top-0 bottom-0 w-[1px] bg-emerald-400/30 z-10 pointer-events-none"
-              style={{ left: `${midMarkerPct}%` }}
-              title={`Centro da Faixa: ~${displayMid}${unit}`}
-            />
+              {/* Centro de referência da faixa */}
+              <div className="absolute top-0 bottom-0 w-[1px] bg-white/20 left-1/2 pointer-events-none" />
+            </div>
 
-            {/* 3. Active progress bar fill */}
+            {/* 2. Marcador Vertical Bem Visível (Agulha de Alta Precisão) no Valor Calculado */}
             <div
-              className={`h-full rounded-full transition-all duration-300 ${barGradient} ${status === 'Ok' ? meta.glowColor : ''}`}
-              style={{ width: `${progressPct}%` }}
-            />
-
-            {/* 4. Minimum Limit Marker: Solid White Glowing Tick */}
-            <div
-              className="absolute top-0 bottom-0 w-[2.5px] bg-white shadow-[0_0_5px_rgba(255,255,255,0.95)] z-20 pointer-events-none"
-              style={{ left: `calc(${minMarkerPct}% - 1px)` }}
-              title={`Limite Mínimo: ${displayMin}${unit}`}
-            />
-
-            {/* 5. Maximum Limit Marker: Solid White Glowing Tick */}
-            <div
-              className="absolute top-0 bottom-0 w-[2.5px] bg-white shadow-[0_0_5px_rgba(255,255,255,0.95)] z-20 pointer-events-none"
-              style={{ left: `calc(${maxMarkerPct}% - 1px)` }}
-              title={`Limite Máximo: ${displayMax}${unit}`}
+              className={`absolute top-[-3px] bottom-[-3px] w-[4px] rounded-full z-20 transition-all duration-300 pointer-events-none ${
+                status === 'Ok'
+                  ? 'bg-white shadow-[0_0_8px_rgba(255,255,255,1),0_0_14px_rgba(52,211,153,0.9)] ring-1 ring-emerald-400'
+                  : status === 'Baixo'
+                  ? 'bg-amber-300 shadow-[0_0_10px_rgba(245,158,11,1)] ring-1 ring-amber-400 animate-pulse'
+                  : 'bg-rose-400 shadow-[0_0_10px_rgba(244,63,94,1)] ring-1 ring-rose-500 animate-pulse'
+              }`}
+              style={{ left: `calc(${progressPct}% - 2px)` }}
+              title={`Valor Calculado: ${displayVal}${unit}`}
             />
           </div>
 
