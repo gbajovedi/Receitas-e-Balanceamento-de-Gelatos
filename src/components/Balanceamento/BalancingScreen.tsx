@@ -345,41 +345,41 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
             </div>
 
             <div className="flex flex-wrap items-center gap-3">
+              {/* Recipe Name Input with Integrated Catalog Search */}
               <RecipeSearchCombobox
                 recipes={recipes}
                 selectedRecipeId={selectedRecipeId}
                 onSelectRecipe={handleSelectRecipe}
-              />
-
-              {/* Editable Name Field */}
-              <input
-                type="text"
-                value={recipeName}
-                onChange={e => {
-                  setRecipeName(e.target.value);
+                recipeName={recipeName}
+                onRecipeNameChange={name => {
+                  setRecipeName(name);
                   setIsDirty(true);
                 }}
-                className="flex-1 min-w-[240px] bg-slate-900/80 border border-slate-700 rounded-xl px-4 py-2.5 text-base font-bold text-amber-300 focus:outline-none focus:border-amber-500 placeholder-slate-500"
-                placeholder="Nome da Receita..."
               />
 
-              {/* Target Style Dropdown with matching CategoryBadge */}
-              <div className="flex items-center gap-2">
-                <CategoryBadge category={targetStyleName} className="hidden sm:inline-flex" />
-                <select
-                  value={targetStyleName}
-                  onChange={e => {
-                    setTargetStyleName(e.target.value);
-                    setIsDirty(true);
-                  }}
-                  className="bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs font-bold text-slate-200 focus:outline-none focus:border-amber-500"
-                >
-                  {Object.keys(stylesDataMap).map(s => (
-                    <option key={s} value={s}>
-                      Estilo: {s}
-                    </option>
-                  ))}
-                </select>
+              {/* Single Unified Target Style Selector */}
+              <div
+                className="flex items-center gap-2 bg-slate-900 border border-slate-700 hover:border-slate-600 focus-within:border-amber-500 focus-within:ring-2 focus-within:ring-amber-500/20 rounded-xl px-3.5 py-2.5 transition-all shadow-inner shrink-0"
+                title="Estilo Alvo de Balanceamento (define os limites nutricionais recomendados)"
+              >
+                <span className="shrink-0">{getCategoryTheme(targetStyleName).icon}</span>
+                <div className="relative flex items-center">
+                  <select
+                    value={targetStyleName}
+                    onChange={e => {
+                      setTargetStyleName(e.target.value);
+                      setIsDirty(true);
+                    }}
+                    className="appearance-none bg-transparent pr-6 text-xs sm:text-sm font-bold text-slate-200 focus:outline-none cursor-pointer"
+                  >
+                    {Object.keys(stylesDataMap).map(s => (
+                      <option key={s} value={s} className="bg-slate-900 text-slate-200">
+                        Estilo: {s}
+                      </option>
+                    ))}
+                  </select>
+                  <ChevronDown className="w-3.5 h-3.5 text-slate-400 absolute right-0 pointer-events-none" />
+                </div>
               </div>
             </div>
           </div>

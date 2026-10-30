@@ -7,12 +7,16 @@ interface RecipeSearchComboboxProps {
   recipes: Recipe[];
   selectedRecipeId: string;
   onSelectRecipe: (id: string) => void;
+  recipeName: string;
+  onRecipeNameChange: (name: string) => void;
 }
 
 export const RecipeSearchCombobox: React.FC<RecipeSearchComboboxProps> = ({
   recipes,
   selectedRecipeId,
-  onSelectRecipe
+  onSelectRecipe,
+  recipeName,
+  onRecipeNameChange
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
@@ -63,47 +67,45 @@ export const RecipeSearchCombobox: React.FC<RecipeSearchComboboxProps> = ({
   };
 
   return (
-    <div ref={containerRef} className="relative min-w-[280px] sm:min-w-[340px]">
-      {/* Trigger Button */}
-      <button
-        type="button"
-        onClick={() => setIsOpen(!isOpen)}
-        className={`w-full bg-slate-900 border ${
-          isOpen ? 'border-amber-500 ring-2 ring-amber-500/20' : 'border-slate-700 hover:border-slate-600'
-        } rounded-xl px-4 py-2.5 flex items-center justify-between text-left transition-all shadow-inner group`}
+    <div ref={containerRef} className="relative flex-1 min-w-[260px] sm:min-w-[340px] max-w-xl">
+      {/* Integrated Recipe Name Input + Catalog Trigger */}
+      <div
+        className={`flex items-center bg-slate-900 border ${
+          isOpen
+            ? 'border-amber-500 ring-2 ring-amber-500/20'
+            : 'border-slate-700 hover:border-slate-600 focus-within:border-amber-500 focus-within:ring-2 focus-within:ring-amber-500/20'
+        } rounded-xl shadow-inner transition-all overflow-hidden`}
       >
-        <div className="flex items-center gap-2 min-w-0 pr-2">
-          <Search className="w-4 h-4 text-amber-400 shrink-0 group-hover:scale-110 transition-transform" />
-          <div className="truncate">
-            {selectedRecipeId === 'new' ? (
-              <span className="text-sm font-bold text-amber-300">
-                ✨ Nova Receita Personalizada
-              </span>
-            ) : selectedRecipe ? (
-              <div className="flex items-center gap-2 truncate" title={selectedRecipe.name}>
-                <span className="text-sm font-bold text-white truncate">
-                  {selectedRecipe.name}
-                </span>
-                <CategoryBadge category={selectedRecipe.category} className="text-[10px] py-0.5" />
-              </div>
-            ) : (
-              <span className="text-sm font-medium text-slate-400">
-                Buscar ou escolher sabor...
-              </span>
-            )}
-          </div>
-        </div>
-
-        <ChevronDown
-          className={`w-4 h-4 text-slate-400 shrink-0 transition-transform duration-200 ${
-            isOpen ? 'rotate-180 text-amber-400' : ''
-          }`}
+        <input
+          type="text"
+          value={recipeName}
+          onChange={e => onRecipeNameChange(e.target.value)}
+          placeholder="Nome da Receita..."
+          className="flex-1 min-w-0 bg-transparent px-4 py-2.5 text-sm sm:text-base font-bold text-amber-300 placeholder-slate-500 focus:outline-none"
+          title="Clique para editar o nome da receita na bancada"
         />
-      </button>
+
+        <button
+          type="button"
+          onClick={() => setIsOpen(!isOpen)}
+          className={`px-3 sm:px-3.5 py-2.5 border-l border-slate-700/80 bg-slate-800/70 hover:bg-slate-700/80 text-xs font-bold text-slate-300 hover:text-amber-300 flex items-center gap-1.5 transition-colors shrink-0 ${
+            isOpen ? 'bg-amber-500/20 text-amber-300 border-amber-500/40' : ''
+          }`}
+          title="Abrir catálogo e buscar receitas (177 receitas cadastradas)"
+        >
+          <Search className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+          <span className="hidden sm:inline">Catálogo</span>
+          <ChevronDown
+            className={`w-3.5 h-3.5 text-slate-400 shrink-0 transition-transform duration-200 ${
+              isOpen ? 'rotate-180 text-amber-400' : ''
+            }`}
+          />
+        </button>
+      </div>
 
       {/* Dropdown Menu */}
       {isOpen && (
-        <div className="absolute left-0 top-full mt-2 w-full sm:w-[420px] bg-slate-900 border border-slate-700 rounded-2xl shadow-2xl z-50 overflow-hidden flex flex-col max-h-[440px] animate-in fade-in zoom-in-95 duration-150">
+        <div className="absolute left-0 top-full mt-2 w-full sm:w-[460px] bg-slate-900 border border-slate-700 rounded-2xl shadow-2xl z-50 overflow-hidden flex flex-col max-h-[440px] animate-in fade-in zoom-in-95 duration-150">
           {/* Search Input Field */}
           <div className="p-3 border-b border-slate-800 bg-slate-900/95 sticky top-0 z-10 space-y-2">
             <div className="relative">
