@@ -10,9 +10,11 @@ import {
   Scale,
   Copy,
   ArrowUpDown,
-  Layers
+  Layers,
+  AlertCircle
 } from 'lucide-react';
-import { db } from '../../db/database';
+import { db, stylesDataMap } from '../../db/database';
+import { calculateBatchAnalysis } from '../../core/calculator';
 import { RecipeViewerModal } from './RecipeViewerModal';
 import { getCategoryTheme, CategoryBadge } from '../../core/categoryThemes';
 
@@ -54,25 +56,19 @@ export const RecipeList: React.FC<RecipeListProps> = ({
         sugarsPct: number;
         costKg: number;
         totalWeight: number;
+        needsAdjustment: boolean;
+        unbalanceReasons: string[];
       }
     >();
 
     for (const recipe of recipes) {
       let totalWeight = 0;
-      let sugars = 0;
-      let fat = 0;
-      let pod = 0;
-      let pac = 0;
       let cost = 0;
 
       for (const item of recipe.ingredients || []) {
         totalWeight += item.grams;
         const ing = ingredientsMap.get(item.name.toLowerCase().trim());
         if (ing) {
-          sugars += item.grams * ing.sugars;
-          fat += item.grams * ing.fat;
-          pod += item.grams * ing.pod;
-          pac += item.grams * ing.pac;
           cost += (item.grams / 1000) * (ing.costKg || 0);
         }
       }
@@ -84,11 +80,59 @@ export const RecipeList: React.FC<RecipeListProps> = ({
         }
       }
 
-      const pacVal = Math.round(pac);
-      const podVal = Math.round(pod);
-      const fatPct = totalWeight > 0 ? (fat / totalWeight) * 100 : 0;
-      const sugarsPct = totalWeight > 0 ? (sugars / totalWeight) * 100 : 0;
       const costKg = totalWeight > 0 ? cost / (totalWeight / 1000) : 0;
+
+      // Target style standard
+      const targetStyleName = recipe.targetStyle || recipe.category || 'Gelatos de Leite';
+      const currentStyle = stylesDataMap[targetStyleName] || stylesDataMap['Gelatos de Leite'];
+
+      let pacVal = 0;
+      let podVal = 0;
+      let fatPct = 0;
+      let sugarsPct = 0;
+      let needsAdjustment = false;
+      const unbalanceReasons: string[] = [];
+
+      if (recipe.ingredients && recipe.ingredients.length > 0 && currentStyle) {
+        const analysis = calculateBatchAnalysis(
+          recipe.ingredients,
+          recipe.variegatos || [],
+          currentStyle,
+          ingredientsMap
+        );
+
+        pacVal = Math.round(analysis.percentages.pac);
+        podVal = Math.round(analysis.percentages.pod);
+        fatPct = analysis.percentages.fat * 100;
+        sugarsPct = analysis.percentages.sugars * 100;
+
+        if (analysis.validations.sugars.status !== 'Ok') {
+          unbalanceReasons.push(`Açúcares ${analysis.validations.sugars.status.toLowerCase()} (${(analysis.percentages.sugars * 100).toFixed(1)}% | alvo ${Math.round(currentStyle.min.sugars * 100)}–${Math.round(currentStyle.max.sugars * 100)}%)`);
+        }
+        if (analysis.validations.fat.status !== 'Ok') {
+          unbalanceReasons.push(`Gordura ${analysis.validations.fat.status.toLowerCase()} (${(analysis.percentages.fat * 100).toFixed(1)}% | alvo ${Math.round(currentStyle.min.fat * 100)}–${Math.round(currentStyle.max.fat * 100)}%)`);
+        }
+        if (analysis.validations.msnf.status !== 'Ok') {
+          unbalanceReasons.push(`SLNG ${analysis.validations.msnf.status.toLowerCase()} (${(analysis.percentages.msnf * 100).toFixed(1)}% | alvo ${Math.round(currentStyle.min.msnf * 100)}–${Math.round(currentStyle.max.msnf * 100)}%)`);
+        }
+        if (analysis.validations.otherSolids.status !== 'Ok') {
+          unbalanceReasons.push(`Outros Sólidos ${analysis.validations.otherSolids.status.toLowerCase()} (${(analysis.percentages.otherSolids * 100).toFixed(1)}% | alvo ${Math.round(currentStyle.min.otherSolids * 100)}–${Math.round(currentStyle.max.otherSolids * 100)}%)`);
+        }
+        if (analysis.validations.totalSolids.status !== 'Ok') {
+          unbalanceReasons.push(`Sólidos Totais ${analysis.validations.totalSolids.status.toLowerCase()} (${(analysis.percentages.totalSolids * 100).toFixed(1)}% | alvo ${Math.round(currentStyle.min.totalSolids * 100)}–${Math.round(currentStyle.max.totalSolids * 100)}%)`);
+        }
+        if (analysis.validations.pod.status !== 'Ok') {
+          unbalanceReasons.push(`POD ${analysis.validations.pod.status.toLowerCase()} (${analysis.percentages.pod} | alvo ${currentStyle.min.pod}–${currentStyle.max.pod})`);
+        }
+        if (analysis.validations.pac.status !== 'Ok') {
+          unbalanceReasons.push(`PAC ${analysis.validations.pac.status.toLowerCase()} (${analysis.percentages.pac} | alvo ${currentStyle.min.pac}–${currentStyle.max.pac})`);
+        }
+        if (analysis.sandinessRisk?.isAtRisk) {
+          unbalanceReasons.push(`Risco de Arenosidade (SLNG ${(analysis.percentages.msnf * 100).toFixed(1)}% > limite seguro ${(analysis.sandinessRisk.maxSafeMsnf * 100).toFixed(1)}%)`);
+        }
+
+        needsAdjustment = !analysis.isBalanced || Boolean(analysis.sandinessRisk?.isAtRisk);
+      }
 
       map.set(recipe.id, {
         pac: pacVal,
@@ -96,7 +140,9 @@ export const RecipeList: React.FC<RecipeListProps> = ({
         fatPct,
         sugarsPct,
         costKg,
-        totalWeight
+        totalWeight,
+        needsAdjustment,
+        unbalanceReasons
       });
     }
 
@@ -307,7 +353,7 @@ export const RecipeList: React.FC<RecipeListProps> = ({
                 <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${theme.gradient}`} />
 
                 <div className="space-y-3.5">
-                  {/* Meta Badges (Category & Custom & Variegato) */}
+                  {/* Meta Badges (Category & Custom & Variegato & Warning) */}
                   <div className="flex items-center justify-between gap-2 flex-wrap">
                     <CategoryBadge category={recipe.category} />
 
@@ -321,6 +367,24 @@ export const RecipeList: React.FC<RecipeListProps> = ({
                         <span className="text-[11px] px-2 py-0.5 rounded-full bg-amber-500/15 text-amber-300 border border-amber-500/30 font-bold whitespace-nowrap">
                           ✨ Personalizada
                         </span>
+                      )}
+                      {m?.needsAdjustment && (
+                        <button
+                          type="button"
+                          onClick={e => {
+                            e.stopPropagation();
+                            onSelectRecipe(recipe.id);
+                          }}
+                          title={
+                            m.unbalanceReasons.length > 0
+                              ? `Ajuste recomendado na fórmula:\n• ${m.unbalanceReasons.join('\n• ')}\n\nClique para balancear na bancada`
+                              : 'Ajuste recomendado na fórmula\n\nClique para balancear na bancada'
+                          }
+                          className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/40 hover:border-amber-400 text-amber-400 flex items-center justify-center transition-all hover:scale-105 active:scale-95 shadow-sm shrink-0"
+                          aria-label="Ajuste recomendado na fórmula"
+                        >
+                          <AlertCircle className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-amber-400 stroke-[2.3]" />
+                        </button>
                       )}
                     </div>
                   </div>
