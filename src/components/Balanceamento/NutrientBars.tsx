@@ -12,7 +12,8 @@ import {
   AlertTriangle,
   Store,
   Package,
-  Snowflake
+  Snowflake,
+  Wind
 } from 'lucide-react';
 
 interface NutrientBarsProps {
@@ -125,9 +126,10 @@ const NUTRIENT_METAS: Record<string, NutrientMeta> = {
 
 export const NutrientBars: React.FC<NutrientBarsProps> = ({ analysis }) => {
   const { validations, isBalanced, servingTemperature } = analysis;
-  const [thermalMode, setThermalMode] = useState<'vitrine' | 'freezer'>('vitrine');
+  const [thermalMode, setThermalMode] = useState<'vitrine' | 'freezer' | 'emulsion'>('vitrine');
   const corvitto = analysis.corvittoMetrics;
   const sandiness = analysis.sandinessRisk;
+  const emulsion = analysis.emulsionMetrics;
 
   const pendingIssues = Object.entries(validations)
     .filter(([key, item]) => item.status !== 'Ok' && (key !== 'protein' || validations.protein.max > 0))
@@ -341,6 +343,26 @@ export const NutrientBars: React.FC<NutrientBarsProps> = ({ analysis }) => {
             </span>
           </div>
 
+          {/* Razão Gordura : SLNG & Overrun (Carpigiani) */}
+          {key === 'fat' && emulsion && emulsion.status !== 'sorbet' && (
+            <div className="mt-2.5 pt-2 border-t border-slate-800/80 text-[10px] text-slate-400 flex items-center justify-between">
+              <span title="Relação Lipídica Carpigiani: Gordura / SLNG (Alvo ideal: 0.75 a 1.25)">
+                Razão Gordura:SLNG:
+              </span>
+              <span className="flex items-center gap-1 font-mono font-bold">
+                <strong className={
+                  emulsion.status === 'ideal' ? 'text-emerald-300' :
+                  emulsion.status === 'gorduroso' ? 'text-amber-300' : 'text-sky-300'
+                }>
+                  {emulsion.fatMsnfRatio} : 1
+                </strong>
+                <span className="text-[9px] text-slate-400 font-normal">
+                  (~{emulsion.overrunEstimatePct}% ar)
+                </span>
+              </span>
+            </div>
+          )}
+
           {/* Alerta Dinâmico de Arenosidade (Luca Caviezel) */}
           {key === 'msnf' && sandiness && (
             <div className={`mt-2.5 pt-2 border-t text-[10px] sm:text-[11px] flex items-start gap-1.5 transition-all ${sandiness.isAtRisk ? 'border-amber-500/50 text-amber-300 bg-amber-950/40 p-2 rounded-xl border' : 'border-slate-800/80 text-slate-400'}`}>
@@ -431,7 +453,7 @@ export const NutrientBars: React.FC<NutrientBarsProps> = ({ analysis }) => {
 
           {/* Dual Thermal Showcase / Corvitto Freezer Dashboard */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 bg-slate-900/95 p-2 rounded-2xl border border-slate-700/80 shadow-md">
-            {/* Toggle Switch */}
+            {/* Toggle Switch: Vitrine / Freezer / Emulsão */}
             <div className="flex bg-slate-950/90 p-1 rounded-xl border border-slate-800 self-start sm:self-center">
               <button
                 type="button"
@@ -458,6 +480,19 @@ export const NutrientBars: React.FC<NutrientBarsProps> = ({ analysis }) => {
               >
                 <Package className="w-3.5 h-3.5" />
                 <span>Pote Freezer (-18°C)</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setThermalMode('emulsion')}
+                className={`px-2.5 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
+                  thermalMode === 'emulsion'
+                    ? 'bg-purple-500/20 text-purple-300 border border-purple-500/40 shadow-sm'
+                    : 'text-slate-400 hover:text-slate-200'
+                }`}
+                title="Razão Gordura:SLNG e Overrun Estimado (Padrão Carpigiani)"
+              >
+                <Wind className="w-3.5 h-3.5" />
+                <span>Emulsão & Ar</span>
               </button>
             </div>
 
@@ -486,7 +521,7 @@ export const NutrientBars: React.FC<NutrientBarsProps> = ({ analysis }) => {
                   </div>
                 </div>
               </div>
-            ) : (
+            ) : thermalMode === 'freezer' ? (
               <div className="flex items-center gap-3 px-2 py-1">
                 <div className="w-9 h-9 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center shrink-0">
                   <Snowflake className="w-4 h-4 text-amber-400" />
@@ -508,6 +543,35 @@ export const NutrientBars: React.FC<NutrientBarsProps> = ({ analysis }) => {
                       {corvitto?.neededPacForFreezer && corvitto.neededPacForFreezer > 0
                         ? `(+${corvitto.neededPacForFreezer} PAC p/ ponto de colher)`
                         : `(ponto ideal atingido)`}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="flex items-center gap-3 px-2 py-1">
+                <div className="w-9 h-9 rounded-xl bg-purple-500/15 border border-purple-500/30 flex items-center justify-center shrink-0">
+                  <Wind className="w-4 h-4 text-purple-400" />
+                </div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-[10px] uppercase font-bold tracking-wider text-slate-400">
+                      Gordura : SLNG (Carpigiani)
+                    </span>
+                    <span className={`text-[10px] px-2 py-0.2 rounded-full border font-bold ${
+                      emulsion?.status === 'ideal' ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40' :
+                      emulsion?.status === 'gorduroso' ? 'bg-amber-500/20 text-amber-300 border-amber-500/40' :
+                      emulsion?.status === 'magro' ? 'bg-sky-500/20 text-sky-300 border-sky-500/40' :
+                      'bg-purple-500/20 text-purple-300 border-purple-500/40'
+                    }`}>
+                      {emulsion?.statusLabel}
+                    </span>
+                  </div>
+                  <div className="flex items-baseline gap-2 mt-0.5">
+                    <span className="text-lg sm:text-xl font-black font-mono text-purple-300">
+                      {emulsion?.status === 'sorbet' ? 'N/A' : `${emulsion?.fatMsnfRatio} : 1`}
+                    </span>
+                    <span className="text-[11px] text-slate-400">
+                      (Overrun est.: ~{emulsion?.overrunEstimatePct}%)
                     </span>
                   </div>
                 </div>
@@ -613,6 +677,11 @@ export const NutrientBars: React.FC<NutrientBarsProps> = ({ analysis }) => {
                   {corvitto?.neededPacForFreezer && corvitto.neededPacForFreezer > 0 && (
                     <span>
                       • <strong>Dica Corvitto para Potes de Entrega / Freezer Doméstico (-18°C):</strong> {corvitto.freezerAdvice}{' '}
+                    </span>
+                  )}
+                  {emulsion && emulsion.status === 'gorduroso' && (
+                    <span>
+                      • <strong>Estabilidade de Emulsão (Carpigiani):</strong> {emulsion.advice}{' '}
                     </span>
                   )}
                 </p>

@@ -98,6 +98,15 @@ export interface CorvittoMetrics {
   neededPacForFreezer: number;
 }
 
+export interface EmulsionMetrics {
+  fatMsnfRatio: number;
+  status: 'ideal' | 'gorduroso' | 'magro' | 'sorbet';
+  statusLabel: string;
+  overrunEstimatePct: number;
+  overrunRange: string;
+  advice: string;
+}
+
 export interface BatchAnalysis {
   caldaWeight: number;
   batchScaleRatio: number;
@@ -139,6 +148,7 @@ export interface BatchAnalysis {
   servingTemperature: number;
   sandinessRisk?: SandinessRisk;
   corvittoMetrics?: CorvittoMetrics;
+  emulsionMetrics?: EmulsionMetrics;
   allergensLabel: string;
   costing: {
     caldaCostKg: number;

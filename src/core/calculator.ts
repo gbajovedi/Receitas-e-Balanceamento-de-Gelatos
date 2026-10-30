@@ -7,7 +7,8 @@ import {
   NutrientValidation,
   PricingSettings,
   SandinessRisk,
-  CorvittoMetrics
+  CorvittoMetrics,
+  EmulsionMetrics
 } from '../types/gelato';
 
 export const DEFAULT_PRICING: PricingSettings = {
@@ -187,6 +188,59 @@ export function calculateBatchAnalysis(
     neededPacForFreezer
   };
 
+  // 3. Razão de Emulsão e Overrun Estimado (Padrão Carpigiani)
+  // Relação lipídica/proteica: Gordura : SLNG (alvo clássico artesanal: 0.75:1 a 1.25:1)
+  const hasEmulsifier = items.some(it => /gema|ovo|lecitina|emulsificante|mono.*diglicer/i.test(it.name));
+  let emulsionMetrics: EmulsionMetrics;
+
+  if (pctMsnf < 0.015 && pctFat < 0.02) {
+    // Sorbets de frutas (base água)
+    const baseOverrun = Math.round(18 + Math.min(7, pctOtherSolids * 100));
+    emulsionMetrics = {
+      fatMsnfRatio: 0,
+      status: 'sorbet',
+      statusLabel: 'Base Água (Sorbet)',
+      overrunEstimatePct: baseOverrun,
+      overrunRange: `${baseOverrun - 3}% a ${baseOverrun + 3}%`,
+      advice: 'Overrun clássico de sorbet artesanal (18% a 25%), conferindo densidade refrescante e pureza de sabor da fruta.'
+    };
+  } else {
+    const rawRatio = pctMsnf > 0.005 ? (pctFat / pctMsnf) : (pctFat * 10);
+    const fatMsnfRatio = Math.round(rawRatio * 100) / 100;
+
+    if (fatMsnfRatio >= 0.75 && fatMsnfRatio <= 1.25) {
+      const baseOverrun = Math.round(32 + (hasEmulsifier ? 4 : 0) - (pctTotalSolids > 0.41 ? 3 : 0));
+      emulsionMetrics = {
+        fatMsnfRatio,
+        status: 'ideal',
+        statusLabel: 'Emulsão Equilibrada (Carpigiani)',
+        overrunEstimatePct: baseOverrun,
+        overrunRange: `${baseOverrun - 3}% a ${baseOverrun + 3}%`,
+        advice: 'Excelente equilíbrio entre lipídios e proteínas lácteas (0.75:1 a 1.25:1). Formação estável de glóbulos com textura aveludada e aeração sedosa.'
+      };
+    } else if (fatMsnfRatio > 1.25) {
+      const baseOverrun = Math.round(26 - (fatMsnfRatio > 1.6 ? 4 : 0) + (hasEmulsifier ? 3 : 0));
+      emulsionMetrics = {
+        fatMsnfRatio,
+        status: 'gorduroso',
+        statusLabel: 'Sobrecarga Lipídica',
+        overrunEstimatePct: Math.max(18, baseOverrun),
+        overrunRange: `${Math.max(18, baseOverrun) - 3}% a ${Math.max(18, baseOverrun) + 3}%`,
+        advice: 'Gordura elevada em relação às proteínas lácteas. Risco de coalescência lipídica ("manteigamento") e redução de aeração. Recomenda-se elevar SLNG ou adicionar gema/lecitina.'
+      };
+    } else {
+      const baseOverrun = Math.round(36 + (pctMsnf > 0.11 ? 4 : 0));
+      emulsionMetrics = {
+        fatMsnfRatio,
+        status: 'magro',
+        statusLabel: 'Calda Magra / Aeração Rápida',
+        overrunEstimatePct: Math.min(42, baseOverrun),
+        overrunRange: `${Math.min(42, baseOverrun) - 3}% a ${Math.min(42, baseOverrun) + 3}%`,
+        advice: 'Calda magra com pouca gordura protetora. O batimento incorpora ar rápido com fusão acelerada na boca.'
+      };
+    }
+  }
+
   // Allergens Label
   let allergensLabel = "";
   if (allergenItems.length > 0) {
@@ -262,6 +316,7 @@ export function calculateBatchAnalysis(
     servingTemperature: Math.round(servingTemperature * 10) / 10,
     sandinessRisk,
     corvittoMetrics,
+    emulsionMetrics,
     allergensLabel,
     costing: {
       caldaCostKg: Math.round(caldaCostKg * 100) / 100,
