@@ -1,6 +1,12 @@
 # Planilha original (mantida apenas no computador local)
 Planilha de Gelatos com Receitas.xlsx
 
+# Pasta de Fontes e Arquivos de Referência Locais
+Fontes/
+fontes/
+[Ff]ontes/
+*.pdf
+
 # Excel temporary / lock files
 ~$*.xlsx
 ~$*.xls
