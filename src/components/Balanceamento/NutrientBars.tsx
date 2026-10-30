@@ -155,24 +155,24 @@ export const NutrientBars: React.FC<NutrientBarsProps> = ({ analysis }) => {
       };
     });
 
-  // Texture and scoopability assessment based on PAC
+  // Texture and scoopability assessment based on Cryoscopic Serving Temperature
   const pacValue = analysis.totals.pac;
   let textureVerdict = {
     title: 'Espatulabilidade Ideal',
-    desc: 'Equilíbrio térmico clássico para vitrine (-12°C a -13°C)',
+    desc: 'Ponto de vitrine equilibrado (-11.5°C a -13.2°C: ~75% de água congelada)',
     badgeColor: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40'
   };
 
-  if (pacValue < 220) {
+  if (servingTemperature > -11.0) {
     textureVerdict = {
-      title: 'Consistência Firme',
-      desc: 'Massa mais resistente; requer temperatura de vitrine mais alta (-10°C a -11°C)',
+      title: 'Consistência Firme / Dureza Elevada',
+      desc: 'Pouca água congelada a -12°C; requer vitrine mais amena ou elevar açúcares/PAC',
       badgeColor: 'bg-amber-500/20 text-amber-300 border-amber-500/40'
     };
-  } else if (pacValue > 290) {
+  } else if (servingTemperature < -13.5) {
     textureVerdict = {
       title: 'Massa Macia / Ponto de Fusão Rápido',
-      desc: 'Derretimento rápido; ideal para serviço imediato ou vitrine mais fria (-14°C)',
+      desc: 'Excesso de anticongelante; risco de desmanchar na vitrine a -12°C',
       badgeColor: 'bg-rose-500/20 text-rose-300 border-rose-500/40'
     };
   }

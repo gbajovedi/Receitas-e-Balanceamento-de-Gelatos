@@ -114,10 +114,16 @@ export function calculateBatchAnalysis(
 
   const isBalanced = Object.values(validations).every(v => v.status === 'Ok');
 
-  // Serving Temperature (°C)
-  // Formula: - (PAC / pacDivisor)
-  const pacDivisor = style.pacDivisor || 25;
-  const servingTemperature = relPac > 0 ? -(relPac / pacDivisor) : -12.0;
+  // Temperatura de Serviço / Vitrine (°C) - Modelo Crioscópico de Espatulabilidade (Leighton / Corvitto)
+  // Ponto de equilíbrio térmico onde ~75% a 78% da água está congelada em microcristais e ~22% a 25% permanece líquida para espatulabilidade perfeita.
+  let servingTemperature = -12.0;
+  if (relPac > 0 && pctWater > 0.15) {
+    const deltaSugars = (relPac / (pctWater * 1000)) * 28.5;
+    const deltaMsnfSalts = pctMsnf * 10.0;
+    const deltaFatHardening = (pctFat * 100) * 0.05;
+    const calculatedTemp = -(deltaSugars + deltaMsnfSalts - deltaFatHardening);
+    servingTemperature = Math.max(-18.0, Math.min(-8.0, calculatedTemp));
+  }
 
   // Allergens Label
   let allergensLabel = "";
