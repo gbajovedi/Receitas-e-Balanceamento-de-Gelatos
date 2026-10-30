@@ -347,29 +347,6 @@ html.light .border-rose-500\/30 {
   border-color: #fca5a5 !important;
 }
 
-/* ==========================================================================
-   Banner de Status do Balanceamento (NutrientBars) no Modo Claro
-   ========================================================================== */
-html.light .nutrient-banner-balanced,
-html.light .from-slate-800\/95.via-slate-850\/95.to-slate-800\/95 {
-  --tw-gradient-from: #f0fdf4 !important;
-  --tw-gradient-to: #ecfdf5 !important;
-  --tw-gradient-stops: #f0fdf4, #ffffff, #ecfdf5 !important;
-  background-image: linear-gradient(to right, #f0fdf4, #ffffff, #ecfdf5) !important;
-  border-color: #a7f3d0 !important;
-  box-shadow: 0 4px 6px -1px rgb(16 185 129 / 0.08) !important;
-}
-
-html.light .nutrient-banner-issues,
-html.light .from-amber-950\/40.via-slate-850\/95.to-slate-800\/95 {
-  --tw-gradient-from: #fffbeb !important;
-  --tw-gradient-to: #fef3c7 !important;
-  --tw-gradient-stops: #fffbeb, #ffffff, #fef3c7 !important;
-  background-image: linear-gradient(to right, #fffbeb, #ffffff, #fef3c7) !important;
-  border-color: #fcd34d !important;
-  box-shadow: 0 4px 6px -1px rgb(245 158 11 / 0.08) !important;
-}
-
 /* Trilhos de Barras de Progresso no Modo Claro */
 html.light .rounded-full.h-2\.5.bg-slate-900\/90,
 html.light .rounded-full.bg-slate-900\/90,
