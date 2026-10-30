@@ -145,17 +145,9 @@ export const RecipeList: React.FC<RecipeListProps> = ({ recipes, onSelectRecipe,
                   {recipe.name}
                 </h3>
 
-                {/* Ingredients snippet */}
-                <div className="space-y-1">
-                  <span className="text-xs uppercase font-bold text-slate-400 tracking-wider">
-                    Insumos ({recipe.ingredients?.length ?? 0}):
-                  </span>
-                  <div className="text-xs sm:text-sm text-slate-300 line-clamp-2 leading-relaxed">
-                    {recipe.ingredients && recipe.ingredients.map(i => i.name).join(', ')}
-                  </div>
-                </div>
-
-                <div className="flex items-center justify-between text-xs sm:text-sm text-slate-400 font-mono pt-3 border-t border-slate-700/60 font-medium">
+                {/* Technical metadata */}
+                <div className="flex items-center justify-between text-xs sm:text-sm text-slate-400 font-mono font-medium pt-1">
+                  <span>Insumos: <strong className="text-slate-200">{recipe.ingredients?.length ?? 0}</strong></span>
                   <span>Peso base: <strong className="text-slate-200">{Math.round(totalWeight)} g</strong></span>
                 </div>
               </div>
