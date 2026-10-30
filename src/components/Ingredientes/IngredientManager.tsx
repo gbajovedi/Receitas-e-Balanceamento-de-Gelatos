@@ -1,12 +1,35 @@
 import React, { useState, useMemo } from 'react';
 import { Ingredient } from '../../types/gelato';
 import { db } from '../../db/database';
-import { Search, Plus, Save, Edit2, Utensils, X, Package, Calculator, AlertCircle } from 'lucide-react';
+import {
+  Search,
+  Plus,
+  Save,
+  Edit2,
+  Utensils,
+  X,
+  Package,
+  Calculator,
+  AlertCircle,
+  ShieldAlert,
+  CheckCircle2,
+  Scale,
+  Sparkles,
+} from 'lucide-react';
 
 interface IngredientManagerProps {
   ingredients: Ingredient[];
   onRefresh: () => void;
 }
+
+const COMMON_ALLERGENS = [
+  'Leite / Lactose',
+  'Castanhas & Nozes',
+  'Glúten',
+  'Ovos',
+  'Soja',
+  'Amendoim',
+] as const;
 
 export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredients, onRefresh }) => {
   const [search, setSearch] = useState('');
@@ -40,6 +63,7 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
   const [newPac, setNewPac] = useState<number>(0);
   const [newProtein] = useState<number>(0);
   const [newHasAllergen, setNewHasAllergen] = useState<boolean>(false);
+  const [selectedAllergens, setSelectedAllergens] = useState<string[]>([]);
 
   const categories = useMemo(() => {
     const set = new Set<string>();
@@ -82,8 +106,12 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
 
   // Total solids for new ingredient preview
   const totalSolidsPercent = useMemo(() => {
-    return newSugars + newFat + newMsnf + newOtherSolids;
+    return Math.round((newSugars + newFat + newMsnf + newOtherSolids) * 10) / 10;
   }, [newSugars, newFat, newMsnf, newOtherSolids]);
+
+  const waterPercent = useMemo(() => {
+    return Math.max(0, Math.round((100 - totalSolidsPercent) * 10) / 10);
+  }, [totalSolidsPercent]);
 
   // Quick calculator for existing ingredient
   const modalEffectiveWeightKg = useMemo(() => {
@@ -128,6 +156,12 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
     onRefresh();
   };
 
+  const toggleAllergen = (allergen: string) => {
+    setSelectedAllergens(prev =>
+      prev.includes(allergen) ? prev.filter(a => a !== allergen) : [...prev, allergen]
+    );
+  };
+
   const resetForm = () => {
     setNewName('');
     setNewCategory('Outros');
@@ -142,6 +176,7 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
     setNewPod(0);
     setNewPac(0);
     setNewHasAllergen(false);
+    setSelectedAllergens([]);
   };
 
   const handleCreateIngredient = async (e: React.FormEvent) => {
@@ -168,6 +203,7 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
       pac: newPac,
       protein: newProtein / 100,
       hasAllergen: newHasAllergen,
+      allergenDetails: newHasAllergen && selectedAllergens.length > 0 ? selectedAllergens : undefined,
       isCustom: true,
     };
 
@@ -353,26 +389,30 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
         </div>
       </div>
 
-      {/* Modal: Cadastrar Novo Insumo */}
+      {/* Modal: Cadastrar Novo Insumo (Design Reformulado Premium) */}
       {isAddModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm overflow-y-auto">
-          <div className="bg-slate-900 border border-slate-700/80 rounded-3xl w-full max-w-xl p-5 sm:p-7 shadow-2xl space-y-5 my-8">
-            <div className="flex items-center justify-between border-b border-slate-800 pb-3.5">
-              <div className="flex items-center gap-2.5">
-                <div className="w-9 h-9 rounded-xl bg-amber-500/20 border border-amber-500/30 flex items-center justify-center text-amber-400">
-                  <Utensils className="w-5 h-5" />
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-md overflow-y-auto">
+          <div className="bg-slate-900 border border-slate-700/90 rounded-3xl w-full max-w-xl sm:max-w-2xl p-5 sm:p-7 shadow-2xl space-y-5 my-6 max-h-[92vh] overflow-y-auto">
+            {/* Cabeçalho do Modal */}
+            <div className="flex items-start justify-between border-b border-slate-800 pb-4">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-amber-500 to-amber-300 flex items-center justify-center text-xl shadow-lg shadow-amber-500/20 shrink-0">
+                  🍨
                 </div>
                 <div>
-                  <h3 className="text-lg font-black text-white">Cadastrar Novo Insumo</h3>
-                  <p className="text-xs text-slate-400">
-                    Informe os valores da embalagem comercial e os dados bromatológicos da matéria-prima.
+                  <h3 className="text-lg sm:text-xl font-black text-white tracking-tight flex items-center gap-2">
+                    <span>Cadastrar Novo Insumo</span>
+                    <Sparkles className="w-4 h-4 text-amber-400" />
+                  </h3>
+                  <p className="text-xs text-slate-400 mt-0.5">
+                    Defina os dados comerciais de aquisição e o perfil bromatológico da matéria-prima.
                   </p>
                 </div>
               </div>
               <button
                 type="button"
                 onClick={() => setIsAddModalOpen(false)}
-                className="p-1.5 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition-colors"
+                className="p-1.5 text-slate-400 hover:text-white rounded-xl hover:bg-slate-800 transition-colors shrink-0"
                 title="Fechar"
               >
                 <X className="w-5 h-5" />
@@ -380,29 +420,29 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
             </div>
 
             <form onSubmit={handleCreateIngredient} className="space-y-4">
-              {/* Seção 1: Identificação */}
+              {/* Seção 1: Identificação Básica */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 <div>
-                  <label className="block text-xs font-bold text-slate-300 mb-1">
-                    Nome Técnico da Matéria-Prima:
+                  <label className="block text-xs font-bold text-slate-200 mb-1.5">
+                    Nome da Matéria-Prima:
                   </label>
                   <input
                     type="text"
                     required
-                    placeholder="ex: Pasta de Pistache Puro, Sacarose..."
+                    placeholder="ex: Pasta de Pistache Siciliano Puro..."
                     value={newName}
                     onChange={e => setNewName(e.target.value)}
-                    className="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white font-medium focus:border-amber-500 focus:outline-none"
+                    className="w-full bg-slate-800/90 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-slate-500 font-medium focus:border-amber-500 focus:outline-none transition-colors"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-bold text-slate-300 mb-1">
+                  <label className="block text-xs font-bold text-slate-200 mb-1.5">
                     Categoria Gastronômica:
                   </label>
                   <select
                     value={newCategory}
                     onChange={e => setNewCategory(e.target.value)}
-                    className="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white font-medium focus:border-amber-500 focus:outline-none"
+                    className="w-full bg-slate-800/90 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white font-medium focus:border-amber-500 focus:outline-none transition-colors"
                   >
                     <option value="Açúcares">Açúcares</option>
                     <option value="Laticínios">Laticínios</option>
@@ -416,46 +456,48 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
                 </div>
               </div>
 
-              {/* Seção 2: Aquisição & Custo Unitário Comercial (Peso sempre em GRAMAS) */}
-              <div className="bg-slate-950/60 p-4 sm:p-5 rounded-2xl border border-slate-700/80 space-y-3.5">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <div className="w-7 h-7 rounded-lg bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400">
+              {/* Seção 2: Aquisição & Custo Comercial (Segmented Control Elegante) */}
+              <div className="bg-slate-950/60 p-4 sm:p-5 rounded-2xl border border-slate-700/80 space-y-4 shadow-inner">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-8 h-8 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400 shrink-0">
                       <Package className="w-4 h-4" />
                     </div>
                     <div>
-                      <h4 className="text-xs font-black tracking-wide uppercase text-slate-200">
-                        Aquisição & Custo da Embalagem Comercial
+                      <h4 className="text-xs font-black tracking-wide text-white uppercase">
+                        Aquisição & Custo por Embalagem
                       </h4>
                       <p className="text-[11px] text-slate-400">
-                        Informe o valor pago e o peso em gramas para cálculo automático do custo/kg.
+                        Informe o valor pago e o peso em gramas para cálculo automático.
                       </p>
                     </div>
                   </div>
 
-                  {/* Alternador de Modo */}
-                  <div className="hidden sm:flex items-center bg-slate-900 p-0.5 rounded-lg border border-slate-700/80 text-[11px]">
+                  {/* Segmented Control Nivelado */}
+                  <div className="inline-flex items-center bg-slate-900 p-1 rounded-xl border border-slate-700/80 text-xs shrink-0 self-start sm:self-auto">
                     <button
                       type="button"
                       onClick={() => setCostMode('package')}
-                      className={`px-2.5 py-1 rounded-md font-bold transition-all ${
+                      className={`px-3 py-1.5 rounded-lg font-bold transition-all flex items-center gap-1.5 ${
                         costMode === 'package'
-                          ? 'bg-amber-500 text-slate-950 shadow-sm'
+                          ? 'bg-amber-500 text-slate-950 shadow-md shadow-amber-500/20'
                           : 'text-slate-400 hover:text-white'
                       }`}
                     >
-                      Por Embalagem (g)
+                      <Package className="w-3.5 h-3.5" />
+                      <span>Por Embalagem (g)</span>
                     </button>
                     <button
                       type="button"
                       onClick={() => setCostMode('direct')}
-                      className={`px-2.5 py-1 rounded-md font-bold transition-all ${
+                      className={`px-3 py-1.5 rounded-lg font-bold transition-all flex items-center gap-1.5 ${
                         costMode === 'direct'
-                          ? 'bg-amber-500 text-slate-950 shadow-sm'
+                          ? 'bg-amber-500 text-slate-950 shadow-md shadow-amber-500/20'
                           : 'text-slate-400 hover:text-white'
                       }`}
                     >
-                      Custo Direto (R$/kg)
+                      <Scale className="w-3.5 h-3.5" />
+                      <span>Custo Direto (R$/kg)</span>
                     </button>
                   </div>
                 </div>
@@ -467,10 +509,10 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
                       <div>
                         <label className="block text-xs font-bold text-slate-300 mb-1 flex items-center justify-between">
                           <span>Preço Pago na Embalagem:</span>
-                          <span className="text-[10px] text-slate-400 font-normal">Valor na Nota</span>
+                          <span className="text-[10px] text-slate-400">Valor total na Nota</span>
                         </label>
                         <div className="relative">
-                          <span className="absolute left-3 top-2.5 text-xs font-mono font-bold text-slate-400">
+                          <span className="absolute left-3.5 top-2.5 text-xs font-mono font-bold text-slate-400">
                             R$
                           </span>
                           <input
@@ -484,7 +526,7 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
                               const val = e.target.value === '' ? '' : Math.max(0, parseFloat(e.target.value) || 0);
                               setPackagePrice(val);
                             }}
-                            className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-9 pr-3 py-2 text-sm text-white font-mono font-bold focus:border-amber-500 focus:outline-none"
+                            className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-10 pr-3.5 py-2.5 text-sm text-white font-mono font-bold focus:border-amber-500 focus:outline-none transition-colors"
                           />
                         </div>
                       </div>
@@ -492,7 +534,7 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
                       {/* 2. Peso Líquido da Embalagem em GRAMAS */}
                       <div>
                         <label className="block text-xs font-bold text-slate-300 mb-1 flex items-center justify-between">
-                          <span>Peso Líquido da Embalagem (em gramas):</span>
+                          <span>Peso Líquido da Embalagem:</span>
                           <span className="text-[10px] text-amber-400 font-bold">Medido em Gramas (g)</span>
                         </label>
                         <div className="relative">
@@ -507,7 +549,7 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
                               const val = e.target.value === '' ? '' : Math.max(0, parseFloat(e.target.value) || 0);
                               setPackageWeightGrams(val);
                             }}
-                            className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-3 pr-12 py-2 text-sm text-white font-mono font-bold focus:border-amber-500 focus:outline-none"
+                            className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-3.5 pr-12 py-2.5 text-sm text-white font-mono font-bold focus:border-amber-500 focus:outline-none transition-colors"
                           />
                           <span className="absolute right-3.5 top-2 text-xs font-mono font-bold text-amber-400 bg-amber-500/10 border border-amber-500/30 px-2 py-0.5 rounded-md">
                             g
@@ -515,16 +557,16 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
                         </div>
 
                         {/* Atalhos Rápidos em Gramas */}
-                        <div className="flex items-center gap-1.5 mt-1.5 overflow-x-auto pb-0.5 text-[10px]">
-                          <span className="text-slate-500 text-[10px] shrink-0">Comum:</span>
+                        <div className="flex items-center gap-1.5 mt-2 overflow-x-auto pb-0.5 text-[10px]">
+                          <span className="text-slate-500 text-[10px] shrink-0 font-medium">Atalhos:</span>
                           {[100, 200, 250, 500, 1000, 3000, 5000].map(g => (
                             <button
                               key={g}
                               type="button"
                               onClick={() => setPackageWeightGrams(g)}
-                              className={`px-2 py-0.5 rounded font-mono font-semibold transition-all shrink-0 ${
+                              className={`px-2 py-0.5 rounded-md font-mono font-semibold transition-all shrink-0 ${
                                 packageWeightGrams === g
-                                  ? 'bg-amber-500 text-slate-950 font-bold'
+                                  ? 'bg-amber-500 text-slate-950 font-black shadow-sm'
                                   : 'bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700'
                               }`}
                             >
@@ -535,70 +577,66 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
                       </div>
                     </div>
 
-                    {/* Banner de Resultado Automático do Custo por Kg */}
+                    {/* Card de Resultado do Custo por Kg com Gradiente Suave */}
                     <div
-                      className={`rounded-xl p-3.5 border transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 ${
+                      className={`rounded-2xl p-4 border transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3 ${
                         computedCostKg > 0
-                          ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300'
+                          ? 'bg-gradient-to-r from-emerald-500/10 via-emerald-500/15 to-emerald-500/10 border-emerald-500/30 text-emerald-300 shadow-sm'
                           : 'bg-slate-900/80 border-slate-700/60 text-slate-400'
                       }`}
                     >
-                      <div className="flex items-center gap-2.5">
+                      <div className="flex items-center gap-3">
                         <div
-                          className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${
+                          className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 shadow-inner ${
                             computedCostKg > 0
-                              ? 'bg-emerald-500/20 text-emerald-400'
-                              : 'bg-slate-800 text-slate-500'
+                              ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
+                              : 'bg-slate-800 text-slate-500 border border-slate-700'
                           }`}
                         >
-                          <Calculator className="w-4 h-4" />
+                          <Calculator className="w-5 h-5" />
                         </div>
                         <div>
-                          <span className="text-[11px] uppercase tracking-wider font-bold block text-slate-300">
+                          <span className="text-xs font-bold text-slate-200 block">
                             Custo Unitário Efetivo Calculado
                           </span>
-                          <span className="text-xs">
+                          <span className="text-xs text-slate-400">
                             {computedCostKg > 0 ? (
-                              <>
-                                Memória de Cálculo:{' '}
+                              <span className="inline-flex items-center gap-1.5 flex-wrap">
+                                <span>Memória:</span>
                                 <strong className="font-mono text-white">
                                   R$ {Number(packagePrice).toFixed(2)}
-                                </strong>{' '}
-                                ÷{' '}
+                                </strong>
+                                <span>÷</span>
                                 <strong className="font-mono text-white">
                                   {packageWeightGrams} g ({effectiveWeightKg.toFixed(3)} kg)
-                                </strong>{' '}
-                                ={' '}
-                                <strong className="font-mono text-emerald-400">
-                                  R$ {computedCostKg.toFixed(2)} / kg
                                 </strong>
-                              </>
+                              </span>
                             ) : (
-                              'Preencha o preço e o peso em gramas para calcular automaticamente.'
+                              'Preencha o valor pago e o peso em gramas para calcular automaticamente.'
                             )}
                           </span>
                         </div>
                       </div>
 
                       <div className="sm:text-right shrink-0">
-                        <span className="text-[10px] uppercase font-bold text-slate-400 block">
-                          Custo de Reposição / kg
+                        <span className="text-[10px] uppercase font-bold text-slate-400 block tracking-wider">
+                          Custo Base por Quilo
                         </span>
                         <span
-                          className={`text-base sm:text-lg font-black font-mono tracking-tight ${
+                          className={`text-xl sm:text-2xl font-black font-mono tracking-tight ${
                             computedCostKg > 0 ? 'text-emerald-400' : 'text-slate-500'
                           }`}
                         >
                           R$ {computedCostKg.toFixed(2)}{' '}
-                          <span className="text-xs font-semibold">/ kg</span>
+                          <span className="text-xs font-semibold text-slate-400">/ kg</span>
                         </span>
                       </div>
                     </div>
                   </>
                 ) : (
                   /* Modo Direto: Digitar Custo/Kg */
-                  <div>
-                    <label className="block text-xs font-bold text-slate-300 mb-1 flex items-center justify-between">
+                  <div className="space-y-1.5">
+                    <label className="block text-xs font-bold text-slate-300 flex items-center justify-between">
                       <span>Custo Direto por Quilo (R$/kg):</span>
                       <button
                         type="button"
@@ -609,7 +647,7 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
                       </button>
                     </label>
                     <div className="relative">
-                      <span className="absolute left-3 top-2.5 text-xs font-mono font-bold text-slate-400">
+                      <span className="absolute left-3.5 top-2.5 text-xs font-mono font-bold text-slate-400">
                         R$
                       </span>
                       <input
@@ -623,20 +661,30 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
                           const val = e.target.value === '' ? '' : Math.max(0, parseFloat(e.target.value) || 0);
                           setManualCostKg(val);
                         }}
-                        className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-9 pr-3 py-2 text-sm text-white font-mono font-bold focus:border-amber-500 focus:outline-none"
+                        className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-10 pr-3.5 py-2.5 text-sm text-white font-mono font-bold focus:border-amber-500 focus:outline-none transition-colors"
                       />
                     </div>
                   </div>
                 )}
               </div>
 
-              {/* Seção 3: Parâmetros de Gelateria (POD & PAC) */}
-              <div className="grid grid-cols-2 gap-3.5">
-                <div>
-                  <label className="block text-xs font-bold text-slate-300 mb-1 flex items-center justify-between">
-                    <span>POD (Poder Adoçante Relativo):</span>
-                    <span className="text-[10px] text-amber-400 font-mono">Sacarose = 1.00</span>
-                  </label>
+              {/* Seção 3: Parâmetros Bromatológicos de Gelateria (POD & PAC) */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                {/* POD */}
+                <div className="bg-slate-950/60 p-3.5 sm:p-4 rounded-2xl border border-slate-700/80 space-y-2 shadow-inner">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <span className="text-xs font-bold text-slate-200 block">
+                        POD (Poder Adoçante)
+                      </span>
+                      <span className="text-[10px] text-slate-400">
+                        Sensação de dulçor perceptível
+                      </span>
+                    </div>
+                    <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-md bg-amber-500/15 text-amber-300 border border-amber-500/30">
+                      Ref: Sacarose 1.0
+                    </span>
+                  </div>
                   <input
                     type="number"
                     min="0"
@@ -644,14 +692,25 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
                     placeholder="0.00"
                     value={newPod || ''}
                     onChange={e => setNewPod(parseFloat(e.target.value) || 0)}
-                    className="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white font-mono font-bold focus:border-amber-500 focus:outline-none"
+                    className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-sm text-white font-mono font-bold focus:border-amber-500 focus:outline-none transition-colors"
                   />
                 </div>
-                <div>
-                  <label className="block text-xs font-bold text-slate-300 mb-1 flex items-center justify-between">
-                    <span>PAC (Poder Anticongelante):</span>
-                    <span className="text-[10px] text-cyan-400 font-mono">Sacarose = 1.00</span>
-                  </label>
+
+                {/* PAC */}
+                <div className="bg-slate-950/60 p-3.5 sm:p-4 rounded-2xl border border-slate-700/80 space-y-2 shadow-inner">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <span className="text-xs font-bold text-slate-200 block">
+                        PAC (Anticongelante)
+                      </span>
+                      <span className="text-[10px] text-slate-400">
+                        Ponto de congelamento e maciez
+                      </span>
+                    </div>
+                    <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-md bg-cyan-500/15 text-cyan-300 border border-cyan-500/30">
+                      Ref: Sacarose 1.0
+                    </span>
+                  </div>
                   <input
                     type="number"
                     min="0"
@@ -659,127 +718,271 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
                     placeholder="0.00"
                     value={newPac || ''}
                     onChange={e => setNewPac(parseFloat(e.target.value) || 0)}
-                    className="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white font-mono font-bold focus:border-amber-500 focus:outline-none"
+                    className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-sm text-white font-mono font-bold focus:border-amber-500 focus:outline-none transition-colors"
                   />
                 </div>
               </div>
 
-              {/* Seção 4: Composição Centesimal (% ST) */}
-              <div className="space-y-2 pt-2 border-t border-slate-800">
-                <div className="flex items-center justify-between">
-                  <label className="text-xs font-bold text-slate-300 block">
-                    Composição Bromatológica Centesimal (% em Massa):
-                  </label>
-                  <div className="text-[11px] font-mono">
-                    <span className="text-slate-400">Sólidos Totais (ST): </span>
-                    <strong
-                      className={`font-black ${
-                        totalSolidsPercent > 100 ? 'text-rose-400' : 'text-amber-400'
-                      }`}
-                    >
-                      {totalSolidsPercent}%
-                    </strong>
-                    <span className="text-slate-400 ml-2">Água: </span>
-                    <strong className="text-cyan-400 font-black">
-                      {Math.max(0, 100 - totalSolidsPercent)}%
-                    </strong>
+              {/* Seção 4: Composição Bromatológica & Barra Visual Dinâmica de Sólidos */}
+              <div className="bg-slate-950/60 p-4 sm:p-5 rounded-2xl border border-slate-700/80 space-y-3.5 shadow-inner">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                  <div>
+                    <h4 className="text-xs font-black tracking-wide text-white uppercase">
+                      Composição Centesimal (% em Massa)
+                    </h4>
+                    <p className="text-[11px] text-slate-400">
+                      Distribuição nutricional de sólidos e água por 100g de matéria-prima.
+                    </p>
+                  </div>
+
+                  <div className="inline-flex items-center gap-2 font-mono text-xs">
+                    <span className="px-2.5 py-1 rounded-lg bg-amber-500/15 border border-amber-500/30 text-amber-300 font-bold">
+                      ST: {totalSolidsPercent}%
+                    </span>
+                    <span className="px-2.5 py-1 rounded-lg bg-cyan-500/15 border border-cyan-500/30 text-cyan-300 font-bold">
+                      Água: {waterPercent}%
+                    </span>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-4 gap-2">
-                  <div>
-                    <label className="block text-[11px] font-semibold text-slate-400 mb-1">
-                      % Açúcares
-                    </label>
-                    <input
-                      type="number"
-                      min="0"
-                      max="100"
-                      step="1"
-                      placeholder="%"
-                      value={newSugars || ''}
-                      onChange={e => setNewSugars(parseFloat(e.target.value) || 0)}
-                      className="w-full bg-slate-800 border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs text-white font-mono font-bold focus:border-amber-500 focus:outline-none"
-                    />
+                {/* Barra Visual Dinâmica Multicores de Sólidos vs Água */}
+                <div className="space-y-1.5">
+                  <div className="w-full h-3 bg-slate-800 rounded-full overflow-hidden flex shadow-inner border border-slate-700/60">
+                    {newSugars > 0 && (
+                      <div
+                        style={{ width: `${Math.min(100, newSugars)}%` }}
+                        className="bg-amber-500 transition-all duration-300"
+                        title={`Açúcares: ${newSugars}%`}
+                      />
+                    )}
+                    {newFat > 0 && (
+                      <div
+                        style={{ width: `${Math.min(100 - newSugars, newFat)}%` }}
+                        className="bg-yellow-400 transition-all duration-300"
+                        title={`Gorduras: ${newFat}%`}
+                      />
+                    )}
+                    {newMsnf > 0 && (
+                      <div
+                        style={{ width: `${Math.min(100 - newSugars - newFat, newMsnf)}%` }}
+                        className="bg-blue-400 transition-all duration-300"
+                        title={`SLNG: ${newMsnf}%`}
+                      />
+                    )}
+                    {newOtherSolids > 0 && (
+                      <div
+                        style={{
+                          width: `${Math.min(100 - newSugars - newFat - newMsnf, newOtherSolids)}%`,
+                        }}
+                        className="bg-purple-400 transition-all duration-300"
+                        title={`Outros Sólidos: ${newOtherSolids}%`}
+                      />
+                    )}
+                    {waterPercent > 0 && totalSolidsPercent <= 100 && (
+                      <div
+                        style={{ width: `${waterPercent}%` }}
+                        className="bg-cyan-500/40 transition-all duration-300"
+                        title={`Água Estimada: ${waterPercent}%`}
+                      />
+                    )}
                   </div>
-                  <div>
-                    <label className="block text-[11px] font-semibold text-slate-400 mb-1">
-                      % Gorduras
-                    </label>
-                    <input
-                      type="number"
-                      min="0"
-                      max="100"
-                      step="1"
-                      placeholder="%"
-                      value={newFat || ''}
-                      onChange={e => setNewFat(parseFloat(e.target.value) || 0)}
-                      className="w-full bg-slate-800 border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs text-white font-mono font-bold focus:border-amber-500 focus:outline-none"
-                    />
+
+                  {/* Legenda Visual */}
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-slate-400">
+                    <span className="flex items-center gap-1">
+                      <span className="w-2 h-2 rounded-full bg-amber-500" />
+                      Açúcares
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <span className="w-2 h-2 rounded-full bg-yellow-400" />
+                      Gorduras
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <span className="w-2 h-2 rounded-full bg-blue-400" />
+                      SLNG
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <span className="w-2 h-2 rounded-full bg-purple-400" />
+                      Outros Sólidos
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <span className="w-2 h-2 rounded-full bg-cyan-400" />
+                      Água
+                    </span>
                   </div>
+                </div>
+
+                {/* 4 Inputs de Nutrientes */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-1">
                   <div>
-                    <label className="block text-[11px] font-semibold text-slate-400 mb-1">
-                      % SLNG
+                    <label className="block text-[11px] font-bold text-slate-300 mb-1">
+                      Açúcares (Glicídios)
                     </label>
-                    <input
-                      type="number"
-                      min="0"
-                      max="100"
-                      step="1"
-                      placeholder="%"
-                      value={newMsnf || ''}
-                      onChange={e => setNewMsnf(parseFloat(e.target.value) || 0)}
-                      className="w-full bg-slate-800 border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs text-white font-mono font-bold focus:border-amber-500 focus:outline-none"
-                    />
+                    <div className="relative">
+                      <input
+                        type="number"
+                        min="0"
+                        max="100"
+                        step="1"
+                        placeholder="0"
+                        value={newSugars || ''}
+                        onChange={e => setNewSugars(parseFloat(e.target.value) || 0)}
+                        className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-3 pr-7 py-2 text-xs text-white font-mono font-bold focus:border-amber-500 focus:outline-none transition-colors"
+                      />
+                      <span className="absolute right-2.5 top-2 text-xs font-mono font-bold text-slate-400">
+                        %
+                      </span>
+                    </div>
                   </div>
+
                   <div>
-                    <label className="block text-[11px] font-semibold text-slate-400 mb-1">
-                      % Outros
+                    <label className="block text-[11px] font-bold text-slate-300 mb-1">
+                      Gorduras (Lipídios)
                     </label>
-                    <input
-                      type="number"
-                      min="0"
-                      max="100"
-                      step="1"
-                      placeholder="%"
-                      value={newOtherSolids || ''}
-                      onChange={e => setNewOtherSolids(parseFloat(e.target.value) || 0)}
-                      className="w-full bg-slate-800 border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs text-white font-mono font-bold focus:border-amber-500 focus:outline-none"
-                    />
+                    <div className="relative">
+                      <input
+                        type="number"
+                        min="0"
+                        max="100"
+                        step="1"
+                        placeholder="0"
+                        value={newFat || ''}
+                        onChange={e => setNewFat(parseFloat(e.target.value) || 0)}
+                        className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-3 pr-7 py-2 text-xs text-white font-mono font-bold focus:border-amber-500 focus:outline-none transition-colors"
+                      />
+                      <span className="absolute right-2.5 top-2 text-xs font-mono font-bold text-slate-400">
+                        %
+                      </span>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] font-bold text-slate-300 mb-1">
+                      SLNG (Leite)
+                    </label>
+                    <div className="relative">
+                      <input
+                        type="number"
+                        min="0"
+                        max="100"
+                        step="1"
+                        placeholder="0"
+                        value={newMsnf || ''}
+                        onChange={e => setNewMsnf(parseFloat(e.target.value) || 0)}
+                        className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-3 pr-7 py-2 text-xs text-white font-mono font-bold focus:border-amber-500 focus:outline-none transition-colors"
+                      />
+                      <span className="absolute right-2.5 top-2 text-xs font-mono font-bold text-slate-400">
+                        %
+                      </span>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] font-bold text-slate-300 mb-1">
+                      Outros Sólidos
+                    </label>
+                    <div className="relative">
+                      <input
+                        type="number"
+                        min="0"
+                        max="100"
+                        step="1"
+                        placeholder="0"
+                        value={newOtherSolids || ''}
+                        onChange={e => setNewOtherSolids(parseFloat(e.target.value) || 0)}
+                        className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-3 pr-7 py-2 text-xs text-white font-mono font-bold focus:border-amber-500 focus:outline-none transition-colors"
+                      />
+                      <span className="absolute right-2.5 top-2 text-xs font-mono font-bold text-slate-400">
+                        %
+                      </span>
+                    </div>
                   </div>
                 </div>
 
                 {totalSolidsPercent > 100 && (
-                  <div className="flex items-center gap-1.5 text-rose-400 text-xs mt-1">
-                    <AlertCircle className="w-3.5 h-3.5 shrink-0" />
-                    <span>Atenção: A soma dos percentuais de sólidos não pode exceder 100%!</span>
+                  <div className="flex items-center gap-2 p-2.5 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-300 text-xs font-medium">
+                    <AlertCircle className="w-4 h-4 shrink-0" />
+                    <span>
+                      Atenção: A soma dos sólidos ({totalSolidsPercent}%) ultrapassa 100%! Verifique
+                      os percentuais informados.
+                    </span>
                   </div>
                 )}
               </div>
 
-              {/* Seção 5: Alérgenos */}
-              <div className="flex items-center gap-2.5 pt-1">
-                <input
-                  type="checkbox"
-                  id="has-allergen-check"
-                  checked={newHasAllergen}
-                  onChange={e => setNewHasAllergen(e.target.checked)}
-                  className="w-4 h-4 rounded bg-slate-800 border-slate-700 text-amber-500 focus:ring-amber-500"
-                />
-                <label
-                  htmlFor="has-allergen-check"
-                  className="text-xs font-semibold text-slate-300 cursor-pointer select-none"
-                >
-                  Contém Alérgeno Regulamentar (Leite, Castanha, Glúten, Soja, etc.)
-                </label>
+              {/* Seção 5: Segurança Sanitária & Alérgenos com Toggle Switch */}
+              <div className="bg-slate-950/60 p-4 rounded-2xl border border-slate-700/80 space-y-3 shadow-inner">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2.5">
+                    <div
+                      className={`w-7 h-7 rounded-xl flex items-center justify-center transition-colors ${
+                        newHasAllergen
+                          ? 'bg-rose-500/20 text-rose-400 border border-rose-500/30'
+                          : 'bg-slate-800 text-slate-400 border border-slate-700'
+                      }`}
+                    >
+                      <ShieldAlert className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <span className="text-xs font-bold text-slate-200 block">
+                        Alérgeno Regulamentar (RDC Anvisa)
+                      </span>
+                      <span className="text-[11px] text-slate-400">
+                        Sinaliza presença de componentes alérgicos na rotulagem da receita
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Toggle Switch */}
+                  <label className="relative inline-flex items-center cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={newHasAllergen}
+                      onChange={e => {
+                        setNewHasAllergen(e.target.checked);
+                        if (!e.target.checked) setSelectedAllergens([]);
+                      }}
+                      className="sr-only peer"
+                    />
+                    <div className="w-10 h-5 bg-slate-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-rose-500"></div>
+                  </label>
+                </div>
+
+                {newHasAllergen && (
+                  <div className="pt-2 border-t border-slate-800 space-y-2">
+                    <span className="text-[11px] font-semibold text-slate-300 block">
+                      Selecione os alérgenos presentes nesta matéria-prima:
+                    </span>
+                    <div className="flex flex-wrap gap-1.5">
+                      {COMMON_ALLERGENS.map(allergen => {
+                        const isSelected = selectedAllergens.includes(allergen);
+                        return (
+                          <button
+                            key={allergen}
+                            type="button"
+                            onClick={() => toggleAllergen(allergen)}
+                            className={`px-3 py-1 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
+                              isSelected
+                                ? 'bg-rose-500 text-white shadow-md shadow-rose-500/20 scale-[1.02]'
+                                : 'bg-slate-800/90 text-slate-300 hover:text-white hover:bg-slate-700/80 border border-slate-700/60'
+                            }`}
+                          >
+                            <span>{isSelected ? '✓' : '+'}</span>
+                            <span>{allergen}</span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Rodapé de Ações */}
-              <div className="flex items-center justify-end gap-2.5 pt-4 border-t border-slate-800">
+              <div className="flex items-center justify-end gap-3 pt-3 border-t border-slate-800">
                 <button
                   type="button"
                   onClick={() => setIsAddModalOpen(false)}
-                  className="px-4 py-2 text-xs font-bold text-slate-400 hover:text-white transition-colors"
+                  className="px-4 py-2.5 text-xs font-bold text-slate-400 hover:text-white transition-colors"
                 >
                   Cancelar
                 </button>
@@ -787,8 +990,8 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
                   type="submit"
                   className="px-6 py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs sm:text-sm rounded-xl shadow-lg shadow-amber-500/25 transition-all active:scale-95 flex items-center gap-2"
                 >
-                  <Save className="w-4 h-4" />
-                  <span>Salvar Insumo</span>
+                  <CheckCircle2 className="w-4 h-4" />
+                  <span>Cadastrar Insumo</span>
                 </button>
               </div>
             </form>
@@ -798,11 +1001,11 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
 
       {/* Modal Rápido: Recalcular Custo de Insumo Existente por Peso em Gramas */}
       {calculatorModalIng && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
           <div className="bg-slate-900 border border-slate-700/80 rounded-3xl w-full max-w-md p-5 sm:p-6 shadow-2xl space-y-4">
             <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+              <div className="flex items-center gap-2.5">
+                <div className="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shadow-inner border border-emerald-500/30">
                   <Calculator className="w-4 h-4" />
                 </div>
                 <div>
@@ -813,7 +1016,7 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
               <button
                 type="button"
                 onClick={() => setCalculatorModalIng(null)}
-                className="p-1 text-slate-400 hover:text-white rounded-lg"
+                className="p-1.5 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -825,7 +1028,7 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
                   Preço Pago na Embalagem:
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-2.5 text-xs font-mono font-bold text-slate-400">
+                  <span className="absolute left-3.5 top-2.5 text-xs font-mono font-bold text-slate-400">
                     R$
                   </span>
                   <input
@@ -838,7 +1041,7 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
                       const val = e.target.value === '' ? '' : Math.max(0, parseFloat(e.target.value) || 0);
                       setCalcModalPrice(val);
                     }}
-                    className="w-full bg-slate-800 border border-slate-700 rounded-xl pl-9 pr-3 py-2 text-sm text-white font-mono font-bold focus:border-amber-500 focus:outline-none"
+                    className="w-full bg-slate-800 border border-slate-700 rounded-xl pl-10 pr-3.5 py-2 text-sm text-white font-mono font-bold focus:border-amber-500 focus:outline-none"
                     autoFocus
                   />
                 </div>
@@ -860,7 +1063,7 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
                       const val = e.target.value === '' ? '' : Math.max(0, parseFloat(e.target.value) || 0);
                       setCalcModalWeightGrams(val);
                     }}
-                    className="w-full bg-slate-800 border border-slate-700 rounded-xl pl-3 pr-12 py-2 text-sm text-white font-mono font-bold focus:border-amber-500 focus:outline-none"
+                    className="w-full bg-slate-800 border border-slate-700 rounded-xl pl-3.5 pr-12 py-2 text-sm text-white font-mono font-bold focus:border-amber-500 focus:outline-none"
                   />
                   <span className="absolute right-3.5 top-2 text-xs font-mono font-bold text-amber-400 bg-amber-500/10 border border-amber-500/30 px-2 py-0.5 rounded-md">
                     g
@@ -886,9 +1089,9 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
               </div>
 
               {/* Resultado do Custo Calculado */}
-              <div className="bg-slate-950/60 rounded-xl p-3 border border-slate-800 flex items-center justify-between">
+              <div className="bg-slate-950/60 rounded-2xl p-3.5 border border-slate-800 flex items-center justify-between shadow-inner">
                 <div>
-                  <span className="text-[10px] uppercase font-bold text-slate-400 block">
+                  <span className="text-[10px] uppercase font-bold text-slate-400 block tracking-wider">
                     Novo Custo por Quilo
                   </span>
                   <span className="text-xs text-slate-400">
@@ -896,7 +1099,7 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
                   </span>
                 </div>
                 <div className="text-right">
-                  <span className="text-lg font-black font-mono text-emerald-400 block">
+                  <span className="text-xl font-black font-mono text-emerald-400 block">
                     R$ {modalComputedCostKg > 0 ? modalComputedCostKg.toFixed(2) : calculatorModalIng.costKg.toFixed(2)}
                   </span>
                   <span className="text-[10px] text-slate-400">/ kg</span>
@@ -904,7 +1107,7 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
               </div>
             </div>
 
-            <div className="flex items-center justify-end gap-2 pt-2 border-t border-slate-800">
+            <div className="flex items-center justify-end gap-2.5 pt-3 border-t border-slate-800">
               <button
                 type="button"
                 onClick={() => setCalculatorModalIng(null)}
@@ -916,9 +1119,9 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
                 type="button"
                 onClick={handleSaveCalcModal}
                 disabled={modalComputedCostKg <= 0}
-                className="px-5 py-2 bg-emerald-500 hover:bg-emerald-400 disabled:opacity-50 text-slate-950 font-black text-xs rounded-xl shadow-md transition-all flex items-center gap-1.5"
+                className="px-5 py-2.5 bg-emerald-500 hover:bg-emerald-400 disabled:opacity-50 text-slate-950 font-black text-xs sm:text-sm rounded-xl shadow-md transition-all flex items-center gap-1.5 active:scale-95"
               >
-                <Save className="w-4 h-4" />
+                <CheckCircle2 className="w-4 h-4" />
                 <span>Aplicar Novo Custo</span>
               </button>
             </div>

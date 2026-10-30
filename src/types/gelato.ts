@@ -16,6 +16,7 @@ export interface Ingredient {
   pac: number;
   protein: number;
   hasAllergen: boolean;
+  allergenDetails?: string[];
   isCustom?: boolean;
 }
 
