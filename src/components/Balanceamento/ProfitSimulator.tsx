@@ -25,7 +25,7 @@ interface ProfitSimulatorProps {
   onMarginSaved?: (newMargin: number) => void;
 }
 
-export type SalesFormat = 'tub500' | 'scoop1' | 'scoop2' | 'cuba4k';
+export type SalesFormat = 'tub500' | 'scoop1' | 'scoop2' | 'cuba4k' | 'custom';
 
 interface FormatConfig {
   id: SalesFormat;
@@ -47,19 +47,19 @@ const FORMAT_CONFIGS: Record<SalesFormat, FormatConfig> = {
   },
   scoop1: {
     id: 'scoop1',
-    name: '1 Bola (70g)',
+    name: '1 Bola (60g)',
     icon: '🍦',
-    weightGrams: 70,
+    weightGrams: 60,
     packagingCost: 0.60,
-    defaultPricePlaceholder: 16.00
+    defaultPricePlaceholder: 15.00
   },
   scoop2: {
     id: 'scoop2',
-    name: '2 Bolas (130g)',
+    name: '2 Bolas (120g)',
     icon: '🍧',
-    weightGrams: 130,
+    weightGrams: 120,
     packagingCost: 0.85,
-    defaultPricePlaceholder: 24.00
+    defaultPricePlaceholder: 22.00
   },
   cuba4k: {
     id: 'cuba4k',
@@ -68,6 +68,14 @@ const FORMAT_CONFIGS: Record<SalesFormat, FormatConfig> = {
     weightGrams: 4000,
     packagingCost: 5.00,
     defaultPricePlaceholder: 220.00
+  },
+  custom: {
+    id: 'custom',
+    name: 'Personalizado',
+    icon: '⚖️',
+    weightGrams: 100,
+    packagingCost: 1.00,
+    defaultPricePlaceholder: 20.00
   }
 };
 
@@ -91,12 +99,24 @@ export const ProfitSimulator: React.FC<ProfitSimulatorProps> = ({
   // Feedback state for saved margin
   const [isSaved, setIsSaved] = useState<boolean>(false);
 
+  // Custom Weight & Packaging state for 'custom' format
+  const [customWeightInput, setCustomWeightInput] = useState<number>(100);
+  const [customPackCostInput, setCustomPackCostInput] = useState<number>(1.00);
+
   // Sync format packaging cost from pricingParams if tub500 is selected
   const activeFormat = FORMAT_CONFIGS[selectedFormat];
   const formatPackCost =
-    selectedFormat === 'tub500' ? pricingParams.tubPackCost : activeFormat.packagingCost;
+    selectedFormat === 'tub500'
+      ? pricingParams.tubPackCost
+      : selectedFormat === 'custom'
+      ? customPackCostInput
+      : activeFormat.packagingCost;
   const formatWeightGrams =
-    selectedFormat === 'tub500' ? pricingParams.tubWeightGrams : activeFormat.weightGrams;
+    selectedFormat === 'tub500'
+      ? pricingParams.tubWeightGrams
+      : selectedFormat === 'custom'
+      ? customWeightInput
+      : activeFormat.weightGrams;
 
   // Overhead rateio proporcional à gramagem baseada no pote de 500g
   const weightRatio = formatWeightGrams / (pricingParams.tubWeightGrams || 500);
@@ -239,14 +259,19 @@ export const ProfitSimulator: React.FC<ProfitSimulatorProps> = ({
       </div>
 
       {/* Format Selector Tabs */}
-      <div className="space-y-1.5">
+      <div className="space-y-2">
         <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block">
           Formato de Venda no Balcão:
         </span>
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5">
+        <div className="grid grid-cols-2 sm:grid-cols-5 gap-1.5">
           {(Object.keys(FORMAT_CONFIGS) as SalesFormat[]).map(fmt => {
             const config = FORMAT_CONFIGS[fmt];
             const isSelected = selectedFormat === fmt;
+            const displayName =
+              fmt === 'custom' && customWeightInput > 0
+                ? `Personalizado (${customWeightInput}g)`
+                : config.name;
+
             return (
               <button
                 key={fmt}
@@ -259,11 +284,57 @@ export const ProfitSimulator: React.FC<ProfitSimulatorProps> = ({
                 }`}
               >
                 <span className="text-base select-none">{config.icon}</span>
-                <span className="leading-tight">{config.name}</span>
+                <span className="leading-tight text-[11px]">{displayName}</span>
               </button>
             );
           })}
         </div>
+
+        {/* Custom Weight & Packaging Inputs when 'custom' format is selected */}
+        {selectedFormat === 'custom' && (
+          <div className="bg-slate-900/90 border border-amber-500/40 rounded-xl p-3 flex flex-wrap items-center gap-3 animate-in fade-in duration-150 shadow-inner">
+            <div className="flex-1 min-w-[130px]">
+              <label className="text-[10px] font-bold text-amber-300 uppercase tracking-wider block mb-1">
+                ⚖️ Peso da Porção (g):
+              </label>
+              <div className="relative flex items-center">
+                <input
+                  type="number"
+                  min="1"
+                  max="10000"
+                  step="1"
+                  value={customWeightInput || ''}
+                  onChange={e => setCustomWeightInput(Math.max(1, parseFloat(e.target.value) || 0))}
+                  className="w-full bg-slate-950 border border-slate-700 focus:border-amber-500 rounded-lg pl-3 pr-10 py-1.5 text-xs font-mono font-bold text-amber-300 focus:outline-none"
+                  placeholder="Ex: 80"
+                />
+                <span className="absolute right-2.5 text-[10px] text-slate-400 font-bold pointer-events-none">
+                  gramas
+                </span>
+              </div>
+            </div>
+
+            <div className="flex-1 min-w-[130px]">
+              <label className="text-[10px] font-bold text-slate-300 uppercase tracking-wider block mb-1">
+                📦 Custo Embalagem (R$):
+              </label>
+              <div className="relative flex items-center">
+                <input
+                  type="number"
+                  min="0"
+                  step="0.05"
+                  value={customPackCostInput === 0 ? '' : customPackCostInput}
+                  onChange={e => setCustomPackCostInput(Math.max(0, parseFloat(e.target.value) || 0))}
+                  className="w-full bg-slate-950 border border-slate-700 focus:border-amber-500 rounded-lg pl-3 pr-8 py-1.5 text-xs font-mono font-bold text-white focus:outline-none"
+                  placeholder="0.00"
+                />
+                <span className="absolute right-2.5 text-[10px] text-slate-400 font-bold pointer-events-none">
+                  R$
+                </span>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Interactive Controls according to Mode */}
