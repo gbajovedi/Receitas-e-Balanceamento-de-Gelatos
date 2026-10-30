@@ -3,23 +3,23 @@
     "name": "Gelatos de Leite",
     "pacDivisor": 25,
     "min": {
-      "sugars": 0.16,
+      "sugars": 0.17,
       "fat": 0.06,
       "msnf": 0.085,
       "otherSolids": 0,
-      "totalSolids": 0.36,
-      "water": 0.595,
+      "totalSolids": 0.35,
+      "water": 0.59,
       "pod": 145,
-      "pac": 240,
+      "pac": 230,
       "protein": 0
     },
     "max": {
-      "sugars": 0.205,
+      "sugars": 0.21,
       "fat": 0.105,
-      "msnf": 0.1,
+      "msnf": 0.105,
       "otherSolids": 0.04,
-      "totalSolids": 0.405,
-      "water": 0.64,
+      "totalSolids": 0.41,
+      "water": 0.65,
       "pod": 180,
       "pac": 275,
       "protein": 0
@@ -29,25 +29,25 @@
     "name": "Gelatos de Oleaginosas",
     "pacDivisor": 25,
     "min": {
-      "sugars": 0.16,
+      "sugars": 0.175,
       "fat": 0.105,
-      "msnf": 0.065,
-      "otherSolids": 0.04,
+      "msnf": 0.075,
+      "otherSolids": 0.035,
       "totalSolids": 0.405,
       "water": 0.555,
       "pod": 140,
-      "pac": 240,
+      "pac": 220,
       "protein": 0
     },
     "max": {
-      "sugars": 0.195,
+      "sugars": 0.2,
       "fat": 0.135,
-      "msnf": 0.085,
-      "otherSolids": 0.09,
+      "msnf": 0.095,
+      "otherSolids": 0.085,
       "totalSolids": 0.445,
       "water": 0.595,
       "pod": 175,
-      "pac": 275,
+      "pac": 260,
       "protein": 0
     }
   },
@@ -61,8 +61,8 @@
       "otherSolids": 0.015,
       "totalSolids": 0.27,
       "water": 0.66,
-      "pod": 175,
-      "pac": 270,
+      "pod": 200,
+      "pac": 280,
       "protein": 0
     },
     "max": {
@@ -72,8 +72,8 @@
       "otherSolids": 0.07,
       "totalSolids": 0.34,
       "water": 0.73,
-      "pod": 245,
-      "pac": 325,
+      "pod": 280,
+      "pac": 330,
       "protein": 0
     }
   },
@@ -269,8 +269,8 @@
       "otherSolids": 0.025,
       "totalSolids": 0.28,
       "water": 0.66,
-      "pod": 170,
-      "pac": 260,
+      "pod": 180,
+      "pac": 280,
       "protein": 0
     },
     "max": {
@@ -280,8 +280,8 @@
       "otherSolids": 0.085,
       "totalSolids": 0.34,
       "water": 0.72,
-      "pod": 235,
-      "pac": 305,
+      "pod": 250,
+      "pac": 330,
       "protein": 0
     }
   }
