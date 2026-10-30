@@ -13,7 +13,10 @@ export default defineConfig(({ command }) => {
     server: {
       port: 5173,
       host: true, // Permite acesso também pelo IP da rede local (ex: celular ou tablet no Wi-Fi)
-      strictPort: false
+      strictPort: false,
+      watch: {
+        ignored: ['**/Fontes/**', '**/*.xlsx', '**/*.pdf']
+      }
     },
     build: {
       chunkSizeWarningLimit: 600,
