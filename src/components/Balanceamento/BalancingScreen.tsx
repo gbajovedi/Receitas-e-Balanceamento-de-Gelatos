@@ -58,7 +58,7 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
   // Load recipe into editor
   const loadRecipe = (rec: Recipe) => {
     setSelectedRecipeId(rec.id);
-    if (rec.id !== 'new') setLastActiveRecipeId(rec.id);
+    if (rec.id !== 'new') { setLastActiveRecipeId(rec.id); try { localStorage.setItem('gelato_active_recipe_id', rec.id); } catch {} }
     setRecipeName(rec.name);
     setTargetStyleName(rec.targetStyle || rec.category || 'Gelatos de Leite');
     setItems(rec.ingredients ? JSON.parse(JSON.stringify(rec.ingredients)) : []);

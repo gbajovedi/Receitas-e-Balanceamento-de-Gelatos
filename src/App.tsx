@@ -14,12 +14,45 @@ import initialIngredients from './data/ingredients.json';
 import initialRecipes from './data/recipes.json';
 import initialPreparations from './data/preparations.json';
 
+const STORAGE_TAB_KEY = 'gelato_active_tab';
+const STORAGE_RECIPE_KEY = 'gelato_active_recipe_id';
+const VALID_TABS: NavTab[] = ['balanceamento', 'receitas', 'ingredientes', 'preparos', 'financeiro'];
+
+const getInitialTab = (): NavTab => {
+  if (typeof window !== 'undefined') {
+    // 1. Prioridade: hash na URL (ex: #receitas, #ingredientes)
+    const hash = window.location.hash.replace('#', '') as NavTab;
+    if (VALID_TABS.includes(hash)) {
+      return hash;
+    }
+    // 2. LocalStorage para restaurar a aba onde o usuário estava ao dar F5
+    try {
+      const stored = localStorage.getItem(STORAGE_TAB_KEY) as NavTab;
+      if (VALID_TABS.includes(stored)) {
+        return stored;
+      }
+    } catch (e) {
+      console.warn('Erro ao ler aba ativa do localStorage:', e);
+    }
+  }
+  return 'balanceamento';
+};
+
+const getInitialRecipeId = (): string => {
+  if (typeof window !== 'undefined') {
+    try {
+      return localStorage.getItem(STORAGE_RECIPE_KEY) || '';
+    } catch {}
+  }
+  return '';
+};
+
 export function App() {
-  const [activeTab, setActiveTab] = useState<NavTab>('balanceamento');
+  const [activeTab, setActiveTab] = useState<NavTab>(getInitialTab);
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [ingredients, setIngredients] = useState<Ingredient[]>([]);
   const [preparations, setPreparations] = useState<Preparation[]>([]);
-  const [activeRecipeId, setActiveRecipeId] = useState<string>('');
+  const [activeRecipeId, setActiveRecipeId] = useState<string>(getInitialRecipeId);
   const [isBackupModalOpen, setIsBackupModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -39,8 +72,11 @@ export function App() {
       setIngredients(finalIngs);
       setPreparations(finalPreps);
 
+      // Restaurar receita ativa previamente salva ou primeira do catálogo
+      const savedRecId = getInitialRecipeId();
+      const hasSavedRec = savedRecId && finalRecs.some(r => r.id === savedRecId);
       if (!activeRecipeId && finalRecs.length > 0) {
-        setActiveRecipeId(finalRecs[0].id);
+        setActiveRecipeId(hasSavedRec ? savedRecId : finalRecs[0].id);
       }
     } catch (err) {
       console.error('Falha ao carregar do IndexedDB, ativando base de segurança em memória:', err);
@@ -60,15 +96,40 @@ export function App() {
     }
   };
 
+  const handleTabChange = (tab: NavTab) => {
+    setActiveTab(tab);
+    try {
+      localStorage.setItem(STORAGE_TAB_KEY, tab);
+      window.location.hash = tab;
+    } catch (e) {
+      console.warn('Erro ao salvar aba ativa:', e);
+    }
+  };
+
   useEffect(() => {
     applyTheme();
     initThemeListener();
     refreshData();
+
+    // Sincronizar caso o usuário use navegação por hash ou histórico
+    const handleHashChange = () => {
+      const hash = window.location.hash.replace('#', '') as NavTab;
+      if (VALID_TABS.includes(hash)) {
+        setActiveTab(hash);
+        localStorage.setItem(STORAGE_TAB_KEY, hash);
+      }
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
   const handleSelectRecipeFromCatalog = (id: string) => {
     setActiveRecipeId(id);
-    setActiveTab('balanceamento');
+    try {
+      localStorage.setItem(STORAGE_RECIPE_KEY, id);
+    } catch {}
+    handleTabChange('balanceamento');
   };
 
   if (isLoading) {
@@ -85,7 +146,7 @@ export function App() {
     <div className="min-h-screen bg-slate-900 text-slate-100 flex flex-col">
       <Navbar
         activeTab={activeTab}
-        onTabChange={setActiveTab}
+        onTabChange={handleTabChange}
         onOpenBackup={() => setIsBackupModalOpen(true)}
       />
 
