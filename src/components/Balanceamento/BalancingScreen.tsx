@@ -416,7 +416,7 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
 
                 {/* Quick scale shortcut buttons */}
                 <div className="flex items-center gap-1 border-l border-slate-700 pl-1.5 ml-0.5">
-                  {[1000, 2500, 4000].map(weight => (
+                  {[1000, 2500, 3000].map(weight => (
                     <button
                       key={weight}
                       type="button"
