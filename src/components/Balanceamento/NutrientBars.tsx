@@ -48,7 +48,7 @@ const NUTRIENT_METAS: Record<string, NutrientMeta> = {
     description: 'Cremosidade e textura na boca'
   },
   msnf: {
-    label: 'SLNG (Sólidos do Leite)',
+    label: 'SLNG (Leite)',
     icon: '🥛',
     unit: '%',
     isPercent: true,
@@ -235,50 +235,39 @@ export const NutrientBars: React.FC<NutrientBarsProps> = ({ analysis }) => {
         key={key}
         className={`p-4 rounded-2xl border ${cardBorder} transition-all flex flex-col justify-between shadow-lg relative group`}
       >
-        {/* Top Header: Nutrient Name & Target Range */}
+        {/* Top Header: Nutrient Name & Status */}
         <div>
-          <div className="flex items-center justify-between mb-1">
-            <span className="text-xs font-bold uppercase tracking-wider text-slate-300 flex items-center gap-1.5">
-              <span className="text-sm select-none">{meta.icon}</span>
-              <span>{meta.label}</span>
+          <div className="flex items-center justify-between gap-1.5 mb-1.5 min-h-[26px]">
+            <span className="text-xs font-bold uppercase tracking-wider text-slate-300 flex items-center gap-1.5 min-w-0">
+              <span className="text-sm select-none shrink-0">{meta.icon}</span>
+              <span className="truncate" title={meta.label}>{meta.label}</span>
             </span>
 
             {/* Status Pill with Actionable Delta */}
             {status === 'Ok' ? (
-              <span className="text-[11px] px-2.5 py-0.5 rounded-full border font-bold bg-emerald-500/15 text-emerald-300 border-emerald-500/30 flex items-center gap-1">
+              <span className="text-[11px] px-2.5 py-0.5 rounded-full border font-bold bg-emerald-500/15 text-emerald-300 border-emerald-500/30 flex items-center gap-1 whitespace-nowrap shrink-0">
                 <Check className="w-3 h-3 text-emerald-400 stroke-[3]" />
                 <span>No Alvo</span>
               </span>
             ) : status === 'Baixo' ? (
-              <span className="text-[11px] px-2 py-0.5 rounded-full border font-bold bg-amber-500/20 text-amber-300 border-amber-500/40 flex items-center gap-1 animate-pulse">
+              <span className="text-[11px] px-2 py-0.5 rounded-full border font-bold bg-amber-500/20 text-amber-300 border-amber-500/40 flex items-center gap-1 animate-pulse whitespace-nowrap shrink-0">
                 <span>↓ -{deltaStr}</span>
                 <span className="text-[10px] uppercase">Baixo</span>
               </span>
             ) : (
-              <span className="text-[11px] px-2 py-0.5 rounded-full border font-bold bg-rose-500/20 text-rose-300 border-rose-500/40 flex items-center gap-1 animate-pulse">
+              <span className="text-[11px] px-2 py-0.5 rounded-full border font-bold bg-rose-500/20 text-rose-300 border-rose-500/40 flex items-center gap-1 animate-pulse whitespace-nowrap shrink-0">
                 <span>↑ +{deltaStr}</span>
                 <span className="text-[10px] uppercase">Alto</span>
               </span>
             )}
           </div>
 
-          {/* Value and Target Range Header */}
-          <div className="flex items-baseline justify-between mt-2 mb-2.5">
-            <div className="flex items-baseline gap-1">
-              <span className={`text-2xl sm:text-3xl font-black font-mono tracking-tight ${valColor}`}>
-                {displayVal}
-              </span>
-              <span className="text-sm font-bold text-slate-400">{unit}</span>
-            </div>
-
-            <div className="text-right">
-              <span className="text-[11px] font-medium text-slate-400 block leading-tight">
-                Faixa Alvo
-              </span>
-              <span className="text-xs font-mono font-bold text-slate-200">
-                {displayMin}–{displayMax}{unit}
-              </span>
-            </div>
+          {/* Value Display */}
+          <div className="flex items-baseline gap-1 mt-1 mb-2.5">
+            <span className={`text-2xl sm:text-3xl font-black font-mono tracking-tight ${valColor}`}>
+              {displayVal}
+            </span>
+            <span className="text-sm font-bold text-slate-400">{unit}</span>
           </div>
         </div>
 
@@ -327,17 +316,6 @@ export const NutrientBars: React.FC<NutrientBarsProps> = ({ analysis }) => {
           <div className="flex items-center justify-between text-[11px] text-slate-400 font-mono mt-1.5 px-0.5">
             <span title={`Mínimo: ${displayMin}${unit}`}>
               Mín: <strong className="text-slate-200">{displayMin}{unit}</strong>
-            </span>
-
-            <span className="text-[10px] font-sans font-semibold text-slate-500">
-              {status === 'Ok' ? (
-                <span className="text-emerald-400 flex items-center gap-1">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block" />
-                  No Alvo Ideal
-                </span>
-              ) : (
-                <span>Centro: ~{displayMid}{unit}</span>
-              )}
             </span>
 
             <span title={`Máximo: ${displayMax}${unit}`}>
