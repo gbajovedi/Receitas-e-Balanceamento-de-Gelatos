@@ -34,6 +34,21 @@ export const BRAND_NAME_REPLACEMENTS: Record<string, string> = {
   'Xylitol': 'Xilitol'
 };
 
+export const CANONICAL_NAME_REPLACEMENTS: Record<string, string> = {
+  'Limão Suco': 'Suco de Limão',
+  'Suco De Limão': 'Suco de Limão',
+  'Polpa de Açai(10-14%)': 'Polpa de Açaí (10-14% Sólidos)',
+  'Açaí (Polpa Média 12-14% Sólidos)': 'Polpa de Açaí (10-14% Sólidos)',
+  'Mexerica': 'Tangerina / Mexerica',
+  'Tangerina': 'Tangerina / Mexerica',
+  'Laranja Suco': 'Suco de Laranja',
+  'Açúcar de maçã(66% açúcar)': 'Açúcar de Maçã (66% açúcar)',
+  'Pasta De Nozes 100%': 'Pasta de Nozes 100%',
+  'Pasta De Castanha De Caju 100%': 'Pasta de Castanha de Caju 100%'
+};
+
+export const DUPLICATE_IDS_TO_REMOVE = ['ing_111', 'ing_215', 'ing_216', 'ing_197'];
+
 export interface BackupResult {
   recipesCount: number;
   ingredientsCount: number;
@@ -186,6 +201,95 @@ export class GelatoDatabase extends Dexie {
         console.warn('Migration to v6 brand name cleaning:', e);
       }
     });
+
+    // Versão 7: Eliminação de duplicatas de insumos e calibração físico-química canônica
+    this.version(7).stores({
+      ingredients: 'id, name, category, costKg',
+      recipes: 'id, name, category, targetStyle, isCustom',
+      preparations: 'id, name, category, isCustom',
+      settings: 'key'
+    }).upgrade(async tx => {
+      try {
+        // Remover duplicatas
+        for (const dupId of DUPLICATE_IDS_TO_REMOVE) {
+          await tx.table('ingredients').delete(dupId);
+        }
+
+        // Sincronizar calibração físico-química preservando custo customizado
+        const catalogMap = new Map((initialIngredients as Ingredient[]).map(i => [i.id, i]));
+        const ings = await tx.table('ingredients').toArray();
+        for (const ing of ings) {
+          const cat = catalogMap.get(ing.id);
+          if (cat && !ing.isCustom) {
+            await tx.table('ingredients').update(ing.id, {
+              name: cat.name,
+              category: cat.category,
+              fat: cat.fat,
+              sugars: cat.sugars,
+              msnf: cat.msnf,
+              otherSolids: cat.otherSolids,
+              totalSolids: cat.totalSolids,
+              water: cat.water,
+              pod: cat.pod,
+              pac: cat.pac,
+              protein: cat.protein
+            });
+          }
+        }
+
+        // Atualizar nomes em receitas
+        const recs = await tx.table('recipes').toArray();
+        for (const rec of recs) {
+          let dirty = false;
+          const updatedItems = rec.ingredients.map((item: any) => {
+            if (CANONICAL_NAME_REPLACEMENTS[item.name]) {
+              dirty = true;
+              return { ...item, name: CANONICAL_NAME_REPLACEMENTS[item.name] };
+            }
+            return item;
+          });
+          const updatedVars = rec.variegatos?.map((v: any) => {
+            if (CANONICAL_NAME_REPLACEMENTS[v.name]) {
+              dirty = true;
+              return { ...v, name: CANONICAL_NAME_REPLACEMENTS[v.name] };
+            }
+            return v;
+          });
+          if (dirty) {
+            await tx.table('recipes').update(rec.id, {
+              ingredients: updatedItems,
+              ...(updatedVars ? { variegatos: updatedVars } : {})
+            });
+          }
+        }
+
+        // Atualizar nomes em pré-preparos
+        const preps = await tx.table('preparations').toArray();
+        for (const prep of preps) {
+          let dirty = false;
+          let newName = prep.name;
+          if (CANONICAL_NAME_REPLACEMENTS[prep.name]) {
+            newName = CANONICAL_NAME_REPLACEMENTS[prep.name];
+            dirty = true;
+          }
+          const updatedItems = prep.ingredients?.map((item: any) => {
+            if (CANONICAL_NAME_REPLACEMENTS[item.name]) {
+              dirty = true;
+              return { ...item, name: CANONICAL_NAME_REPLACEMENTS[item.name] };
+            }
+            return item;
+          });
+          if (dirty) {
+            await tx.table('preparations').update(prep.id, {
+              name: newName,
+              ...(updatedItems ? { ingredients: updatedItems } : {})
+            });
+          }
+        }
+      } catch (e) {
+        console.warn('Migration to v7 ingredient audit:', e);
+      }
+    });
   }
 
   async initializeSeedData(): Promise<void> {
@@ -310,6 +414,85 @@ export class GelatoDatabase extends Dexie {
             }
           }
           await this.settings.put({ key: 'ingredient_clean_names_version', value: 1 });
+        }
+
+        // Sincronizar auditoria de insumos v7 (eliminação de duplicatas e dados canônicos)
+        const auditV7Setting = await this.settings.get('ingredient_audit_v7');
+        if (!auditV7Setting || auditV7Setting.value < 1) {
+          console.log('Executando sincronização de auditoria de insumos v7 no banco...');
+          for (const dupId of DUPLICATE_IDS_TO_REMOVE) {
+            await this.ingredients.delete(dupId);
+          }
+
+          const catalogMap = new Map((initialIngredients as Ingredient[]).map(i => [i.id, i]));
+          const currentIngs = await this.ingredients.toArray();
+          for (const ing of currentIngs) {
+            const cat = catalogMap.get(ing.id);
+            if (cat && !ing.isCustom) {
+              await this.ingredients.update(ing.id, {
+                name: cat.name,
+                category: cat.category,
+                fat: cat.fat,
+                sugars: cat.sugars,
+                msnf: cat.msnf,
+                otherSolids: cat.otherSolids,
+                totalSolids: cat.totalSolids,
+                water: cat.water,
+                pod: cat.pod,
+                pac: cat.pac,
+                protein: cat.protein
+              });
+            }
+          }
+
+          const allRecs = await this.recipes.toArray();
+          for (const rec of allRecs) {
+            let dirty = false;
+            const updatedItems = rec.ingredients.map(item => {
+              if (CANONICAL_NAME_REPLACEMENTS[item.name]) {
+                dirty = true;
+                return { ...item, name: CANONICAL_NAME_REPLACEMENTS[item.name] };
+              }
+              return item;
+            });
+            const updatedVars = rec.variegatos?.map(v => {
+              if (CANONICAL_NAME_REPLACEMENTS[v.name]) {
+                dirty = true;
+                return { ...v, name: CANONICAL_NAME_REPLACEMENTS[v.name] };
+              }
+              return v;
+            });
+            if (dirty) {
+              await this.recipes.update(rec.id, {
+                ingredients: updatedItems,
+                ...(updatedVars ? { variegatos: updatedVars } : {})
+              });
+            }
+          }
+
+          const allPreps = await this.preparations.toArray();
+          for (const prep of allPreps) {
+            let dirty = false;
+            let newName = prep.name;
+            if (CANONICAL_NAME_REPLACEMENTS[prep.name]) {
+              newName = CANONICAL_NAME_REPLACEMENTS[prep.name];
+              dirty = true;
+            }
+            const updatedItems = prep.ingredients?.map(item => {
+              if (CANONICAL_NAME_REPLACEMENTS[item.name]) {
+                dirty = true;
+                return { ...item, name: CANONICAL_NAME_REPLACEMENTS[item.name] };
+              }
+              return item;
+            });
+            if (dirty) {
+              await this.preparations.update(prep.id, {
+                name: newName,
+                ...(updatedItems ? { ingredients: updatedItems } : {})
+              });
+            }
+          }
+          await this.settings.put({ key: 'ingredient_audit_v7', value: 1 });
         }
       }
 
