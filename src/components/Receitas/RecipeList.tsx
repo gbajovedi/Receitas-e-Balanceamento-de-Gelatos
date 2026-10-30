@@ -13,13 +13,36 @@ import {
   Milk,
   Leaf,
   Zap,
-  Sparkles,
-  Flame,
   Layers,
-  Check
+  Wine,
+  Cherry,
+  Citrus,
+  ShieldCheck,
+  IceCream
 } from 'lucide-react';
 import { db } from '../../db/database';
 import { RecipeViewerModal } from './RecipeViewerModal';
+
+// Custom SVG icon for chocolate bars (crisp 4-tablet embossed chocolate bar)
+const ChocolateIcon: React.FC<{ className?: string }> = ({ className = 'w-3.5 h-3.5' }) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+  >
+    <rect x="3" y="4" width="18" height="16" rx="2" />
+    <line x1="3" y1="12" x2="21" y2="12" />
+    <line x1="12" y1="4" x2="12" y2="20" />
+    <rect x="5.5" y="6.5" width="4" height="3" rx="0.5" fill="currentColor" fillOpacity="0.35" />
+    <rect x="14.5" y="6.5" width="4" height="3" rx="0.5" fill="currentColor" fillOpacity="0.35" />
+    <rect x="5.5" y="14.5" width="4" height="3" rx="0.5" fill="currentColor" fillOpacity="0.35" />
+    <rect x="14.5" y="14.5" width="4" height="3" rx="0.5" fill="currentColor" fillOpacity="0.35" />
+  </svg>
+);
 
 interface RecipeListProps {
   recipes: Recipe[];
@@ -179,66 +202,84 @@ export const RecipeList: React.FC<RecipeListProps> = ({
 
   const getCategoryTheme = (category: string) => {
     const cat = (category || '').toLowerCase();
+
+    // 1. Gelatos de Leite com Fruta -> Cherry (Cerejas)
     if (cat.includes('leite com fruta')) {
       return {
         gradient: 'from-pink-500 via-rose-400 to-sky-400',
         badge: 'bg-pink-500/15 text-pink-300 border-pink-500/40',
-        icon: <Sparkles className="w-3.5 h-3.5 text-pink-400" />
+        icon: <Cherry className="w-3.5 h-3.5 text-pink-400 shrink-0" />
       };
     }
+
+    // 2. Gelatos de Leite -> Milk (Garrafa de leite)
     if (cat.includes('leite')) {
       return {
         gradient: 'from-sky-400 via-cyan-400 to-blue-500',
         badge: 'bg-sky-500/15 text-sky-300 border-sky-500/40',
-        icon: <Milk className="w-3.5 h-3.5 text-sky-400" />
+        icon: <Milk className="w-3.5 h-3.5 text-sky-400 shrink-0" />
       };
     }
+
+    // 3. Sorbets -> Citrus (Fatia de fruta cítrica fresca)
     if (cat.includes('sorbet') || cat.includes('fruta')) {
       return {
         gradient: 'from-rose-500 via-orange-400 to-amber-400',
         badge: 'bg-rose-500/15 text-rose-300 border-rose-500/40',
-        icon: <Flame className="w-3.5 h-3.5 text-rose-400" />
+        icon: <Citrus className="w-3.5 h-3.5 text-rose-400 shrink-0" />
       };
     }
+
+    // 4. Chocolate base água -> ChocolateIcon (Barra de chocolate artesanal)
     if (cat.includes('chocolate') || cat.includes('cacau')) {
       return {
-        gradient: 'from-amber-600 via-yellow-700 to-amber-900',
-        badge: 'bg-amber-900/30 text-amber-200 border-amber-600/40',
-        icon: <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+        gradient: 'from-amber-700 via-yellow-700 to-amber-900',
+        badge: 'bg-amber-950/60 text-amber-200 border-amber-600/40',
+        icon: <ChocolateIcon className="w-3.5 h-3.5 text-amber-300 shrink-0" />
       };
     }
+
+    // 5. Vegano -> Leaf (Folha natural)
     if (cat.includes('vegano')) {
       return {
         gradient: 'from-emerald-400 via-teal-400 to-green-500',
         badge: 'bg-emerald-500/15 text-emerald-300 border-emerald-500/40',
-        icon: <Leaf className="w-3.5 h-3.5 text-emerald-400" />
+        icon: <Leaf className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
       };
     }
+
+    // 6. Gelatos Proteicos -> Zap (Raio de energia/whey)
     if (cat.includes('proteico')) {
       return {
         gradient: 'from-purple-500 via-fuchsia-500 to-indigo-500',
         badge: 'bg-purple-500/15 text-purple-300 border-purple-500/40',
-        icon: <Zap className="w-3.5 h-3.5 text-purple-400" />
+        icon: <Zap className="w-3.5 h-3.5 text-purple-400 shrink-0" />
       };
     }
+
+    // 7. Alcoólicos -> Wine (Taça de vinho/licor)
     if (cat.includes('alco')) {
       return {
         gradient: 'from-yellow-400 via-amber-400 to-amber-600',
         badge: 'bg-amber-500/15 text-amber-300 border-amber-500/40',
-        icon: <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+        icon: <Wine className="w-3.5 h-3.5 text-amber-400 shrink-0" />
       };
     }
+
+    // 8. Zero Açúcar / Diet -> ShieldCheck (Selo de segurança diet)
     if (cat.includes('zero')) {
       return {
         gradient: 'from-teal-400 via-cyan-400 to-blue-400',
         badge: 'bg-teal-500/15 text-teal-300 border-teal-500/40',
-        icon: <Check className="w-3.5 h-3.5 text-teal-400" />
+        icon: <ShieldCheck className="w-3.5 h-3.5 text-teal-400 shrink-0" />
       };
     }
+
+    // Padrão / Outros -> IceCream (Casquinha de Gelato artesanal)
     return {
       gradient: 'from-amber-400 to-amber-600',
       badge: 'bg-slate-800 text-slate-300 border-slate-700',
-      icon: <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+      icon: <IceCream className="w-3.5 h-3.5 text-amber-400 shrink-0" />
     };
   };
 
@@ -292,11 +333,12 @@ export const RecipeList: React.FC<RecipeListProps> = ({
               )}
             </div>
 
-            {/* Category filter pills with counters */}
+            {/* Category filter pills with counters and unique icons */}
             <div className="flex items-center gap-2 overflow-x-auto pb-1 max-w-full">
               {categories.map(cat => {
                 const isSelected = selectedCategory === cat;
                 const count = categoryCounts[cat] || 0;
+                const catTheme = cat !== 'Todas' ? getCategoryTheme(cat) : null;
                 return (
                   <button
                     key={cat}
@@ -308,9 +350,16 @@ export const RecipeList: React.FC<RecipeListProps> = ({
                         : 'bg-slate-900 border border-slate-700 text-slate-300 hover:text-white hover:border-slate-600'
                     }`}
                   >
+                    {catTheme ? (
+                      <span className={isSelected ? 'text-slate-950' : ''}>
+                        {catTheme.icon}
+                      </span>
+                    ) : (
+                      <BookOpen className={`w-3.5 h-3.5 ${isSelected ? 'text-slate-950' : 'text-amber-400'}`} />
+                    )}
                     <span>{cat}</span>
                     <span
-                      className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono font-bold ${
+                      className={`text-[10px] px-1.5 py-0.5 rounded-full font-mono font-bold ${
                         isSelected ? 'bg-amber-600/30 text-slate-950' : 'bg-slate-800 text-slate-400'
                       }`}
                     >
