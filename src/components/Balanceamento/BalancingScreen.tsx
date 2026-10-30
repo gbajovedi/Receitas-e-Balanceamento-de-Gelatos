@@ -260,10 +260,10 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
 
   return (
     <div className="space-y-6 max-w-7xl mx-auto pb-16">
-      {/* Top Header Card */}
-      <div className="relative overflow-hidden bg-slate-800/95 rounded-2xl border border-slate-700/80 p-5 shadow-xl">
+      {/* Top Header Card (z-30 so search combobox dropdown floats above subsequent cards without clipping) */}
+      <div className="relative z-30 bg-slate-800/95 rounded-2xl border border-slate-700/80 p-5 shadow-xl">
         {/* Dynamic Category Accent Line */}
-        <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${getCategoryTheme(targetStyleName).gradient}`} />
+        <div className={`absolute top-0 left-0 right-0 h-1 rounded-t-2xl bg-gradient-to-r ${getCategoryTheme(targetStyleName).gradient}`} />
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
           {/* Recipe Selection & Title */}
           <div className="space-y-2 flex-1">
