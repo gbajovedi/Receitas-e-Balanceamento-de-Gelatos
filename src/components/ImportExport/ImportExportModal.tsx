@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { db } from '../../db/database';
-import { Download, Upload, RotateCcw, X, CheckCircle, AlertTriangle } from 'lucide-react';
+import { Download, Upload, RotateCcw, X, CheckCircle, AlertTriangle, Database } from 'lucide-react';
 
 interface ImportExportModalProps {
   isOpen: boolean;
@@ -37,7 +37,10 @@ export const ImportExportModal: React.FC<ImportExportModalProps> = ({
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
-      setStatusMessage({ text: 'Backup exportado com sucesso!', type: 'success' });
+      setStatusMessage({
+        text: 'Backup exportado com sucesso! Inclui receitas, matérias-primas, pré-preparos e todos os custos fixos e taxas de precificação.',
+        type: 'success'
+      });
     } catch (err) {
       setStatusMessage({ text: 'Erro ao exportar backup: ' + err, type: 'error' });
     } finally {
@@ -55,8 +58,8 @@ export const ImportExportModal: React.FC<ImportExportModalProps> = ({
       const text = await file.text();
       const result = await db.importBackup(text, importMode);
       const extras: string[] = [];
-      if (result.pricingImported) extras.push('custos/Cielo');
-      if (result.themeImported) extras.push('tema');
+      if (result.pricingImported) extras.push('parâmetros de precificação (custos fixos e taxas Cielo)');
+      if (result.themeImported) extras.push('preferência de tema');
       const extraMsg = extras.length > 0 ? ` (incluindo ${extras.join(' e ')})` : '';
 
       setStatusMessage({
@@ -76,14 +79,14 @@ export const ImportExportModal: React.FC<ImportExportModalProps> = ({
   const handleRestoreFactory = async () => {
     if (
       confirm(
-        'Tem certeza que deseja restaurar os dados de fábrica? Todas as receitas personalizadas e custos editados serão restaurados para a versão inicial da planilha.'
+        'Tem certeza que deseja restaurar os dados de fábrica? Todas as receitas personalizadas, custos editados e parâmetros de precificação serão restaurados para a versão inicial da planilha.'
       )
     ) {
       try {
         setLoading(true);
         await db.restoreFactoryDefaults();
         setStatusMessage({
-          text: 'Banco restaurado com sucesso para os 177 gelatos e 190 insumos originais!',
+          text: 'Banco restaurado com sucesso para as 177 receitas, 190 insumos e parâmetros de precificação originais da planilha!',
           type: 'success'
         });
         onDataChanged();
@@ -96,37 +99,42 @@ export const ImportExportModal: React.FC<ImportExportModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm">
-      <div className="bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-lg p-6 shadow-2xl relative space-y-5">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-md">
+      <div className="bg-slate-900 border border-slate-700/90 rounded-3xl w-full max-w-xl p-5 sm:p-7 shadow-2xl relative space-y-5 max-h-[92vh] overflow-y-auto">
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-slate-400 hover:text-white p-1 rounded-lg"
+          className="absolute top-5 right-5 text-slate-400 hover:text-white p-1.5 rounded-xl hover:bg-slate-800 transition-colors"
+          title="Fechar"
         >
           <X className="w-5 h-5" />
         </button>
 
-        <div>
-          <h3 className="text-lg font-bold text-white flex items-center gap-2">
-            <span>💾</span>
-            <span>Importar & Exportar Dados</span>
-          </h3>
-          <p className="text-xs text-slate-400">
-            Gerencie backups, exporte suas receitas ou restaure a biblioteca padrão da planilha.
-          </p>
+        <div className="flex items-center gap-3 border-b border-slate-800 pb-4">
+          <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-amber-500 to-amber-300 flex items-center justify-center text-xl shadow-lg shadow-amber-500/20 shrink-0">
+            💾
+          </div>
+          <div>
+            <h3 className="text-lg sm:text-xl font-black text-white tracking-tight flex items-center gap-2">
+              <span>Importar & Exportar Backup</span>
+            </h3>
+            <p className="text-xs text-slate-400 mt-0.5">
+              Faça backup completo, migre seus dados para outro dispositivo ou restaure a biblioteca da planilha.
+            </p>
+          </div>
         </div>
 
         {statusMessage && (
           <div
-            className={`p-3 rounded-xl border text-xs flex items-center gap-2 ${
+            className={`p-3.5 rounded-2xl border text-xs sm:text-sm font-semibold flex items-center gap-2.5 ${
               statusMessage.type === 'success'
-                ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300'
-                : 'bg-rose-500/10 border-rose-500/30 text-rose-300'
+                ? 'bg-emerald-500/15 border-emerald-500/30 text-emerald-300'
+                : 'bg-rose-500/15 border-rose-500/30 text-rose-300'
             }`}
           >
             {statusMessage.type === 'success' ? (
-              <CheckCircle className="w-4 h-4 shrink-0" />
+              <CheckCircle className="w-5 h-5 shrink-0 text-emerald-400" />
             ) : (
-              <AlertTriangle className="w-4 h-4 shrink-0" />
+              <AlertTriangle className="w-5 h-5 shrink-0 text-rose-400" />
             )}
             <span>{statusMessage.text}</span>
           </div>
@@ -134,35 +142,60 @@ export const ImportExportModal: React.FC<ImportExportModalProps> = ({
 
         <div className="space-y-4">
           {/* Export Box */}
-          <div className="bg-slate-800/80 p-4 rounded-xl border border-slate-700 flex items-center justify-between">
-            <div>
-              <h4 className="text-sm font-bold text-white">Exportar Backup Completo</h4>
-              <p className="text-xs text-slate-400">
-                Gera um arquivo JSON contendo todas as receitas, insumos e custos.
-              </p>
+          <div className="bg-slate-850 p-4 sm:p-5 rounded-2xl border border-slate-700/80 space-y-3.5 shadow-md">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div>
+                <h4 className="text-sm sm:text-base font-black text-white flex items-center gap-2">
+                  <span>Exportar Backup Completo</span>
+                  <span className="text-[10px] uppercase font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                    Tudo Incluso
+                  </span>
+                </h4>
+                <p className="text-xs text-slate-300 mt-1 leading-relaxed">
+                  Gera um arquivo <code className="font-mono text-amber-300 font-bold">.JSON</code> com 100% dos seus dados: receitas, insumos & custos, pré-preparos e <strong>todos os parâmetros de Precificação (custos fixos e taxas Cielo)</strong>.
+                </p>
+              </div>
+              <button
+                type="button"
+                disabled={loading}
+                onClick={handleExport}
+                className="px-4 py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs sm:text-sm rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg shadow-amber-500/20 shrink-0 active:scale-95"
+              >
+                <Download className="w-4 h-4" />
+                <span>Exportar (.JSON)</span>
+              </button>
             </div>
-            <button
-              type="button"
-              disabled={loading}
-              onClick={handleExport}
-              className="px-4 py-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs rounded-xl transition-colors flex items-center gap-1.5 shadow-md shadow-amber-500/10"
-            >
-              <Download className="w-4 h-4" />
-              <span>Exportar (.JSON)</span>
-            </button>
+
+            {/* Chips Informativos do Conteúdo do Backup */}
+            <div className="flex flex-wrap items-center gap-1.5 pt-1 text-[11px]">
+              <span className="font-bold text-slate-400 text-[10px] uppercase tracking-wider mr-1">Incluso:</span>
+              <span className="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-750 text-slate-200 font-medium">
+                🍨 Catálogo de Receitas
+              </span>
+              <span className="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-750 text-slate-200 font-medium">
+                🧪 Insumos & Custos/kg
+              </span>
+              <span className="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-750 text-slate-200 font-medium">
+                👨‍🍳 Pré-preparos & Variegatos
+              </span>
+              <span className="px-2.5 py-1 rounded-lg bg-amber-500/15 border border-amber-500/35 text-amber-300 font-bold flex items-center gap-1">
+                <span>💰</span>
+                <span>Custos Fixos & Taxas de Precificação</span>
+              </span>
+            </div>
           </div>
 
           {/* Import Box */}
-          <div className="bg-slate-800/80 p-4 rounded-xl border border-slate-700 space-y-3">
+          <div className="bg-slate-850 p-4 sm:p-5 rounded-2xl border border-slate-700/80 space-y-3.5 shadow-md">
             <div>
-              <h4 className="text-sm font-bold text-white">Importar Backup ou Receitas</h4>
-              <p className="text-xs text-slate-400">
-                Carregue um arquivo JSON gerado anteriormente neste ou em outro dispositivo.
+              <h4 className="text-sm sm:text-base font-black text-white">Importar Backup ou Restaurar Dados</h4>
+              <p className="text-xs text-slate-300 mt-1 leading-relaxed">
+                Carregue um arquivo <code className="font-mono text-amber-300 font-bold">.JSON</code> gerado anteriormente para restaurar receitas, custos de matérias-primas e <strong>suas configurações de precificação financeira</strong>.
               </p>
             </div>
 
-            <div className="flex items-center gap-4 text-xs text-slate-300">
-              <label className="flex items-center gap-1.5 cursor-pointer">
+            <div className="flex flex-wrap items-center gap-4 text-xs text-slate-300 bg-slate-900/80 p-2.5 rounded-xl border border-slate-750">
+              <label className="flex items-center gap-2 cursor-pointer font-medium">
                 <input
                   type="radio"
                   name="import-mode"
@@ -170,9 +203,9 @@ export const ImportExportModal: React.FC<ImportExportModalProps> = ({
                   onChange={() => setImportMode('merge')}
                   className="text-amber-500 focus:ring-0"
                 />
-                <span>Mesclar (Manter existentes)</span>
+                <span>Mesclar (Preservar dados existentes)</span>
               </label>
-              <label className="flex items-center gap-1.5 cursor-pointer">
+              <label className="flex items-center gap-2 cursor-pointer font-medium">
                 <input
                   type="radio"
                   name="import-mode"
@@ -180,7 +213,7 @@ export const ImportExportModal: React.FC<ImportExportModalProps> = ({
                   onChange={() => setImportMode('replace')}
                   className="text-amber-500 focus:ring-0"
                 />
-                <span>Substituir tudo</span>
+                <span>Substituir tudo (Limpar e sobrescrever)</span>
               </label>
             </div>
 
@@ -196,26 +229,26 @@ export const ImportExportModal: React.FC<ImportExportModalProps> = ({
               type="button"
               disabled={loading}
               onClick={() => fileInputRef.current?.click()}
-              className="w-full py-2.5 bg-slate-700 hover:bg-slate-600 text-white font-semibold text-xs rounded-xl transition-colors flex items-center justify-center gap-1.5"
+              className="w-full py-2.5 bg-slate-800 hover:bg-slate-750 border border-slate-700 text-white font-bold text-xs sm:text-sm rounded-xl transition-all flex items-center justify-center gap-2 shadow-sm active:scale-95"
             >
-              <Upload className="w-4 h-4" />
-              <span>Selecionar Arquivo .JSON para Importar</span>
+              <Upload className="w-4 h-4 text-amber-400" />
+              <span>Selecionar Arquivo .JSON de Backup</span>
             </button>
           </div>
 
           {/* Restore Factory Box */}
-          <div className="bg-slate-800/40 p-4 rounded-xl border border-slate-800 flex items-center justify-between">
+          <div className="bg-slate-900/60 p-4 rounded-2xl border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div>
               <h4 className="text-xs font-bold text-slate-300">Restaurar Versão de Fábrica</h4>
-              <p className="text-[11px] text-slate-500">
-                Volta o banco aos 177 gelatos e 190 insumos originais da planilha.
+              <p className="text-[11px] text-slate-400">
+                Restaura o banco aos 177 gelatos, 190 insumos e parâmetros de precificação originais da planilha.
               </p>
             </div>
             <button
               type="button"
               disabled={loading}
               onClick={handleRestoreFactory}
-              className="px-3 py-1.5 border border-slate-700 hover:border-rose-500 text-slate-400 hover:text-rose-400 text-xs font-medium rounded-lg transition-colors flex items-center gap-1.5"
+              className="px-3.5 py-2 border border-slate-700 hover:border-rose-500/50 bg-slate-800/80 hover:bg-rose-500/10 text-slate-300 hover:text-rose-300 text-xs font-bold rounded-xl transition-all flex items-center justify-center gap-1.5 shrink-0"
             >
               <RotateCcw className="w-3.5 h-3.5" />
               <span>Restaurar Padrão</span>
@@ -223,11 +256,11 @@ export const ImportExportModal: React.FC<ImportExportModalProps> = ({
           </div>
         </div>
 
-        <div className="flex justify-end pt-2">
+        <div className="flex justify-end pt-2 border-t border-slate-800">
           <button
             type="button"
             onClick={onClose}
-            className="px-4 py-2 text-xs font-semibold text-slate-400 hover:text-white"
+            className="px-5 py-2.5 text-xs sm:text-sm font-bold text-slate-400 hover:text-white rounded-xl hover:bg-slate-800 transition-colors"
           >
             Fechar
           </button>
@@ -236,4 +269,3 @@ export const ImportExportModal: React.FC<ImportExportModalProps> = ({
     </div>
   );
 };
-
