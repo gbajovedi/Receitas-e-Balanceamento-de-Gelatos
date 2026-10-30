@@ -1,19 +1,112 @@
 import React, { useState, useMemo } from 'react';
-import { Recipe } from '../../types/gelato';
-import { Search, Calculator, Plus, Trash2, BookOpen, Eye, X, Edit3, Scale } from 'lucide-react';
+import { Recipe, Ingredient } from '../../types/gelato';
+import {
+  Search,
+  Plus,
+  Trash2,
+  BookOpen,
+  Eye,
+  X,
+  Scale,
+  Copy,
+  ArrowUpDown,
+  Milk,
+  Leaf,
+  Zap,
+  Sparkles,
+  Flame,
+  Layers,
+  Check
+} from 'lucide-react';
 import { db } from '../../db/database';
 import { RecipeViewerModal } from './RecipeViewerModal';
 
 interface RecipeListProps {
   recipes: Recipe[];
+  ingredients?: Ingredient[];
   onSelectRecipe: (id: string) => void;
   onRefresh: () => void;
 }
 
-export const RecipeList: React.FC<RecipeListProps> = ({ recipes, onSelectRecipe, onRefresh }) => {
+export const RecipeList: React.FC<RecipeListProps> = ({
+  recipes,
+  ingredients = [],
+  onSelectRecipe,
+  onRefresh
+}) => {
   const [search, setSearch] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('Todas');
+  const [sortBy, setSortBy] = useState<'name-asc' | 'custom-first' | 'cost-asc' | 'pac-desc'>('name-asc');
   const [viewingRecipe, setViewingRecipe] = useState<Recipe | null>(null);
+
+  // Fast ingredient lookup map
+  const ingredientsMap = useMemo(() => {
+    const map = new Map<string, Ingredient>();
+    for (const ing of ingredients) {
+      map.set(ing.name.toLowerCase().trim(), ing);
+    }
+    return map;
+  }, [ingredients]);
+
+  // Pre-calculate technical metrics for each recipe
+  const metrics = useMemo(() => {
+    const map = new Map<
+      string,
+      {
+        pac: number;
+        pod: number;
+        fatPct: number;
+        sugarsPct: number;
+        costKg: number;
+        totalWeight: number;
+      }
+    >();
+
+    for (const recipe of recipes) {
+      let totalWeight = 0;
+      let sugars = 0;
+      let fat = 0;
+      let pod = 0;
+      let pac = 0;
+      let cost = 0;
+
+      for (const item of recipe.ingredients || []) {
+        totalWeight += item.grams;
+        const ing = ingredientsMap.get(item.name.toLowerCase().trim());
+        if (ing) {
+          sugars += item.grams * ing.sugars;
+          fat += item.grams * ing.fat;
+          pod += item.grams * ing.pod;
+          pac += item.grams * ing.pac;
+          cost += (item.grams / 1000) * (ing.costKg || 0);
+        }
+      }
+
+      for (const v of recipe.variegatos || []) {
+        totalWeight += v.grams;
+        if (v.costKg) {
+          cost += (v.grams / 1000) * v.costKg;
+        }
+      }
+
+      const pacVal = Math.round(pac);
+      const podVal = Math.round(pod);
+      const fatPct = totalWeight > 0 ? (fat / totalWeight) * 100 : 0;
+      const sugarsPct = totalWeight > 0 ? (sugars / totalWeight) * 100 : 0;
+      const costKg = totalWeight > 0 ? cost / (totalWeight / 1000) : 0;
+
+      map.set(recipe.id, {
+        pac: pacVal,
+        pod: podVal,
+        fatPct,
+        sugarsPct,
+        costKg,
+        totalWeight
+      });
+    }
+
+    return map;
+  }, [recipes, ingredientsMap]);
 
   const categories = useMemo(() => {
     const set = new Set<string>();
@@ -21,6 +114,16 @@ export const RecipeList: React.FC<RecipeListProps> = ({ recipes, onSelectRecipe,
       if (r.category) set.add(r.category);
     }
     return ['Todas', ...Array.from(set)];
+  }, [recipes]);
+
+  const categoryCounts = useMemo(() => {
+    const counts: Record<string, number> = { Todas: recipes.length };
+    for (const r of recipes) {
+      if (r.category) {
+        counts[r.category] = (counts[r.category] || 0) + 1;
+      }
+    }
+    return counts;
   }, [recipes]);
 
   const filteredRecipes = useMemo(() => {
@@ -34,6 +137,28 @@ export const RecipeList: React.FC<RecipeListProps> = ({ recipes, onSelectRecipe,
     });
   }, [recipes, search, selectedCategory]);
 
+  const sortedAndFilteredRecipes = useMemo(() => {
+    const list = [...filteredRecipes];
+    if (sortBy === 'name-asc') {
+      list.sort((a, b) => a.name.localeCompare(b.name, 'pt-BR'));
+    } else if (sortBy === 'custom-first') {
+      list.sort((a, b) => (b.isCustom ? 1 : 0) - (a.isCustom ? 1 : 0) || a.name.localeCompare(b.name, 'pt-BR'));
+    } else if (sortBy === 'cost-asc') {
+      list.sort((a, b) => {
+        const costA = metrics.get(a.id)?.costKg || 0;
+        const costB = metrics.get(b.id)?.costKg || 0;
+        return costA - costB;
+      });
+    } else if (sortBy === 'pac-desc') {
+      list.sort((a, b) => {
+        const pacA = metrics.get(a.id)?.pac || 0;
+        const pacB = metrics.get(b.id)?.pac || 0;
+        return pacB - pacA;
+      });
+    }
+    return list;
+  }, [filteredRecipes, sortBy, metrics]);
+
   const handleDeleteRecipe = async (id: string, name: string) => {
     if (confirm(`Deseja realmente excluir a receita "${name}"? Esta ação removerá a receita do catálogo.`)) {
       await db.recipes.delete(id);
@@ -41,162 +166,346 @@ export const RecipeList: React.FC<RecipeListProps> = ({ recipes, onSelectRecipe,
     }
   };
 
+  const handleDuplicateRecipe = async (recipe: Recipe) => {
+    const newRecipe: Recipe = {
+      ...recipe,
+      id: 'rec_' + Date.now() + '_' + Math.random().toString(36).substring(2, 6),
+      name: `${recipe.name} (Cópia)`,
+      isCustom: true
+    };
+    await db.recipes.add(newRecipe);
+    onRefresh();
+  };
+
+  const getCategoryTheme = (category: string) => {
+    const cat = (category || '').toLowerCase();
+    if (cat.includes('leite com fruta')) {
+      return {
+        gradient: 'from-pink-500 via-rose-400 to-sky-400',
+        badge: 'bg-pink-500/15 text-pink-300 border-pink-500/40',
+        icon: <Sparkles className="w-3.5 h-3.5 text-pink-400" />
+      };
+    }
+    if (cat.includes('leite')) {
+      return {
+        gradient: 'from-sky-400 via-cyan-400 to-blue-500',
+        badge: 'bg-sky-500/15 text-sky-300 border-sky-500/40',
+        icon: <Milk className="w-3.5 h-3.5 text-sky-400" />
+      };
+    }
+    if (cat.includes('sorbet') || cat.includes('fruta')) {
+      return {
+        gradient: 'from-rose-500 via-orange-400 to-amber-400',
+        badge: 'bg-rose-500/15 text-rose-300 border-rose-500/40',
+        icon: <Flame className="w-3.5 h-3.5 text-rose-400" />
+      };
+    }
+    if (cat.includes('chocolate') || cat.includes('cacau')) {
+      return {
+        gradient: 'from-amber-600 via-yellow-700 to-amber-900',
+        badge: 'bg-amber-900/30 text-amber-200 border-amber-600/40',
+        icon: <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+      };
+    }
+    if (cat.includes('vegano')) {
+      return {
+        gradient: 'from-emerald-400 via-teal-400 to-green-500',
+        badge: 'bg-emerald-500/15 text-emerald-300 border-emerald-500/40',
+        icon: <Leaf className="w-3.5 h-3.5 text-emerald-400" />
+      };
+    }
+    if (cat.includes('proteico')) {
+      return {
+        gradient: 'from-purple-500 via-fuchsia-500 to-indigo-500',
+        badge: 'bg-purple-500/15 text-purple-300 border-purple-500/40',
+        icon: <Zap className="w-3.5 h-3.5 text-purple-400" />
+      };
+    }
+    if (cat.includes('alco')) {
+      return {
+        gradient: 'from-yellow-400 via-amber-400 to-amber-600',
+        badge: 'bg-amber-500/15 text-amber-300 border-amber-500/40',
+        icon: <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+      };
+    }
+    if (cat.includes('zero')) {
+      return {
+        gradient: 'from-teal-400 via-cyan-400 to-blue-400',
+        badge: 'bg-teal-500/15 text-teal-300 border-teal-500/40',
+        icon: <Check className="w-3.5 h-3.5 text-teal-400" />
+      };
+    }
+    return {
+      gradient: 'from-amber-400 to-amber-600',
+      badge: 'bg-slate-800 text-slate-300 border-slate-700',
+      icon: <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+    };
+  };
+
   return (
     <>
       <div className="no-print space-y-6 max-w-7xl mx-auto pb-16">
-      {/* Header & Search */}
-      <div className="bg-slate-800/95 rounded-2xl border border-slate-700/80 p-5 shadow-xl space-y-4">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div>
-            <h2 className="text-xl sm:text-2xl font-black text-white flex items-center gap-2.5">
-              <BookOpen className="w-6 h-6 text-amber-400" />
-              <span>Catálogo & Livro de Receitas</span>
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-300 mt-0.5">
-              Toque em qualquer receita para abrir a <strong>Ficha de Produção (Modo Cozinha)</strong> ou clique em <strong>Editar</strong> para calibrar a fórmula no balanceador.
-            </p>
-          </div>
+        {/* Header & Search */}
+        <div className="bg-slate-800/95 rounded-2xl border border-slate-700/80 p-5 shadow-xl space-y-4">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div>
+              <h2 className="text-xl sm:text-2xl font-black text-white flex items-center gap-2.5">
+                <BookOpen className="w-6 h-6 text-amber-400" />
+                <span>Catálogo & Livro de Receitas</span>
+              </h2>
+              <p className="text-xs sm:text-sm text-slate-300 mt-0.5">
+                Toque em qualquer receita para abrir a <strong>Ficha de Produção (Modo Cozinha)</strong> ou clique em{' '}
+                <strong>Balancear</strong> para calibrar a fórmula na bancada.
+              </p>
+            </div>
 
-          <button
-            type="button"
-            onClick={() => onSelectRecipe('new')}
-            className="px-5 py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs sm:text-sm rounded-xl shadow-lg shadow-amber-500/25 transition-all flex items-center gap-2 self-start md:self-auto active:scale-95"
-          >
-            <Plus className="w-4 h-4" />
-            <span>Criar Nova Receita</span>
-          </button>
-        </div>
-
-        <div className="space-y-3">
-          {/* Search bar */}
-          <div className="relative w-full">
-            <Search className="w-5 h-5 text-amber-400 absolute left-3.5 top-3.5" />
-            <input
-              type="text"
-              value={search}
-              onChange={e => setSearch(e.target.value)}
-              placeholder="Buscar por sabor ou insumo (ex: pistache, chocolate, maracujá, manga)..."
-              className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-11 pr-10 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 font-semibold shadow-inner"
-            />
-            {search && (
-              <button
-                type="button"
-                onClick={() => setSearch('')}
-                className="absolute right-3 top-3 p-1 text-slate-400 hover:text-white rounded-lg transition-colors"
-                title="Limpar busca"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            )}
-          </div>
-
-          {/* Category filter pills */}
-          <div className="flex items-center gap-2 overflow-x-auto pb-1 max-w-full">
-            {categories.map(cat => (
-              <button
-                key={cat}
-                type="button"
-                onClick={() => setSelectedCategory(cat)}
-                className={`px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap shrink-0 transition-all ${
-                  selectedCategory === cat
-                    ? 'bg-amber-500 text-slate-950 shadow-md shadow-amber-500/20'
-                    : 'bg-slate-900 border border-slate-700 text-slate-300 hover:text-white hover:border-slate-600'
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Grid of recipe cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {filteredRecipes.map(recipe => {
-          const totalWeight = recipe.ingredients
-            ? recipe.ingredients.reduce((a, b) => a + b.grams, 0)
-            : 0;
-
-          return (
-            <div
-              key={recipe.id}
-              className="bg-slate-800/80 hover:bg-slate-800 rounded-2xl border border-slate-700/80 p-5 shadow-lg hover:border-amber-500/50 transition-all flex flex-col justify-between group hover:shadow-amber-500/5 cursor-pointer"
-              onClick={() => setViewingRecipe(recipe)}
+            <button
+              type="button"
+              onClick={() => onSelectRecipe('new')}
+              className="px-5 py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs sm:text-sm rounded-xl shadow-lg shadow-amber-500/25 transition-all flex items-center gap-2 self-start md:self-auto active:scale-95"
             >
-              <div className="space-y-3">
-                {/* Meta Badges (Category & Custom) */}
-                <div className="flex items-center justify-between gap-2 flex-wrap">
-                  <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-slate-900 text-slate-300 border border-slate-700 whitespace-nowrap">
-                    {recipe.category}
-                  </span>
+              <Plus className="w-4 h-4" />
+              <span>Criar Nova Receita</span>
+            </button>
+          </div>
 
-                  {recipe.isCustom && (
-                    <span className="text-xs px-2.5 py-0.5 rounded-full bg-amber-500/15 text-amber-300 border border-amber-500/30 font-bold whitespace-nowrap">
-                      ✨ Personalizada
+          <div className="space-y-3">
+            {/* Search bar */}
+            <div className="relative w-full">
+              <Search className="w-5 h-5 text-amber-400 absolute left-3.5 top-3.5" />
+              <input
+                type="text"
+                value={search}
+                onChange={e => setSearch(e.target.value)}
+                placeholder="Buscar por sabor ou insumo (ex: pistache, chocolate, maracujá, manga)..."
+                className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-11 pr-10 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 font-semibold shadow-inner"
+              />
+              {search && (
+                <button
+                  type="button"
+                  onClick={() => setSearch('')}
+                  className="absolute right-3 top-3 p-1 text-slate-400 hover:text-white rounded-lg transition-colors"
+                  title="Limpar busca"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              )}
+            </div>
+
+            {/* Category filter pills with counters */}
+            <div className="flex items-center gap-2 overflow-x-auto pb-1 max-w-full">
+              {categories.map(cat => {
+                const isSelected = selectedCategory === cat;
+                const count = categoryCounts[cat] || 0;
+                return (
+                  <button
+                    key={cat}
+                    type="button"
+                    onClick={() => setSelectedCategory(cat)}
+                    className={`px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap shrink-0 transition-all flex items-center gap-1.5 ${
+                      isSelected
+                        ? 'bg-amber-500 text-slate-950 shadow-md shadow-amber-500/20 font-black'
+                        : 'bg-slate-900 border border-slate-700 text-slate-300 hover:text-white hover:border-slate-600'
+                    }`}
+                  >
+                    <span>{cat}</span>
+                    <span
+                      className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono font-bold ${
+                        isSelected ? 'bg-amber-600/30 text-slate-950' : 'bg-slate-800 text-slate-400'
+                      }`}
+                    >
+                      {count}
                     </span>
-                  )}
-                </div>
+                  </button>
+                );
+              })}
+            </div>
 
-                {/* Recipe Title: 100% full width, no line-clamp truncation */}
-                <h3
-                  className="font-bold text-base sm:text-lg text-white group-hover:text-amber-200 transition-colors leading-snug break-words"
-                  title={recipe.name}
+            {/* Sub-bar: Results Count & Quick Sort */}
+            <div className="flex items-center justify-between text-xs text-slate-400 pt-2 border-t border-slate-700/60 flex-wrap gap-2">
+              <span>
+                Exibindo <strong className="text-amber-400 font-mono font-bold">{sortedAndFilteredRecipes.length}</strong>{' '}
+                de <strong className="text-slate-200 font-mono font-bold">{recipes.length}</strong> receitas
+                {selectedCategory !== 'Todas' && (
+                  <span>
+                    {' '}
+                    em <span className="text-white font-bold">{selectedCategory}</span>
+                  </span>
+                )}
+              </span>
+
+              <div className="flex items-center gap-2">
+                <ArrowUpDown className="w-3.5 h-3.5 text-slate-400" />
+                <span className="font-semibold text-slate-400">Ordenar por:</span>
+                <select
+                  value={sortBy}
+                  onChange={e => setSortBy(e.target.value as any)}
+                  className="bg-slate-900 border border-slate-700 text-slate-200 text-xs rounded-xl px-2.5 py-1.5 font-bold focus:outline-none focus:border-amber-500 shadow-inner"
                 >
-                  {recipe.name}
-                </h3>
-
-                {/* Technical metadata */}
-                <div className="flex items-center justify-between text-xs sm:text-sm text-slate-400 font-mono font-medium pt-1">
-                  <span>Insumos: <strong className="text-slate-200">{recipe.ingredients?.length ?? 0}</strong></span>
-                  <span>Peso base: <strong className="text-slate-200">{Math.round(totalWeight)} g</strong></span>
-                </div>
-              </div>
-
-              {/* Card Footer Actions */}
-              <div
-                className="flex items-center gap-2 pt-4 mt-3 border-t border-slate-700/60"
-                onClick={e => e.stopPropagation()}
-              >
-                <button
-                  type="button"
-                  onClick={() => setViewingRecipe(recipe)}
-                  className="flex-1 py-2.5 px-3 bg-slate-900 hover:bg-slate-750 text-slate-200 hover:text-white border border-slate-700 font-bold text-xs sm:text-sm rounded-xl transition-all flex items-center justify-center gap-1.5 active:scale-95 shadow-sm"
-                  title="Abrir ficha técnica de produção e modo cozinha"
-                >
-                  <Eye className="w-4 h-4 text-amber-400" />
-                  <span>Ver Ficha</span>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => onSelectRecipe(recipe.id)}
-                  className="flex-1 py-2.5 px-3 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs sm:text-sm rounded-xl transition-all flex items-center justify-center gap-1.5 shadow-md shadow-amber-500/10 active:scale-95"
-                  title="Balancear receita na bancada"
-                >
-                  <Scale className="w-4 h-4" />
-                  <span>Balancear</span>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => handleDeleteRecipe(recipe.id, recipe.name)}
-                  className="p-2.5 shrink-0 text-slate-400 hover:text-rose-400 hover:bg-rose-500/15 rounded-xl transition-colors border border-slate-700 active:scale-95"
-                  title="Excluir esta receita do catálogo"
-                >
-                  <Trash2 className="w-4 h-4" />
-                </button>
+                  <option value="name-asc">Nome (A - Z)</option>
+                  <option value="custom-first">Personalizadas Primeiro</option>
+                  <option value="cost-asc">Menor Custo/kg</option>
+                  <option value="pac-desc">Maior PAC (Mais Macio)</option>
+                </select>
               </div>
             </div>
-          );
-        })}
-      </div>
-
-      {filteredRecipes.length === 0 && (
-        <div className="text-center py-16 bg-slate-800/40 rounded-2xl border-2 border-dashed border-slate-700 text-slate-400 text-sm font-medium">
-          Nenhuma receita encontrada para os filtros selecionados.
+          </div>
         </div>
-      )}
 
+        {/* Grid of recipe cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {sortedAndFilteredRecipes.map(recipe => {
+            const m = metrics.get(recipe.id);
+            const totalWeight = m?.totalWeight ?? (recipe.ingredients ? recipe.ingredients.reduce((a, b) => a + b.grams, 0) : 0);
+            const theme = getCategoryTheme(recipe.category);
+
+            return (
+              <div
+                key={recipe.id}
+                className="relative overflow-hidden bg-slate-800/80 hover:bg-slate-800 rounded-2xl border border-slate-700/80 p-5 shadow-lg hover:border-amber-500/50 transition-all flex flex-col justify-between group hover:shadow-amber-500/5 cursor-pointer"
+                onClick={() => setViewingRecipe(recipe)}
+              >
+                {/* Top Category Accent Line */}
+                <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${theme.gradient}`} />
+
+                <div className="space-y-3.5">
+                  {/* Meta Badges (Category & Custom & Variegato) */}
+                  <div className="flex items-center justify-between gap-2 flex-wrap">
+                    <span
+                      className={`text-xs font-bold px-2.5 py-0.5 rounded-full border whitespace-nowrap flex items-center gap-1.5 ${theme.badge}`}
+                    >
+                      {theme.icon}
+                      <span>{recipe.category}</span>
+                    </span>
+
+                    <div className="flex items-center gap-1.5 flex-wrap">
+                      {recipe.variegatos && recipe.variegatos.length > 0 && (
+                        <span className="text-[11px] px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-300 border border-amber-500/25 font-bold whitespace-nowrap">
+                          🍯 Variegato
+                        </span>
+                      )}
+                      {recipe.isCustom && (
+                        <span className="text-[11px] px-2 py-0.5 rounded-full bg-amber-500/15 text-amber-300 border border-amber-500/30 font-bold whitespace-nowrap">
+                          ✨ Personalizada
+                        </span>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Recipe Title: 100% full width, no line-clamp truncation */}
+                  <h3
+                    className="font-bold text-base sm:text-lg text-white group-hover:text-amber-200 transition-colors leading-snug break-words"
+                    title={recipe.name}
+                  >
+                    {recipe.name}
+                  </h3>
+
+                  {/* Micro-Dashboard de Métricas Técnicas */}
+                  <div className="grid grid-cols-4 gap-1.5 p-2 bg-slate-900/90 rounded-xl border border-slate-700/70 text-center font-mono shadow-inner">
+                    <div
+                      className="flex flex-col items-center justify-center py-1 px-0.5 rounded-lg bg-slate-800/70"
+                      title="PAC (Poder Anticongelante / Maciez na Vitrine)"
+                    >
+                      <span className="text-[10px] text-sky-400 font-bold tracking-wider">PAC</span>
+                      <span className="text-xs sm:text-sm font-black text-white">{m?.pac ? m.pac : '--'}</span>
+                    </div>
+
+                    <div
+                      className="flex flex-col items-center justify-center py-1 px-0.5 rounded-lg bg-slate-800/70"
+                      title="POD (Poder Adoçante / Doçura Percebida)"
+                    >
+                      <span className="text-[10px] text-amber-400 font-bold tracking-wider">POD</span>
+                      <span className="text-xs sm:text-sm font-black text-white">{m?.pod ? m.pod : '--'}</span>
+                    </div>
+
+                    <div
+                      className="flex flex-col items-center justify-center py-1 px-0.5 rounded-lg bg-slate-800/70"
+                      title="Teor de Gordura Total"
+                    >
+                      <span className="text-[10px] text-emerald-400 font-bold tracking-wider">GORD.</span>
+                      <span className="text-xs sm:text-sm font-black text-white">
+                        {m?.fatPct !== undefined && m.fatPct > 0 ? `${m.fatPct.toFixed(1)}%` : '0%'}
+                      </span>
+                    </div>
+
+                    <div
+                      className="flex flex-col items-center justify-center py-1 px-0.5 rounded-lg bg-slate-800/70"
+                      title="Custo Base Estimado por Kg"
+                    >
+                      <span className="text-[10px] text-amber-300 font-bold tracking-wider">CUSTO/KG</span>
+                      <span className="text-xs sm:text-sm font-black text-amber-300">
+                        {m?.costKg !== undefined && m.costKg > 0 ? `R$${m.costKg.toFixed(1)}` : 'R$--'}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Technical metadata */}
+                  <div className="flex items-center justify-between text-xs sm:text-sm text-slate-400 font-mono font-medium pt-0.5">
+                    <span className="flex items-center gap-1">
+                      <Layers className="w-3.5 h-3.5 text-slate-500" />
+                      <span>
+                        Insumos: <strong className="text-slate-200">{recipe.ingredients?.length ?? 0}</strong>
+                      </span>
+                    </span>
+                    <span>
+                      Peso base: <strong className="text-slate-200">{Math.round(totalWeight)} g</strong>
+                    </span>
+                  </div>
+                </div>
+
+                {/* Card Footer Actions */}
+                <div
+                  className="flex items-center gap-2 pt-4 mt-3 border-t border-slate-700/60"
+                  onClick={e => e.stopPropagation()}
+                >
+                  <button
+                    type="button"
+                    onClick={() => setViewingRecipe(recipe)}
+                    className="flex-1 py-2.5 px-3 bg-slate-900 hover:bg-slate-750 text-slate-200 hover:text-white border border-slate-700 font-bold text-xs sm:text-sm rounded-xl transition-all flex items-center justify-center gap-1.5 active:scale-95 shadow-sm"
+                    title="Abrir ficha técnica de produção e modo cozinha"
+                  >
+                    <Eye className="w-4 h-4 text-amber-400" />
+                    <span>Ver Ficha</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => onSelectRecipe(recipe.id)}
+                    className="flex-1 py-2.5 px-3 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs sm:text-sm rounded-xl transition-all flex items-center justify-center gap-1.5 shadow-md shadow-amber-500/10 active:scale-95"
+                    title="Balancear receita na bancada"
+                  >
+                    <Scale className="w-4 h-4" />
+                    <span>Balancear</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => handleDuplicateRecipe(recipe)}
+                    className="p-2.5 shrink-0 text-slate-400 hover:text-amber-300 hover:bg-amber-500/15 rounded-xl transition-colors border border-slate-700 active:scale-95"
+                    title={`Duplicar receita "${recipe.name}"`}
+                  >
+                    <Copy className="w-4 h-4" />
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => handleDeleteRecipe(recipe.id, recipe.name)}
+                    className="p-2.5 shrink-0 text-slate-400 hover:text-rose-400 hover:bg-rose-500/15 rounded-xl transition-colors border border-slate-700 active:scale-95"
+                    title="Excluir esta receita do catálogo"
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {sortedAndFilteredRecipes.length === 0 && (
+          <div className="text-center py-16 bg-slate-800/40 rounded-2xl border-2 border-dashed border-slate-700 text-slate-400 text-sm font-medium">
+            Nenhuma receita encontrada para os filtros selecionados.
+          </div>
+        )}
       </div>
 
       {/* Full-Screen Kitchen Mode Viewer Modal */}

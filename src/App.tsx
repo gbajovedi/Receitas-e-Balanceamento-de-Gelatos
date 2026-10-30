@@ -163,6 +163,7 @@ export function App() {
         {activeTab === 'receitas' && (
           <RecipeList
             recipes={recipes}
+            ingredients={ingredients}
             onSelectRecipe={handleSelectRecipeFromCatalog}
             onRefresh={refreshData}
           />
