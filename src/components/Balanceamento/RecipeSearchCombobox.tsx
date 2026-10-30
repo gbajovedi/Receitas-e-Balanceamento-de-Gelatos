@@ -79,7 +79,7 @@ export const RecipeSearchCombobox: React.FC<RecipeSearchComboboxProps> = ({
                 ✨ Nova Receita Personalizada
               </span>
             ) : selectedRecipe ? (
-              <div className="flex items-center gap-2 truncate">
+              <div className="flex items-center gap-2 truncate" title={selectedRecipe.name}>
                 <span className="text-sm font-bold text-white truncate">
                   {selectedRecipe.name}
                 </span>
@@ -182,12 +182,15 @@ export const RecipeSearchCombobox: React.FC<RecipeSearchComboboxProps> = ({
                       : 'hover:bg-slate-800/80 text-slate-200'
                   }`}
                 >
-                  <div className="min-w-0 pr-2">
-                    <div className="flex items-center gap-2">
-                      <span className="text-sm font-bold text-white group-hover:text-amber-200 transition-colors truncate">
+                  <div className="min-w-0 pr-2 flex-1">
+                    <div className="flex items-start justify-between gap-2">
+                      <span
+                        className="text-sm font-bold text-white group-hover:text-amber-200 transition-colors break-words leading-snug"
+                        title={r.name}
+                      >
                         {r.name}
                       </span>
-                      <span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700 whitespace-nowrap shrink-0">
+                      <span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700 whitespace-nowrap shrink-0 mt-0.5">
                         {r.category}
                       </span>
                     </div>

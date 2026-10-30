@@ -123,21 +123,27 @@ export const RecipeList: React.FC<RecipeListProps> = ({ recipes, onSelectRecipe,
               className="bg-slate-800/80 hover:bg-slate-800 rounded-2xl border border-slate-700/80 p-5 shadow-lg hover:border-amber-500/50 transition-all flex flex-col justify-between group hover:shadow-amber-500/5 cursor-pointer"
               onClick={() => setViewingRecipe(recipe)}
             >
-              <div className="space-y-3.5">
-                <div className="flex items-start justify-between gap-2">
-                  <h3 className="font-bold text-base text-white group-hover:text-amber-200 transition-colors line-clamp-1">
-                    {recipe.name}
-                  </h3>
+              <div className="space-y-3">
+                {/* Meta Badges (Category & Custom) */}
+                <div className="flex items-center justify-between gap-2 flex-wrap">
                   <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-slate-900 text-slate-300 border border-slate-700 whitespace-nowrap">
                     {recipe.category}
                   </span>
+
+                  {recipe.isCustom && (
+                    <span className="text-xs px-2.5 py-0.5 rounded-full bg-amber-500/15 text-amber-300 border border-amber-500/30 font-bold whitespace-nowrap">
+                      ✨ Personalizada
+                    </span>
+                  )}
                 </div>
 
-                {recipe.isCustom && (
-                  <span className="inline-block text-xs px-2.5 py-0.5 rounded-full bg-amber-500/15 text-amber-300 border border-amber-500/30 font-bold">
-                    ✨ Receita Personalizada
-                  </span>
-                )}
+                {/* Recipe Title: 100% full width, no line-clamp truncation */}
+                <h3
+                  className="font-bold text-base sm:text-lg text-white group-hover:text-amber-200 transition-colors leading-snug break-words"
+                  title={recipe.name}
+                >
+                  {recipe.name}
+                </h3>
 
                 {/* Ingredients snippet */}
                 <div className="space-y-1">

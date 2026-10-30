@@ -77,7 +77,10 @@ export const RecipeViewerModal: React.FC<RecipeViewerModalProps> = ({
               </span>
             </div>
 
-            <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight truncate">
+            <h2
+              className="text-xl sm:text-2xl font-black text-white tracking-tight break-words leading-tight"
+              title={recipe.name}
+            >
               {recipe.name}
             </h2>
             <p className="no-print text-xs text-slate-400">
@@ -192,9 +195,10 @@ export const RecipeViewerModal: React.FC<RecipeViewerModalProps> = ({
 
                         <div className="min-w-0">
                           <span
-                            className={`text-sm sm:text-base font-bold block truncate ${
+                            className={`text-sm sm:text-base font-bold block break-words ${
                               isChecked ? 'line-through text-slate-500' : 'text-white'
                             }`}
+                            title={item.name}
                           >
                             {item.name}
                           </span>
