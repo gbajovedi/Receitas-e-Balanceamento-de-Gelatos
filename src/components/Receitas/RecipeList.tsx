@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { Recipe } from '../../types/gelato';
-import { Search, Calculator, Plus, Trash2, BookOpen, Eye, X, Edit3 } from 'lucide-react';
+import { Search, Calculator, Plus, Trash2, BookOpen, Eye, X, Edit3, Scale } from 'lucide-react';
 import { db } from '../../db/database';
 import { RecipeViewerModal } from './RecipeViewerModal';
 
@@ -151,10 +151,6 @@ export const RecipeList: React.FC<RecipeListProps> = ({ recipes, onSelectRecipe,
 
                 <div className="flex items-center justify-between text-xs sm:text-sm text-slate-400 font-mono pt-3 border-t border-slate-700/60 font-medium">
                   <span>Peso base: <strong className="text-slate-200">{Math.round(totalWeight)} g</strong></span>
-                  <span className="text-amber-400/90 font-bold group-hover:underline flex items-center gap-1">
-                    <Eye className="w-3.5 h-3.5" />
-                    Examinar receita
-                  </span>
                 </div>
               </div>
 
@@ -166,7 +162,7 @@ export const RecipeList: React.FC<RecipeListProps> = ({ recipes, onSelectRecipe,
                 <button
                   type="button"
                   onClick={() => setViewingRecipe(recipe)}
-                  className="py-2.5 px-3 bg-slate-900 hover:bg-slate-750 text-slate-200 hover:text-white border border-slate-700 font-bold text-xs sm:text-sm rounded-xl transition-all flex items-center justify-center gap-1.5"
+                  className="flex-1 py-2.5 px-3 bg-slate-900 hover:bg-slate-750 text-slate-200 hover:text-white border border-slate-700 font-bold text-xs sm:text-sm rounded-xl transition-all flex items-center justify-center gap-1.5 active:scale-95 shadow-sm"
                   title="Abrir ficha técnica de produção e modo cozinha"
                 >
                   <Eye className="w-4 h-4 text-amber-400" />
@@ -176,17 +172,17 @@ export const RecipeList: React.FC<RecipeListProps> = ({ recipes, onSelectRecipe,
                 <button
                   type="button"
                   onClick={() => onSelectRecipe(recipe.id)}
-                  className="flex-1 py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs sm:text-sm rounded-xl transition-all flex items-center justify-center gap-1.5 shadow-md shadow-amber-500/10 active:scale-95"
-                  title="Editar fórmula, insumos e proporções desta receita no balanceador"
+                  className="flex-1 py-2.5 px-3 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs sm:text-sm rounded-xl transition-all flex items-center justify-center gap-1.5 shadow-md shadow-amber-500/10 active:scale-95"
+                  title="Balancear receita na bancada"
                 >
-                  <Edit3 className="w-4 h-4" />
-                  <span>Editar / Balancear</span>
+                  <Scale className="w-4 h-4" />
+                  <span>Balancear</span>
                 </button>
 
                 <button
                   type="button"
                   onClick={() => handleDeleteRecipe(recipe.id, recipe.name)}
-                  className="p-2.5 text-slate-400 hover:text-rose-400 hover:bg-rose-500/15 rounded-xl transition-colors border border-slate-700"
+                  className="p-2.5 shrink-0 text-slate-400 hover:text-rose-400 hover:bg-rose-500/15 rounded-xl transition-colors border border-slate-700 active:scale-95"
                   title="Excluir esta receita do catálogo"
                 >
                   <Trash2 className="w-4 h-4" />
