@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Save, BookmarkPlus } from 'lucide-react';
+import { X, Save, BookmarkPlus, CheckCircle2 } from 'lucide-react';
 
 interface SaveRecipeModalProps {
   isOpen: boolean;
@@ -7,7 +7,7 @@ interface SaveRecipeModalProps {
   currentName: string;
   currentCategory: string;
   isExisting: boolean;
-  onUpdateExisting: () => Promise<void>;
+  onUpdateExisting: (name: string, category: string, notes: string) => Promise<void>;
   onSaveAsNew: (name: string, category: string, notes: string) => Promise<void>;
 }
 
@@ -18,10 +18,10 @@ export const SaveRecipeModal: React.FC<SaveRecipeModalProps> = ({
   currentCategory,
   isExisting,
   onUpdateExisting,
-  onSaveAsNew
+  onSaveAsNew,
 }) => {
   const [mode, setMode] = useState<'update' | 'new'>(isExisting ? 'update' : 'new');
-  const [name, setName] = useState(isExisting ? `${currentName} (Ajustada)` : currentName);
+  const [name, setName] = useState(currentName);
   const [category, setCategory] = useState(currentCategory || 'Gelatos de Leite');
   const [notes, setNotes] = useState('');
   const [saving, setSaving] = useState(false);
@@ -33,7 +33,7 @@ export const SaveRecipeModal: React.FC<SaveRecipeModalProps> = ({
     setSaving(true);
     try {
       if (mode === 'update') {
-        await onUpdateExisting();
+        await onUpdateExisting(name.trim(), category, notes.trim());
       } else {
         await onSaveAsNew(name.trim(), category, notes.trim());
       }
@@ -47,105 +47,107 @@ export const SaveRecipeModal: React.FC<SaveRecipeModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fade-in">
-      <div className="bg-slate-900 border border-slate-700/80 rounded-2xl w-full max-w-md p-6 shadow-2xl relative">
+      <div className="bg-slate-900 border border-slate-700/80 rounded-3xl w-full max-w-md p-6 shadow-2xl relative space-y-4">
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-slate-400 hover:text-white p-1.5 rounded-xl hover:bg-slate-800"
+          className="absolute top-4 right-4 text-slate-400 hover:text-white p-1.5 rounded-xl hover:bg-slate-800 transition-colors"
         >
           <X className="w-5 h-5" />
         </button>
 
-        <h3 className="text-xl font-bold text-white mb-1">Salvar Receita Balanceada</h3>
-        <p className="text-xs text-slate-300 mb-5">
-          As alterações ficam salvas com segurança no armazenamento local do seu dispositivo (IndexedDB).
-        </p>
+        <div>
+          <h3 className="text-xl font-black text-white">
+            {mode === 'update' ? 'Atualizar Receita' : 'Salvar Receita Balanceada'}
+          </h3>
+          <p className="text-xs text-slate-400 mt-0.5">
+            As alterações são gravadas diretamente no banco de dados offline do seu navegador.
+          </p>
+        </div>
 
         {isExisting && (
-          <div className="grid grid-cols-2 gap-2 mb-5 p-1 bg-slate-800 rounded-xl">
+          <div className="grid grid-cols-2 gap-2 p-1 bg-slate-800 rounded-xl">
             <button
               type="button"
-              onClick={() => setMode('update')}
-              className={`py-2.5 text-xs sm:text-sm font-bold rounded-lg transition-all flex items-center justify-center gap-2 ${
+              onClick={() => {
+                setMode('update');
+                setName(currentName);
+              }}
+              className={`py-2 text-xs sm:text-sm font-bold rounded-lg transition-all flex items-center justify-center gap-1.5 ${
                 mode === 'update'
-                  ? 'bg-amber-500 text-slate-950 shadow-md'
+                  ? 'bg-amber-500 text-slate-950 shadow-md font-black'
                   : 'text-slate-300 hover:text-white'
               }`}
             >
-              <Save className="w-4 h-4" />
-              <span>Atualizar Original</span>
+              <Save className="w-3.5 h-3.5" />
+              <span>Atualizar Receita</span>
             </button>
             <button
               type="button"
-              onClick={() => setMode('new')}
-              className={`py-2.5 text-xs sm:text-sm font-bold rounded-lg transition-all flex items-center justify-center gap-2 ${
+              onClick={() => {
+                setMode('new');
+                setName(`${currentName} (Cópia)`);
+              }}
+              className={`py-2 text-xs sm:text-sm font-bold rounded-lg transition-all flex items-center justify-center gap-1.5 ${
                 mode === 'new'
-                  ? 'bg-amber-500 text-slate-950 shadow-md'
+                  ? 'bg-amber-500 text-slate-950 shadow-md font-black'
                   : 'text-slate-300 hover:text-white'
               }`}
             >
-              <BookmarkPlus className="w-4 h-4" />
+              <BookmarkPlus className="w-3.5 h-3.5" />
               <span>Salvar como Nova</span>
             </button>
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          {mode === 'new' ? (
-            <>
-              <div>
-                <label className="block text-xs font-bold text-slate-300 mb-1.5">
-                  Nome da Receita:
-                </label>
-                <input
-                  type="text"
-                  required
-                  value={name}
-                  onChange={e => setName(e.target.value)}
-                  className="w-full bg-slate-800 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white font-semibold focus:outline-none focus:border-amber-500"
-                  placeholder="Ex: Fior di Latte Especial"
-                />
-              </div>
+        <form onSubmit={handleSubmit} className="space-y-3.5">
+          <div>
+            <label className="block text-xs font-bold text-slate-300 mb-1">
+              Nome da Receita:
+            </label>
+            <input
+              type="text"
+              required
+              value={name}
+              onChange={e => setName(e.target.value)}
+              className="w-full bg-slate-800 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white font-semibold focus:outline-none focus:border-amber-500"
+              placeholder="Ex: Fior di Latte Especial"
+            />
+          </div>
 
-              <div>
-                <label className="block text-xs font-bold text-slate-300 mb-1.5">
-                  Categoria de Estilo:
-                </label>
-                <select
-                  value={category}
-                  onChange={e => setCategory(e.target.value)}
-                  className="w-full bg-slate-800 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white font-semibold focus:outline-none focus:border-amber-500"
-                >
-                  <option value="Gelatos de Leite">Gelatos de Leite</option>
-                  <option value="Sorbets">Sorbets</option>
-                  <option value="Gelatos de Leite com Fruta">Gelatos de Leite com Fruta</option>
-                  <option value="Chocolate base água">Chocolate base água</option>
-                  <option value="Vegano">Vegano</option>
-                  <option value="Alcoólicos">Alcoólicos</option>
-                  <option value="Zero">Zero</option>
-                  <option value="Gelatos Proteicos">Gelatos Proteicos</option>
-                </select>
-              </div>
+          <div>
+            <label className="block text-xs font-bold text-slate-300 mb-1">
+              Categoria de Estilo:
+            </label>
+            <select
+              value={category}
+              onChange={e => setCategory(e.target.value)}
+              className="w-full bg-slate-800 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white font-semibold focus:outline-none focus:border-amber-500"
+            >
+              <option value="Gelatos de Leite">Gelatos de Leite</option>
+              <option value="Sorbets">Sorbets</option>
+              <option value="Gelatos de Leite com Fruta">Gelatos de Leite com Fruta</option>
+              <option value="Chocolate base água">Chocolate base água</option>
+              <option value="Vegano">Vegano</option>
+              <option value="Alcoólicos">Alcoólicos</option>
+              <option value="Zero">Zero</option>
+              <option value="Gelatos Proteicos">Gelatos Proteicos</option>
+            </select>
+          </div>
 
-              <div>
-                <label className="block text-xs font-bold text-slate-300 mb-1.5">
-                  Observações / Notas Técnicas (opcional):
-                </label>
-                <textarea
-                  rows={2}
-                  value={notes}
-                  onChange={e => setNotes(e.target.value)}
-                  className="w-full bg-slate-800 border border-slate-700 rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-amber-500"
-                  placeholder="Ex: Teste com 10g a menos de sacarose, consistência ideal para cuba 3."
-                />
-              </div>
-            </>
-          ) : (
-            <div className="p-4 bg-amber-500/15 border border-amber-500/40 rounded-xl text-xs sm:text-sm text-amber-200 leading-relaxed">
-              Você está prestes a atualizar a receita existente <strong>"{currentName}"</strong> com os novos pesos e insumos calibrados na calculadora.
-            </div>
-          )}
+          <div>
+            <label className="block text-xs font-bold text-slate-300 mb-1">
+              Observações / Notas Técnicas (opcional):
+            </label>
+            <textarea
+              rows={2}
+              value={notes}
+              onChange={e => setNotes(e.target.value)}
+              className="w-full bg-slate-800 border border-slate-700 rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-amber-500"
+              placeholder="Ex: Calibrado com 10g a menos de sacarose, consistência ideal para vitrine a -11°C."
+            />
+          </div>
 
-          <div className="flex items-center justify-end gap-2.5 pt-3">
+          <div className="flex items-center justify-end gap-2.5 pt-3 border-t border-slate-800">
             <button
               type="button"
               onClick={onClose}
@@ -158,8 +160,8 @@ export const SaveRecipeModal: React.FC<SaveRecipeModalProps> = ({
               disabled={saving}
               className="px-5 py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs sm:text-sm rounded-xl shadow-lg shadow-amber-500/25 transition-all flex items-center gap-2 active:scale-95"
             >
-              <Save className="w-4 h-4" />
-              <span>{saving ? 'Salvando...' : 'Confirmar e Salvar'}</span>
+              <CheckCircle2 className="w-4 h-4" />
+              <span>{saving ? 'Salvando...' : mode === 'update' ? 'Confirmar Atualização' : 'Salvar Nova Receita'}</span>
             </button>
           </div>
         </form>

@@ -24,7 +24,7 @@ export interface BackupResult {
 export class GelatoDatabase extends Dexie {
   ingredients!: EntityTable<Ingredient, 'id'>;
   recipes!: EntityTable<Recipe, 'id'>;
-  preparations!: EntityTable<Preparation, 'name'>;
+  preparations!: EntityTable<Preparation, 'id'>;
   settings!: EntityTable<AppSetting, 'key'>;
 
   constructor() {
@@ -34,6 +34,22 @@ export class GelatoDatabase extends Dexie {
       recipes: 'id, name, category, targetStyle, isCustom',
       preparations: 'name, category',
       settings: 'key'
+    });
+
+    this.version(2).stores({
+      ingredients: 'id, name, category, costKg',
+      recipes: 'id, name, category, targetStyle, isCustom',
+      preparations: 'id, name, category, isCustom',
+      settings: 'key'
+    }).upgrade(async tx => {
+      try {
+        await tx.table('preparations').clear();
+        for (const p of initialPreparations) {
+          await tx.table('preparations').put(p);
+        }
+      } catch (e) {
+        console.warn('Migration to v2 preparations:', e);
+      }
     });
   }
 
@@ -52,6 +68,11 @@ export class GelatoDatabase extends Dexie {
         await this.settings.put({ key: 'pricing', value: DEFAULT_PRICING });
       });
       console.log('IndexedDB seeded successfully!');
+    } else {
+      const prepCount = await this.preparations.count();
+      if (prepCount < initialPreparations.length) {
+        await this.preparations.bulkPut(initialPreparations as Preparation[]);
+      }
     }
   }
 

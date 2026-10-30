@@ -9,7 +9,8 @@ import {
   Circle,
   RotateCcw,
   Layers,
-  ChefHat
+  ChefHat,
+  Edit3
 } from 'lucide-react';
 
 interface RecipeViewerModalProps {
@@ -285,8 +286,8 @@ export const RecipeViewerModal: React.FC<RecipeViewerModalProps> = ({
               }}
               className="px-5 py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs sm:text-sm rounded-xl shadow-lg shadow-amber-500/25 transition-all flex items-center gap-2 active:scale-95"
             >
-              <Calculator className="w-4 h-4" />
-              <span>Abrir na Calculadora</span>
+              <Edit3 className="w-4 h-4" />
+              <span>Editar no Balanceador</span>
             </button>
           </div>
         </div>

@@ -1,207 +1,106 @@
 [
   {
+    "id": "prep_pudim",
     "name": "Pudim",
     "category": "Pré-preparo",
     "instructions": "Assar por 1h50m a 180 graus. Cobrir com papel alumínio e colocar uma assadeira com água embaixo. Usar açúcar cristal para fazer o caramelo.",
     "ingredients": [
       {
         "name": "Ovo Galinha",
-        "grams": 350.0
-      }
-    ]
-  },
-  {
-    "name": "Pudim",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+        "grams": 350
+      },
       {
         "name": "Leite Condensado",
-        "grams": 800.0
-      }
-    ]
-  },
-  {
-    "name": "Pudim",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+        "grams": 800
+      },
       {
         "name": "Leite Integral",
-        "grams": 800.0
-      }
-    ]
-  },
-  {
-    "name": "Pudim",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+        "grams": 800
+      },
       {
         "name": "Açúcar Sacarose",
-        "grams": 160.0
+        "grams": 160
       }
     ]
   },
   {
+    "id": "prep_mix_zero",
     "name": "MIX ZERO",
     "category": "Pré-preparo",
     "instructions": "",
     "ingredients": [
       {
         "name": "Polidextrose - Fibra",
-        "grams": 730.0
-      }
-    ]
-  },
-  {
-    "name": "MIX ZERO",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+        "grams": 730
+      },
       {
         "name": "Eritritol",
-        "grams": 245.0
-      }
-    ]
-  },
-  {
-    "name": "MIX ZERO",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+        "grams": 245
+      },
       {
         "name": "Farinha De Semente De Alfarroba",
-        "grams": 20.0
-      }
-    ]
-  },
-  {
-    "name": "MIX ZERO",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+        "grams": 20
+      },
       {
         "name": "Stevia em pó",
-        "grams": 5.0
+        "grams": 5
       }
     ]
   },
   {
+    "id": "prep_brigadeiro",
     "name": "Brigadeiro",
     "category": "Pré-preparo",
     "instructions": "",
     "ingredients": [
       {
         "name": "Leite Condensado",
-        "grams": 395.0
-      }
-    ]
-  },
-  {
-    "name": "Brigadeiro",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+        "grams": 395
+      },
       {
         "name": "Creme De Leite UHT 25%",
-        "grams": 200.0
-      }
-    ]
-  },
-  {
-    "name": "Brigadeiro",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+        "grams": 200
+      },
       {
         "name": "Chocolate Ao Leite 33.7%",
-        "grams": 160.0
-      }
-    ]
-  },
-  {
-    "name": "Brigadeiro",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+        "grams": 160
+      },
       {
         "name": "Água",
-        "grams": 155.0
+        "grams": 155
       }
     ]
   },
   {
+    "id": "prep_croissant",
     "name": "Croissant",
     "category": "Pré-preparo",
     "instructions": "",
     "ingredients": [
       {
         "name": "Farinha de trigo",
-        "grams": 500.0
-      }
-    ]
-  },
-  {
-    "name": "Croissant",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+        "grams": 500
+      },
       {
         "name": "Manteiga",
-        "grams": 250.0
-      }
-    ]
-  },
-  {
-    "name": "Croissant",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+        "grams": 250
+      },
       {
         "name": "Leite Integral",
-        "grams": 250.0
-      }
-    ]
-  },
-  {
-    "name": "Croissant",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+        "grams": 250
+      },
       {
         "name": "Açúcar Sacarose",
-        "grams": 50.0
-      }
-    ]
-  },
-  {
-    "name": "Croissant",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+        "grams": 50
+      },
       {
         "name": "Ovo Galinha",
-        "grams": 50.0
-      }
-    ]
-  },
-  {
-    "name": "Croissant",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+        "grams": 50
+      },
       {
         "name": "Sal",
-        "grams": 12.0
-      }
-    ]
-  },
-  {
-    "name": "Croissant",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+        "grams": 12
+      },
       {
         "name": "Água",
         "grams": 222.4
@@ -209,490 +108,247 @@
     ]
   },
   {
+    "id": "prep_leite_condensado_vegetal",
     "name": "Leite condensado Vegetal",
     "category": "Pré-preparo",
     "instructions": "",
     "ingredients": [
       {
         "name": "Açúcar Sacarose",
-        "grams": 170.0
-      }
-    ]
-  },
-  {
-    "name": "Leite condensado Vegetal",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+        "grams": 170
+      },
       {
         "name": "Água",
-        "grams": 100.0
-      }
-    ]
-  },
-  {
-    "name": "Leite condensado Vegetal",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+        "grams": 100
+      },
       {
         "name": "Pasta De Castanha De Caju 100%",
-        "grams": 85.0
-      }
-    ]
-  },
-  {
-    "name": "Leite condensado Vegetal",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+        "grams": 85
+      },
       {
         "name": "Óleo de coco",
-        "grams": 20.0
+        "grams": 20
       }
     ]
   },
   {
+    "id": "prep_leite_de_castanha",
     "name": "Leite de castanha",
     "category": "Pré-preparo",
     "instructions": "",
     "ingredients": [
       {
         "name": "Água",
-        "grams": 840.0
-      }
-    ]
-  },
-  {
-    "name": "Leite de castanha",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+        "grams": 840
+      },
       {
         "name": "Pasta De Castanha De Caju 100%",
-        "grams": 170.0
+        "grams": 170
       }
     ]
   },
   {
+    "id": "prep_pasta_de_amendoim_c_a_car",
     "name": "Pasta de amendoim c/ açúcar",
     "category": "Pré-preparo",
     "instructions": "",
     "ingredients": [
       {
         "name": "Amendoim Torrado",
-        "grams": 300.0
-      }
-    ]
-  },
-  {
-    "name": "Pasta de amendoim c/ açúcar",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+        "grams": 300
+      },
       {
         "name": "Açúcar Sacarose",
-        "grams": 200.0
-      }
-    ]
-  },
-  {
-    "name": "Pasta de amendoim c/ açúcar",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+        "grams": 200
+      },
       {
         "name": "Óleo de coco",
-        "grams": 30.0
+        "grams": 30
       }
     ]
   },
   {
+    "id": "prep_pasta_de_cacau",
     "name": "Pasta de cacau",
     "category": "Pré-preparo",
     "instructions": "",
     "ingredients": [
       {
         "name": "Água",
-        "grams": 130.0
-      }
-    ]
-  },
-  {
-    "name": "Pasta de cacau",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+        "grams": 130
+      },
       {
         "name": "Chocolate Amargo 60%",
-        "grams": 70.0
-      }
-    ]
-  },
-  {
-    "name": "Pasta de cacau",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+        "grams": 70
+      },
       {
         "name": "Cacau Em Pó 11% gordura",
-        "grams": 40.0
+        "grams": 40
       }
     ]
   },
   {
+    "id": "prep_base_de_gua",
     "name": "Base de água",
     "category": "Pré-preparo",
     "instructions": "",
     "ingredients": [
       {
         "name": "Água",
-        "grams": 485.0
-      }
-    ]
-  },
-  {
-    "name": "Base de água",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+        "grams": 485
+      },
       {
         "name": "Açúcar Sacarose",
-        "grams": 300.0
-      }
-    ]
-  },
-  {
-    "name": "Base de água",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+        "grams": 300
+      },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 104.0
-      }
-    ]
-  },
-  {
-    "name": "Base de água",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+        "grams": 104
+      },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 55.0
-      }
-    ]
-  },
-  {
-    "name": "Base de água",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+        "grams": 55
+      },
       {
         "name": "Açúcar Invertido",
-        "grams": 30.0
-      }
-    ]
-  },
-  {
-    "name": "Base de água",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+        "grams": 30
+      },
       {
         "name": "Inulina - Fibra Vegetal",
-        "grams": 10.0
-      }
-    ]
-  },
-  {
-    "name": "Base de água",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+        "grams": 10
+      },
       {
         "name": "Neutro Fabbri",
-        "grams": 7.0
+        "grams": 7
       }
     ]
   },
   {
+    "id": "prep_base_de_leite",
     "name": "Base de leite",
     "category": "Pré-preparo",
     "instructions": "",
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 580.0
-      }
-    ]
-  },
-  {
-    "name": "Base de leite",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+        "grams": 580
+      },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 165.0
-      }
-    ]
-  },
-  {
-    "name": "Base de leite",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+        "grams": 165
+      },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 45.0
-      }
-    ]
-  },
-  {
-    "name": "Base de leite",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+        "grams": 45
+      },
       {
         "name": "Açúcar Sacarose",
-        "grams": 110.0
-      }
-    ]
-  },
-  {
-    "name": "Base de leite",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+        "grams": 110
+      },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 35.0
-      }
-    ]
-  },
-  {
-    "name": "Base de leite",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+        "grams": 35
+      },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 30.0
-      }
-    ]
-  },
-  {
-    "name": "Base de leite",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+        "grams": 30
+      },
       {
         "name": "Inulina - Fibra Vegetal",
-        "grams": 33.0
-      }
-    ]
-  },
-  {
-    "name": "Base de leite",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+        "grams": 33
+      },
       {
         "name": "Neutro Fabbri",
-        "grams": 4.0
+        "grams": 4
       }
     ]
   },
   {
+    "id": "prep_base_de_leite_creme_de_leite_17_uht_",
     "name": "Base de Leite (Creme de leite 17% UHT)",
     "category": "Pré-preparo",
     "instructions": "",
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 489.0
-      }
-    ]
-  },
-  {
-    "name": "Base de Leite (Creme de leite 17% UHT)",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+        "grams": 489
+      },
       {
         "name": "Creme De Leite UHT 17% - Piracanjuba",
-        "grams": 240.0
-      }
-    ]
-  },
-  {
-    "name": "Base de Leite (Creme de leite 17% UHT)",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+        "grams": 240
+      },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 50.0
-      }
-    ]
-  },
-  {
-    "name": "Base de Leite (Creme de leite 17% UHT)",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+        "grams": 50
+      },
       {
         "name": "Açúcar Sacarose",
-        "grams": 120.0
-      }
-    ]
-  },
-  {
-    "name": "Base de Leite (Creme de leite 17% UHT)",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+        "grams": 120
+      },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 30.0
-      }
-    ]
-  },
-  {
-    "name": "Base de Leite (Creme de leite 17% UHT)",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+        "grams": 30
+      },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 25.0
-      }
-    ]
-  },
-  {
-    "name": "Base de Leite (Creme de leite 17% UHT)",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+        "grams": 25
+      },
       {
         "name": "Inulina - Fibra Vegetal",
-        "grams": 40.0
-      }
-    ]
-  },
-  {
-    "name": "Base de Leite (Creme de leite 17% UHT)",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+        "grams": 40
+      },
       {
         "name": "Neutro Fabbri",
-        "grams": 5.0
-      }
-    ]
-  },
-  {
-    "name": "Base de Leite (Creme de leite 17% UHT)",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+        "grams": 5
+      },
       {
         "name": "Sal",
-        "grams": 1.0
+        "grams": 1
       }
     ]
   },
   {
+    "id": "prep_base_de_leite_fior_di_latte_",
     "name": "Base de leite(Fior di latte)",
     "category": "Pré-preparo",
     "instructions": "",
     "ingredients": [
       {
         "name": "Leite Integral",
-        "grams": 620.0
-      }
-    ]
-  },
-  {
-    "name": "Base de leite(Fior di latte)",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+        "grams": 620
+      },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 150.0
-      }
-    ]
-  },
-  {
-    "name": "Base de leite(Fior di latte)",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+        "grams": 150
+      },
       {
         "name": "Leite Em Pó Desnatado",
-        "grams": 45.0
-      }
-    ]
-  },
-  {
-    "name": "Base de leite(Fior di latte)",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+        "grams": 45
+      },
       {
         "name": "Açúcar Sacarose",
-        "grams": 120.0
-      }
-    ]
-  },
-  {
-    "name": "Base de leite(Fior di latte)",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+        "grams": 120
+      },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 30.0
-      }
-    ]
-  },
-  {
-    "name": "Base de leite(Fior di latte)",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+        "grams": 30
+      },
       {
         "name": "Açúcar - Glucose em pó",
-        "grams": 30.0
-      }
-    ]
-  },
-  {
-    "name": "Base de leite(Fior di latte)",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+        "grams": 30
+      },
       {
         "name": "Neutro Fabbri",
-        "grams": 5.0
-      }
-    ]
-  },
-  {
-    "name": "Base de leite(Fior di latte)",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+        "grams": 5
+      },
       {
         "name": "Sal",
-        "grams": 1.0
+        "grams": 1
       }
     ]
   },
   {
+    "id": "prep_pr_preparo_de_caramelo",
     "name": "Pré-preparo de Caramelo",
     "category": "Pré-preparo",
     "instructions": "",
@@ -700,47 +356,19 @@
       {
         "name": "Açúcar Sacarose",
         "grams": 669.6
-      }
-    ]
-  },
-  {
-    "name": "Pré-preparo de Caramelo",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+      },
       {
         "name": "Água",
-        "grams": 288.0
-      }
-    ]
-  },
-  {
-    "name": "Pré-preparo de Caramelo",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+        "grams": 288
+      },
       {
         "name": "Leite Integral",
         "grams": 481.5
-      }
-    ]
-  },
-  {
-    "name": "Pré-preparo de Caramelo",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+      },
       {
         "name": "Leite Condensado",
         "grams": 192.6
-      }
-    ]
-  },
-  {
-    "name": "Pré-preparo de Caramelo",
-    "category": "Pré-preparo",
-    "instructions": "",
-    "ingredients": [
+      },
       {
         "name": "Manteiga",
         "grams": 38.7
@@ -748,120 +376,59 @@
     ]
   },
   {
+    "id": "prep_variegato_de_brigadeiro",
     "name": "Variegato de Brigadeiro",
     "category": "Variegato",
     "instructions": "",
     "ingredients": [
       {
         "name": "Leite Condensado",
-        "grams": 500.0
-      }
-    ]
-  },
-  {
-    "name": "Variegato de Brigadeiro",
-    "category": "Variegato",
-    "instructions": "",
-    "ingredients": [
+        "grams": 500
+      },
       {
         "name": "Creme De Leite UHT 17% - Piracanjuba",
-        "grams": 250.0
-      }
-    ]
-  },
-  {
-    "name": "Variegato de Brigadeiro",
-    "category": "Variegato",
-    "instructions": "",
-    "ingredients": [
+        "grams": 250
+      },
       {
         "name": "Açúcar - Glucose Líquida",
-        "grams": 100.0
-      }
-    ]
-  },
-  {
-    "name": "Variegato de Brigadeiro",
-    "category": "Variegato",
-    "instructions": "",
-    "ingredients": [
+        "grams": 100
+      },
       {
         "name": "Cacau Em Pó 11% gordura",
-        "grams": 25.0
-      }
-    ]
-  },
-  {
-    "name": "Variegato de Brigadeiro",
-    "category": "Variegato",
-    "instructions": "",
-    "ingredients": [
+        "grams": 25
+      },
       {
         "name": "Manteiga",
-        "grams": 50.0
-      }
-    ]
-  },
-  {
-    "name": "Variegato de Brigadeiro",
-    "category": "Variegato",
-    "instructions": "",
-    "ingredients": [
+        "grams": 50
+      },
       {
         "name": "Chocolate Ao Leite 33.7%",
-        "grams": 30.0
+        "grams": 30
       }
     ]
   },
   {
+    "id": "prep_variegato_de_caramelo_flor_de_sal",
     "name": "Variegato de Caramelo Flor de Sal",
     "category": "Variegato",
     "instructions": "",
     "ingredients": [
       {
         "name": "Açúcar Sacarose",
-        "grams": 279.0
-      }
-    ]
-  },
-  {
-    "name": "Variegato de Caramelo Flor de Sal",
-    "category": "Variegato",
-    "instructions": "",
-    "ingredients": [
+        "grams": 279
+      },
       {
         "name": "Água",
         "grams": 118.8
-      }
-    ]
-  },
-  {
-    "name": "Variegato de Caramelo Flor de Sal",
-    "category": "Variegato",
-    "instructions": "",
-    "ingredients": [
+      },
       {
         "name": "Creme De Leite Fresco 35%",
         "grams": 202.5
-      }
-    ]
-  },
-  {
-    "name": "Variegato de Caramelo Flor de Sal",
-    "category": "Variegato",
-    "instructions": "",
-    "ingredients": [
+      },
       {
         "name": "Leite Condensado",
-        "grams": 81.0
-      }
-    ]
-  },
-  {
-    "name": "Variegato de Caramelo Flor de Sal",
-    "category": "Variegato",
-    "instructions": "",
-    "ingredients": [
+        "grams": 81
+      },
       {
         "name": "Manteiga",
         "grams": 17.1
@@ -869,178 +436,82 @@
     ]
   },
   {
+    "id": "prep_variegato_de_cocada",
     "name": "Variegato de Cocada",
     "category": "Variegato",
     "instructions": "Caramelizar o açúcar. Após, adicionar o coco ralado e misturar. Adicionar o resto dos ingredientes e reduzir em fogo baixo. Somente adicionar o coco em tiras próximo do final.",
     "ingredients": [
       {
         "name": "Coco",
-        "grams": 300.0
-      }
-    ]
-  },
-  {
-    "name": "Variegato de Cocada",
-    "category": "Variegato",
-    "instructions": "",
-    "ingredients": [
+        "grams": 300
+      },
       {
         "name": "Coco Ralado Seco",
-        "grams": 100.0
-      }
-    ]
-  },
-  {
-    "name": "Variegato de Cocada",
-    "category": "Variegato",
-    "instructions": "",
-    "ingredients": [
+        "grams": 100
+      },
       {
         "name": "Açúcar Sacarose",
-        "grams": 300.0
-      }
-    ]
-  },
-  {
-    "name": "Variegato de Cocada",
-    "category": "Variegato",
-    "instructions": "",
-    "ingredients": [
+        "grams": 300
+      },
       {
         "name": "Açúcar - Glucose Líquida",
-        "grams": 150.0
-      }
-    ]
-  },
-  {
-    "name": "Variegato de Cocada",
-    "category": "Variegato",
-    "instructions": "",
-    "ingredients": [
+        "grams": 150
+      },
       {
         "name": "Água",
-        "grams": 100.0
-      }
-    ]
-  },
-  {
-    "name": "Variegato de Cocada",
-    "category": "Variegato",
-    "instructions": "",
-    "ingredients": [
+        "grams": 100
+      },
       {
         "name": "Leite Condensado",
-        "grams": 100.0
-      }
-    ]
-  },
-  {
-    "name": "Variegato de Cocada",
-    "category": "Variegato",
-    "instructions": "",
-    "ingredients": [
+        "grams": 100
+      },
       {
         "name": "Açúcar - Dextrose",
-        "grams": 50.0
-      }
-    ]
-  },
-  {
-    "name": "Variegato de Cocada",
-    "category": "Variegato",
-    "instructions": "",
-    "ingredients": [
+        "grams": 50
+      },
       {
         "name": "Manteiga",
-        "grams": 15.0
-      }
-    ]
-  },
-  {
-    "name": "Variegato de Cocada",
-    "category": "Variegato",
-    "instructions": "",
-    "ingredients": [
+        "grams": 15
+      },
       {
         "name": "Sal",
-        "grams": 2.0
-      }
-    ]
-  },
-  {
-    "name": "Variegato de Cocada",
-    "category": "Variegato",
-    "instructions": "",
-    "ingredients": [
+        "grams": 2
+      },
       {
         "name": "Suco De Limão",
-        "grams": 20.0
+        "grams": 20
       }
     ]
   },
   {
+    "id": "prep_variegato_de_nutella",
     "name": "Variegato de Nutella",
     "category": "Variegato",
     "instructions": "1. Aqueça o creme de leite junto com a glucose, o sal (e o cacau, se usar) em uma panela até atingir cerca de 80°C (início de fervura).\n2. Despeje a mistura quente sobre a Nutella em um recipiente.\n3. Deixe descansar por 1 minuto para o calor amolecer a Nutella.\n4. Utilize um mixer de imersão por alguns minutos até obter uma emulsão lisa, brilhante e homogênea.\n5. Deixe esfriar completamente antes de utilizar para mesclar no gelato.",
     "ingredients": [
       {
         "name": "Nutella",
-        "grams": 750.0
-      }
-    ]
-  },
-  {
-    "name": "Variegato de Nutella",
-    "category": "Variegato",
-    "instructions": "",
-    "ingredients": [
+        "grams": 750
+      },
       {
         "name": "Creme De Leite Fresco 35%",
-        "grams": 400.0
-      }
-    ]
-  },
-  {
-    "name": "Variegato de Nutella",
-    "category": "Variegato",
-    "instructions": "",
-    "ingredients": [
+        "grams": 400
+      },
       {
         "name": "Açúcar - Glucose Líquida",
-        "grams": 80.0
-      }
-    ]
-  },
-  {
-    "name": "Variegato de Nutella",
-    "category": "Variegato",
-    "instructions": "",
-    "ingredients": [
+        "grams": 80
+      },
       {
         "name": "Açúcar Invertido",
-        "grams": 60.0
-      }
-    ]
-  },
-  {
-    "name": "Variegato de Nutella",
-    "category": "Variegato",
-    "instructions": "",
-    "ingredients": [
+        "grams": 60
+      },
       {
         "name": "Sal",
-        "grams": 3.0
-      }
-    ]
-  },
-  {
-    "name": "Variegato de Nutella",
-    "category": "Variegato",
-    "instructions": "",
-    "ingredients": [
+        "grams": 3
+      },
       {
         "name": "Cacau Em Pó 11% gordura",
-        "grams": 5.0
+        "grams": 5
       }
     ]
   }

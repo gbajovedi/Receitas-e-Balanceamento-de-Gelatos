@@ -6,6 +6,7 @@ import {
   Plus,
   Save,
   Edit2,
+  Trash2,
   Utensils,
   X,
   Package,
@@ -37,6 +38,7 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editingCost, setEditingCost] = useState<number>(0);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [editingIngredient, setEditingIngredient] = useState<Ingredient | null>(null);
 
   // Quick packaging calculator modal for editing existing ingredients
   const [calculatorModalIng, setCalculatorModalIng] = useState<Ingredient | null>(null);
@@ -156,6 +158,35 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
     onRefresh();
   };
 
+  const handleEditIngredient = (ing: Ingredient) => {
+    setEditingIngredient(ing);
+    setNewName(ing.name);
+    setNewCategory(ing.category || 'Outros');
+    setPackagePrice(ing.packagePrice ?? '');
+    const weightG = ing.packageWeight
+      ? (ing.packageUnit === 'kg' ? ing.packageWeight * 1000 : ing.packageWeight)
+      : (ing.costKg > 0 ? 1000 : '');
+    setPackageWeightGrams(weightG);
+    setCostMode(ing.packagePrice && ing.packageWeight ? 'package' : 'direct');
+    setManualCostKg(ing.costKg);
+    setNewSugars(Math.round((ing.sugars || 0) * 100 * 10) / 10);
+    setNewFat(Math.round((ing.fat || 0) * 100 * 10) / 10);
+    setNewMsnf(Math.round((ing.msnf || 0) * 100 * 10) / 10);
+    setNewOtherSolids(Math.round((ing.otherSolids || 0) * 100 * 10) / 10);
+    setNewPod(ing.pod || 0);
+    setNewPac(ing.pac || 0);
+    setNewHasAllergen(!!ing.hasAllergen);
+    setSelectedAllergens(ing.allergenDetails || []);
+    setIsAddModalOpen(true);
+  };
+
+  const handleDeleteIngredient = async (ing: Ingredient) => {
+    if (window.confirm(`Deseja realmente excluir o insumo "${ing.name}"? Esta ação removerá o insumo da tabela.`)) {
+      await db.ingredients.delete(ing.id);
+      onRefresh();
+    }
+  };
+
   const toggleAllergen = (allergen: string) => {
     setSelectedAllergens(prev =>
       prev.includes(allergen) ? prev.filter(a => a !== allergen) : [...prev, allergen]
@@ -163,6 +194,7 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
   };
 
   const resetForm = () => {
+    setEditingIngredient(null);
     setNewName('');
     setNewCategory('Outros');
     setPackagePrice('');
@@ -184,9 +216,10 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
     if (!newName.trim()) return;
 
     const totalSolids = (newSugars + newFat + newMsnf + newOtherSolids) / 100;
+    const targetId = editingIngredient ? editingIngredient.id : `ing_custom_${Date.now()}`;
 
-    const newIng: Ingredient = {
-      id: `ing_custom_${Date.now()}`,
+    const ingToSave: Ingredient = {
+      id: targetId,
       name: newName.trim(),
       category: newCategory,
       costKg: finalCostKg,
@@ -204,11 +237,12 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
       protein: newProtein / 100,
       hasAllergen: newHasAllergen,
       allergenDetails: newHasAllergen && selectedAllergens.length > 0 ? selectedAllergens : undefined,
-      isCustom: true,
+      isCustom: editingIngredient ? editingIngredient.isCustom : true,
     };
 
-    await db.ingredients.put(newIng);
+    await db.ingredients.put(ingToSave);
     setIsAddModalOpen(false);
+    setEditingIngredient(null);
     resetForm();
     onRefresh();
   };
@@ -299,6 +333,7 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
                 <th className="py-3.5 px-3 text-right">POD</th>
                 <th className="py-3.5 px-3 text-right">PAC</th>
                 <th className="py-3.5 px-3 text-center">Alérgeno</th>
+                <th className="py-3.5 px-3 text-center">Ações</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-700/40 text-sm">
@@ -382,6 +417,27 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
                       <span className="text-xs text-slate-500">-</span>
                     )}
                   </td>
+                  {/* Actions Column */}
+                  <td className="py-3 px-3 text-center">
+                    <div className="flex items-center justify-center gap-1">
+                      <button
+                        type="button"
+                        onClick={() => handleEditIngredient(ing)}
+                        className="p-1.5 text-slate-400 hover:text-amber-400 hover:bg-amber-500/15 rounded-lg transition-all"
+                        title={`Editar todos os dados de "${ing.name}"`}
+                      >
+                        <Edit2 className="w-4 h-4" />
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => handleDeleteIngredient(ing)}
+                        className="p-1.5 text-slate-400 hover:text-rose-400 hover:bg-rose-500/15 rounded-lg transition-all"
+                        title={`Excluir "${ing.name}"`}
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -389,7 +445,7 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
         </div>
       </div>
 
-      {/* Modal: Cadastrar Novo Insumo (Design Reformulado Premium) */}
+      {/* Modal: Cadastrar ou Editar Insumo */}
       {isAddModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-md overflow-y-auto">
           <div className="bg-slate-900 border border-slate-700/90 rounded-3xl w-full max-w-xl sm:max-w-2xl p-5 sm:p-7 shadow-2xl space-y-5 my-6 max-h-[92vh] overflow-y-auto">
@@ -401,17 +457,22 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
                 </div>
                 <div>
                   <h3 className="text-lg sm:text-xl font-black text-white tracking-tight flex items-center gap-2">
-                    <span>Cadastrar Novo Insumo</span>
+                    <span>{editingIngredient ? `Editar Insumo: ${editingIngredient.name}` : 'Cadastrar Novo Insumo'}</span>
                     <Sparkles className="w-4 h-4 text-amber-400" />
                   </h3>
                   <p className="text-xs text-slate-400 mt-0.5">
-                    Defina os dados comerciais de aquisição e o perfil bromatológico da matéria-prima.
+                    {editingIngredient
+                      ? 'Edite os valores comerciais, preços e parâmetros bromatológicos deste insumo.'
+                      : 'Defina os dados comerciais de aquisição e o perfil bromatológico da matéria-prima.'}
                   </p>
                 </div>
               </div>
               <button
                 type="button"
-                onClick={() => setIsAddModalOpen(false)}
+                onClick={() => {
+                  setIsAddModalOpen(false);
+                  setEditingIngredient(null);
+                }}
                 className="p-1.5 text-slate-400 hover:text-white rounded-xl hover:bg-slate-800 transition-colors shrink-0"
                 title="Fechar"
               >
@@ -456,7 +517,7 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
                 </div>
               </div>
 
-              {/* Seção 2: Aquisição & Custo Comercial (Segmented Control Elegante) */}
+              {/* Seção 2: Aquisição & Custo Comercial */}
               <div className="bg-slate-950/60 p-4 sm:p-5 rounded-2xl border border-slate-700/80 space-y-4 shadow-inner">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                   <div className="flex items-center gap-2.5">
@@ -981,7 +1042,10 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
               <div className="flex items-center justify-end gap-3 pt-3 border-t border-slate-800">
                 <button
                   type="button"
-                  onClick={() => setIsAddModalOpen(false)}
+                  onClick={() => {
+                    setIsAddModalOpen(false);
+                    setEditingIngredient(null);
+                  }}
                   className="px-4 py-2.5 text-xs font-bold text-slate-400 hover:text-white transition-colors"
                 >
                   Cancelar
@@ -991,7 +1055,7 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
                   className="px-6 py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs sm:text-sm rounded-xl shadow-lg shadow-amber-500/25 transition-all active:scale-95 flex items-center gap-2"
                 >
                   <CheckCircle2 className="w-4 h-4" />
-                  <span>Cadastrar Insumo</span>
+                  <span>{editingIngredient ? 'Salvar Alterações' : 'Cadastrar Insumo'}</span>
                 </button>
               </div>
             </form>

@@ -53,20 +53,20 @@ export const NutrientBars: React.FC<NutrientBarsProps> = ({ analysis }) => {
     const displayMin = isPercent ? (min * 100).toFixed(1) : min.toFixed(0);
     const displayMax = isPercent ? (max * 100).toFixed(1) : max.toFixed(0);
 
-    let badgeColor = 'bg-emerald-500/15 text-emerald-300 border-emerald-500/40';
-    let barColor = 'bg-emerald-400';
-    let valColor = 'text-white';
-    let cardBorder = 'border-slate-700/80';
+    let badgeColor = 'bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 border-emerald-500/40';
+    let barColor = 'bg-emerald-500';
+    let valColor = 'text-slate-900 dark:text-white';
+    let cardBorder = 'border-slate-250 dark:border-slate-700/80';
 
     if (status === 'Baixo') {
-      badgeColor = 'bg-amber-500/20 text-amber-300 border-amber-500/50';
-      barColor = 'bg-amber-400';
-      valColor = 'text-amber-200';
+      badgeColor = 'bg-amber-500/20 text-amber-800 dark:text-amber-300 border-amber-500/50';
+      barColor = 'bg-amber-500';
+      valColor = 'text-amber-800 dark:text-amber-200';
       cardBorder = 'border-amber-500/60 ring-1 ring-amber-500/30';
     } else if (status === 'Alto') {
-      badgeColor = 'bg-rose-500/20 text-rose-300 border-rose-500/50';
-      barColor = 'bg-rose-400';
-      valColor = 'text-rose-200';
+      badgeColor = 'bg-rose-500/20 text-rose-800 dark:text-rose-300 border-rose-500/50';
+      barColor = 'bg-rose-500';
+      valColor = 'text-rose-800 dark:text-rose-200';
       cardBorder = 'border-rose-500/60 ring-1 ring-rose-500/30';
     }
 
@@ -77,9 +77,9 @@ export const NutrientBars: React.FC<NutrientBarsProps> = ({ analysis }) => {
     const maxMarkerPct = (max / upperLimit) * 100;
 
     return (
-      <div className={`bg-slate-800/80 hover:bg-slate-800 p-4 rounded-xl border ${cardBorder} transition-all flex flex-col justify-between shadow-sm`}>
+      <div className={`bg-white dark:bg-slate-800/80 hover:dark:bg-slate-800 p-4 rounded-xl border ${cardBorder} transition-all flex flex-col justify-between shadow-sm`}>
         <div className="flex items-center justify-between mb-2">
-          <span className="text-xs font-bold uppercase tracking-wider text-slate-300">
+          <span className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-300">
             {label}
           </span>
           <span className={`text-xs px-2.5 py-0.5 rounded-full border font-bold ${badgeColor}`}>
@@ -92,13 +92,13 @@ export const NutrientBars: React.FC<NutrientBarsProps> = ({ analysis }) => {
             {displayVal}
             <span className="text-sm font-bold text-slate-400 ml-0.5">{unit}</span>
           </span>
-          <span className="text-xs font-medium text-slate-400">
-            Alvo: <strong className="text-slate-300 font-mono">{displayMin}–{displayMax}{unit}</strong>
+          <span className="text-xs font-medium text-slate-500 dark:text-slate-400">
+            Alvo: <strong className="text-slate-700 dark:text-slate-300 font-mono">{displayMin}–{displayMax}{unit}</strong>
           </span>
         </div>
 
         {/* Visual progress bar with target range highlight */}
-        <div className="relative w-full h-2.5 bg-slate-900/90 rounded-full overflow-hidden border border-slate-700/50">
+        <div className="relative w-full h-2.5 bg-slate-100 dark:bg-slate-900/90 rounded-full overflow-hidden border border-slate-200 dark:border-slate-700/50">
           {/* Target range marker background */}
           <div
             className="absolute top-0 bottom-0 bg-emerald-500/20 border-x border-emerald-400/40"
@@ -118,18 +118,18 @@ export const NutrientBars: React.FC<NutrientBarsProps> = ({ analysis }) => {
   return (
     <div className="space-y-4">
       {/* Header status bar */}
-      <div className={`nutrient-status-banner p-4 sm:p-5 rounded-2xl border shadow-md transition-all ${
+      <div className={`p-4 sm:p-5 rounded-2xl border shadow-md transition-all ${
         isBalanced
-          ? 'nutrient-banner-balanced bg-gradient-to-r from-slate-800/95 via-slate-850/95 to-slate-800/95 border-emerald-500/40'
-          : 'nutrient-banner-issues bg-gradient-to-r from-amber-950/40 via-slate-850/95 to-slate-800/95 border-amber-500/50'
+          ? 'bg-emerald-50 border-emerald-300 dark:bg-gradient-to-r dark:from-slate-800/95 dark:via-slate-800/90 dark:to-slate-800/95 dark:border-emerald-500/40 shadow-emerald-500/5'
+          : 'bg-amber-50 border-amber-300 dark:bg-gradient-to-r dark:from-amber-950/40 dark:via-slate-800/90 dark:to-slate-800/95 dark:border-amber-500/50 shadow-amber-500/5'
       }`}>
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="flex items-start sm:items-center gap-3.5">
             <div
               className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0 shadow-lg ${
                 isBalanced
-                  ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 shadow-emerald-500/10'
-                  : 'bg-amber-500/20 text-amber-400 border border-amber-500/40 shadow-amber-500/10'
+                  ? 'bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-500/40 shadow-emerald-500/10'
+                  : 'bg-amber-500/20 text-amber-600 dark:text-amber-400 border border-amber-500/40 shadow-amber-500/10'
               }`}
             >
               {isBalanced ? (
@@ -140,20 +140,20 @@ export const NutrientBars: React.FC<NutrientBarsProps> = ({ analysis }) => {
             </div>
             <div>
               <div className="flex items-center gap-2 flex-wrap">
-                <h3 className="text-base sm:text-lg font-black text-white tracking-tight">
+                <h3 className="text-base sm:text-lg font-black text-slate-900 dark:text-white tracking-tight">
                   {isBalanced ? 'Receita Perfeitamente Balanceada' : 'Ajustes Necessários na Fórmula'}
                 </h3>
                 <span
                   className={`text-xs px-2.5 py-0.5 rounded-full font-bold uppercase tracking-wider ${
                     isBalanced
-                      ? 'bg-emerald-500/25 text-emerald-300 border border-emerald-500/40'
-                      : 'bg-amber-500/25 text-amber-300 border border-amber-500/40'
+                      ? 'bg-emerald-100 text-emerald-800 border border-emerald-300 dark:bg-emerald-500/25 dark:text-emerald-300 dark:border-emerald-500/40'
+                      : 'bg-amber-100 text-amber-800 border border-amber-300 dark:bg-amber-500/25 dark:text-amber-300 dark:border-amber-500/40'
                   }`}
                 >
                   {isBalanced ? 'Equilibrado' : 'Revisar'}
                 </span>
               </div>
-              <p className="text-xs sm:text-sm text-slate-300 mt-1">
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-1">
                 {isBalanced
                   ? 'Todos os parâmetros bromatológicos e térmicos estão perfeitamente dentro da faixa ideal do estilo.'
                   : 'Os parâmetros listados abaixo estão fora das metas de textura, maciez ou dulçor:'}
@@ -162,13 +162,13 @@ export const NutrientBars: React.FC<NutrientBarsProps> = ({ analysis }) => {
           </div>
 
           {/* Temperature Badge */}
-          <div className="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-cyan-950/50 border border-cyan-800/60 text-cyan-200 self-start sm:self-auto shadow-sm">
-            <ThermometerSnowflake className="w-6 h-6 text-cyan-400 shrink-0" />
+          <div className="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-cyan-100/80 border border-cyan-300 text-cyan-900 dark:bg-cyan-950/50 dark:border-cyan-800/60 dark:text-cyan-200 self-start sm:self-auto shadow-sm">
+            <ThermometerSnowflake className="w-6 h-6 text-cyan-700 dark:text-cyan-400 shrink-0" />
             <div>
-              <div className="text-[11px] uppercase font-bold tracking-wider text-cyan-400">
+              <div className="text-[11px] uppercase font-bold tracking-wider text-cyan-800 dark:text-cyan-400">
                 Temp. Serviço (Vitrine)
               </div>
-              <div className="text-xl font-black font-mono text-cyan-100">
+              <div className="text-xl font-black font-mono text-cyan-950 dark:text-cyan-100">
                 {servingTemperature} °C
               </div>
             </div>
@@ -177,8 +177,8 @@ export const NutrientBars: React.FC<NutrientBarsProps> = ({ analysis }) => {
 
         {/* Detailed Explanation Pills of Out-of-Range Parameters */}
         {!isBalanced && pendingIssues.length > 0 && (
-          <div className="mt-4 pt-3.5 border-t border-slate-700/80 space-y-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-amber-300 flex items-center gap-1.5">
+          <div className="mt-4 pt-3.5 border-t border-slate-200 dark:border-slate-700/80 space-y-2">
+            <span className="text-xs font-bold uppercase tracking-wider text-amber-700 dark:text-amber-300 flex items-center gap-1.5">
               <span>⚠️</span>
               <span>O que precisa ser ajustado:</span>
             </span>
@@ -188,14 +188,14 @@ export const NutrientBars: React.FC<NutrientBarsProps> = ({ analysis }) => {
                   key={issue.key}
                   className={`px-3 py-1.5 rounded-xl border text-xs font-bold flex items-center gap-2 ${
                     issue.status === 'Baixo'
-                      ? 'bg-amber-500/20 text-amber-200 border-amber-500/50'
-                      : 'bg-rose-500/20 text-rose-200 border-rose-500/50'
+                      ? 'bg-amber-100 text-amber-900 border-amber-300 dark:bg-amber-500/20 dark:text-amber-200 dark:border-amber-500/50'
+                      : 'bg-rose-100 text-rose-900 border-rose-300 dark:bg-rose-500/20 dark:text-rose-200 dark:border-rose-500/50'
                   }`}
                 >
                   {issue.status === 'Baixo' ? (
-                    <ArrowDownCircle className="w-4 h-4 text-amber-400 shrink-0" />
+                    <ArrowDownCircle className="w-4 h-4 text-amber-600 dark:text-amber-400 shrink-0" />
                   ) : (
-                    <ArrowUpCircle className="w-4 h-4 text-rose-400 shrink-0" />
+                    <ArrowUpCircle className="w-4 h-4 text-rose-600 dark:text-rose-400 shrink-0" />
                   )}
                   <span>
                     <strong>{issue.name}:</strong> está em <span className="font-mono">{issue.valStr}</span> (

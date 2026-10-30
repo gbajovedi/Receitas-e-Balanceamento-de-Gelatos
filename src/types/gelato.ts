@@ -65,10 +65,13 @@ export interface Recipe {
 }
 
 export interface Preparation {
+  id: string;
   name: string;
   category: 'Pré-preparo' | 'Variegato';
   instructions: string;
   ingredients: { name: string; grams: number }[];
+  isCustom?: boolean;
+  costKg?: number;
 }
 
 export interface NutrientValidation {

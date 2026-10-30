@@ -21,11 +21,11 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onTabChange, onOpenBa
 
   return (
     <header className="sticky top-0 z-40 bg-slate-900/95 backdrop-blur-md border-b border-slate-800 shadow-md w-full">
-      <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 flex items-center justify-between h-16 sm:h-20 gap-2 sm:gap-4 w-full">
+      <div className="max-w-screen-2xl mx-auto px-3 sm:px-4 lg:px-5 xl:px-6 flex items-center justify-between h-16 sm:h-20 gap-2 sm:gap-3 xl:gap-4 w-full">
         {/* Brand */}
         <div
           onClick={() => onTabChange('balanceamento')}
-          className="flex items-center gap-2.5 sm:gap-3 cursor-pointer group shrink-0"
+          className="flex items-center gap-2 sm:gap-2.5 xl:gap-3 cursor-pointer group shrink-0"
         >
           <div className="w-9 h-9 sm:w-10 sm:h-10 xl:w-11 xl:h-11 rounded-2xl bg-gradient-to-tr from-amber-500 to-amber-300 flex items-center justify-center text-lg sm:text-xl xl:text-2xl shadow-lg shadow-amber-500/20 group-hover:scale-105 transition-transform shrink-0">
             🍨
@@ -50,7 +50,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onTabChange, onOpenBa
                 key={tab.id}
                 type="button"
                 onClick={() => onTabChange(tab.id as NavTab)}
-                className={`h-9 xl:h-10 px-2.5 xl:px-3.5 2xl:px-4 rounded-xl text-xs xl:text-sm font-bold flex items-center gap-1.5 xl:gap-2 whitespace-nowrap select-none transition-all shrink-0 ${
+                className={`h-9 xl:h-10 px-2 lg:px-2.5 xl:px-3.5 2xl:px-4 rounded-xl text-xs xl:text-sm font-bold flex items-center gap-1.5 xl:gap-2 whitespace-nowrap select-none transition-all shrink-0 ${
                   isActive
                     ? 'bg-amber-500 text-slate-950 shadow-md shadow-amber-500/20'
                     : 'text-slate-300 hover:text-white hover:bg-slate-700/60'
@@ -58,7 +58,12 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onTabChange, onOpenBa
               >
                 <Icon className={`w-4 h-4 shrink-0 ${isActive ? 'text-slate-950' : 'text-slate-400'}`} />
                 <span>
-                  {tab.id === 'receitas' ? (
+                  {tab.id === 'balanceamento' ? (
+                    <>
+                      <span className="hidden xl:inline">Balanceamento</span>
+                      <span className="xl:hidden">Balancear</span>
+                    </>
+                  ) : tab.id === 'receitas' ? (
                     <>
                       <span className="hidden 2xl:inline">Livro de </span>Receitas
                     </>
@@ -81,7 +86,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onTabChange, onOpenBa
           <button
             type="button"
             onClick={onOpenBackup}
-            className="h-9 xl:h-10 px-2.5 xl:px-3.5 2xl:px-4 rounded-xl text-xs xl:text-sm font-bold flex items-center gap-1.5 xl:gap-2 text-slate-300 hover:text-white hover:bg-slate-700/60 transition-all whitespace-nowrap select-none shrink-0 group"
+            className="h-9 xl:h-10 px-2 lg:px-2.5 xl:px-3.5 2xl:px-4 rounded-xl text-xs xl:text-sm font-bold flex items-center gap-1.5 xl:gap-2 text-slate-300 hover:text-white hover:bg-slate-700/60 transition-all whitespace-nowrap select-none shrink-0 group"
             title="Importar ou Exportar Dados (.JSON)"
           >
             <Database className="w-4 h-4 text-amber-400 group-hover:scale-110 transition-transform shrink-0" />

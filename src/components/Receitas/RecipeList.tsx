@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { Recipe } from '../../types/gelato';
-import { Search, Calculator, Plus, Trash2, BookOpen, Eye, X } from 'lucide-react';
+import { Search, Calculator, Plus, Trash2, BookOpen, Eye, X, Edit3 } from 'lucide-react';
 import { db } from '../../db/database';
 import { RecipeViewerModal } from './RecipeViewerModal';
 
@@ -34,8 +34,8 @@ export const RecipeList: React.FC<RecipeListProps> = ({ recipes, onSelectRecipe,
     });
   }, [recipes, search, selectedCategory]);
 
-  const handleDeleteCustom = async (id: string, name: string) => {
-    if (confirm(`Deseja realmente excluir a receita "${name}"?`)) {
+  const handleDeleteRecipe = async (id: string, name: string) => {
+    if (confirm(`Deseja realmente excluir a receita "${name}"? Esta ação removerá a receita do catálogo.`)) {
       await db.recipes.delete(id);
       onRefresh();
     }
@@ -53,7 +53,7 @@ export const RecipeList: React.FC<RecipeListProps> = ({ recipes, onSelectRecipe,
               <span>Catálogo & Livro de Receitas</span>
             </h2>
             <p className="text-xs sm:text-sm text-slate-300 mt-0.5">
-              Toque em qualquer receita para abrir a <strong>Ficha de Produção (Modo Cozinha)</strong> com ajuste de batelada.
+              Toque em qualquer receita para abrir a <strong>Ficha de Produção (Modo Cozinha)</strong> ou clique em <strong>Editar</strong> para calibrar a fórmula no balanceador.
             </p>
           </div>
 
@@ -166,7 +166,8 @@ export const RecipeList: React.FC<RecipeListProps> = ({ recipes, onSelectRecipe,
                 <button
                   type="button"
                   onClick={() => setViewingRecipe(recipe)}
-                  className="flex-1 py-2.5 bg-slate-900 hover:bg-slate-750 text-slate-200 hover:text-white border border-slate-700 font-bold text-xs sm:text-sm rounded-xl transition-all flex items-center justify-center gap-1.5"
+                  className="py-2.5 px-3 bg-slate-900 hover:bg-slate-750 text-slate-200 hover:text-white border border-slate-700 font-bold text-xs sm:text-sm rounded-xl transition-all flex items-center justify-center gap-1.5"
+                  title="Abrir ficha técnica de produção e modo cozinha"
                 >
                   <Eye className="w-4 h-4 text-amber-400" />
                   <span>Ver Ficha</span>
@@ -176,22 +177,20 @@ export const RecipeList: React.FC<RecipeListProps> = ({ recipes, onSelectRecipe,
                   type="button"
                   onClick={() => onSelectRecipe(recipe.id)}
                   className="flex-1 py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs sm:text-sm rounded-xl transition-all flex items-center justify-center gap-1.5 shadow-md shadow-amber-500/10 active:scale-95"
-                  title="Carregar esta receita na calculadora de balanceamento"
+                  title="Editar fórmula, insumos e proporções desta receita no balanceador"
                 >
-                  <Calculator className="w-4 h-4" />
-                  <span>Balancear</span>
+                  <Edit3 className="w-4 h-4" />
+                  <span>Editar / Balancear</span>
                 </button>
 
-                {recipe.isCustom && (
-                  <button
-                    type="button"
-                    onClick={() => handleDeleteCustom(recipe.id, recipe.name)}
-                    className="p-2.5 text-slate-400 hover:text-rose-400 hover:bg-rose-500/15 rounded-xl transition-colors border border-slate-700"
-                    title="Excluir receita personalizada"
-                  >
-                    <Trash2 className="w-4 h-4" />
-                  </button>
-                )}
+                <button
+                  type="button"
+                  onClick={() => handleDeleteRecipe(recipe.id, recipe.name)}
+                  className="p-2.5 text-slate-400 hover:text-rose-400 hover:bg-rose-500/15 rounded-xl transition-colors border border-slate-700"
+                  title="Excluir esta receita do catálogo"
+                >
+                  <Trash2 className="w-4 h-4" />
+                </button>
               </div>
             </div>
           );

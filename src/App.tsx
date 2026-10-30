@@ -95,7 +95,11 @@ export function App() {
         )}
 
         {activeTab === 'preparos' && (
-          <PrePreparosList preparations={preparations} />
+          <PrePreparosList
+            preparations={preparations}
+            availableIngredients={ingredients}
+            onRefresh={refreshData}
+          />
         )}
 
         {activeTab === 'financeiro' && <PricingCalculator />}

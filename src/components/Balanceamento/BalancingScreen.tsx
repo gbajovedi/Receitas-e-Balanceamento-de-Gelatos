@@ -176,16 +176,20 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
   };
 
   // Save changes to current recipe in IndexedDB
-  const handleUpdateExisting = async () => {
+  const handleUpdateExisting = async (updatedName?: string, updatedCategory?: string, updatedNotes?: string) => {
     if (selectedRecipeId === 'new') return;
     const existing = await db.recipes.get(selectedRecipeId);
     if (!existing) return;
 
+    const finalName = updatedName?.trim() || recipeName.trim();
+    const finalCategory = updatedCategory?.trim() || targetStyleName;
+
     const updated: Recipe = {
       ...existing,
-      name: recipeName.trim(),
-      category: targetStyleName,
-      targetStyle: targetStyleName,
+      name: finalName,
+      category: finalCategory,
+      targetStyle: finalCategory,
+      notes: updatedNotes !== undefined ? updatedNotes : existing.notes,
       ingredients: items,
       variegatos: variegatos,
       totalGrams: analysis.caldaWeight,
@@ -193,6 +197,7 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
     };
 
     await db.recipes.put(updated);
+    setRecipeName(finalName);
     setIsDirty(false);
     onRecipeSaved();
   };
