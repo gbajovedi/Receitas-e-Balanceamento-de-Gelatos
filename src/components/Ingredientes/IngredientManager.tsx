@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { Ingredient } from '../../types/gelato';
 import { db } from '../../db/database';
-import { Search, Plus, Save, Edit2, Utensils, X, Package, Calculator, DollarSign, Scale, AlertCircle } from 'lucide-react';
+import { Search, Plus, Save, Edit2, Utensils, X, Package, Calculator, AlertCircle } from 'lucide-react';
 
 interface IngredientManagerProps {
   ingredients: Ingredient[];
@@ -18,17 +18,15 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
   // Quick packaging calculator modal for editing existing ingredients
   const [calculatorModalIng, setCalculatorModalIng] = useState<Ingredient | null>(null);
   const [calcModalPrice, setCalcModalPrice] = useState<number | ''>('');
-  const [calcModalWeight, setCalcModalWeight] = useState<number | ''>('');
-  const [calcModalUnit, setCalcModalUnit] = useState<'kg' | 'g'>('kg');
+  const [calcModalWeightGrams, setCalcModalWeightGrams] = useState<number | ''>('');
 
   // New ingredient form state
   const [newName, setNewName] = useState('');
   const [newCategory, setNewCategory] = useState('Outros');
 
-  // Packaging acquisition & weight state for new ingredients
+  // Packaging acquisition & weight state for new ingredients (strictly in GRAMS)
   const [packagePrice, setPackagePrice] = useState<number | ''>('');
-  const [packageWeight, setPackageWeight] = useState<number | ''>('');
-  const [packageUnit, setPackageUnit] = useState<'kg' | 'g'>('kg');
+  const [packageWeightGrams, setPackageWeightGrams] = useState<number | ''>('');
   const [costMode, setCostMode] = useState<'package' | 'direct'>('package');
   const [manualCostKg, setManualCostKg] = useState<number | ''>('');
 
@@ -60,13 +58,13 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
     });
   }, [ingredients, search, categoryFilter]);
 
-  // Conversion of new ingredient package weight to kg
+  // Conversion of grams to kg for calculations: grams / 1000
   const effectiveWeightKg = useMemo(() => {
-    if (typeof packageWeight !== 'number' || packageWeight <= 0) return 0;
-    return packageUnit === 'g' ? packageWeight / 1000 : packageWeight;
-  }, [packageWeight, packageUnit]);
+    if (typeof packageWeightGrams !== 'number' || packageWeightGrams <= 0) return 0;
+    return packageWeightGrams / 1000;
+  }, [packageWeightGrams]);
 
-  // Automatic calculation of cost/kg for new ingredient
+  // Automatic calculation of cost/kg: price / (grams / 1000)
   const computedCostKg = useMemo(() => {
     if (typeof packagePrice !== 'number' || packagePrice <= 0 || effectiveWeightKg <= 0) {
       return 0;
@@ -89,9 +87,9 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
 
   // Quick calculator for existing ingredient
   const modalEffectiveWeightKg = useMemo(() => {
-    if (typeof calcModalWeight !== 'number' || calcModalWeight <= 0) return 0;
-    return calcModalUnit === 'g' ? calcModalWeight / 1000 : calcModalWeight;
-  }, [calcModalWeight, calcModalUnit]);
+    if (typeof calcModalWeightGrams !== 'number' || calcModalWeightGrams <= 0) return 0;
+    return calcModalWeightGrams / 1000;
+  }, [calcModalWeightGrams]);
 
   const modalComputedCostKg = useMemo(() => {
     if (typeof calcModalPrice !== 'number' || calcModalPrice <= 0 || modalEffectiveWeightKg <= 0) {
@@ -114,8 +112,7 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
   const handleOpenCalcModal = (ing: Ingredient) => {
     setCalculatorModalIng(ing);
     setCalcModalPrice(ing.packagePrice ?? '');
-    setCalcModalWeight(ing.packageWeight ?? '');
-    setCalcModalUnit(ing.packageUnit ?? 'kg');
+    setCalcModalWeightGrams(ing.packageWeight ?? '');
   };
 
   const handleSaveCalcModal = async () => {
@@ -124,8 +121,8 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
     await db.ingredients.update(calculatorModalIng.id, {
       costKg: newCost,
       packagePrice: typeof calcModalPrice === 'number' && calcModalPrice > 0 ? calcModalPrice : undefined,
-      packageWeight: typeof calcModalWeight === 'number' && calcModalWeight > 0 ? calcModalWeight : undefined,
-      packageUnit: calcModalUnit,
+      packageWeight: typeof calcModalWeightGrams === 'number' && calcModalWeightGrams > 0 ? calcModalWeightGrams : undefined,
+      packageUnit: 'g',
     });
     setCalculatorModalIng(null);
     onRefresh();
@@ -135,8 +132,7 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
     setNewName('');
     setNewCategory('Outros');
     setPackagePrice('');
-    setPackageWeight('');
-    setPackageUnit('kg');
+    setPackageWeightGrams('');
     setCostMode('package');
     setManualCostKg('');
     setNewSugars(0);
@@ -160,8 +156,8 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
       category: newCategory,
       costKg: finalCostKg,
       packagePrice: typeof packagePrice === 'number' && packagePrice > 0 ? packagePrice : undefined,
-      packageWeight: typeof packageWeight === 'number' && packageWeight > 0 ? packageWeight : undefined,
-      packageUnit: packageUnit,
+      packageWeight: typeof packageWeightGrams === 'number' && packageWeightGrams > 0 ? packageWeightGrams : undefined,
+      packageUnit: 'g',
       sugars: newSugars / 100,
       fat: newFat / 100,
       msnf: newMsnf / 100,
@@ -308,7 +304,7 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
                           type="button"
                           onClick={() => handleOpenCalcModal(ing)}
                           className="p-1 text-slate-500 hover:text-amber-400 opacity-0 group-hover:opacity-100 transition-opacity rounded"
-                          title="Recalcular custo a partir do preço e peso da embalagem"
+                          title="Recalcular custo por preço pago e peso em gramas"
                         >
                           <Calculator className="w-3.5 h-3.5" />
                         </button>
@@ -369,7 +365,7 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
                 <div>
                   <h3 className="text-lg font-black text-white">Cadastrar Novo Insumo</h3>
                   <p className="text-xs text-slate-400">
-                    Preencha os valores de aquisição da matéria-prima e seus dados bromatológicos.
+                    Informe os valores da embalagem comercial e os dados bromatológicos da matéria-prima.
                   </p>
                 </div>
               </div>
@@ -420,7 +416,7 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
                 </div>
               </div>
 
-              {/* Seção 2: Aquisição & Custo Unitário Comercial (Cálculo Automático por Embalagem) */}
+              {/* Seção 2: Aquisição & Custo Unitário Comercial (Peso sempre em GRAMAS) */}
               <div className="bg-slate-950/60 p-4 sm:p-5 rounded-2xl border border-slate-700/80 space-y-3.5">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
@@ -432,7 +428,7 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
                         Aquisição & Custo da Embalagem Comercial
                       </h4>
                       <p className="text-[11px] text-slate-400">
-                        Informe o valor pago e o peso da embalagem para calcular o custo/kg automaticamente.
+                        Informe o valor pago e o peso em gramas para cálculo automático do custo/kg.
                       </p>
                     </div>
                   </div>
@@ -448,7 +444,7 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
                           : 'text-slate-400 hover:text-white'
                       }`}
                     >
-                      Por Embalagem
+                      Por Embalagem (g)
                     </button>
                     <button
                       type="button"
@@ -467,11 +463,11 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
                 {costMode === 'package' ? (
                   <>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                      {/* 1. Preço de Aquisição da Embalagem */}
+                      {/* 1. Preço Pago na Embalagem */}
                       <div>
                         <label className="block text-xs font-bold text-slate-300 mb-1 flex items-center justify-between">
                           <span>Preço Pago na Embalagem:</span>
-                          <span className="text-[10px] text-slate-400 font-normal">Valor Pago na Nota</span>
+                          <span className="text-[10px] text-slate-400 font-normal">Valor na Nota</span>
                         </label>
                         <div className="relative">
                           <span className="absolute left-3 top-2.5 text-xs font-mono font-bold text-slate-400">
@@ -493,53 +489,48 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
                         </div>
                       </div>
 
-                      {/* 2. Conteúdo Líquido da Embalagem */}
+                      {/* 2. Peso Líquido da Embalagem em GRAMAS */}
                       <div>
                         <label className="block text-xs font-bold text-slate-300 mb-1 flex items-center justify-between">
-                          <span>Peso Líquido da Embalagem:</span>
-                          <span className="text-[10px] text-slate-400 font-normal">Conteúdo Declarado</span>
+                          <span>Peso Líquido da Embalagem (em gramas):</span>
+                          <span className="text-[10px] text-amber-400 font-bold">Medido em Gramas (g)</span>
                         </label>
-                        <div className="flex rounded-xl overflow-hidden border border-slate-700 bg-slate-900 focus-within:border-amber-500">
+                        <div className="relative">
                           <input
                             type="number"
-                            min="0"
-                            step={packageUnit === 'g' ? '1' : '0.001'}
+                            min="1"
+                            step="any"
                             required={costMode === 'package'}
-                            placeholder={packageUnit === 'g' ? 'ex: 500' : 'ex: 1.000'}
-                            value={packageWeight === '' ? '' : packageWeight}
+                            placeholder="ex: 1000 (para 1 kg), 500, 250..."
+                            value={packageWeightGrams === '' ? '' : packageWeightGrams}
                             onChange={e => {
                               const val = e.target.value === '' ? '' : Math.max(0, parseFloat(e.target.value) || 0);
-                              setPackageWeight(val);
+                              setPackageWeightGrams(val);
                             }}
-                            className="flex-1 bg-transparent px-3 py-2 text-sm text-white font-mono font-bold focus:outline-none"
+                            className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-3 pr-12 py-2 text-sm text-white font-mono font-bold focus:border-amber-500 focus:outline-none"
                           />
-                          {/* Seletor de Unidade Integrado */}
-                          <div className="flex items-center bg-slate-800 p-1 gap-1 border-l border-slate-700">
+                          <span className="absolute right-3.5 top-2 text-xs font-mono font-bold text-amber-400 bg-amber-500/10 border border-amber-500/30 px-2 py-0.5 rounded-md">
+                            g
+                          </span>
+                        </div>
+
+                        {/* Atalhos Rápidos em Gramas */}
+                        <div className="flex items-center gap-1.5 mt-1.5 overflow-x-auto pb-0.5 text-[10px]">
+                          <span className="text-slate-500 text-[10px] shrink-0">Comum:</span>
+                          {[100, 200, 250, 500, 1000, 3000, 5000].map(g => (
                             <button
+                              key={g}
                               type="button"
-                              onClick={() => setPackageUnit('kg')}
-                              className={`px-2.5 py-1 text-xs font-bold rounded-lg transition-all ${
-                                packageUnit === 'kg'
-                                  ? 'bg-amber-500 text-slate-950 font-black shadow-sm'
-                                  : 'text-slate-400 hover:text-white'
+                              onClick={() => setPackageWeightGrams(g)}
+                              className={`px-2 py-0.5 rounded font-mono font-semibold transition-all shrink-0 ${
+                                packageWeightGrams === g
+                                  ? 'bg-amber-500 text-slate-950 font-bold'
+                                  : 'bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700'
                               }`}
-                              title="Quilogramas"
                             >
-                              kg
+                              {g >= 1000 ? `${g}g (${g / 1000}kg)` : `${g}g`}
                             </button>
-                            <button
-                              type="button"
-                              onClick={() => setPackageUnit('g')}
-                              className={`px-2.5 py-1 text-xs font-bold rounded-lg transition-all ${
-                                packageUnit === 'g'
-                                  ? 'bg-amber-500 text-slate-950 font-black shadow-sm'
-                                  : 'text-slate-400 hover:text-white'
-                              }`}
-                              title="Gramas"
-                            >
-                              g
-                            </button>
-                          </div>
+                          ))}
                         </div>
                       </div>
                     </div>
@@ -575,13 +566,15 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
                                 </strong>{' '}
                                 ÷{' '}
                                 <strong className="font-mono text-white">
-                                  {packageUnit === 'g'
-                                    ? `${packageWeight} g (${effectiveWeightKg.toFixed(3)} kg)`
-                                    : `${packageWeight} kg`}
+                                  {packageWeightGrams} g ({effectiveWeightKg.toFixed(3)} kg)
+                                </strong>{' '}
+                                ={' '}
+                                <strong className="font-mono text-emerald-400">
+                                  R$ {computedCostKg.toFixed(2)} / kg
                                 </strong>
                               </>
                             ) : (
-                              'Preencha o preço e o peso da embalagem para calcular.'
+                              'Preencha o preço e o peso em gramas para calcular automaticamente.'
                             )}
                           </span>
                         </div>
@@ -612,7 +605,7 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
                         onClick={() => setCostMode('package')}
                         className="text-[11px] text-amber-400 hover:underline font-normal"
                       >
-                        Alternar para cálculo por embalagem
+                        Alternar para cálculo por peso em gramas
                       </button>
                     </label>
                     <div className="relative">
@@ -803,7 +796,7 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
         </div>
       )}
 
-      {/* Modal Rápido: Recalcular Custo de Insumo Existente por Embalagem */}
+      {/* Modal Rápido: Recalcular Custo de Insumo Existente por Peso em Gramas */}
       {calculatorModalIng && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm">
           <div className="bg-slate-900 border border-slate-700/80 rounded-3xl w-full max-w-md p-5 sm:p-6 shadow-2xl space-y-4">
@@ -852,46 +845,43 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-slate-300 mb-1">
-                  Peso Líquido da Embalagem:
+                <label className="block text-xs font-bold text-slate-300 mb-1 flex items-center justify-between">
+                  <span>Peso Líquido da Embalagem:</span>
+                  <span className="text-[10px] text-amber-400 font-bold">Medido em Gramas (g)</span>
                 </label>
-                <div className="flex rounded-xl overflow-hidden border border-slate-700 bg-slate-800 focus-within:border-amber-500">
+                <div className="relative">
                   <input
                     type="number"
-                    min="0"
-                    step={calcModalUnit === 'g' ? '1' : '0.001'}
-                    placeholder={calcModalUnit === 'g' ? 'ex: 500' : 'ex: 1.000'}
-                    value={calcModalWeight === '' ? '' : calcModalWeight}
+                    min="1"
+                    step="any"
+                    placeholder="ex: 1000 (para 1 kg), 500, 250..."
+                    value={calcModalWeightGrams === '' ? '' : calcModalWeightGrams}
                     onChange={e => {
                       const val = e.target.value === '' ? '' : Math.max(0, parseFloat(e.target.value) || 0);
-                      setCalcModalWeight(val);
+                      setCalcModalWeightGrams(val);
                     }}
-                    className="flex-1 bg-transparent px-3 py-2 text-sm text-white font-mono font-bold focus:outline-none"
+                    className="w-full bg-slate-800 border border-slate-700 rounded-xl pl-3 pr-12 py-2 text-sm text-white font-mono font-bold focus:border-amber-500 focus:outline-none"
                   />
-                  <div className="flex items-center bg-slate-750 p-1 gap-1 border-l border-slate-700">
+                  <span className="absolute right-3.5 top-2 text-xs font-mono font-bold text-amber-400 bg-amber-500/10 border border-amber-500/30 px-2 py-0.5 rounded-md">
+                    g
+                  </span>
+                </div>
+
+                <div className="flex items-center gap-1.5 mt-1.5 overflow-x-auto pb-0.5 text-[10px]">
+                  {[100, 200, 250, 500, 1000, 3000, 5000].map(g => (
                     <button
+                      key={g}
                       type="button"
-                      onClick={() => setCalcModalUnit('kg')}
-                      className={`px-2 py-1 text-xs font-bold rounded-lg transition-all ${
-                        calcModalUnit === 'kg'
-                          ? 'bg-amber-500 text-slate-950 font-black'
-                          : 'text-slate-400 hover:text-white'
+                      onClick={() => setCalcModalWeightGrams(g)}
+                      className={`px-2 py-0.5 rounded font-mono font-semibold transition-all shrink-0 ${
+                        calcModalWeightGrams === g
+                          ? 'bg-amber-500 text-slate-950 font-bold'
+                          : 'bg-slate-750 text-slate-300 hover:text-white hover:bg-slate-700'
                       }`}
                     >
-                      kg
+                      {g >= 1000 ? `${g}g (${g / 1000}kg)` : `${g}g`}
                     </button>
-                    <button
-                      type="button"
-                      onClick={() => setCalcModalUnit('g')}
-                      className={`px-2 py-1 text-xs font-bold rounded-lg transition-all ${
-                        calcModalUnit === 'g'
-                          ? 'bg-amber-500 text-slate-950 font-black'
-                          : 'text-slate-400 hover:text-white'
-                      }`}
-                    >
-                      g
-                    </button>
-                  </div>
+                  ))}
                 </div>
               </div>
 
