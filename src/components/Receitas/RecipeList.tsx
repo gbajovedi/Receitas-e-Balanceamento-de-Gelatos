@@ -17,14 +17,14 @@ import {
   Wine,
   Cherry,
   Citrus,
-  ShieldCheck,
+  Apple,
   IceCream
 } from 'lucide-react';
 import { db } from '../../db/database';
 import { RecipeViewerModal } from './RecipeViewerModal';
 
-// Custom SVG icon for chocolate bars (crisp 4-tablet embossed chocolate bar)
-const ChocolateIcon: React.FC<{ className?: string }> = ({ className = 'w-3.5 h-3.5' }) => (
+// Custom SVG icon for chocolate bars: 6 distinct embossed tablets, bold, clean lines
+const ChocolateIcon: React.FC<{ className?: string }> = ({ className = 'w-4 h-4' }) => (
   <svg
     viewBox="0 0 24 24"
     fill="none"
@@ -34,13 +34,13 @@ const ChocolateIcon: React.FC<{ className?: string }> = ({ className = 'w-3.5 h-
     strokeLinejoin="round"
     className={className}
   >
-    <rect x="3" y="4" width="18" height="16" rx="2" />
-    <line x1="3" y1="12" x2="21" y2="12" />
-    <line x1="12" y1="4" x2="12" y2="20" />
-    <rect x="5.5" y="6.5" width="4" height="3" rx="0.5" fill="currentColor" fillOpacity="0.35" />
-    <rect x="14.5" y="6.5" width="4" height="3" rx="0.5" fill="currentColor" fillOpacity="0.35" />
-    <rect x="5.5" y="14.5" width="4" height="3" rx="0.5" fill="currentColor" fillOpacity="0.35" />
-    <rect x="14.5" y="14.5" width="4" height="3" rx="0.5" fill="currentColor" fillOpacity="0.35" />
+    {/* Outer chocolate bar outline with soft chocolate tint */}
+    <rect x="4" y="2.5" width="16" height="19" rx="2.5" fill="currentColor" fillOpacity="0.2" />
+    {/* Center vertical groove */}
+    <line x1="12" y1="2.5" x2="12" y2="21.5" />
+    {/* Horizontal tablet divider grooves */}
+    <line x1="4" y1="8.8" x2="20" y2="8.8" />
+    <line x1="4" y1="15.2" x2="20" y2="15.2" />
   </svg>
 );
 
@@ -230,12 +230,12 @@ export const RecipeList: React.FC<RecipeListProps> = ({
       };
     }
 
-    // 4. Chocolate base água -> ChocolateIcon (Barra de chocolate artesanal)
+    // 4. Chocolate base água -> ChocolateIcon (Barra de chocolate artesanal nítida)
     if (cat.includes('chocolate') || cat.includes('cacau')) {
       return {
         gradient: 'from-amber-700 via-yellow-700 to-amber-900',
-        badge: 'bg-amber-950/60 text-amber-200 border-amber-600/40',
-        icon: <ChocolateIcon className="w-3.5 h-3.5 text-amber-300 shrink-0" />
+        badge: 'bg-amber-950/70 text-amber-200 border-amber-600/50',
+        icon: <ChocolateIcon className="w-4 h-4 text-amber-300 shrink-0" />
       };
     }
 
@@ -266,12 +266,12 @@ export const RecipeList: React.FC<RecipeListProps> = ({
       };
     }
 
-    // 8. Zero Açúcar / Diet -> ShieldCheck (Selo de segurança diet)
+    // 8. Zero Açúcar / Baixas Calorias -> Apple (Símbolo universal de nutrição e baixas calorias)
     if (cat.includes('zero')) {
       return {
         gradient: 'from-teal-400 via-cyan-400 to-blue-400',
         badge: 'bg-teal-500/15 text-teal-300 border-teal-500/40',
-        icon: <ShieldCheck className="w-3.5 h-3.5 text-teal-400 shrink-0" />
+        icon: <Apple className="w-3.5 h-3.5 text-teal-400 shrink-0" />
       };
     }
 
