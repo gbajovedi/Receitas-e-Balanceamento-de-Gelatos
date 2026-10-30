@@ -3,6 +3,9 @@ export interface Ingredient {
   name: string;
   category: string;
   costKg: number;
+  packagePrice?: number;
+  packageWeight?: number;
+  packageUnit?: 'kg' | 'g';
   sugars: number;      // 0 to 1
   fat: number;         // 0 to 1
   msnf: number;        // SNGL (0 to 1)
@@ -133,4 +136,3 @@ export interface PricingSettings {
   cardFeePercent: number;
   salesTaxPercent?: number;
 }
-
