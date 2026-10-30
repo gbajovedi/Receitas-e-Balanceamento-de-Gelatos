@@ -5,7 +5,9 @@ import {
   VariegatoItem,
   BatchAnalysis,
   NutrientValidation,
-  PricingSettings
+  PricingSettings,
+  SandinessRisk,
+  CorvittoMetrics
 } from '../types/gelato';
 
 export const DEFAULT_PRICING: PricingSettings = {
@@ -125,6 +127,66 @@ export function calculateBatchAnalysis(
     servingTemperature = Math.max(-18.0, Math.min(-8.0, calculatedTemp));
   }
 
+  // 1. Risco de Arenosidade Dinâmico (Fórmula de Caviezel)
+  // SLNG máximo seguro para o volume de água disponível: SLNG_máx = pctWater / 6
+  const maxSafeMsnf = pctWater > 0 ? (pctWater / 6) : 0.105;
+  const isSandinessAtRisk = pctMsnf > 0.02 && (pctMsnf > (maxSafeMsnf + 0.002));
+  const sandinessRisk: SandinessRisk = {
+    maxSafeMsnf,
+    currentMsnf: pctMsnf,
+    isAtRisk: isSandinessAtRisk,
+    excessPct: Math.max(0, pctMsnf - maxSafeMsnf)
+  };
+
+  // 2. Diagnóstico Corvitto de PAC na Água Livre (PAC en agua libre)
+  // PAC por kg de água pura = relPac / pctWater
+  const pacWater = pctWater > 0.1 ? Math.round(relPac / pctWater) : Math.round(relPac);
+
+  let vitrineStatus: 'firme' | 'ideal' | 'macio' = 'ideal';
+  let vitrineLabel = 'Ideal p/ Vitrine (-12°C)';
+  if (pacWater < 380) {
+    vitrineStatus = 'firme';
+    vitrineLabel = 'Firme na Vitrine (-12°C)';
+  } else if (pacWater > 425) {
+    vitrineStatus = 'macio';
+    vitrineLabel = 'Macia / Fusão Rápida';
+  }
+
+  let freezerStatus: 'duro' | 'firme' | 'colher' | 'muito_macio' = 'firme';
+  let freezerLabel = 'Firme (-18°C) — aguardar ~10min';
+  let freezerAdvice = 'Para consumo em casa (-18°C), retire do freezer 10 a 15 minutos antes de servir.';
+  const idealFreezerPacWater = 460;
+  const targetRelPacForFreezer = Math.round(idealFreezerPacWater * pctWater);
+  const neededPacForFreezer = Math.max(0, targetRelPacForFreezer - Math.round(relPac));
+
+  if (pacWater < 420) {
+    freezerStatus = 'duro';
+    freezerLabel = 'Rígido (-18°C) — aguardar 15min';
+    freezerAdvice = `Para ponto de colher imediato no freezer doméstico (-18°C), eleve +${neededPacForFreezer} de PAC (ex: substitua ~${Math.round(neededPacForFreezer * 0.55)}g de sacarose por dextrose).`;
+  } else if (pacWater >= 420 && pacWater < 450) {
+    freezerStatus = 'firme';
+    freezerLabel = 'Firme (-18°C) — aguardar ~10min';
+    freezerAdvice = `Fórmula de vitrine padrão. Para ponto de colher imediato no freezer (-18°C), adicione +${neededPacForFreezer} de PAC.`;
+  } else if (pacWater >= 450 && pacWater <= 490) {
+    freezerStatus = 'colher';
+    freezerLabel = 'Ponto de Colher Direto (-18°C)';
+    freezerAdvice = 'Calda perfeitamente equilibrada para consumo doméstico imediato direto do freezer!';
+  } else {
+    freezerStatus = 'muito_macio';
+    freezerLabel = 'Muito Macio (-18°C)';
+    freezerAdvice = 'PAC na água muito elevado para freezer doméstico; risco de derretimento acelerado.';
+  }
+
+  const corvittoMetrics: CorvittoMetrics = {
+    pacWater,
+    vitrineStatus,
+    vitrineLabel,
+    freezerStatus,
+    freezerLabel,
+    freezerAdvice,
+    neededPacForFreezer
+  };
+
   // Allergens Label
   let allergensLabel = "";
   if (allergenItems.length > 0) {
@@ -198,6 +260,8 @@ export function calculateBatchAnalysis(
     validations,
     isBalanced,
     servingTemperature: Math.round(servingTemperature * 10) / 10,
+    sandinessRisk,
+    corvittoMetrics,
     allergensLabel,
     costing: {
       caldaCostKg: Math.round(caldaCostKg * 100) / 100,

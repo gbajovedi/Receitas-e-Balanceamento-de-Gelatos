@@ -81,6 +81,23 @@ export interface NutrientValidation {
   status: 'Ok' | 'Baixo' | 'Alto';
 }
 
+export interface SandinessRisk {
+  maxSafeMsnf: number;
+  currentMsnf: number;
+  isAtRisk: boolean;
+  excessPct: number;
+}
+
+export interface CorvittoMetrics {
+  pacWater: number;
+  vitrineStatus: 'firme' | 'ideal' | 'macio';
+  vitrineLabel: string;
+  freezerStatus: 'duro' | 'firme' | 'colher' | 'muito_macio';
+  freezerLabel: string;
+  freezerAdvice: string;
+  neededPacForFreezer: number;
+}
+
 export interface BatchAnalysis {
   caldaWeight: number;
   batchScaleRatio: number;
@@ -120,6 +137,8 @@ export interface BatchAnalysis {
   };
   isBalanced: boolean;
   servingTemperature: number;
+  sandinessRisk?: SandinessRisk;
+  corvittoMetrics?: CorvittoMetrics;
   allergensLabel: string;
   costing: {
     caldaCostKg: number;
