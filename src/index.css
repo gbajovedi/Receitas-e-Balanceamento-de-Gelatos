@@ -441,23 +441,115 @@ html.light ::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
 }
 
-/* Print Styles for Kitchen Production Sheet */
+/* ==========================================================================
+   Estilos de Impressão (Ficha de Produção da Cozinha - A4 Única Página)
+   ========================================================================== */
 @media print {
-  header, nav, button, .no-print {
+  @page {
+    margin: 10mm 12mm;
+    size: A4 portrait;
+  }
+
+  /* 1. Ocultar todos os elementos que não fazem parte da impressão */
+  header,
+  nav,
+  .no-print,
+  button:not(.print-keep) {
     display: none !important;
   }
-  body {
-    background: white !important;
-    color: black !important;
+
+  /* 2. Resetar corpo e containers para evitar repetição de páginas */
+  html,
+  body,
+  #root,
+  .min-h-screen {
+    background: #ffffff !important;
+    color: #000000 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    height: auto !important;
+    min-height: auto !important;
+    overflow: visible !important;
   }
-  .bg-slate-800, .bg-slate-900, .bg-slate-800\/90 {
-    background: white !important;
-    color: black !important;
+
+  /* 3. Desfazer posição fixa (fixed inset-0) do modal para não repetir em múltiplas páginas */
+  .print-modal-overlay {
+    position: static !important;
+    inset: auto !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    display: block !important;
+  }
+
+  /* 4. Cartão da Ficha de Produção limpo e profissional para papel A4 */
+  .print-recipe-card {
+    position: static !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    box-shadow: none !important;
+    border: 1.5px solid #000000 !important;
+    border-radius: 8px !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .print-recipe-body {
+    overflow: visible !important;
+    max-height: none !important;
+    height: auto !important;
+    padding: 12px 16px !important;
+  }
+
+  /* 5. Forçar texto preto e bordas nítidas para tinta */
+  .print-recipe-card * {
+    color: #000000 !important;
+    border-color: #cbd5e1 !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  .print-recipe-card h2 {
+    font-size: 18pt !important;
+    font-weight: 900 !important;
+    color: #000000 !important;
+  }
+
+  /* Caixinhas para checagem com caneta pelo operador na cozinha */
+  .print-recipe-card .print-checkbox,
+  .print-recipe-card [class*="rounded-lg"][class*="flex items-center justify-center"] {
+    border: 1.5px solid #000000 !important;
+    background: #ffffff !important;
+    width: 18px !important;
+    height: 18px !important;
+    border-radius: 3px !important;
+  }
+
+  .bg-slate-800,
+  .bg-slate-850,
+  .bg-slate-900,
+  .bg-slate-800\/90,
+  .bg-slate-800\/70 {
+    background: #ffffff !important;
+    color: #000000 !important;
     border-color: #cbd5e1 !important;
   }
-  input, select {
+
+  input,
+  select {
     border: none !important;
     background: transparent !important;
-    color: black !important;
+    color: #000000 !important;
   }
 }

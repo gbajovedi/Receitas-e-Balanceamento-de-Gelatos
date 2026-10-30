@@ -8,7 +8,6 @@ import {
   CheckCircle2,
   Circle,
   RotateCcw,
-  Sparkles,
   Layers,
   ChefHat
 } from 'lucide-react';
@@ -61,9 +60,9 @@ export const RecipeViewerModal: React.FC<RecipeViewerModalProps> = ({
   const presets = [1000, 2000, 2500, 3000, 4000, 5000];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md animate-fade-in p-0 sm:p-4">
+    <div className="print-modal-overlay fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md animate-fade-in p-0 sm:p-4">
       {/* Full screen on mobile (w-full h-full), elegant rounded modal on desktop */}
-      <div className="bg-slate-900 border border-slate-700/80 w-full h-full sm:h-auto sm:max-h-[92vh] sm:max-w-2xl sm:rounded-3xl shadow-2xl flex flex-col overflow-hidden">
+      <div className="print-recipe-card bg-slate-900 border border-slate-700/80 w-full h-full sm:h-auto sm:max-h-[92vh] sm:max-w-2xl sm:rounded-3xl shadow-2xl flex flex-col overflow-hidden">
         {/* Sticky Header */}
         <div className="p-4 sm:p-5 bg-slate-850 border-b border-slate-700/80 flex items-start justify-between gap-3 shrink-0">
           <div className="space-y-1 min-w-0 pr-2">
@@ -80,7 +79,7 @@ export const RecipeViewerModal: React.FC<RecipeViewerModalProps> = ({
             <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight truncate">
               {recipe.name}
             </h2>
-            <p className="text-xs text-slate-400">
+            <p className="no-print text-xs text-slate-400">
               Modo somente leitura para pesagem e produção. Ajuste a batelada abaixo.
             </p>
           </div>
@@ -88,7 +87,7 @@ export const RecipeViewerModal: React.FC<RecipeViewerModalProps> = ({
           <button
             type="button"
             onClick={onClose}
-            className="p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-xl transition-colors shrink-0"
+            className="no-print p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-xl transition-colors shrink-0"
             title="Fechar Visualizador"
           >
             <X className="w-6 h-6" />
@@ -96,7 +95,7 @@ export const RecipeViewerModal: React.FC<RecipeViewerModalProps> = ({
         </div>
 
         {/* Scrollable Content Body */}
-        <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-5">
+        <div className="print-recipe-body flex-1 overflow-y-auto p-4 sm:p-6 space-y-5">
           {/* Batch Scaling Control Bar */}
           <div className="bg-slate-800/90 p-4 rounded-2xl border border-slate-700 space-y-3 shadow-md">
             <div className="flex items-center justify-between gap-2">
@@ -118,7 +117,7 @@ export const RecipeViewerModal: React.FC<RecipeViewerModalProps> = ({
             </div>
 
             {/* Quick scale preset buttons */}
-            <div className="flex items-center gap-1.5 overflow-x-auto pb-0.5">
+            <div className="no-print flex items-center gap-1.5 overflow-x-auto pb-0.5">
               <span className="text-[11px] text-slate-400 font-semibold uppercase pr-1 shrink-0">
                 Atalhos:
               </span>
@@ -150,7 +149,7 @@ export const RecipeViewerModal: React.FC<RecipeViewerModalProps> = ({
               <button
                 type="button"
                 onClick={handleResetChecklist}
-                className="text-xs text-slate-400 hover:text-white flex items-center gap-1 transition-colors"
+                className="no-print text-xs text-slate-400 hover:text-white flex items-center gap-1 transition-colors"
                 title="Desmarcar todos"
               >
                 <RotateCcw className="w-3.5 h-3.5" />
@@ -176,8 +175,7 @@ export const RecipeViewerModal: React.FC<RecipeViewerModalProps> = ({
                       }`}
                     >
                       <div className="flex items-center gap-3 min-w-0 flex-1">
-                        <button
-                          type="button"
+                        <div
                           className={`w-6 h-6 rounded-lg flex items-center justify-center shrink-0 transition-all ${
                             isChecked
                               ? 'text-emerald-400 bg-emerald-500/20 border border-emerald-500/40'
@@ -189,7 +187,7 @@ export const RecipeViewerModal: React.FC<RecipeViewerModalProps> = ({
                           ) : (
                             <Circle className="w-4 h-4" />
                           )}
-                        </button>
+                        </div>
 
                         <div className="min-w-0">
                           <span
@@ -269,7 +267,7 @@ export const RecipeViewerModal: React.FC<RecipeViewerModalProps> = ({
             </strong>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="no-print flex items-center gap-2">
             <button
               type="button"
               onClick={() => window.print()}
@@ -296,4 +294,3 @@ export const RecipeViewerModal: React.FC<RecipeViewerModalProps> = ({
     </div>
   );
 };
-
