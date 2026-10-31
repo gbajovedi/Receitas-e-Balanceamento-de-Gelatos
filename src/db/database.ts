@@ -513,8 +513,19 @@ export class GelatoDatabase extends Dexie {
             }
           }
         }
+        // Atualizar polióis (alocar como Outros Sólidos e zerar açúcares simples)
+        const polyolIds = ['ing_64', 'ing_113', 'ing_168', 'ing_198', 'ing_199'];
+        for (const id of polyolIds) {
+          const ing = await tx.table('ingredients').get(id);
+          if (ing && !ing.isCustom) {
+            await tx.table('ingredients').update(id, {
+              sugars: 0,
+              otherSolids: id === 'ing_199' ? 0.98 : 1
+            });
+          }
+        }
       } catch (e) {
-        console.warn('Migration to v12 chocolate naming:', e);
+        console.warn('Migration to v12 chocolate naming & polyols:', e);
       }
     });
   }
@@ -564,10 +575,10 @@ export class GelatoDatabase extends Dexie {
           await this.ingredients.bulkPut(newCatalogIngs);
         }
 
-        // Sincronizar refinamentos técnicos de POD/PAC/SLNG em itens do catálogo preservando custo customizado
+        // Sincronizar refinamentos técnicos de POD/PAC/SLNG/Açúcares em itens do catálogo preservando custo customizado
         const paramSyncSetting = await this.settings.get('ingredient_technical_params_version');
-        if (!paramSyncSetting || paramSyncSetting.value < 2) {
-          console.log('Atualizando refinamentos técnicos de POD/PAC/SLNG em insumos do catálogo...');
+        if (!paramSyncSetting || paramSyncSetting.value < 3) {
+          console.log('Atualizando refinamentos técnicos de POD/PAC/SLNG/Açúcares em insumos do catálogo...');
           const catalogMap = new Map((initialIngredients as Ingredient[]).map(i => [i.id, i]));
           const currentIngs = await this.ingredients.toArray();
           for (const ing of currentIngs) {
@@ -576,19 +587,21 @@ export class GelatoDatabase extends Dexie {
               if (
                 ing.pac !== catItem.pac ||
                 ing.pod !== catItem.pod ||
+                ing.sugars !== catItem.sugars ||
                 ing.msnf !== catItem.msnf ||
                 ing.otherSolids !== catItem.otherSolids
               ) {
                 await this.ingredients.update(ing.id, {
                   pac: catItem.pac,
                   pod: catItem.pod,
+                  sugars: catItem.sugars,
                   msnf: catItem.msnf,
                   otherSolids: catItem.otherSolids
                 });
               }
             }
           }
-          await this.settings.put({ key: 'ingredient_technical_params_version', value: 2 });
+          await this.settings.put({ key: 'ingredient_technical_params_version', value: 3 });
         }
 
         // Sincronizar limpeza de nomes de marcas em bancos existentes
