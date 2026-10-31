@@ -216,7 +216,7 @@
       "msnf": 0.065,
       "otherSolids": 0.04,
       "totalSolids": 0.36,
-      "water": 0.58,
+      "water": 0.56,
       "pod": 115,
       "pac": 235,
       "protein": 0.08
@@ -328,7 +328,7 @@
     "max": {
       "sugars": 0.24,
       "fat": 0.01,
-      "msnf": 0.01,
+      "msnf": 0,
       "otherSolids": 0.06,
       "totalSolids": 0.32,
       "water": 0.78,
@@ -346,7 +346,7 @@
       "msnf": 0,
       "otherSolids": 0.1,
       "totalSolids": 0.24,
-      "water": 0.64,
+      "water": 0.62,
       "pod": 100,
       "pac": 300,
       "protein": 0
@@ -354,7 +354,7 @@
     "max": {
       "sugars": 0.12,
       "fat": 0.015,
-      "msnf": 0.01,
+      "msnf": 0,
       "otherSolids": 0.24,
       "totalSolids": 0.38,
       "water": 0.76,
