@@ -84,8 +84,8 @@
   {
     "id": "rec_3",
     "name": "Chocolate com Gostosuras (Direto ao Ponto)",
-    "category": "Gelatos de Chocolate com Leite",
-    "targetStyle": "Gelatos de Chocolate com Leite",
+    "category": "Gelatos de Leite com Chocolate",
+    "targetStyle": "Gelatos de Leite com Chocolate",
     "ingredients": [
       {
         "name": "Leite Integral",
@@ -465,8 +465,8 @@
   {
     "id": "rec_12",
     "name": "Chocolate Branco Assado com Missô (Direto ao Ponto)",
-    "category": "Gelatos de Chocolate com Leite",
-    "targetStyle": "Gelatos de Chocolate com Leite",
+    "category": "Gelatos de Leite com Chocolate",
+    "targetStyle": "Gelatos de Leite com Chocolate",
     "ingredients": [
       {
         "name": "Leite Integral",
@@ -686,8 +686,8 @@
   {
     "id": "rec_17",
     "name": "Intenso de Cacau (Direto ao Ponto)",
-    "category": "Gelatos de Chocolate com Leite",
-    "targetStyle": "Gelatos de Chocolate com Leite",
+    "category": "Gelatos de Leite com Chocolate",
+    "targetStyle": "Gelatos de Leite com Chocolate",
     "ingredients": [
       {
         "name": "Leite Integral",
@@ -727,8 +727,8 @@
   {
     "id": "rec_18",
     "name": "Chocolate 70% (Direto ao Ponto)",
-    "category": "Gelatos de Chocolate com Leite",
-    "targetStyle": "Gelatos de Chocolate com Leite",
+    "category": "Gelatos de Leite com Chocolate",
+    "targetStyle": "Gelatos de Leite com Chocolate",
     "ingredients": [
       {
         "name": "Leite Integral",
@@ -1133,8 +1133,8 @@
   {
     "id": "rec_28",
     "name": "Gelato de Chocolate Branco e Frutas Vermelhas (Addolcire)",
-    "category": "Gelatos de Chocolate com Leite",
-    "targetStyle": "Gelatos de Chocolate com Leite",
+    "category": "Gelatos de Leite com Chocolate",
+    "targetStyle": "Gelatos de Leite com Chocolate",
     "ingredients": [
       {
         "name": "Água",
@@ -1608,8 +1608,8 @@
   {
     "id": "rec_39",
     "name": "Gelato de Chocolate Amargo 60% (Addolcire)",
-    "category": "Gelatos de Chocolate com Leite",
-    "targetStyle": "Gelatos de Chocolate com Leite",
+    "category": "Gelatos de Leite com Chocolate",
+    "targetStyle": "Gelatos de Leite com Chocolate",
     "ingredients": [
       {
         "name": "Leite Integral",
@@ -1649,8 +1649,8 @@
   {
     "id": "rec_40",
     "name": "Gelato de Chocolate ao Leite (Addolcire)",
-    "category": "Gelatos de Chocolate com Leite",
-    "targetStyle": "Gelatos de Chocolate com Leite",
+    "category": "Gelatos de Leite com Chocolate",
+    "targetStyle": "Gelatos de Leite com Chocolate",
     "ingredients": [
       {
         "name": "Leite Integral",
@@ -1698,8 +1698,8 @@
   {
     "id": "rec_41",
     "name": "Gelato de Chocolate 70% com Amêndoa (Addolcire)",
-    "category": "Gelatos de Chocolate com Leite",
-    "targetStyle": "Gelatos de Chocolate com Leite",
+    "category": "Gelatos de Leite com Chocolate",
+    "targetStyle": "Gelatos de Leite com Chocolate",
     "ingredients": [
       {
         "name": "Leite Integral",
@@ -2444,8 +2444,8 @@
   {
     "id": "rec_59",
     "name": "Sorvete Soft de Chocolate (Addolcire)",
-    "category": "Gelatos de Chocolate com Leite",
-    "targetStyle": "Gelatos de Chocolate com Leite",
+    "category": "Gelatos de Leite com Chocolate",
+    "targetStyle": "Gelatos de Leite com Chocolate",
     "ingredients": [
       {
         "name": "Leite Integral",
@@ -3982,8 +3982,8 @@
   {
     "id": "rec_97",
     "name": "Sorbet de Chocolate 70% (Addolcire)",
-    "category": "Chocolate base água",
-    "targetStyle": "Chocolate base água",
+    "category": "Sorbets de Chocolate",
+    "targetStyle": "Sorbets de Chocolate",
     "ingredients": [
       {
         "name": "Água",
@@ -4015,8 +4015,8 @@
   {
     "id": "rec_98",
     "name": "Sorbet de Chocolate 40% (Addolcire)",
-    "category": "Chocolate base água",
-    "targetStyle": "Chocolate base água",
+    "category": "Sorbets de Chocolate",
+    "targetStyle": "Sorbets de Chocolate",
     "ingredients": [
       {
         "name": "Água",
@@ -4048,8 +4048,8 @@
   {
     "id": "rec_99",
     "name": "Gelato de Cacau Base Água (Direto ao Ponto)",
-    "category": "Chocolate base água",
-    "targetStyle": "Chocolate base água",
+    "category": "Sorbets de Chocolate",
+    "targetStyle": "Sorbets de Chocolate",
     "ingredients": [
       {
         "name": "Água",

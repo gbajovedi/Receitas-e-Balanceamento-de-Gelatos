@@ -124,9 +124,15 @@ export const SaveRecipeModal: React.FC<SaveRecipeModalProps> = ({
               className="w-full bg-slate-800 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white font-semibold focus:outline-none focus:border-amber-500"
             >
               <option value="Gelatos de Leite">Gelatos de Leite</option>
-              <option value="Sorbets">Sorbets</option>
+              <option value="Gelatos de Leite com Chocolate">Gelatos de Leite com Chocolate</option>
+              <option value="Gelatos de Oleaginosas">Gelatos de Oleaginosas</option>
               <option value="Gelatos de Leite com Fruta">Gelatos de Leite com Fruta</option>
-              <option value="Chocolate base água">Chocolate base água</option>
+              <option value="Sorbets">Sorbets (Geral)</option>
+              <option value="Sorbets Cítricos / Frutas Ácidas">Sorbets Cítricos / Frutas Ácidas</option>
+              <option value="Sorbets Polposos / Frutas Densas">Sorbets Polposos / Frutas Densas</option>
+              <option value="Sorbets de Chocolate">Sorbets de Chocolate</option>
+              <option value="Sorbets Alcoólicos">Sorbets Alcoólicos</option>
+              <option value="Sorbets Zero">Sorbets Zero</option>
               <option value="Vegano">Vegano</option>
               <option value="Alcoólicos">Alcoólicos</option>
               <option value="Zero">Zero</option>

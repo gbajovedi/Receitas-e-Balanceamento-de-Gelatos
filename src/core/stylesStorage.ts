@@ -10,12 +10,12 @@ export type StylePresetId = 'gold' | 'carpigiani' | 'custom';
 /**
  * Conjunto de estilos que possuem dados e referências na Carpigiani Gelato University
  * (Apostila Corso Intermedio 2025/2026: Slides 11, 47, 48, 50, 51, 60, 63 e 64).
- * Categorias como Chocolate base água, Vegano, Alcoólicos e Zero pertencem ao Corso Avanzato,
+ * Categorias como Sorbets de Chocolate, Vegano, Alcoólicos e Zero pertencem ao Corso Avanzato,
  * e Gelatos Proteicos à nutrição funcional, não tendo parâmetros no material intermediário da CGU.
  */
 export const STYLES_WITH_CARPIGIANI_DATA = new Set<string>([
   'Gelatos de Leite',
-  'Gelatos de Chocolate com Leite',
+  'Gelatos de Leite com Chocolate',
   'Gelatos de Oleaginosas',
   'Gelatos de Leite com Fruta',
   'Sorbets',

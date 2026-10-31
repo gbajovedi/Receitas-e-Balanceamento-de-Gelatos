@@ -103,8 +103,8 @@
       "protein": 0
     }
   },
-  "Chocolate base água": {
-    "name": "Chocolate base água",
+  "Sorbets de Chocolate": {
+    "name": "Sorbets de Chocolate",
     "pacDivisor": 22,
     "min": {
       "sugars": 0.2,
@@ -285,8 +285,8 @@
       "protein": 0
     }
   },
-  "Gelatos de Chocolate com Leite": {
-    "name": "Gelatos de Chocolate com Leite",
+  "Gelatos de Leite com Chocolate": {
+    "name": "Gelatos de Leite com Chocolate",
     "pacDivisor": 25,
     "min": {
       "sugars": 0.16,

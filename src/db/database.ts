@@ -417,7 +417,7 @@ export class GelatoDatabase extends Dexie {
       }
     });
 
-    // Versão 11: Reclassificação taxonômica de receitas e calibração físico-química de Whey Protein
+    // Versão 11: Reclassificação taxonômica de receitas e calibração físico-química de Whey Protein e Queijos
     this.version(11).stores({
       ingredients: 'id, name, category, costKg',
       recipes: 'id, name, category, targetStyle, isCustom',
@@ -426,6 +426,7 @@ export class GelatoDatabase extends Dexie {
     }).upgrade(async tx => {
       try {
         const milkChocIds = ['rec_3', 'rec_12', 'rec_17', 'rec_18', 'rec_28', 'rec_39', 'rec_40', 'rec_41', 'rec_59'];
+        const waterChocIds = ['rec_97', 'rec_98', 'rec_99'];
         const sorbetAlcIds = ['rec_110', 'rec_117', 'rec_118', 'rec_119'];
         const sorbetZeroIds = [
           'rec_131', 'rec_132', 'rec_133', 'rec_134', 'rec_135', 'rec_136', 'rec_137',
@@ -438,8 +439,13 @@ export class GelatoDatabase extends Dexie {
           if (!rec.isCustom) {
             if (milkChocIds.includes(rec.id)) {
               await tx.table('recipes').update(rec.id, {
-                category: 'Gelatos de Chocolate com Leite',
-                targetStyle: 'Gelatos de Chocolate com Leite'
+                category: 'Gelatos de Leite com Chocolate',
+                targetStyle: 'Gelatos de Leite com Chocolate'
+              });
+            } else if (waterChocIds.includes(rec.id)) {
+              await tx.table('recipes').update(rec.id, {
+                category: 'Sorbets de Chocolate',
+                targetStyle: 'Sorbets de Chocolate'
               });
             } else if (sorbetAlcIds.includes(rec.id)) {
               await tx.table('recipes').update(rec.id, {
@@ -478,6 +484,37 @@ export class GelatoDatabase extends Dexie {
         }
       } catch (e) {
         console.warn('Migration to v11 styles reclassification:', e);
+      }
+    });
+
+    // Versão 12: Nomenclatura refinada para chocolates (Sorbets de Chocolate e Gelatos de Leite com Chocolate)
+    this.version(12).stores({
+      ingredients: 'id, name, category, costKg',
+      recipes: 'id, name, category, targetStyle, isCustom',
+      preparations: 'id, name, category, isCustom',
+      settings: 'key'
+    }).upgrade(async tx => {
+      try {
+        const milkChocIds = ['rec_3', 'rec_12', 'rec_17', 'rec_18', 'rec_28', 'rec_39', 'rec_40', 'rec_41', 'rec_59'];
+        const waterChocIds = ['rec_97', 'rec_98', 'rec_99'];
+        const recs = await tx.table('recipes').toArray();
+        for (const rec of recs) {
+          if (!rec.isCustom) {
+            if (milkChocIds.includes(rec.id) || rec.category === 'Gelatos de Chocolate com Leite') {
+              await tx.table('recipes').update(rec.id, {
+                category: 'Gelatos de Leite com Chocolate',
+                targetStyle: 'Gelatos de Leite com Chocolate'
+              });
+            } else if (waterChocIds.includes(rec.id) || rec.category === 'Chocolate base água') {
+              await tx.table('recipes').update(rec.id, {
+                category: 'Sorbets de Chocolate',
+                targetStyle: 'Sorbets de Chocolate'
+              });
+            }
+          }
+        }
+      } catch (e) {
+        console.warn('Migration to v12 chocolate naming:', e);
       }
     });
   }
