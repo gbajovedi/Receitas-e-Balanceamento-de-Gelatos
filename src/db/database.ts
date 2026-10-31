@@ -462,6 +462,20 @@ export class GelatoDatabase extends Dexie {
             otherSolids: 0.8667
           });
         }
+
+        // Atualizar queijos maturados: caseína em Outros Sólidos e SLNG zerado (ausência de lactose)
+        const parmesao = await tx.table('ingredients').get('ing_135');
+        if (parmesao && !parmesao.isCustom) {
+          await tx.table('ingredients').update('ing_135', { msnf: 0, otherSolids: 0.38 });
+        }
+        const gorgonzola = await tx.table('ingredients').get('ing_174');
+        if (gorgonzola && !gorgonzola.isCustom) {
+          await tx.table('ingredients').update('ing_174', { msnf: 0, otherSolids: 0.23 });
+        }
+        const brie = await tx.table('ingredients').get('ing_175');
+        if (brie && !brie.isCustom) {
+          await tx.table('ingredients').update('ing_175', { msnf: 0, otherSolids: 0.2 });
+        }
       } catch (e) {
         console.warn('Migration to v11 styles reclassification:', e);
       }

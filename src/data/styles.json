@@ -5,7 +5,7 @@
     "min": {
       "sugars": 0.17,
       "fat": 0.06,
-      "msnf": 0.085,
+      "msnf": 0.07,
       "otherSolids": 0,
       "totalSolids": 0.35,
       "water": 0.59,
@@ -17,7 +17,7 @@
       "sugars": 0.21,
       "fat": 0.105,
       "msnf": 0.11,
-      "otherSolids": 0.04,
+      "otherSolids": 0.08,
       "totalSolids": 0.41,
       "water": 0.65,
       "pod": 185,
