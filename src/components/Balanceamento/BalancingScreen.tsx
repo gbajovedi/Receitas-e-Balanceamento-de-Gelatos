@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { Recipe, Ingredient, StyleStandard, VariegatoItem, RecipeItem } from '../../types/gelato';
 import { calculateBatchAnalysis } from '../../core/calculator';
 import { getStoredPricingParams, getPricingSettings, PRICING_UPDATED_EVENT, PricingParams } from '../../core/pricingStorage';
+import { STYLES_UPDATED_EVENT } from '../../core/stylesStorage';
 import { stylesDataMap, db } from '../../db/database';
 import { NutrientBars } from './NutrientBars';
 import { AllergensBadge } from './AllergensBadge';
@@ -9,6 +10,7 @@ import { PostProduction } from './PostProduction';
 import { SaveRecipeModal } from './SaveRecipeModal';
 import { RecipeSearchCombobox } from './RecipeSearchCombobox';
 import { ProfitSimulator } from './ProfitSimulator';
+import { StyleSettingsModal } from './StyleSettingsModal';
 import { CategoryBadge, getCategoryTheme } from '../../core/categoryThemes';
 import {
   Save,
@@ -25,7 +27,8 @@ import {
   X,
   ArrowDownWideNarrow,
   AlertTriangle,
-  PieChart
+  PieChart,
+  SlidersHorizontal
 } from 'lucide-react';
 
 const getIngredientCategoryPill = (category?: string) => {
@@ -82,6 +85,8 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
   const [variegatos, setVariegatos] = useState<VariegatoItem[]>([]);
   const [isDirty, setIsDirty] = useState<boolean>(false);
   const [isSaveModalOpen, setIsSaveModalOpen] = useState<boolean>(false);
+  const [isStyleModalOpen, setIsStyleModalOpen] = useState<boolean>(false);
+  const [stylesRevision, setStylesRevision] = useState<number>(0);
   const [batchScaleInput, setBatchScaleInput] = useState<string>('1000');
   const [lastActiveRecipeId, setLastActiveRecipeId] = useState<string>(initialRecipeId || (recipes[0]?.id ?? ''));
 
@@ -116,9 +121,22 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
     }
   }, [initialRecipeId, recipes]);
 
+  // Sincronização em tempo real com metas físico-químicas
+  useEffect(() => {
+    const handleStylesUpdate = () => {
+      setStylesRevision(prev => prev + 1);
+    };
+    window.addEventListener(STYLES_UPDATED_EVENT, handleStylesUpdate);
+    window.addEventListener('storage', handleStylesUpdate);
+    return () => {
+      window.removeEventListener(STYLES_UPDATED_EVENT, handleStylesUpdate);
+      window.removeEventListener('storage', handleStylesUpdate);
+    };
+  }, []);
+
   const currentStyle: StyleStandard = useMemo(() => {
     return stylesDataMap[targetStyleName] || stylesDataMap['Gelatos de Leite'];
-  }, [targetStyleName]);
+  }, [targetStyleName, stylesRevision]);
 
   // Sincronização em tempo real com os parâmetros da aba Precificação
   const [pricingParams, setPricingParams] = useState<PricingParams>(getStoredPricingParams);
@@ -391,6 +409,17 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
                   <ChevronDown className="w-3.5 h-3.5 text-slate-400 absolute right-0 pointer-events-none" />
                 </div>
               </div>
+
+              {/* Botão de Ajuste Manual de Metas Físico-Químicas */}
+              <button
+                type="button"
+                onClick={() => setIsStyleModalOpen(true)}
+                className="flex items-center gap-1.5 bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-amber-500/50 text-slate-300 hover:text-amber-300 rounded-xl px-3 py-2.5 text-xs font-bold transition-all shadow-inner shrink-0 group"
+                title="Ajustar metas físico-químicas e limites técnicos deste estilo"
+              >
+                <SlidersHorizontal className="w-3.5 h-3.5 text-amber-400 group-hover:rotate-45 transition-transform" />
+                <span className="hidden sm:inline">Ajustar Metas</span>
+              </button>
             </div>
           </div>
 
@@ -853,6 +882,16 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
         isExisting={selectedRecipeId !== 'new'}
         onUpdateExisting={handleUpdateExisting}
         onSaveAsNew={handleSaveAsNew}
+      />
+
+      {/* Modal de Ajuste de Metas Físico-Químicas */}
+      <StyleSettingsModal
+        isOpen={isStyleModalOpen}
+        onClose={() => setIsStyleModalOpen(false)}
+        initialStyleName={targetStyleName}
+        onStyleUpdated={() => {
+          setStylesRevision(prev => prev + 1);
+        }}
       />
     </div>
   );

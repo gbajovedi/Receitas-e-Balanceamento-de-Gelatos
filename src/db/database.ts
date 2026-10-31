@@ -872,5 +872,23 @@ export class GelatoDatabase extends Dexie {
   }
 }
 
+import { getStoredStyles } from '../core/stylesStorage';
+
 export const db = new GelatoDatabase();
-export const stylesDataMap: Record<string, StyleStandard> = initialStyles as Record<string, StyleStandard>;
+
+/**
+ * Proxy dinâmico para stylesDataMap que sempre reflete as metas customizadas salvas pelo usuário
+ */
+export const stylesDataMap: Record<string, StyleStandard> = new Proxy({} as Record<string, StyleStandard>, {
+  get: (_target, prop: string) => {
+    const map = getStoredStyles();
+    return map[prop];
+  },
+  ownKeys: () => {
+    return Reflect.ownKeys(getStoredStyles());
+  },
+  getOwnPropertyDescriptor: (_target, prop) => {
+    const map = getStoredStyles();
+    return Reflect.getOwnPropertyDescriptor(map, prop);
+  }
+});

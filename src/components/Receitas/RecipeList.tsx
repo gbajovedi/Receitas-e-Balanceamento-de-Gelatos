@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Recipe, Ingredient } from '../../types/gelato';
 import {
   Search,
@@ -11,11 +11,14 @@ import {
   Copy,
   ArrowUpDown,
   Layers,
-  AlertCircle
+  AlertCircle,
+  SlidersHorizontal
 } from 'lucide-react';
 import { db, stylesDataMap } from '../../db/database';
 import { calculateBatchAnalysis } from '../../core/calculator';
+import { STYLES_UPDATED_EVENT } from '../../core/stylesStorage';
 import { RecipeViewerModal } from './RecipeViewerModal';
+import { StyleSettingsModal } from '../Balanceamento/StyleSettingsModal';
 import { getCategoryTheme, CategoryBadge } from '../../core/categoryThemes';
 
 interface RecipeListProps {
@@ -35,6 +38,21 @@ export const RecipeList: React.FC<RecipeListProps> = ({
   const [selectedCategory, setSelectedCategory] = useState<string>('Todas');
   const [sortBy, setSortBy] = useState<'name-asc' | 'custom-first' | 'cost-asc' | 'pac-desc'>('name-asc');
   const [viewingRecipe, setViewingRecipe] = useState<Recipe | null>(null);
+  const [isStyleModalOpen, setIsStyleModalOpen] = useState(false);
+  const [stylesRevision, setStylesRevision] = useState(0);
+
+  // Reage imediatamente a alterações nas metas físico-químicas
+  useEffect(() => {
+    const handleStylesUpdate = () => {
+      setStylesRevision(prev => prev + 1);
+    };
+    window.addEventListener(STYLES_UPDATED_EVENT, handleStylesUpdate);
+    window.addEventListener('storage', handleStylesUpdate);
+    return () => {
+      window.removeEventListener(STYLES_UPDATED_EVENT, handleStylesUpdate);
+      window.removeEventListener('storage', handleStylesUpdate);
+    };
+  }, []);
 
   // Fast ingredient lookup map
   const ingredientsMap = useMemo(() => {
@@ -147,7 +165,7 @@ export const RecipeList: React.FC<RecipeListProps> = ({
     }
 
     return map;
-  }, [recipes, ingredientsMap]);
+  }, [recipes, ingredientsMap, stylesRevision]);
 
   const categories = useMemo(() => {
     const set = new Set<string>();
@@ -331,6 +349,16 @@ export const RecipeList: React.FC<RecipeListProps> = ({
                   <option value="cost-asc">Menor Custo/kg</option>
                   <option value="pac-desc">Maior PAC (Mais Macio)</option>
                 </select>
+
+                <button
+                  type="button"
+                  onClick={() => setIsStyleModalOpen(true)}
+                  className="px-2.5 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-amber-500/50 text-slate-300 hover:text-amber-300 text-xs font-bold transition-all shadow-inner flex items-center gap-1.5 shrink-0 group"
+                  title="Configurar metas físico-químicas e limites técnicos dos estilos"
+                >
+                  <SlidersHorizontal className="w-3.5 h-3.5 text-amber-400 group-hover:rotate-45 transition-transform" />
+                  <span className="hidden sm:inline">Metas Técnicas</span>
+                </button>
               </div>
             </div>
           </div>
@@ -511,6 +539,16 @@ export const RecipeList: React.FC<RecipeListProps> = ({
         isOpen={!!viewingRecipe}
         onClose={() => setViewingRecipe(null)}
         onOpenInCalculator={onSelectRecipe}
+      />
+
+      {/* Modal de Ajuste de Metas Físico-Químicas */}
+      <StyleSettingsModal
+        isOpen={isStyleModalOpen}
+        onClose={() => setIsStyleModalOpen(false)}
+        initialStyleName={selectedCategory !== 'Todas' ? selectedCategory : 'Gelatos de Leite'}
+        onStyleUpdated={() => {
+          setStylesRevision(prev => prev + 1);
+        }}
       />
     </>
   );
