@@ -37,7 +37,8 @@ import {
   PieChart,
   SlidersHorizontal,
   ShieldCheck,
-  GraduationCap
+  GraduationCap,
+  ArrowDown
 } from 'lucide-react';
 
 const getIngredientCategoryPill = (category?: string) => {
@@ -787,17 +788,22 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
           <AllergensBadge allergensLabel={analysis.allergensLabel} />
         </div>
 
-        {/* Right Column: Financial & Yield Summary (4 Cols) */}
+        {/* Right Column: Financial & Factory Cost Summary (4 Cols) */}
         <div className="lg:col-span-4 space-y-4">
           <div className="bg-slate-800/90 rounded-2xl border border-slate-700/80 p-5 shadow-xl space-y-4">
-            <div className="flex items-center gap-2 border-b border-slate-700 pb-3">
-              <DollarSign className="w-5 h-5 text-emerald-400" />
-              <h3 className="text-base font-bold text-white">Engenharia de Custos</h3>
+            <div className="flex items-center justify-between border-b border-slate-700/80 pb-3">
+              <div className="flex items-center gap-2">
+                <DollarSign className="w-5 h-5 text-emerald-400" />
+                <h3 className="text-base font-bold text-white">Engenharia de Custos</h3>
+              </div>
+              <span className="text-[11px] px-2.5 py-0.5 rounded-full font-bold bg-slate-900 text-slate-300 border border-slate-700 shadow-sm">
+                Fábrica / CMV
+              </span>
             </div>
 
             {/* KPI Cards with Punchy Numbers */}
             <div className="space-y-3">
-              <div className="bg-slate-900/90 p-4 rounded-xl border border-slate-700 flex items-center justify-between">
+              <div className="bg-slate-900/90 p-4 rounded-xl border border-slate-700 flex items-center justify-between shadow-inner">
                 <div>
                   <span className="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-0.5">
                     Custo Calda Base
@@ -805,7 +811,7 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
                   <span className="text-2xl font-black text-white font-mono">
                     R$ {analysis.costing.caldaCostKg.toFixed(2)}
                   </span>
-                  <span className="text-xs text-slate-400 block font-medium">por kg de calda</span>
+                  <span className="text-xs text-slate-400 block font-medium">/ kg de calda</span>
                 </div>
                 <div className="text-right">
                   <span className="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-0.5">
@@ -818,15 +824,15 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
               </div>
 
               {variegatos.length > 0 && (
-                <div className="bg-amber-500/15 p-4 rounded-xl border border-amber-500/40 flex items-center justify-between">
+                <div className="bg-amber-500/10 p-4 rounded-xl border border-amber-500/40 flex items-center justify-between shadow-inner">
                   <div>
                     <span className="text-xs font-bold uppercase tracking-wider text-amber-300 block mb-0.5">
-                      Custo Final c/ Mesclas
+                      Custo Final c/ Mescla
                     </span>
                     <span className="text-2xl font-black text-amber-200 font-mono">
                       R$ {analysis.costing.finalCostKg.toFixed(2)}
                     </span>
-                    <span className="text-xs text-amber-300/80 block font-medium">por kg produto final</span>
+                    <span className="text-xs text-amber-300/80 block font-medium">/ kg produto pronto</span>
                   </div>
                   <div className="text-right">
                     <span className="text-xs font-bold uppercase tracking-wider text-amber-300 block mb-0.5">
@@ -840,21 +846,21 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
               )}
 
               <div className="grid grid-cols-2 gap-2.5">
-                <div className="bg-slate-900/70 p-3.5 rounded-xl border border-slate-700">
-                  <span className="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-1">
-                    Bola (60g)
-                  </span>
-                  <span className="text-xl font-black text-white font-mono">
-                    R$ {analysis.costing.scoopCost60g.toFixed(2)}
-                  </span>
-                </div>
-
-                <div className="bg-slate-900/70 p-3.5 rounded-xl border border-slate-700">
+                <div className="bg-slate-900/80 p-3.5 rounded-xl border border-slate-700">
                   <span className="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-1">
                     Custo do Lote
                   </span>
                   <span className="text-xl font-black text-white font-mono">
                     R$ {analysis.costing.totalBatchCost.toFixed(2)}
+                  </span>
+                </div>
+
+                <div className="bg-slate-900/80 p-3.5 rounded-xl border border-slate-700">
+                  <span className="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-1">
+                    Bola (60g)
+                  </span>
+                  <span className="text-xl font-black text-white font-mono">
+                    R$ {analysis.costing.scoopCost60g.toFixed(2)}
                   </span>
                 </div>
               </div>
@@ -863,11 +869,11 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
               {categoryCostBreakdown.length > 0 && (
                 <div className="bg-slate-900/80 p-3.5 rounded-xl border border-slate-700/80 space-y-2">
                   <div className="flex items-center justify-between text-xs">
-                    <span className="font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+                    <span className="font-bold uppercase tracking-wider text-slate-300 flex items-center gap-1.5">
                       <PieChart className="w-3.5 h-3.5 text-amber-400" />
                       Decomposição do Custo
                     </span>
-                    <span className="text-slate-400 font-mono text-[11px]">
+                    <span className="text-slate-400 font-mono text-xs">
                       Base: R$ {analysis.totals.cost.toFixed(2)}
                     </span>
                   </div>
@@ -896,7 +902,7 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
                   </div>
 
                   {/* Micro-legend */}
-                  <div className="flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-slate-300 pt-0.5">
+                  <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-slate-300 pt-0.5">
                     {categoryCostBreakdown.slice(0, 4).map((cat, i) => {
                       const dotColors = [
                         'bg-sky-400',
@@ -919,19 +925,14 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
                 </div>
               )}
 
-              {/* Interactive Profit Margin & Price Simulator */}
-              <ProfitSimulator
-                finalCostKg={analysis.costing.finalCostKg}
-                batchWeightGrams={analysis.costing.finalWeightGrams || analysis.caldaWeight}
-                caldaWeightGrams={analysis.caldaWeight}
-                totalVariegatoGrams={analysis.costing.totalVariegatoGrams || 0}
-                densityAndVolume={analysis.densityAndVolume}
-                pricingParams={pricingParams}
-                pricingSettings={pricingSettings}
-                onMarginSaved={(newMargin) => {
-                  setPricingParams(prev => ({ ...prev, targetMargin: newMargin }));
-                }}
-              />
+              {/* Indicador de Precificação abaixo */}
+              <div className="p-3 bg-slate-900/60 rounded-xl border border-slate-800 text-xs text-slate-400 flex items-center justify-between">
+                <span>Precificação Comercial & Potes:</span>
+                <span className="text-emerald-400 font-bold flex items-center gap-1">
+                  <span>Disponível abaixo</span>
+                  <ArrowDown className="w-3.5 h-3.5" />
+                </span>
+              </div>
             </div>
 
             {/* Quick tips */}
@@ -947,6 +948,20 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
           </div>
         </div>
       </div>
+
+      {/* Módulo Executivo de Precificação Comercial & Rendimento com Overrun (Largura Total) */}
+      <ProfitSimulator
+        finalCostKg={analysis.costing.finalCostKg}
+        batchWeightGrams={analysis.costing.finalWeightGrams || analysis.caldaWeight}
+        caldaWeightGrams={analysis.caldaWeight}
+        totalVariegatoGrams={analysis.costing.totalVariegatoGrams || 0}
+        densityAndVolume={analysis.densityAndVolume}
+        pricingParams={pricingParams}
+        pricingSettings={pricingSettings}
+        onMarginSaved={(newMargin) => {
+          setPricingParams(prev => ({ ...prev, targetMargin: newMargin }));
+        }}
+      />
 
       {/* Datalist for fast ingredient autocompletion */}
       <datalist id="ingredients-datalist">
