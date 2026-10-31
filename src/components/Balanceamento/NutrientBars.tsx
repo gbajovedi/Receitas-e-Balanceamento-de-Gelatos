@@ -126,7 +126,7 @@ const NUTRIENT_METAS: Record<string, NutrientMeta> = {
 
 export const NutrientBars: React.FC<NutrientBarsProps> = ({ analysis }) => {
   const { validations, isBalanced, servingTemperature } = analysis;
-  const [thermalMode, setThermalMode] = useState<'vitrine' | 'freezer' | 'emulsion'>('vitrine');
+  const [thermalMode, setThermalMode] = useState<'vitrine' | 'freezer'>('vitrine');
   const corvitto = analysis.corvittoMetrics;
   const sandiness = analysis.sandinessRisk;
   const emulsion = analysis.emulsionMetrics;
@@ -404,8 +404,9 @@ export const NutrientBars: React.FC<NutrientBarsProps> = ({ analysis }) => {
             : 'bg-slate-800/95 border-amber-500/40'
         }`}
       >
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-          {/* Status Message */}
+        {/* Header Status & Smart Dashboard Cards */}
+        <div className="space-y-4">
+          {/* Balance Status Banner */}
           <div className="flex items-start sm:items-center gap-4">
             <div
               className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 shadow-lg ${
@@ -444,132 +445,182 @@ export const NutrientBars: React.FC<NutrientBarsProps> = ({ analysis }) => {
             </div>
           </div>
 
-          {/* Dual Thermal Showcase / Corvitto Freezer Dashboard */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 bg-slate-900/95 p-2 rounded-2xl border border-slate-700/80 shadow-md">
-            {/* Toggle Switch: Vitrine / Freezer / Emulsão */}
-            <div className="flex bg-slate-950/90 p-1 rounded-xl border border-slate-800 self-start sm:self-center">
-              <button
-                type="button"
-                onClick={() => setThermalMode('vitrine')}
-                className={`px-2.5 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
-                  thermalMode === 'vitrine'
-                    ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 shadow-sm'
-                    : 'text-slate-400 hover:text-slate-200'
-                }`}
-                title="Ponto de espatulabilidade para vitrine comercial ventilada (-11°C a -13°C)"
-              >
-                <Store className="w-3.5 h-3.5" />
-                <span>Vitrine (-12°C)</span>
-              </button>
-              <button
-                type="button"
-                onClick={() => setThermalMode('freezer')}
-                className={`px-2.5 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
-                  thermalMode === 'freezer'
-                    ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40 shadow-sm'
-                    : 'text-slate-400 hover:text-slate-200'
-                }`}
-                title="Diagnóstico Angelo Corvitto para potes de delivery / freezer doméstico (-18°C)"
-              >
-                <Package className="w-3.5 h-3.5" />
-                <span>Pote Freezer (-18°C)</span>
-              </button>
-              <button
-                type="button"
-                onClick={() => setThermalMode('emulsion')}
-                className={`px-2.5 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
-                  thermalMode === 'emulsion'
-                    ? 'bg-purple-500/20 text-purple-300 border border-purple-500/40 shadow-sm'
-                    : 'text-slate-400 hover:text-slate-200'
-                }`}
-                title="Razão Gordura:SLNG e Overrun Estimado (Padrão Carpigiani)"
-              >
-                <Wind className="w-3.5 h-3.5" />
-                <span>Emulsão & Ar</span>
-              </button>
+          {/* Dual Intelligence Cards: 1. Comportamento Térmico  |  2. Overrun & Emulsão (Sempre Visível) */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 pt-1">
+            
+            {/* CARD 1: Comportamento Térmico de Serviço */}
+            <div className="bg-slate-900/95 p-3.5 rounded-2xl border border-slate-700/80 shadow-md flex flex-col justify-between space-y-3">
+              {/* Header do Card com Toggle Switch */}
+              <div className="flex items-center justify-between gap-2 flex-wrap">
+                <span className="text-[10px] uppercase font-bold tracking-wider text-slate-400">
+                  Cenário Térmico de Serviço
+                </span>
+
+                <div className="flex bg-slate-950/90 p-1 rounded-xl border border-slate-800">
+                  <button
+                    type="button"
+                    onClick={() => setThermalMode('vitrine')}
+                    className={`px-2.5 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
+                      thermalMode === 'vitrine'
+                        ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 shadow-sm'
+                        : 'text-slate-400 hover:text-slate-200'
+                    }`}
+                    title="Ponto de espatulabilidade para vitrine comercial ventilada (-11°C a -13°C)"
+                  >
+                    <Store className="w-3.5 h-3.5" />
+                    <span>Vitrine (-12°C)</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setThermalMode('freezer')}
+                    className={`px-2.5 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
+                      thermalMode === 'freezer'
+                        ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40 shadow-sm'
+                        : 'text-slate-400 hover:text-slate-200'
+                    }`}
+                    title="Diagnóstico Angelo Corvitto para potes de delivery / freezer doméstico (-18°C)"
+                  >
+                    <Package className="w-3.5 h-3.5" />
+                    <span>Pote Freezer (-18°C)</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* Corpo de Métricas Térmicas */}
+              {thermalMode === 'vitrine' ? (
+                <div className="flex items-center gap-3 py-0.5">
+                  <div className="w-10 h-10 rounded-xl bg-cyan-500/15 border border-cyan-500/30 flex items-center justify-center shrink-0">
+                    <ThermometerSnowflake className="w-5 h-5 text-cyan-400" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span className="text-[10px] uppercase font-bold tracking-wider text-slate-400">
+                        Temp. Serviço
+                      </span>
+                      <span className={`text-[10px] px-2 py-0.5 rounded-full border font-bold ${textureVerdict.badgeColor}`}>
+                        {textureVerdict.title}
+                      </span>
+                    </div>
+                    <div className="flex items-baseline gap-2 mt-0.5">
+                      <span className="text-xl sm:text-2xl font-black font-mono text-cyan-300">
+                        {servingTemperature} °C
+                      </span>
+                      <span className="text-xs text-slate-400 font-mono">
+                        (PAC: {Math.round(pacValue)})
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <div className="flex items-center gap-3 py-0.5">
+                  <div className="w-10 h-10 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center shrink-0">
+                    <Snowflake className="w-5 h-5 text-amber-400" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span className="text-[10px] uppercase font-bold tracking-wider text-slate-400">
+                        PAC Água Livre (Corvitto)
+                      </span>
+                      <span className={`text-[10px] px-2 py-0.5 rounded-full border font-bold ${freezerVerdictBadge}`}>
+                        {corvitto?.freezerLabel}
+                      </span>
+                    </div>
+                    <div className="flex items-baseline gap-2 mt-0.5">
+                      <span className="text-xl sm:text-2xl font-black font-mono text-amber-300">
+                        {corvitto?.pacWater}
+                      </span>
+                      <span className="text-xs text-slate-400">
+                        {corvitto?.neededPacForFreezer && corvitto.neededPacForFreezer > 0
+                          ? `(+${corvitto.neededPacForFreezer} PAC p/ ponto de colher)`
+                          : `(ponto de colher imediato)`}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
 
-            {/* Display Body */}
-            {thermalMode === 'vitrine' ? (
-              <div className="flex items-center gap-3 px-2 py-1">
-                <div className="w-9 h-9 rounded-xl bg-cyan-500/15 border border-cyan-500/30 flex items-center justify-center shrink-0">
-                  <ThermometerSnowflake className="w-4 h-4 text-cyan-400" />
+            {/* CARD 2: Emulsão & Overrun (Aeração) — SEMPRE VISÍVEL E DESTACADO */}
+            <div className="bg-gradient-to-br from-slate-900 via-slate-900 to-purple-950/30 p-3.5 rounded-2xl border border-purple-500/30 shadow-md flex flex-col justify-between space-y-3">
+              {/* Header do Card de Overrun */}
+              <div className="flex items-center justify-between gap-2 flex-wrap">
+                <div className="flex items-center gap-1.5 text-purple-300">
+                  <Wind className="w-3.5 h-3.5 text-purple-400" />
+                  <span className="text-[10px] uppercase font-bold tracking-wider">
+                    Emulsão & Overrun (Carpigiani)
+                  </span>
                 </div>
-                <div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-[10px] uppercase font-bold tracking-wider text-slate-400">
-                      Temp. Vitrine
-                    </span>
-                    <span className={`text-[10px] px-2 py-0.2 rounded-full border font-bold ${textureVerdict.badgeColor}`}>
-                      {textureVerdict.title}
-                    </span>
+
+                <span
+                  className={`text-[10px] px-2 py-0.5 rounded-full border font-bold ${
+                    emulsion?.status === 'ideal'
+                      ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40'
+                      : emulsion?.status === 'gorduroso'
+                      ? 'bg-amber-500/20 text-amber-300 border-amber-500/40'
+                      : emulsion?.status === 'magro'
+                      ? 'bg-sky-500/20 text-sky-300 border-sky-500/40'
+                      : 'bg-purple-500/20 text-purple-300 border-purple-500/40'
+                  }`}
+                  title={emulsion?.advice}
+                >
+                  {emulsion?.statusLabel}
+                </span>
+              </div>
+
+              {/* Corpo com Overrun em Grande Destaque e Razão Lipídica */}
+              <div className="flex items-center justify-between gap-4 py-0.5">
+                {/* Bloco de Overrun */}
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-purple-500/15 border border-purple-500/30 flex items-center justify-center shrink-0">
+                    <Wind className="w-5 h-5 text-purple-400" />
                   </div>
-                  <div className="flex items-baseline gap-2 mt-0.5">
-                    <span className="text-lg sm:text-xl font-black font-mono text-cyan-300">
-                      {servingTemperature} °C
+                  <div>
+                    <span className="text-[10px] uppercase font-bold tracking-wider text-slate-400 block">
+                      Overrun Estimado
                     </span>
-                    <span className="text-[11px] text-slate-400">
-                      (PAC: {Math.round(pacValue)})
-                    </span>
+                    <div className="flex items-baseline gap-1.5 mt-0.5">
+                      <span className="text-xl sm:text-2xl font-black font-mono text-purple-200">
+                        ~{emulsion?.overrunEstimatePct}%
+                      </span>
+                      <span className="text-xs text-slate-400 font-mono">
+                        ({emulsion?.overrunRange})
+                      </span>
+                    </div>
                   </div>
+                </div>
+
+                {/* Bloco de Razão Lipídica */}
+                <div className="text-right shrink-0">
+                  <span className="text-[10px] uppercase font-bold tracking-wider text-slate-400 block">
+                    Gordura : SLNG
+                  </span>
+                  <span className="text-base sm:text-lg font-black font-mono text-slate-200 block mt-0.5">
+                    {emulsion?.status === 'sorbet' ? 'Sorbet' : `${emulsion?.fatMsnfRatio} : 1`}
+                  </span>
+                  <span className="text-[10px] text-slate-500 font-medium block">
+                    {emulsion?.status === 'sorbet' ? 'Base Água' : 'Alvo: 0.75 a 1.25'}
+                  </span>
                 </div>
               </div>
-            ) : thermalMode === 'freezer' ? (
-              <div className="flex items-center gap-3 px-2 py-1">
-                <div className="w-9 h-9 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center shrink-0">
-                  <Snowflake className="w-4 h-4 text-amber-400" />
+
+              {/* Mini-Gauge de Nível de Aeração */}
+              <div className="space-y-1">
+                <div className="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                  <div
+                    className="h-full bg-gradient-to-r from-sky-400 via-purple-400 to-emerald-400 rounded-full transition-all duration-500"
+                    style={{
+                      width: `${Math.min(100, Math.max(12, (((emulsion?.overrunEstimatePct || 30) - 15) / 30) * 100))}%`
+                    }}
+                  />
                 </div>
-                <div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-[10px] uppercase font-bold tracking-wider text-slate-400">
-                      PAC Água Livre (Corvitto)
-                    </span>
-                    <span className={`text-[10px] px-2 py-0.2 rounded-full border font-bold ${freezerVerdictBadge}`}>
-                      {corvitto?.freezerLabel}
-                    </span>
-                  </div>
-                  <div className="flex items-baseline gap-2 mt-0.5">
-                    <span className="text-lg sm:text-xl font-black font-mono text-amber-300">
-                      {corvitto?.pacWater}
-                    </span>
-                    <span className="text-[11px] text-slate-400">
-                      {corvitto?.neededPacForFreezer && corvitto.neededPacForFreezer > 0
-                        ? `(+${corvitto.neededPacForFreezer} PAC p/ ponto de colher)`
-                        : `(ponto ideal atingido)`}
-                    </span>
-                  </div>
+                <div className="flex items-center justify-between text-[9px] text-slate-500 font-mono">
+                  <span>Denso (18%)</span>
+                  <span>Clássico Italiano (~32%)</span>
+                  <span>Aerado (45%)</span>
                 </div>
               </div>
-            ) : (
-              <div className="flex items-center gap-3 px-2 py-1">
-                <div className="w-9 h-9 rounded-xl bg-purple-500/15 border border-purple-500/30 flex items-center justify-center shrink-0">
-                  <Wind className="w-4 h-4 text-purple-400" />
-                </div>
-                <div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-[10px] uppercase font-bold tracking-wider text-slate-400">
-                      Gordura : SLNG (Carpigiani)
-                    </span>
-                    <span className={`text-[10px] px-2 py-0.2 rounded-full border font-bold ${
-                      emulsion?.status === 'ideal' ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40' :
-                      emulsion?.status === 'gorduroso' ? 'bg-amber-500/20 text-amber-300 border-amber-500/40' :
-                      emulsion?.status === 'magro' ? 'bg-sky-500/20 text-sky-300 border-sky-500/40' :
-                      'bg-purple-500/20 text-purple-300 border-purple-500/40'
-                    }`}>
-                      {emulsion?.statusLabel}
-                    </span>
-                  </div>
-                  <div className="flex items-baseline gap-2 mt-0.5">
-                    <span className="text-lg sm:text-xl font-black font-mono text-purple-300">
-                      {emulsion?.status === 'sorbet' ? 'N/A' : `${emulsion?.fatMsnfRatio} : 1`}
-                    </span>
-                    <span className="text-[11px] text-slate-400">
-                      (Overrun est.: ~{emulsion?.overrunEstimatePct}%)
-                    </span>
-                  </div>
-                </div>
-              </div>
-            )}
+            </div>
+
           </div>
         </div>
 
