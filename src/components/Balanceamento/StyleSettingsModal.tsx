@@ -20,7 +20,8 @@ import {
   resetSingleStyleToGold,
   getActivePresetId,
   GOLD_STANDARD_STYLES,
-  StylePresetId
+  StylePresetId,
+  hasCarpigianiData
 } from '../../core/stylesStorage';
 import { getCategoryTheme } from '../../core/categoryThemes';
 
@@ -246,7 +247,7 @@ export const StyleSettingsModal: React.FC<StyleSettingsModalProps> = ({
                     🛡️ Padrão Ouro Ativo
                   </span>
                 )}
-                {presetId === 'carpigiani' && (
+                {presetId === 'carpigiani' && hasCarpigianiData(selectedStyleName) && (
                   <span className="text-[11px] px-2 py-0.5 rounded-full bg-sky-500/15 text-sky-300 border border-sky-500/30 font-semibold">
                     🎓 Carpigiani Estrito
                   </span>
@@ -307,19 +308,29 @@ export const StyleSettingsModal: React.FC<StyleSettingsModalProps> = ({
               <span>Restaurar Padrão Ouro</span>
             </button>
 
-            <button
-              type="button"
-              onClick={handleApplyCarpigianiPreset}
-              className={`px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all border ${
-                presetId === 'carpigiani'
-                  ? 'bg-sky-500/20 text-sky-300 border-sky-500/50 shadow-sm'
-                  : 'bg-slate-800 hover:bg-slate-700 text-slate-300 border-slate-700'
-              }`}
-              title="Carrega as réguas estritas da Carpigiani Gelato University (Apostila 2025/2026)"
-            >
-              <GraduationCap className="w-3.5 h-3.5 text-sky-400" />
-              <span>Carpigiani Estrito</span>
-            </button>
+            {hasCarpigianiData(selectedStyleName) ? (
+              <button
+                type="button"
+                onClick={handleApplyCarpigianiPreset}
+                className={`px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all border ${
+                  presetId === 'carpigiani'
+                    ? 'bg-sky-500/20 text-sky-300 border-sky-500/50 shadow-sm'
+                    : 'bg-slate-800 hover:bg-slate-700 text-slate-300 border-slate-700'
+                }`}
+                title="Carrega as réguas estritas da Carpigiani Gelato University (Apostila 2025/2026)"
+              >
+                <GraduationCap className="w-3.5 h-3.5 text-sky-400" />
+                <span>Carpigiani Estrito</span>
+              </button>
+            ) : (
+              <span
+                className="text-[11px] text-slate-400 bg-slate-800/80 border border-slate-700/70 px-2.5 py-1 rounded-xl italic flex items-center gap-1"
+                title="Este estilo não possui parâmetros na apostila do Curso Intermediário da Carpigiani (reservado ao Curso Avançado ou nutrição esportiva)"
+              >
+                <Info className="w-3 h-3 text-slate-400" />
+                <span>Sem dados na CGU</span>
+              </span>
+            )}
 
             <button
               type="button"
@@ -679,3 +690,4 @@ export const StyleSettingsModal: React.FC<StyleSettingsModalProps> = ({
     </div>
   );
 };
+

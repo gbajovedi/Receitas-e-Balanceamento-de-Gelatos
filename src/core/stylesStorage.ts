@@ -8,6 +8,25 @@ export const STYLES_UPDATED_EVENT = 'gelato-styles-updated';
 export type StylePresetId = 'gold' | 'carpigiani' | 'custom';
 
 /**
+ * Conjunto de estilos que possuem dados e referências na Carpigiani Gelato University
+ * (Apostila Corso Intermedio 2025/2026: Slides 11, 47, 48, 50, 51, 60, 63 e 64).
+ * Categorias como Chocolate base água, Vegano, Alcoólicos e Zero pertencem ao Corso Avanzato,
+ * e Gelatos Proteicos à nutrição funcional, não tendo parâmetros no material intermediário da CGU.
+ */
+export const STYLES_WITH_CARPIGIANI_DATA = new Set<string>([
+  'Gelatos de Leite',
+  'Gelatos de Oleaginosas',
+  'Gelatos de Leite com Fruta',
+  'Sorbets',
+  'Sorbets Cítricos / Frutas Ácidas',
+  'Sorbets Polposos / Frutas Densas'
+]);
+
+export function hasCarpigianiData(styleName: string): boolean {
+  return STYLES_WITH_CARPIGIANI_DATA.has(styleName);
+}
+
+/**
  * Padrão Ouro Híbrido Protegido (Opção 2 - Recomendado)
  * - PAC Carpigiani (220-260 para nozes, 280-330 para sorbets)
  * - Blindagem de Caviezel contra arenosidade (SLNG máx 10.5%)
@@ -277,3 +296,4 @@ export function saveSingleStyle(
  * Mapa de estilos carregado em memória para acesso síncrono rápido
  */
 export let currentStylesMap: Record<string, StyleStandard> = getStoredStyles();
+
