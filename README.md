@@ -46,7 +46,7 @@ Ele permite formular e ajustar receitas diretamente na bancada da produção, vi
   * *Gelatos Proteicos*
 - **Termômetro de Vitrine:** Cálculo da temperatura estimada de serviço (-10°C a -14°C) a partir do PAC relativo e da matriz de calda.
 - **Rótulo Automático de Alérgenos:** Detecção regulamentar de leite, lactose, glúten (trigo, aveia, cevada, biscoitos) e oleaginosas.
-- **Escala de Batelada em 1 Clique:** Multiplicação proporcional automática de calda base para qualquer volume de produção (ex.: de 1.000 g para 3.500 g, 5.000 g ou cubas inteiras) e botão de normalização para 1 kg.
+- **Escala de Lote em 1 Clique:** Multiplicação proporcional automática de calda base para qualquer volume de produção (ex.: de 1.000 g para 3.500 g, 5.000 g ou cubas inteiras) e botão de normalização para 1 kg.
 - **Persistência Local Flexível:** Salve alterações diretamente na receita original ou crie novas variações personalizadas armazenadas no seu dispositivo.
 
 ### 🍯 2. Módulo de Pós-Produção (Variegatos & Inclusões)

@@ -567,40 +567,66 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
               </div>
 
               {/* Batch Scale Controls with Quick-Pills */}
-              <div className="flex flex-wrap items-center gap-2 bg-slate-900/90 p-2 rounded-xl border border-slate-700">
-                <span className="text-xs font-bold text-slate-300 pl-1">Batelada:</span>
-                <input
-                  type="number"
-                  min="100"
-                  step="50"
-                  value={batchScaleInput}
-                  onChange={e => setBatchScaleInput(e.target.value)}
-                  className="w-24 bg-slate-800 border border-slate-700 rounded-lg px-2.5 py-1.5 text-sm text-right font-mono font-black text-amber-300 focus:outline-none focus:border-amber-500"
-                />
-                <span className="text-xs text-slate-400 font-mono font-bold">g</span>
+              <div className="flex items-center gap-2 bg-slate-900/90 px-3 py-1.5 rounded-xl border border-slate-700 shadow-inner shrink-0">
+                <div className="flex items-center gap-1.5 text-xs font-bold text-slate-300">
+                  <Scale className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                  <span>Lote:</span>
+                </div>
+
+                <div className="flex items-center bg-slate-800 border border-slate-700 focus-within:border-amber-500 rounded-lg px-2 py-1 shadow-inner transition-colors">
+                  <input
+                    type="number"
+                    min="100"
+                    step="50"
+                    value={batchScaleInput}
+                    onChange={e => setBatchScaleInput(e.target.value)}
+                    onKeyDown={e => {
+                      if (e.key === 'Enter') {
+                        handleApplyBatchScale(parseFloat(batchScaleInput) || 1000);
+                      }
+                    }}
+                    className="w-16 bg-transparent text-sm text-right font-mono font-black text-amber-300 focus:outline-none"
+                    title="Digite o peso desejado do lote em gramas"
+                  />
+                  <span className="text-xs text-slate-400 font-mono font-bold pl-1">g</span>
+                </div>
+
                 <button
                   type="button"
                   onClick={() => handleApplyBatchScale(parseFloat(batchScaleInput) || 1000)}
-                  className="px-3 py-1.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black rounded-lg text-xs transition-colors flex items-center gap-1 shadow-sm"
-                  title="Recalcular gramagens proporcionalmente"
+                  className="px-3 py-1.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black rounded-lg text-xs transition-all flex items-center gap-1 shadow-sm hover:scale-105 active:scale-95 shrink-0"
+                  title="Recalcular gramaturas proporcionalmente para este tamanho de lote"
                 >
-                  <Scale className="w-3.5 h-3.5" />
                   <span>Escalar</span>
                 </button>
 
                 {/* Quick scale shortcut buttons */}
-                <div className="flex items-center gap-1 border-l border-slate-700 pl-1.5 ml-0.5">
-                  {[1000, 2500, 3000].map(weight => (
-                    <button
-                      key={weight}
-                      type="button"
-                      onClick={() => handleApplyBatchScale(weight)}
-                      className="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white font-mono font-bold rounded text-xs transition-colors"
-                      title={`Escalar para ${weight}g`}
-                    >
-                      {weight / 1000}kg
-                    </button>
-                  ))}
+                <div className="flex items-center gap-1 border-l border-slate-700/80 pl-2 ml-1">
+                  {[
+                    { label: '1kg', grams: 1000, title: '1 kg (Receita Base / Teste)' },
+                    { label: '2.5kg', grams: 2500, title: '2.5 kg (Meia Cuba Vitrine)' },
+                    { label: '4kg', grams: 4000, title: '4 kg (Cuba Padrão GN 5L)' }
+                  ].map(preset => {
+                    const isCurrent = Math.abs(analysis.caldaWeight - preset.grams) < 2;
+                    return (
+                      <button
+                        key={preset.grams}
+                        type="button"
+                        onClick={() => {
+                          setBatchScaleInput(String(preset.grams));
+                          handleApplyBatchScale(preset.grams);
+                        }}
+                        className={`px-2 py-1 font-mono font-bold rounded-md text-xs transition-all ${
+                          isCurrent
+                            ? 'bg-amber-500/20 text-amber-300 border border-amber-500/50 shadow-sm'
+                            : 'bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700'
+                        }`}
+                        title={preset.title}
+                      >
+                        {preset.label}
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
             </div>
@@ -825,7 +851,7 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
 
                 <div className="bg-slate-900/70 p-3.5 rounded-xl border border-slate-700">
                   <span className="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-1">
-                    Custo Batelada
+                    Custo do Lote
                   </span>
                   <span className="text-xl font-black text-white font-mono">
                     R$ {analysis.costing.totalBatchCost.toFixed(2)}

@@ -577,7 +577,7 @@ export const ProfitSimulator: React.FC<ProfitSimulatorProps> = ({
       <div className="bg-slate-900/90 p-3.5 rounded-xl border border-slate-700/80 flex items-center justify-between">
         <div>
           <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block">
-            Potencial da Batelada Atual ({Math.round(batchWeightGrams)}g)
+            Potencial do Lote Atual ({Math.round(batchWeightGrams)}g)
           </span>
           <span className="text-xs text-slate-300 font-medium block mt-0.5">
             Rendimento: <strong className="text-amber-300 font-mono font-bold">{unitsInBatch.toFixed(1)}</strong> {selectedFormat === 'custom' ? 'porções' : `${activeFormat.name.toLowerCase()}s`}
@@ -586,7 +586,7 @@ export const ProfitSimulator: React.FC<ProfitSimulatorProps> = ({
 
         <div className="text-right">
           <span className="text-[10px] uppercase font-bold text-slate-400 block">
-            Lucro Líquido Batelada
+            Lucro Líquido do Lote
           </span>
           <span className="text-lg font-black font-mono text-emerald-400">
             R$ {totalBatchNetProfit.toFixed(2)}

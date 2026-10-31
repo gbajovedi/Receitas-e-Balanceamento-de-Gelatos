@@ -83,7 +83,7 @@ export const RecipeViewerModal: React.FC<RecipeViewerModalProps> = ({
               {recipe.name}
             </h2>
             <p className="no-print text-xs text-slate-400">
-              Modo somente leitura para pesagem e produção. Ajuste a batelada abaixo.
+              Modo somente leitura para pesagem e produção. Ajuste o lote abaixo.
             </p>
           </div>
 
@@ -104,7 +104,7 @@ export const RecipeViewerModal: React.FC<RecipeViewerModalProps> = ({
             <div className="flex items-center justify-between gap-2">
               <span className="text-xs font-bold uppercase tracking-wider text-slate-300 flex items-center gap-1.5">
                 <Scale className="w-4 h-4 text-amber-400" />
-                <span>Peso Desejado da Batelada:</span>
+                <span>Peso Desejado do Lote:</span>
               </span>
               <div className="flex items-center gap-1.5 bg-slate-900 border border-slate-700 rounded-xl px-2.5 py-1">
                 <input
@@ -265,7 +265,7 @@ export const RecipeViewerModal: React.FC<RecipeViewerModalProps> = ({
         {/* Sticky Footer Actions */}
         <div className="p-4 sm:p-5 bg-slate-800 border-t border-slate-700/80 flex flex-wrap items-center justify-between gap-3 shrink-0">
           <div className="text-xs sm:text-sm text-slate-300 font-mono font-bold">
-            Total Batelada:{' '}
+            Total do Lote:{' '}
             <strong className="text-emerald-400 text-base sm:text-lg">
               {targetBatchGrams} g
             </strong>
