@@ -149,6 +149,15 @@ export interface BatchAnalysis {
   sandinessRisk?: SandinessRisk;
   corvittoMetrics?: CorvittoMetrics;
   emulsionMetrics?: EmulsionMetrics;
+  densityAndVolume?: {
+    caldaDensity: number;
+    baseLiquidVolumeLiters: number;
+    baseVolumeLiters: number;
+    variegatoVolumeLiters: number;
+    totalVolumeLiters: number;
+    baseOverrunPct: number;
+    effectiveOverrunPct: number;
+  };
   allergensLabel: string;
   costing: {
     caldaCostKg: number;
@@ -158,6 +167,8 @@ export interface BatchAnalysis {
     scoopCost60g: number;
     suggestedPrice500g: number;
     variegatoRatioPercent: number;
+    totalVariegatoGrams?: number;
+    totalVariegatoCost?: number;
   };
 }
 

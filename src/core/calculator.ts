@@ -270,6 +270,45 @@ export function calculateBatchAnalysis(
   const finalCostKg = finalWeightGrams > 0 ? (totalBatchCost / (finalWeightGrams / 1000)) : caldaCostKg;
   const scoopCost60g = finalCostKg * 0.06;
 
+  // 4. Densidade da Calda e Volumes Físicos (Fórmula de Richmond / Goff & Hartel)
+  // Densidade teórica da calda líquida (g/ml ou kg/L)
+  const fatTerm = (pctFat * 100) / 0.93;
+  const nonFatSolidsTerm = Math.max(0, ((pctTotalSolids - pctFat) * 100) / 1.58);
+  const waterTerm = (pctWater * 100) / 1.00;
+  const denominator = fatTerm + nonFatSolidsTerm + waterTerm;
+  const rawCaldaDensity = denominator > 0 ? (100 / denominator) : 1.10;
+  const caldaDensity = Math.max(1.05, Math.min(1.18, rawCaldaDensity));
+
+  // Overrun da calda base (padrão Carpigiani previsto)
+  const baseOverrunPct = emulsionMetrics?.overrunEstimatePct || 32;
+
+  // Volume da calda líquida (L)
+  const baseLiquidVolumeLiters = caldaDensity > 0 ? ((totalCaldaGrams / 1000) / caldaDensity) : 0;
+  // Volume da calda batida com ar (L)
+  const baseVolumeLiters = baseLiquidVolumeLiters * (1 + (baseOverrunPct / 100));
+
+  // Variegatos e Mesclas (Overrun = 0%, densidade média comercial ~1.30 g/ml)
+  const VARIEGATO_DENSITY = 1.30;
+  const variegatoVolumeLiters = totalVariegatoGrams > 0 ? ((totalVariegatoGrams / 1000) / VARIEGATO_DENSITY) : 0;
+
+  // Volume total consolidado e Overrun aparente do produto final
+  const totalVolumeLiters = baseVolumeLiters + variegatoVolumeLiters;
+  const totalLiquidVolumeLiters = baseLiquidVolumeLiters + variegatoVolumeLiters;
+  const effectiveOverrunPct =
+    totalLiquidVolumeLiters > 0
+      ? ((totalVolumeLiters - totalLiquidVolumeLiters) / totalLiquidVolumeLiters) * 100
+      : baseOverrunPct;
+
+  const densityAndVolume = {
+    caldaDensity: Math.round(caldaDensity * 1000) / 1000,
+    baseLiquidVolumeLiters: Math.round(baseLiquidVolumeLiters * 1000) / 1000,
+    baseVolumeLiters: Math.round(baseVolumeLiters * 1000) / 1000,
+    variegatoVolumeLiters: Math.round(variegatoVolumeLiters * 1000) / 1000,
+    totalVolumeLiters: Math.round(totalVolumeLiters * 1000) / 1000,
+    baseOverrunPct: Math.round(baseOverrunPct),
+    effectiveOverrunPct: Math.round(effectiveOverrunPct * 10) / 10
+  };
+
   // Tub 500g Suggested Price
   // ((CustoFinal/Kg * 0.5 + Embalagem) + RateioIndireto) / ((1 - Margem/100) * (1 - TaxaCartao/100))
   const tubProductCost = finalCostKg * (pricing.tubWeightGrams / 1000);
@@ -317,6 +356,7 @@ export function calculateBatchAnalysis(
     sandinessRisk,
     corvittoMetrics,
     emulsionMetrics,
+    densityAndVolume,
     allergensLabel,
     costing: {
       caldaCostKg: Math.round(caldaCostKg * 100) / 100,
@@ -325,7 +365,9 @@ export function calculateBatchAnalysis(
       finalCostKg: Math.round(finalCostKg * 100) / 100,
       scoopCost60g: Math.round(scoopCost60g * 100) / 100,
       suggestedPrice500g: Math.round(suggestedPrice500g * 100) / 100,
-      variegatoRatioPercent: Math.round(variegatoRatioPercent * 10) / 10
+      variegatoRatioPercent: Math.round(variegatoRatioPercent * 10) / 10,
+      totalVariegatoGrams,
+      totalVariegatoCost: Math.round(totalVariegatoCost * 100) / 100
     }
   };
 }

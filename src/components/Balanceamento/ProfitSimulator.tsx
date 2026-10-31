@@ -12,20 +12,39 @@ import {
   Flame,
   PieChart,
   Save,
-  RotateCcw
+  RotateCcw,
+  Wind,
+  Package,
+  Plus,
+  Minus
 } from 'lucide-react';
 import { PricingParams, saveStoredPricingParams } from '../../core/pricingStorage';
 import { PricingSettings } from '../../types/gelato';
 
+export interface DensityAndVolumeMetrics {
+  caldaDensity: number;
+  baseLiquidVolumeLiters: number;
+  baseVolumeLiters: number;
+  variegatoVolumeLiters: number;
+  totalVolumeLiters: number;
+  baseOverrunPct: number;
+  effectiveOverrunPct: number;
+}
+
 interface ProfitSimulatorProps {
   finalCostKg: number;
   batchWeightGrams: number;
+  caldaWeightGrams?: number;
+  totalVariegatoGrams?: number;
+  densityAndVolume?: DensityAndVolumeMetrics;
   pricingParams: PricingParams;
   pricingSettings: PricingSettings;
   onMarginSaved?: (newMargin: number) => void;
 }
 
-export type SalesFormat = 'tub500' | 'scoop1' | 'scoop2' | 'cuba4k' | 'custom';
+export type SalesFormat = 'tub500' | 'tub1000' | 'cup120' | 'cup180' | 'cuba5L' | 'custom';
+
+export type FormatMeasureType = 'volume' | 'weight';
 
 interface FormatConfig {
   id: SalesFormat;
@@ -33,7 +52,9 @@ interface FormatConfig {
   title: string;
   subtitle: string;
   icon: string;
-  weightGrams: number;
+  type: FormatMeasureType;
+  capacityMl?: number;
+  weightGrams?: number;
   packagingCost: number;
   defaultPricePlaceholder: number;
 }
@@ -41,51 +62,66 @@ interface FormatConfig {
 const FORMAT_CONFIGS: Record<SalesFormat, FormatConfig> = {
   tub500: {
     id: 'tub500',
-    name: 'Pote 500g',
+    name: 'Pote 500ml',
     title: 'Pote',
-    subtitle: '500g',
+    subtitle: '500ml',
     icon: '🍨',
-    weightGrams: 500,
+    type: 'volume',
+    capacityMl: 500,
     packagingCost: 2.50,
     defaultPricePlaceholder: 38.00
   },
-  scoop1: {
-    id: 'scoop1',
-    name: '1 Bola (60g)',
+  tub1000: {
+    id: 'tub1000',
+    name: 'Pote 1L',
+    title: 'Pote 1L',
+    subtitle: '1000ml',
+    icon: '🏺',
+    type: 'volume',
+    capacityMl: 1000,
+    packagingCost: 3.80,
+    defaultPricePlaceholder: 70.00
+  },
+  cup120: {
+    id: 'cup120',
+    name: 'Copo 120ml (1 Bola)',
     title: '1 Bola',
-    subtitle: '60g',
+    subtitle: '120ml',
     icon: '🍦',
-    weightGrams: 60,
+    type: 'volume',
+    capacityMl: 120,
     packagingCost: 0.60,
     defaultPricePlaceholder: 15.00
   },
-  scoop2: {
-    id: 'scoop2',
-    name: '2 Bolas (120g)',
+  cup180: {
+    id: 'cup180',
+    name: 'Copo 180ml (2 Bolas)',
     title: '2 Bolas',
-    subtitle: '120g',
+    subtitle: '180ml',
     icon: '🍧',
-    weightGrams: 120,
+    type: 'volume',
+    capacityMl: 180,
     packagingCost: 0.85,
     defaultPricePlaceholder: 22.00
   },
-  cuba4k: {
-    id: 'cuba4k',
-    name: 'Cuba 4kg',
-    title: 'Cuba',
-    subtitle: '4kg',
+  cuba5L: {
+    id: 'cuba5L',
+    name: 'Cuba GN 5L',
+    title: 'Cuba 5L',
+    subtitle: '5000ml',
     icon: '📦',
-    weightGrams: 4000,
+    type: 'volume',
+    capacityMl: 5000,
     packagingCost: 5.00,
-    defaultPricePlaceholder: 220.00
+    defaultPricePlaceholder: 240.00
   },
   custom: {
     id: 'custom',
     name: 'Personalizado',
     title: 'Personalizado',
-    subtitle: '100g',
+    subtitle: 'Livre',
     icon: '⚖️',
-    weightGrams: 100,
+    type: 'volume',
     packagingCost: 1.00,
     defaultPricePlaceholder: 20.00
   }
@@ -94,6 +130,9 @@ const FORMAT_CONFIGS: Record<SalesFormat, FormatConfig> = {
 export const ProfitSimulator: React.FC<ProfitSimulatorProps> = ({
   finalCostKg,
   batchWeightGrams,
+  caldaWeightGrams,
+  totalVariegatoGrams = 0,
+  densityAndVolume,
   pricingParams,
   pricingSettings,
   onMarginSaved
@@ -111,11 +150,43 @@ export const ProfitSimulator: React.FC<ProfitSimulatorProps> = ({
   // Feedback state for saved margin
   const [isSaved, setIsSaved] = useState<boolean>(false);
 
-  // Custom Weight & Packaging state for 'custom' format
+  // Interactive Overrun Override state
+  const initialBaseOverrun = densityAndVolume?.baseOverrunPct ?? 35;
+  const [userOverrun, setUserOverrun] = useState<number>(initialBaseOverrun);
+
+  // Update overrun if recipe changes externally and user hasn't actively changed it
+  useEffect(() => {
+    if (densityAndVolume?.baseOverrunPct) {
+      setUserOverrun(densityAndVolume.baseOverrunPct);
+    }
+  }, [densityAndVolume?.baseOverrunPct]);
+
+  // Custom Format state
+  const [customMeasureType, setCustomMeasureType] = useState<FormatMeasureType>('volume');
+  const [customVolumeInput, setCustomVolumeInput] = useState<number>(250);
   const [customWeightInput, setCustomWeightInput] = useState<number>(100);
   const [customPackCostInput, setCustomPackCostInput] = useState<number>(1.00);
 
-  // Sync format packaging cost from pricingParams if tub500 is selected
+  // Physical calculations based on Calda, Overrun and Variegatos
+  const actualCaldaWeight = caldaWeightGrams || Math.max(0, batchWeightGrams - totalVariegatoGrams);
+  const caldaDensity = densityAndVolume?.caldaDensity || 1.10;
+  const VARIEGATO_DENSITY = 1.30;
+
+  // Volumes
+  const baseLiquidVolLiters = caldaDensity > 0 ? (actualCaldaWeight / 1000) / caldaDensity : 0;
+  const baseAeratedVolLiters = baseLiquidVolLiters * (1 + (userOverrun / 100));
+  const variegatoVolLiters = totalVariegatoGrams > 0 ? (totalVariegatoGrams / 1000) / VARIEGATO_DENSITY : 0;
+  const totalBatchVolLiters = baseAeratedVolLiters + variegatoVolLiters;
+  const totalBatchVolMl = totalBatchVolLiters * 1000;
+
+  // Effective overrun of entire batch including compact variegatos
+  const totalLiquidVolLiters = baseLiquidVolLiters + variegatoVolLiters;
+  const effectiveBatchOverrun =
+    totalLiquidVolLiters > 0
+      ? ((totalBatchVolLiters - totalLiquidVolLiters) / totalLiquidVolLiters) * 100
+      : userOverrun;
+
+  // Selected format configuration
   const activeFormat = FORMAT_CONFIGS[selectedFormat];
   const formatPackCost =
     selectedFormat === 'tub500'
@@ -123,12 +194,35 @@ export const ProfitSimulator: React.FC<ProfitSimulatorProps> = ({
       : selectedFormat === 'custom'
       ? customPackCostInput
       : activeFormat.packagingCost;
-  const formatWeightGrams =
-    selectedFormat === 'tub500'
-      ? pricingParams.tubWeightGrams
-      : selectedFormat === 'custom'
-      ? customWeightInput
-      : activeFormat.weightGrams;
+
+  // Determine active unit weight and batch yield depending on volume vs weight format
+  let unitsInBatch = 0;
+  let formatWeightGrams = 0;
+  let formatCapacityDisplay = '';
+
+  if (selectedFormat === 'custom') {
+    if (customMeasureType === 'volume') {
+      const vol = Math.max(1, customVolumeInput);
+      formatCapacityDisplay = `${vol} ml`;
+      unitsInBatch = vol > 0 ? (totalBatchVolMl / vol) : 0;
+      formatWeightGrams = unitsInBatch > 0 ? (batchWeightGrams / unitsInBatch) : 0;
+    } else {
+      const w = Math.max(1, customWeightInput);
+      formatCapacityDisplay = `${w} g`;
+      formatWeightGrams = w;
+      unitsInBatch = w > 0 ? (batchWeightGrams / w) : 0;
+    }
+  } else if (activeFormat.type === 'volume' && activeFormat.capacityMl) {
+    const vol = activeFormat.capacityMl;
+    formatCapacityDisplay = `${vol} ml`;
+    unitsInBatch = vol > 0 ? (totalBatchVolMl / vol) : 0;
+    formatWeightGrams = unitsInBatch > 0 ? (batchWeightGrams / unitsInBatch) : 0;
+  } else {
+    const w = activeFormat.weightGrams || 100;
+    formatCapacityDisplay = `${w} g`;
+    formatWeightGrams = w;
+    unitsInBatch = w > 0 ? (batchWeightGrams / w) : 0;
+  }
 
   // Overhead rateio proporcional à gramagem baseada no pote de 500g
   const weightRatio = formatWeightGrams / (pricingParams.tubWeightGrams || 500);
@@ -137,9 +231,8 @@ export const ProfitSimulator: React.FC<ProfitSimulatorProps> = ({
   // Deductions from sales (card fee + sales tax)
   const salesDeductionsRate =
     (pricingSettings.cardFeePercent + (pricingParams.salesTaxPercent || 0)) / 100;
-  const netRevenueFactor = Math.max(0.01, 1 - salesDeductionsRate);
 
-  // Product Direct Cost
+  // Product Direct Cost (calculated with real physical weight in the package)
   const productCost = finalCostKg * (formatWeightGrams / 1000);
   const directCostWithPack = productCost + formatPackCost;
   const totalCostUnit = directCostWithPack + overheadPerUnit;
@@ -166,10 +259,13 @@ export const ProfitSimulator: React.FC<ProfitSimulatorProps> = ({
   const netRevenue = effectivePrice - totalDeductionsR$;
   const netProfitUnit = netRevenue - totalCostUnit;
 
-  // Yield from current batch
-  const unitsInBatch = formatWeightGrams > 0 ? batchWeightGrams / formatWeightGrams : 0;
+  // Total Batch Financials
   const totalBatchGrossRevenue = unitsInBatch * effectivePrice;
   const totalBatchNetProfit = unitsInBatch * netProfitUnit;
+
+  // Breakdown of yield (e.g. 7 full tubs + 1 partial)
+  const fullUnits = Math.floor(unitsInBatch);
+  const remainderUnitPct = Math.round((unitsInBatch - fullUnits) * 100);
 
   // Sync manual input placeholder when format changes
   useEffect(() => {
@@ -235,11 +331,11 @@ export const ProfitSimulator: React.FC<ProfitSimulatorProps> = ({
   return (
     <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-slate-900/95 via-slate-900 to-slate-950 border border-slate-700/80 shadow-2xl space-y-4">
       {/* Header & Mode Switch */}
-      <div className="flex items-center justify-between pb-3 border-b border-slate-700/80">
+      <div className="flex items-center justify-between pb-3 border-b border-slate-700/80 flex-wrap gap-2">
         <div className="flex items-center gap-2">
           <DollarSign className="w-5 h-5 text-emerald-400" />
           <h3 className="text-base font-black text-white flex items-center gap-1.5">
-            <span>Simulador de Margem & Preço</span>
+            <span>Simulador de Lucro com Overrun</span>
           </h3>
         </div>
 
@@ -270,18 +366,88 @@ export const ProfitSimulator: React.FC<ProfitSimulatorProps> = ({
         </div>
       </div>
 
+      {/* Interactive Overrun Calibration Banner */}
+      <div className="bg-slate-950/90 border border-purple-500/30 rounded-xl p-3 flex items-center justify-between gap-3 flex-wrap shadow-inner">
+        <div className="flex items-center gap-2.5 min-w-0">
+          <div className="w-8 h-8 rounded-lg bg-purple-500/15 border border-purple-500/30 flex items-center justify-center shrink-0">
+            <Wind className="w-4 h-4 text-purple-400" />
+          </div>
+          <div>
+            <div className="flex items-center gap-1.5 flex-wrap">
+              <span className="text-xs font-bold text-slate-300">
+                Aeração & Overrun da Calda:
+              </span>
+              <span className="text-xs font-mono font-black text-purple-300">
+                {userOverrun}%
+              </span>
+              {densityAndVolume?.baseOverrunPct && userOverrun !== densityAndVolume.baseOverrunPct && (
+                <button
+                  type="button"
+                  onClick={() => setUserOverrun(densityAndVolume.baseOverrunPct)}
+                  className="text-[10px] text-purple-400 hover:text-purple-300 underline flex items-center gap-0.5 ml-1"
+                  title="Voltar ao valor previsto pela Carpigiani"
+                >
+                  <RotateCcw className="w-2.5 h-2.5" />
+                  <span>Resetar ({densityAndVolume.baseOverrunPct}%)</span>
+                </button>
+              )}
+            </div>
+
+            <div className="text-[11px] text-slate-400 font-mono mt-0.5">
+              <span>Lote: {Math.round(batchWeightGrams)}g</span>
+              <span className="mx-1.5">•</span>
+              <strong className="text-slate-200">{totalBatchVolLiters.toFixed(2)} Litros</strong>
+              {totalVariegatoGrams > 0 && (
+                <span className="text-amber-300/90 ml-1.5">
+                  ({Math.round(totalVariegatoGrams)}g mescla sem ar)
+                </span>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Overrun Micro Stepper */}
+        <div className="flex items-center gap-1 bg-slate-900 border border-slate-700/80 rounded-lg p-0.5 shrink-0">
+          <button
+            type="button"
+            onClick={() => setUserOverrun(prev => Math.max(10, prev - 2))}
+            className="w-7 h-7 flex items-center justify-center rounded-md hover:bg-slate-800 text-slate-300 hover:text-white transition-all active:scale-95"
+            title="Diminuir overrun em 2%"
+          >
+            <Minus className="w-3.5 h-3.5" />
+          </button>
+          <span className="text-xs font-mono font-bold text-white px-1.5 min-w-[38px] text-center">
+            {userOverrun}%
+          </span>
+          <button
+            type="button"
+            onClick={() => setUserOverrun(prev => Math.min(70, prev + 2))}
+            className="w-7 h-7 flex items-center justify-center rounded-md hover:bg-slate-800 text-slate-300 hover:text-white transition-all active:scale-95"
+            title="Aumentar overrun em 2%"
+          >
+            <Plus className="w-3.5 h-3.5" />
+          </button>
+        </div>
+      </div>
+
       {/* Format Selector Tabs */}
       <div className="space-y-2">
-        <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block">
-          Formato de Venda no Balcão:
-        </span>
-        <div className="grid grid-cols-2 sm:grid-cols-5 gap-1.5">
+        <div className="flex items-center justify-between text-xs">
+          <span className="font-bold uppercase tracking-wider text-slate-400">
+            Formato de Envase e Venda:
+          </span>
+          <span className="text-[11px] text-purple-300 font-medium">
+            {activeFormat.type === 'volume' ? '📐 Calculado por Volume' : '⚖️ Calculado por Balança'}
+          </span>
+        </div>
+
+        <div className="grid grid-cols-2 sm:grid-cols-6 gap-1.5">
           {(Object.keys(FORMAT_CONFIGS) as SalesFormat[]).map(fmt => {
             const config = FORMAT_CONFIGS[fmt];
             const isSelected = selectedFormat === fmt;
             const subtitleText =
-              fmt === 'custom' && customWeightInput > 0
-                ? `${customWeightInput}g`
+              fmt === 'custom'
+                ? customMeasureType === 'volume' ? `${customVolumeInput}ml` : `${customWeightInput}g`
                 : config.subtitle;
 
             return (
@@ -304,35 +470,68 @@ export const ProfitSimulator: React.FC<ProfitSimulatorProps> = ({
                     isSelected ? 'text-amber-300 font-bold' : 'text-slate-500'
                   }`}
                 >
-                  (${subtitleText})
+                  ({subtitleText})
                 </span>
               </button>
             );
           })}
         </div>
 
-        {/* Custom Weight & Packaging Inputs when 'custom' format is selected */}
+        {/* Custom Weight / Volume Inputs when 'custom' format is selected */}
         {selectedFormat === 'custom' && (
           <div className="bg-slate-900/90 border border-amber-500/40 rounded-xl p-3 space-y-2.5 animate-in fade-in duration-150 shadow-inner">
+            <div className="flex items-center gap-2 pb-1 border-b border-slate-800 text-xs">
+              <span className="text-slate-400 font-medium">Tipo de medida:</span>
+              <button
+                type="button"
+                onClick={() => setCustomMeasureType('volume')}
+                className={`px-2 py-0.5 rounded-md font-bold transition-all ${
+                  customMeasureType === 'volume'
+                    ? 'bg-purple-500/25 text-purple-300 border border-purple-500/50'
+                    : 'text-slate-400 hover:text-white'
+                }`}
+              >
+                Volume (ml)
+              </button>
+              <button
+                type="button"
+                onClick={() => setCustomMeasureType('weight')}
+                className={`px-2 py-0.5 rounded-md font-bold transition-all ${
+                  customMeasureType === 'weight'
+                    ? 'bg-amber-500/25 text-amber-300 border border-amber-500/50'
+                    : 'text-slate-400 hover:text-white'
+                }`}
+              >
+                Massa (g)
+              </button>
+            </div>
+
             <div className="grid grid-cols-2 gap-2.5 items-start">
-              {/* Portion Weight Input */}
+              {/* Portion Input */}
               <div>
                 <label className="text-[10px] font-bold text-amber-300 uppercase tracking-wider block mb-1 truncate">
-                  ⚖️ Peso Porção
+                  {customMeasureType === 'volume' ? '📐 Capacidade do Recipiente' : '⚖️ Peso da Porção'}
                 </label>
                 <div className="relative flex items-center">
                   <input
                     type="number"
                     min="1"
                     max="10000"
-                    step="5"
-                    value={customWeightInput || ''}
-                    onChange={e => setCustomWeightInput(Math.max(1, parseFloat(e.target.value) || 0))}
-                    className="w-full bg-slate-950 border border-slate-700 focus:border-amber-500 rounded-lg pl-3 pr-8 py-2 text-xs font-mono font-bold text-amber-300 focus:outline-none"
-                    placeholder="200"
+                    step={customMeasureType === 'volume' ? '10' : '5'}
+                    value={customMeasureType === 'volume' ? (customVolumeInput || '') : (customWeightInput || '')}
+                    onChange={e => {
+                      const val = Math.max(1, parseFloat(e.target.value) || 0);
+                      if (customMeasureType === 'volume') {
+                        setCustomVolumeInput(val);
+                      } else {
+                        setCustomWeightInput(val);
+                      }
+                    }}
+                    className="w-full bg-slate-950 border border-slate-700 focus:border-amber-500 rounded-lg pl-3 pr-9 py-2 text-xs font-mono font-bold text-amber-300 focus:outline-none"
+                    placeholder={customMeasureType === 'volume' ? '250' : '150'}
                   />
                   <span className="absolute right-2.5 text-[10px] text-slate-500 font-bold pointer-events-none">
-                    g
+                    {customMeasureType === 'volume' ? 'ml' : 'g'}
                   </span>
                 </div>
               </div>
@@ -340,7 +539,7 @@ export const ProfitSimulator: React.FC<ProfitSimulatorProps> = ({
               {/* Packaging Cost Input */}
               <div>
                 <label className="text-[10px] font-bold text-slate-300 uppercase tracking-wider block mb-1 truncate">
-                  📦 Embalagem
+                  📦 Custo Embalagem
                 </label>
                 <div className="relative flex items-center">
                   <span className="absolute left-2.5 text-[11px] text-slate-500 font-bold pointer-events-none">
@@ -357,25 +556,6 @@ export const ProfitSimulator: React.FC<ProfitSimulatorProps> = ({
                   />
                 </div>
               </div>
-            </div>
-
-            {/* Quick Weight Presets */}
-            <div className="flex items-center gap-1 pt-0.5">
-              <span className="text-[10px] text-slate-500 font-medium mr-0.5 shrink-0">Atalhos:</span>
-              {[70, 80, 100, 150, 200].map(w => (
-                <button
-                  key={w}
-                  type="button"
-                  onClick={() => setCustomWeightInput(w)}
-                  className={`flex-1 py-1 rounded-md text-[10px] font-mono font-bold transition-all border ${
-                    customWeightInput === w
-                      ? 'bg-amber-500 text-slate-950 border-amber-400 font-black shadow-sm'
-                      : 'bg-slate-950/60 border-slate-800 text-slate-400 hover:text-white hover:border-slate-700'
-                  }`}
-                >
-                  {w}g
-                </button>
-              ))}
             </div>
           </div>
         )}
@@ -459,25 +639,25 @@ export const ProfitSimulator: React.FC<ProfitSimulatorProps> = ({
       <div className="p-4 rounded-xl bg-gradient-to-br from-emerald-950/60 to-slate-900 border border-emerald-600/40 space-y-3">
         <div className="flex items-center justify-between">
           <div>
-            <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-300 block">
+            <span className="text-xs font-bold uppercase tracking-wider text-emerald-300 block">
               Preço Sugerido de Venda
             </span>
             <div className="text-3xl font-black text-emerald-400 font-mono tracking-tight mt-0.5">
               R$ {effectivePrice.toFixed(2)}
             </div>
-            <span className="text-[10px] text-slate-400 font-mono">
-              por {selectedFormat === 'custom' ? `porção (${customWeightInput}g)` : activeFormat.name.toLowerCase()}
+            <span className="text-xs text-slate-300 font-mono">
+              por {selectedFormat === 'custom' ? `porção (${formatCapacityDisplay})` : activeFormat.name.toLowerCase()}
             </span>
           </div>
 
           <div className="text-right">
-            <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-300 block">
-              Lucro Líquido no Bolso
+            <span className="text-xs font-bold uppercase tracking-wider text-emerald-300 block">
+              Lucro Líquido Unitário
             </span>
-            <div className={`text-2xl font-black font-mono tracking-tight mt-0.5 ${netProfitUnit >= 0 ? 'text-emerald-300' : 'text-rose-400'}`}>
+            <div className={`text-2xl sm:text-3xl font-black font-mono tracking-tight mt-0.5 ${netProfitUnit >= 0 ? 'text-emerald-300' : 'text-rose-400'}`}>
               R$ {netProfitUnit.toFixed(2)}
             </div>
-            <span className={`text-[10px] font-bold font-mono ${effectiveMargin >= 0 ? 'text-emerald-400' : 'text-rose-400'}`}>
+            <span className={`text-xs font-bold font-mono ${effectiveMargin >= 0 ? 'text-emerald-400' : 'text-rose-400'}`}>
               ({effectiveMargin.toFixed(1)}% de margem)
             </span>
           </div>
@@ -494,12 +674,12 @@ export const ProfitSimulator: React.FC<ProfitSimulatorProps> = ({
             <button
               type="button"
               onClick={handleSaveAsGlobalDefault}
-              className="text-[11px] font-bold text-amber-300 hover:text-amber-200 underline flex items-center gap-1"
+              className="text-xs font-bold text-amber-300 hover:text-amber-200 underline flex items-center gap-1"
               title="Salvar esta margem como padrão para toda a loja"
             >
               {isSaved ? (
                 <span className="text-emerald-400 flex items-center gap-1">
-                  <Check className="w-3 h-3" /> Salvo!
+                  <Check className="w-3.5 h-3.5" /> Salvo!
                 </span>
               ) : (
                 <span>Tornar Margem Padrão</span>
@@ -509,14 +689,14 @@ export const ProfitSimulator: React.FC<ProfitSimulatorProps> = ({
         </div>
       </div>
 
-      {/* DRE Visual do Pote: Multi-segment Progress Waterfall */}
+      {/* DRE Visual do Recipiente: Multi-segment Progress Waterfall */}
       <div className="bg-slate-950/70 p-3.5 rounded-xl border border-slate-800/80 space-y-2.5">
         <div className="flex items-center justify-between text-xs">
           <span className="font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
-            <PieChart className="w-3.5 h-3.5 text-cyan-400" />
+            <PieChart className="w-4 h-4 text-cyan-400" />
             Decomposição de Cada Real Cobrado
           </span>
-          <span className="text-[11px] font-mono text-slate-400">100% Preço</span>
+          <span className="text-xs font-mono text-slate-400">100% Preço</span>
         </div>
 
         {/* Multi-segment stacked bar */}
@@ -549,48 +729,95 @@ export const ProfitSimulator: React.FC<ProfitSimulatorProps> = ({
         </div>
 
         {/* Micro-legend */}
-        <div className="grid grid-cols-2 gap-x-2 gap-y-1 text-[11px] text-slate-300 pt-1">
+        <div className="grid grid-cols-2 gap-x-3 gap-y-1 text-xs text-slate-300 pt-1">
           <div className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-sky-400 shrink-0" />
-            <span className="text-slate-400">Insumos:</span>
+            <span className="w-2.5 h-2.5 rounded-full bg-sky-400 shrink-0" />
+            <span className="text-slate-400">Insumos ({Math.round(formatWeightGrams)}g):</span>
             <strong className="text-white font-mono">R$ {productCost.toFixed(2)}</strong>
           </div>
           <div className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-amber-400 shrink-0" />
+            <span className="w-2.5 h-2.5 rounded-full bg-amber-400 shrink-0" />
             <span className="text-slate-400">Embalagem:</span>
             <strong className="text-white font-mono">R$ {formatPackCost.toFixed(2)}</strong>
           </div>
           <div className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-purple-400 shrink-0" />
+            <span className="w-2.5 h-2.5 rounded-full bg-purple-400 shrink-0" />
             <span className="text-slate-400">Rateio Fixo:</span>
             <strong className="text-white font-mono">R$ {overheadPerUnit.toFixed(2)}</strong>
           </div>
           <div className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-rose-400 shrink-0" />
+            <span className="w-2.5 h-2.5 rounded-full bg-rose-400 shrink-0" />
             <span className="text-slate-400">Taxas & Imp:</span>
             <strong className="text-white font-mono">R$ {totalDeductionsR$.toFixed(2)}</strong>
           </div>
         </div>
       </div>
 
-      {/* Yield & Profit of Current Batch */}
-      <div className="bg-slate-900/90 p-3.5 rounded-xl border border-slate-700/80 flex items-center justify-between">
-        <div>
-          <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block">
-            Potencial do Lote Atual ({Math.round(batchWeightGrams)}g)
-          </span>
-          <span className="text-xs text-slate-300 font-medium block mt-0.5">
-            Rendimento: <strong className="text-amber-300 font-mono font-bold">{unitsInBatch.toFixed(1)}</strong> {selectedFormat === 'custom' ? 'porções' : `${activeFormat.name.toLowerCase()}s`}
+      {/* Yield & Profit of Current Batch with Volumetric Insights */}
+      <div className="bg-slate-900/95 p-4 rounded-xl border border-slate-700/80 space-y-3">
+        <div className="flex items-center justify-between pb-2 border-b border-slate-800">
+          <div className="flex items-center gap-2">
+            <Package className="w-4 h-4 text-amber-400" />
+            <span className="text-xs font-bold uppercase tracking-wider text-slate-300">
+              Rendimento Físico do Lote ({Math.round(batchWeightGrams)}g • {totalBatchVolLiters.toFixed(2)}L)
+            </span>
+          </div>
+
+          <span className="text-xs font-mono font-bold text-amber-300">
+            {unitsInBatch.toFixed(1)} unidades
           </span>
         </div>
 
-        <div className="text-right">
-          <span className="text-[10px] uppercase font-bold text-slate-400 block">
-            Lucro Líquido do Lote
-          </span>
-          <span className="text-lg font-black font-mono text-emerald-400">
-            R$ {totalBatchNetProfit.toFixed(2)}
-          </span>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+          {/* Col 1: Potes e Peso Real */}
+          <div className="space-y-1">
+            <div className="flex items-center justify-between">
+              <span className="text-slate-400">Potes Preenchidos:</span>
+              <strong className="text-white font-mono font-bold">
+                {fullUnits} cheios {remainderUnitPct > 0 ? `+ 1 (${remainderUnitPct}%)` : ''}
+              </strong>
+            </div>
+
+            <div className="flex items-center justify-between">
+              <span className="text-slate-400">Peso Real de Gelato no Pote:</span>
+              <strong className="text-amber-300 font-mono font-bold">
+                {Math.round(formatWeightGrams)} g
+              </strong>
+            </div>
+
+            {activeFormat.type === 'volume' && activeFormat.capacityMl && (
+              <div className="flex items-center justify-between text-[11px] text-slate-400">
+                <span>Economia por Aeração:</span>
+                <span className="text-emerald-400 font-mono font-medium">
+                  -{Math.max(0, Math.round(activeFormat.capacityMl - formatWeightGrams))}g de calda/pote
+                </span>
+              </div>
+            )}
+          </div>
+
+          {/* Col 2: Finanças do Lote */}
+          <div className="space-y-1 sm:border-l sm:border-slate-800 sm:pl-3">
+            <div className="flex items-center justify-between">
+              <span className="text-slate-400">Faturamento Bruto do Lote:</span>
+              <strong className="text-white font-mono font-bold">
+                R$ {totalBatchGrossRevenue.toFixed(2)}
+              </strong>
+            </div>
+
+            <div className="flex items-center justify-between">
+              <span className="text-slate-400">Lucro Líquido no Bolso:</span>
+              <strong className="text-emerald-400 font-mono font-black text-sm">
+                R$ {totalBatchNetProfit.toFixed(2)}
+              </strong>
+            </div>
+
+            <div className="flex items-center justify-between text-[11px] text-slate-400">
+              <span>Overrun Efetivo do Pote:</span>
+              <span className="text-purple-300 font-mono font-bold">
+                ~{effectiveBatchOverrun.toFixed(1)}%
+              </span>
+            </div>
+          </div>
         </div>
       </div>
     </div>

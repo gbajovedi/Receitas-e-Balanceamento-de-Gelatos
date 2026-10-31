@@ -923,6 +923,9 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
               <ProfitSimulator
                 finalCostKg={analysis.costing.finalCostKg}
                 batchWeightGrams={analysis.costing.finalWeightGrams || analysis.caldaWeight}
+                caldaWeightGrams={analysis.caldaWeight}
+                totalVariegatoGrams={analysis.costing.totalVariegatoGrams || 0}
+                densityAndVolume={analysis.densityAndVolume}
                 pricingParams={pricingParams}
                 pricingSettings={pricingSettings}
                 onMarginSaved={(newMargin) => {
