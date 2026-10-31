@@ -1,7 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Preparation, Ingredient } from '../../types/gelato';
 import { db } from '../../db/database';
-import { Search, ChefHat, X, Plus, Edit2, Trash2, Save, Sparkles, Utensils, AlertCircle } from 'lucide-react';
+import {
+  Search,
+  ChefHat,
+  X,
+  Plus,
+  Edit2,
+  Trash2,
+  Save,
+  Sparkles,
+  Utensils,
+  AlertCircle,
+  CheckCircle2,
+  RefreshCw,
+} from 'lucide-react';
+import {
+  calculatePreparationNutrients,
+  syncPreparationToIngredient,
+  syncAllPreparationsToIngredients,
+  removeLinkedIngredientForPreparation,
+} from '../../core/preparationSync';
 
 interface PrePreparosListProps {
   preparations: Preparation[];
@@ -30,6 +49,8 @@ export const PrePreparosList: React.FC<PrePreparosListProps> = ({
   const [instructions, setInstructions] = useState('');
   const [modalError, setModalError] = useState('');
   const [isSaving, setIsSaving] = useState(false);
+  const [isSyncingAll, setIsSyncingAll] = useState(false);
+  const [syncSuccessMessage, setSyncSuccessMessage] = useState('');
   const [items, setItems] = useState<PreparationFormItem[]>([
     { name: '', grams: '' },
   ]);
@@ -75,6 +96,10 @@ export const PrePreparosList: React.FC<PrePreparosListProps> = ({
   const handleDelete = async (prep: Preparation) => {
     if (window.confirm(`Deseja realmente excluir o ${prep.category.toLowerCase()} "${prep.name}"?`)) {
       await db.preparations.delete(prep.id);
+      if (prep.isCustom) {
+        await removeLinkedIngredientForPreparation(prep);
+      }
+      setSyncSuccessMessage(`Pré-preparo "${prep.name}" removido com sucesso.`);
       if (onRefresh) onRefresh();
     }
   };
@@ -100,6 +125,14 @@ export const PrePreparosList: React.FC<PrePreparosListProps> = ({
   };
 
   const totalModalGrams = items.reduce((acc, curr) => acc + (typeof curr.grams === 'number' ? curr.grams : 0), 0);
+
+  // Perfil calculado em tempo real para o modal
+  const modalProfile = useMemo(() => {
+    const validItems = items
+      .filter(item => item.name.trim() !== '' && typeof item.grams === 'number' && item.grams > 0)
+      .map(item => ({ name: item.name.trim(), grams: Number(item.grams) }));
+    return calculatePreparationNutrients({ name, category, ingredients: validItems }, availableIngredients);
+  }, [items, name, category, availableIngredients]);
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -135,15 +168,41 @@ export const PrePreparosList: React.FC<PrePreparosListProps> = ({
         isCustom: editingPrep ? editingPrep.isCustom : true,
       };
 
+      // 1. Salvar no banco de pré-preparos
       await db.preparations.put(prepToSave);
+
+      // 2. Sincronizar automaticamente os parâmetros físico-químicos e custo na tabela de insumos (db.ingredients)
+      await syncPreparationToIngredient(prepToSave, availableIngredients, editingPrep?.name);
+
+      setSyncSuccessMessage(
+        `"${prepToSave.name}" salvo com sucesso e parâmetros físico-químicos sincronizados na aba de Insumos!`
+      );
+
       setIsModalOpen(false);
       setEditingPrep(null);
       if (onRefresh) onRefresh();
     } catch (err: any) {
-      console.error('Erro ao salvar preparação:', err);
+      console.error('Erro ao salvar preparação e sincronizar insumo:', err);
       setModalError(`Erro ao salvar no banco de dados: ${err?.message || err}`);
     } finally {
       setIsSaving(false);
+    }
+  };
+
+  const handleSyncAll = async () => {
+    setIsSyncingAll(true);
+    setSyncSuccessMessage('');
+    try {
+      const result = await syncAllPreparationsToIngredients(preparations, availableIngredients);
+      setSyncSuccessMessage(
+        `Sincronização concluída: ${result.updatedCount} insumos atualizados e ${result.createdCount} novos cadastrados a partir das fórmulas de pré-preparos!`
+      );
+      if (onRefresh) onRefresh();
+    } catch (err: any) {
+      console.error('Erro ao sincronizar todos os pré-preparos:', err);
+      alert(`Falha ao sincronizar: ${err?.message || err}`);
+    } finally {
+      setIsSyncingAll(false);
     }
   };
 
@@ -158,19 +217,48 @@ export const PrePreparosList: React.FC<PrePreparosListProps> = ({
               <span>Pré-preparos, Bases & Variegatos Caseiros</span>
             </h2>
             <p className="text-xs sm:text-sm text-slate-300 mt-0.5">
-              {preparations.length} receitas auxiliares com formulação de insumos e procedimentos de cocção.
+              {preparations.length} receitas auxiliares com parâmetros físico-químicos sincronizados automaticamente na aba Insumos.
             </p>
           </div>
 
-          <button
-            type="button"
-            onClick={handleOpenCreate}
-            className="px-4 py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs sm:text-sm rounded-xl shadow-lg shadow-amber-500/20 transition-all flex items-center justify-center gap-2 shrink-0 active:scale-95"
-          >
-            <Plus className="w-4 h-4" />
-            <span>Cadastrar Pré-preparo / Variegato</span>
-          </button>
+          <div className="flex items-center gap-2.5 flex-wrap">
+            <button
+              type="button"
+              disabled={isSyncingAll}
+              onClick={handleSyncAll}
+              className="px-3.5 py-2.5 bg-slate-900 hover:bg-slate-750 text-slate-200 border border-slate-700 hover:border-emerald-500/50 font-bold text-xs sm:text-sm rounded-xl transition-all flex items-center justify-center gap-2 shrink-0 active:scale-95 disabled:opacity-50"
+              title="Recalcular parâmetros e sincronizar todos os pré-preparos na aba Insumos"
+            >
+              <RefreshCw className={`w-4 h-4 text-emerald-400 ${isSyncingAll ? 'animate-spin' : ''}`} />
+              <span>{isSyncingAll ? 'Sincronizando...' : 'Sincronizar Insumos'}</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={handleOpenCreate}
+              className="px-4 py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs sm:text-sm rounded-xl shadow-lg shadow-amber-500/20 transition-all flex items-center justify-center gap-2 shrink-0 active:scale-95"
+            >
+              <Plus className="w-4 h-4" />
+              <span>Cadastrar Pré-preparo / Variegato</span>
+            </button>
+          </div>
         </div>
+
+        {syncSuccessMessage && (
+          <div className="flex items-center justify-between p-3 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-xs font-semibold animate-in fade-in duration-200">
+            <div className="flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+              <span>{syncSuccessMessage}</span>
+            </div>
+            <button
+              type="button"
+              onClick={() => setSyncSuccessMessage('')}
+              className="p-1 text-emerald-400/70 hover:text-emerald-300 rounded-lg"
+            >
+              <X className="w-3.5 h-3.5" />
+            </button>
+          </div>
+        )}
 
         <div className="space-y-3">
           <div className="relative w-full">
@@ -217,6 +305,7 @@ export const PrePreparosList: React.FC<PrePreparosListProps> = ({
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {filtered.map(prep => {
           const totalWeight = prep.ingredients.reduce((a, b) => a + b.grams, 0);
+          const cardProfile = calculatePreparationNutrients(prep, availableIngredients);
 
           return (
             <div
@@ -278,6 +367,45 @@ export const PrePreparosList: React.FC<PrePreparosListProps> = ({
                   <div className="pt-2 border-t border-slate-700 flex justify-between text-xs sm:text-sm font-black text-white">
                     <span>Peso Total:</span>
                     <span className="font-mono text-emerald-400">{Math.round(totalWeight)} g</span>
+                  </div>
+                </div>
+
+                {/* Parâmetros Físico-Químicos e Custo Sincronizados com a Aba Insumos */}
+                <div className="bg-slate-950/70 rounded-xl p-3 border border-slate-700/70 space-y-2">
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="font-bold text-slate-300 flex items-center gap-1.5">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                      <span>Insumo Sincronizado</span>
+                    </span>
+                    <span className="font-mono font-bold text-emerald-400">
+                      R$ {cardProfile.costKg.toFixed(2)}/kg
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-3 sm:grid-cols-6 gap-1 text-[11px] font-mono text-center">
+                    <div className="bg-slate-900/90 py-1 px-1 rounded-lg border border-slate-800">
+                      <span className="text-[9px] uppercase font-sans text-slate-400 block">Açúcar</span>
+                      <span className="text-amber-300 font-bold">{(cardProfile.sugars * 100).toFixed(1)}%</span>
+                    </div>
+                    <div className="bg-slate-900/90 py-1 px-1 rounded-lg border border-slate-800">
+                      <span className="text-[9px] uppercase font-sans text-slate-400 block">Gordura</span>
+                      <span className="text-amber-300 font-bold">{(cardProfile.fat * 100).toFixed(1)}%</span>
+                    </div>
+                    <div className="bg-slate-900/90 py-1 px-1 rounded-lg border border-slate-800">
+                      <span className="text-[9px] uppercase font-sans text-slate-400 block">SLNG</span>
+                      <span className="text-cyan-300 font-bold">{(cardProfile.msnf * 100).toFixed(1)}%</span>
+                    </div>
+                    <div className="bg-slate-900/90 py-1 px-1 rounded-lg border border-slate-800">
+                      <span className="text-[9px] uppercase font-sans text-slate-400 block">Outros</span>
+                      <span className="text-purple-300 font-bold">{(cardProfile.otherSolids * 100).toFixed(1)}%</span>
+                    </div>
+                    <div className="bg-slate-900/90 py-1 px-1 rounded-lg border border-slate-800">
+                      <span className="text-[9px] uppercase font-sans text-slate-400 block">PAC</span>
+                      <span className="text-sky-300 font-bold">{Math.round(cardProfile.pac)}</span>
+                    </div>
+                    <div className="bg-slate-900/90 py-1 px-1 rounded-lg border border-slate-800">
+                      <span className="text-[9px] uppercase font-sans text-slate-400 block">POD</span>
+                      <span className="text-amber-400 font-bold">{Math.round(cardProfile.pod)}</span>
+                    </div>
                   </div>
                 </div>
 
@@ -437,6 +565,76 @@ export const PrePreparosList: React.FC<PrePreparosListProps> = ({
                 </button>
               </div>
 
+              {/* Painel de Pré-visualização da Sincronização com a Aba Insumos */}
+              <div className="bg-slate-950/70 p-4 rounded-2xl border border-emerald-500/30 space-y-3">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Sparkles className="w-4 h-4 text-emerald-400" />
+                    <span className="text-xs font-black uppercase tracking-wider text-emerald-400">
+                      Parâmetros Calculados para a Aba Insumos
+                    </span>
+                  </div>
+                  <span className="text-[11px] font-bold text-emerald-300/80 bg-emerald-500/10 px-2 py-0.5 rounded-lg border border-emerald-500/20 flex items-center gap-1">
+                    <CheckCircle2 className="w-3 h-3 text-emerald-400" /> Sincronização Automática
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center">
+                  <div className="bg-slate-900/80 p-2 rounded-xl border border-slate-800">
+                    <span className="text-[10px] uppercase font-bold text-slate-400 block">Açúcares</span>
+                    <span className="text-sm font-mono font-bold text-amber-300">
+                      {(modalProfile.sugars * 100).toFixed(1)}%
+                    </span>
+                  </div>
+                  <div className="bg-slate-900/80 p-2 rounded-xl border border-slate-800">
+                    <span className="text-[10px] uppercase font-bold text-slate-400 block">Gordura</span>
+                    <span className="text-sm font-mono font-bold text-amber-300">
+                      {(modalProfile.fat * 100).toFixed(1)}%
+                    </span>
+                  </div>
+                  <div className="bg-slate-900/80 p-2 rounded-xl border border-slate-800">
+                    <span className="text-[10px] uppercase font-bold text-slate-400 block">SLNG</span>
+                    <span className="text-sm font-mono font-bold text-cyan-300">
+                      {(modalProfile.msnf * 100).toFixed(1)}%
+                    </span>
+                  </div>
+                  <div className="bg-slate-900/80 p-2 rounded-xl border border-slate-800">
+                    <span className="text-[10px] uppercase font-bold text-slate-400 block">Outros Sólidos</span>
+                    <span className="text-sm font-mono font-bold text-purple-300">
+                      {(modalProfile.otherSolids * 100).toFixed(1)}%
+                    </span>
+                  </div>
+                  <div className="bg-slate-900/80 p-2 rounded-xl border border-slate-800">
+                    <span className="text-[10px] uppercase font-bold text-slate-400 block">PAC</span>
+                    <span className="text-sm font-mono font-bold text-sky-400">
+                      {Math.round(modalProfile.pac)}
+                    </span>
+                  </div>
+                  <div className="bg-slate-900/80 p-2 rounded-xl border border-slate-800">
+                    <span className="text-[10px] uppercase font-bold text-slate-400 block">POD</span>
+                    <span className="text-sm font-mono font-bold text-amber-400">
+                      {Math.round(modalProfile.pod)}
+                    </span>
+                  </div>
+                  <div className="bg-slate-900/80 p-2 rounded-xl border border-slate-800">
+                    <span className="text-[10px] uppercase font-bold text-slate-400 block">Sólidos Totais</span>
+                    <span className="text-sm font-mono font-bold text-emerald-300">
+                      {(modalProfile.totalSolids * 100).toFixed(1)}%
+                    </span>
+                  </div>
+                  <div className="bg-slate-900/80 p-2 rounded-xl border border-slate-800">
+                    <span className="text-[10px] uppercase font-bold text-slate-400 block">Custo Estimado</span>
+                    <span className="text-sm font-mono font-bold text-emerald-400">
+                      R$ {modalProfile.costKg.toFixed(2)}/kg
+                    </span>
+                  </div>
+                </div>
+
+                <p className="text-[11px] text-slate-400 leading-tight">
+                  Ao salvar este pré-preparo, o insumo correspondente na aba <strong className="text-slate-200">Insumos</strong> será atualizado com estes valores exatos, refletindo imediatamente no balanceamento e custo de todas as suas receitas.
+                </p>
+              </div>
+
               {/* Modo de Preparo */}
               <div>
                 <label className="block text-xs font-bold text-slate-200 mb-1.5">
@@ -479,7 +677,7 @@ export const PrePreparosList: React.FC<PrePreparosListProps> = ({
                   {isSaving ? (
                     <>
                       <div className="w-4 h-4 border-2 border-slate-950 border-t-transparent rounded-full animate-spin" />
-                      <span>Salvando...</span>
+                      <span>Salvando e Sincronizando...</span>
                     </>
                   ) : (
                     <>

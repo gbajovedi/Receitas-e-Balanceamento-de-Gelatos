@@ -575,10 +575,10 @@ export class GelatoDatabase extends Dexie {
           await this.ingredients.bulkPut(newCatalogIngs);
         }
 
-        // Sincronizar refinamentos técnicos de POD/PAC/SLNG/Açúcares em itens do catálogo preservando custo customizado
+        // Sincronizar refinamentos técnicos de POD/PAC/SLNG/Açúcares/Mix Zero em itens do catálogo preservando custo customizado
         const paramSyncSetting = await this.settings.get('ingredient_technical_params_version');
-        if (!paramSyncSetting || paramSyncSetting.value < 3) {
-          console.log('Atualizando refinamentos técnicos de POD/PAC/SLNG/Açúcares em insumos do catálogo...');
+        if (!paramSyncSetting || paramSyncSetting.value < 4) {
+          console.log('Atualizando refinamentos técnicos de POD/PAC/SLNG/Açúcares/Mix Zero em insumos do catálogo...');
           const catalogMap = new Map((initialIngredients as Ingredient[]).map(i => [i.id, i]));
           const currentIngs = await this.ingredients.toArray();
           for (const ing of currentIngs) {
@@ -589,19 +589,23 @@ export class GelatoDatabase extends Dexie {
                 ing.pod !== catItem.pod ||
                 ing.sugars !== catItem.sugars ||
                 ing.msnf !== catItem.msnf ||
-                ing.otherSolids !== catItem.otherSolids
+                ing.otherSolids !== catItem.otherSolids ||
+                ing.preparationId !== catItem.preparationId
               ) {
                 await this.ingredients.update(ing.id, {
                   pac: catItem.pac,
                   pod: catItem.pod,
                   sugars: catItem.sugars,
                   msnf: catItem.msnf,
-                  otherSolids: catItem.otherSolids
+                  otherSolids: catItem.otherSolids,
+                  totalSolids: catItem.totalSolids,
+                  water: catItem.water,
+                  preparationId: catItem.preparationId
                 });
               }
             }
           }
-          await this.settings.put({ key: 'ingredient_technical_params_version', value: 3 });
+          await this.settings.put({ key: 'ingredient_technical_params_version', value: 4 });
         }
 
         // Sincronizar limpeza de nomes de marcas em bancos existentes

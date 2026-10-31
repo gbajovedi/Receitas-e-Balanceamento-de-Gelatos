@@ -413,7 +413,8 @@
     "pod": 0.4242,
     "pac": 0.5356,
     "protein": 0,
-    "hasAllergen": false
+    "hasAllergen": false,
+    "preparationId": "prep_base_de_gua"
   },
   {
     "id": "ing_25",
@@ -429,7 +430,8 @@
     "pod": 0.1566,
     "pac": 0.2507,
     "protein": 0.0404,
-    "hasAllergen": true
+    "hasAllergen": true,
+    "preparationId": "prep_base_de_leite"
   },
   {
     "id": "ing_26",
@@ -445,7 +447,8 @@
     "pod": 0.1613,
     "pac": 0.2543,
     "protein": 0.0409,
-    "hasAllergen": true
+    "hasAllergen": true,
+    "preparationId": "prep_base_de_leite_creme_de_leite_17_uht_"
   },
   {
     "id": "ing_27",
@@ -461,7 +464,8 @@
     "pod": 0.1633,
     "pac": 0.2496,
     "protein": 0.0415,
-    "hasAllergen": true
+    "hasAllergen": true,
+    "preparationId": "prep_base_de_leite_fior_di_latte_"
   },
   {
     "id": "ing_63",
@@ -573,7 +577,8 @@
     "pod": 0.2951,
     "pac": 0.335,
     "protein": 0.0558,
-    "hasAllergen": true
+    "hasAllergen": true,
+    "preparationId": "prep_brigadeiro"
   },
   {
     "id": "ing_33",
@@ -1091,7 +1096,8 @@
     "pod": 0.0389,
     "pac": 0.0719,
     "protein": 0.0328,
-    "hasAllergen": true
+    "hasAllergen": true,
+    "preparationId": "prep_croissant"
   },
   {
     "id": "ing_60",
@@ -1769,7 +1775,8 @@
     "pod": 0.4533,
     "pac": 0.4533,
     "protein": 0.0408,
-    "hasAllergen": true
+    "hasAllergen": true,
+    "preparationId": "prep_leite_condensado_vegetal"
   },
   {
     "id": "ing_176",
@@ -1820,7 +1827,8 @@
     "pod": 0,
     "pac": 0,
     "protein": 0.0303,
-    "hasAllergen": true
+    "hasAllergen": true,
+    "preparationId": "prep_leite_de_castanha"
   },
   {
     "id": "ing_99",
@@ -2402,16 +2410,17 @@
     "name": "MIX ZERO",
     "category": "Bases & Pré-preparos",
     "costKg": 35.69,
-    "sugars": 0.245,
+    "sugars": 0,
     "fat": 0,
     "msnf": 0,
-    "otherSolids": 0.7185,
+    "otherSolids": 0.9635,
     "totalSolids": 0.9635,
     "water": 0.0365,
     "pod": 0.3799,
     "pac": 1.184,
     "protein": 0,
-    "hasAllergen": false
+    "hasAllergen": false,
+    "preparationId": "prep_mix_zero"
   },
   {
     "id": "ing_126",
@@ -2638,7 +2647,8 @@
     "pod": 0.52,
     "pac": 0.5497,
     "protein": 0,
-    "hasAllergen": true
+    "hasAllergen": true,
+    "preparationId": "prep_pasta_de_amendoim_c_a_car"
   },
   {
     "id": "ing_140",
@@ -2686,7 +2696,8 @@
     "pod": 0.1167,
     "pac": 0.1167,
     "protein": 0.0545,
-    "hasAllergen": false
+    "hasAllergen": false,
+    "preparationId": "prep_pasta_de_cacau"
   },
   {
     "id": "ing_142",
@@ -2914,7 +2925,8 @@
     "pod": 0.4527,
     "pac": 0.4758,
     "protein": 0.0195,
-    "hasAllergen": true
+    "hasAllergen": true,
+    "preparationId": "prep_pr_preparo_de_caramelo"
   },
   {
     "id": "ing_152",
@@ -2930,7 +2942,8 @@
     "pod": 0.2418,
     "pac": 0.2995,
     "protein": 0.0685,
-    "hasAllergen": true
+    "hasAllergen": true,
+    "preparationId": "prep_pudim"
   },
   {
     "id": "ing_175",
@@ -3234,7 +3247,8 @@
     "pod": 0.2928,
     "pac": 0.3904,
     "protein": 0.0562,
-    "hasAllergen": true
+    "hasAllergen": true,
+    "preparationId": "prep_variegato_de_brigadeiro"
   },
   {
     "id": "ing_190",
@@ -3250,7 +3264,8 @@
     "pod": 0.4509,
     "pac": 0.472,
     "protein": 0.0165,
-    "hasAllergen": true
+    "hasAllergen": true,
+    "preparationId": "prep_variegato_de_caramelo_flor_de_sal"
   },
   {
     "id": "ing_191",
@@ -3266,7 +3281,8 @@
     "pod": 0.4284,
     "pac": 0.5384,
     "protein": 0.0177,
-    "hasAllergen": true
+    "hasAllergen": true,
+    "preparationId": "prep_variegato_de_cocada"
   },
   {
     "id": "ing_192",
@@ -3282,7 +3298,8 @@
     "pod": 0.377,
     "pac": 0.4391,
     "protein": 0.0445,
-    "hasAllergen": true
+    "hasAllergen": true,
+    "preparationId": "prep_variegato_de_nutella"
   },
   {
     "id": "ing_173",

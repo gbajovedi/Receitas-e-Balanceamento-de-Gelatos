@@ -18,6 +18,7 @@ export interface Ingredient {
   hasAllergen: boolean;
   allergenDetails?: string[];
   isCustom?: boolean;
+  preparationId?: string;
 }
 
 export interface NutrientValues {
