@@ -84,8 +84,8 @@
   {
     "id": "rec_3",
     "name": "Chocolate com Gostosuras (Direto ao Ponto)",
-    "category": "Gelatos de Leite",
-    "targetStyle": "Gelatos de Leite",
+    "category": "Gelatos de Chocolate com Leite",
+    "targetStyle": "Gelatos de Chocolate com Leite",
     "ingredients": [
       {
         "name": "Leite Integral",
@@ -465,8 +465,8 @@
   {
     "id": "rec_12",
     "name": "Chocolate Branco Assado com Missô (Direto ao Ponto)",
-    "category": "Gelatos de Leite",
-    "targetStyle": "Gelatos de Leite",
+    "category": "Gelatos de Chocolate com Leite",
+    "targetStyle": "Gelatos de Chocolate com Leite",
     "ingredients": [
       {
         "name": "Leite Integral",
@@ -686,8 +686,8 @@
   {
     "id": "rec_17",
     "name": "Intenso de Cacau (Direto ao Ponto)",
-    "category": "Gelatos de Leite",
-    "targetStyle": "Gelatos de Leite",
+    "category": "Gelatos de Chocolate com Leite",
+    "targetStyle": "Gelatos de Chocolate com Leite",
     "ingredients": [
       {
         "name": "Leite Integral",
@@ -727,8 +727,8 @@
   {
     "id": "rec_18",
     "name": "Chocolate 70% (Direto ao Ponto)",
-    "category": "Gelatos de Leite",
-    "targetStyle": "Gelatos de Leite",
+    "category": "Gelatos de Chocolate com Leite",
+    "targetStyle": "Gelatos de Chocolate com Leite",
     "ingredients": [
       {
         "name": "Leite Integral",
@@ -1133,8 +1133,8 @@
   {
     "id": "rec_28",
     "name": "Gelato de Chocolate Branco e Frutas Vermelhas (Addolcire)",
-    "category": "Gelatos de Leite",
-    "targetStyle": "Gelatos de Leite",
+    "category": "Gelatos de Chocolate com Leite",
+    "targetStyle": "Gelatos de Chocolate com Leite",
     "ingredients": [
       {
         "name": "Água",
@@ -1608,8 +1608,8 @@
   {
     "id": "rec_39",
     "name": "Gelato de Chocolate Amargo 60% (Addolcire)",
-    "category": "Gelatos de Leite",
-    "targetStyle": "Gelatos de Leite",
+    "category": "Gelatos de Chocolate com Leite",
+    "targetStyle": "Gelatos de Chocolate com Leite",
     "ingredients": [
       {
         "name": "Leite Integral",
@@ -1649,8 +1649,8 @@
   {
     "id": "rec_40",
     "name": "Gelato de Chocolate ao Leite (Addolcire)",
-    "category": "Gelatos de Leite",
-    "targetStyle": "Gelatos de Leite",
+    "category": "Gelatos de Chocolate com Leite",
+    "targetStyle": "Gelatos de Chocolate com Leite",
     "ingredients": [
       {
         "name": "Leite Integral",
@@ -1698,8 +1698,8 @@
   {
     "id": "rec_41",
     "name": "Gelato de Chocolate 70% com Amêndoa (Addolcire)",
-    "category": "Gelatos de Leite",
-    "targetStyle": "Gelatos de Leite",
+    "category": "Gelatos de Chocolate com Leite",
+    "targetStyle": "Gelatos de Chocolate com Leite",
     "ingredients": [
       {
         "name": "Leite Integral",
@@ -2444,8 +2444,8 @@
   {
     "id": "rec_59",
     "name": "Sorvete Soft de Chocolate (Addolcire)",
-    "category": "Gelatos de Leite",
-    "targetStyle": "Gelatos de Leite",
+    "category": "Gelatos de Chocolate com Leite",
+    "targetStyle": "Gelatos de Chocolate com Leite",
     "ingredients": [
       {
         "name": "Leite Integral",
@@ -4515,8 +4515,8 @@
   {
     "id": "rec_110",
     "name": "Sorbet de Caipirinha (Direto ao Ponto)",
-    "category": "Alcoólicos",
-    "targetStyle": "Alcoólicos",
+    "category": "Sorbets Alcoólicos",
+    "targetStyle": "Sorbets Alcoólicos",
     "ingredients": [
       {
         "name": "Água",
@@ -4826,8 +4826,8 @@
   {
     "id": "rec_117",
     "name": "Sorbet de Caipirinha (Addolcire)",
-    "category": "Alcoólicos",
-    "targetStyle": "Alcoólicos",
+    "category": "Sorbets Alcoólicos",
+    "targetStyle": "Sorbets Alcoólicos",
     "ingredients": [
       {
         "name": "Água",
@@ -4867,8 +4867,8 @@
   {
     "id": "rec_118",
     "name": "Sorbet Clericot (Addolcire)",
-    "category": "Alcoólicos",
-    "targetStyle": "Alcoólicos",
+    "category": "Sorbets Alcoólicos",
+    "targetStyle": "Sorbets Alcoólicos",
     "ingredients": [
       {
         "name": "Água",
@@ -4916,8 +4916,8 @@
   {
     "id": "rec_119",
     "name": "Sorbet de Morango e Espumante (Addolcire)",
-    "category": "Alcoólicos",
-    "targetStyle": "Alcoólicos",
+    "category": "Sorbets Alcoólicos",
+    "targetStyle": "Sorbets Alcoólicos",
     "ingredients": [
       {
         "name": "Água",
@@ -5284,8 +5284,8 @@
   {
     "id": "rec_131",
     "name": "Sorbet de Cupuaçu Zero (Mix Zero)",
-    "category": "Zero",
-    "targetStyle": "Zero",
+    "category": "Sorbets Zero",
+    "targetStyle": "Sorbets Zero",
     "ingredients": [
       {
         "name": "Água",
@@ -5305,8 +5305,8 @@
   {
     "id": "rec_132",
     "name": "Sorbet de Limão Taiti Zero (Mix Zero)",
-    "category": "Zero",
-    "targetStyle": "Zero",
+    "category": "Sorbets Zero",
+    "targetStyle": "Sorbets Zero",
     "ingredients": [
       {
         "name": "Água",
@@ -5326,8 +5326,8 @@
   {
     "id": "rec_133",
     "name": "Sorbet de Manga com Maracujá Zero (Mix Zero)",
-    "category": "Zero",
-    "targetStyle": "Zero",
+    "category": "Sorbets Zero",
+    "targetStyle": "Sorbets Zero",
     "ingredients": [
       {
         "name": "Água",
@@ -5351,8 +5351,8 @@
   {
     "id": "rec_134",
     "name": "Sorbet de Açaí Zero (Mix Zero)",
-    "category": "Zero",
-    "targetStyle": "Zero",
+    "category": "Sorbets Zero",
+    "targetStyle": "Sorbets Zero",
     "ingredients": [
       {
         "name": "Água",
@@ -5376,8 +5376,8 @@
   {
     "id": "rec_135",
     "name": "Sorbet de Açaí com Banana Zero (Mix Zero)",
-    "category": "Zero",
-    "targetStyle": "Zero",
+    "category": "Sorbets Zero",
+    "targetStyle": "Sorbets Zero",
     "ingredients": [
       {
         "name": "Água",
@@ -5405,8 +5405,8 @@
   {
     "id": "rec_136",
     "name": "Sorbet de Açaí com Morango Zero (Mix Zero)",
-    "category": "Zero",
-    "targetStyle": "Zero",
+    "category": "Sorbets Zero",
+    "targetStyle": "Sorbets Zero",
     "ingredients": [
       {
         "name": "Água",
@@ -5434,8 +5434,8 @@
   {
     "id": "rec_137",
     "name": "Sorbet de Framboesa Zero (Mix Zero)",
-    "category": "Zero",
-    "targetStyle": "Zero",
+    "category": "Sorbets Zero",
+    "targetStyle": "Sorbets Zero",
     "ingredients": [
       {
         "name": "Água",
@@ -5459,8 +5459,8 @@
   {
     "id": "rec_138",
     "name": "Sorbet de Morango Zero (Mix Zero)",
-    "category": "Zero",
-    "targetStyle": "Zero",
+    "category": "Sorbets Zero",
+    "targetStyle": "Sorbets Zero",
     "ingredients": [
       {
         "name": "Água",
@@ -5484,8 +5484,8 @@
   {
     "id": "rec_139",
     "name": "Sorbet de Manga Zero (Mix Zero)",
-    "category": "Zero",
-    "targetStyle": "Zero",
+    "category": "Sorbets Zero",
+    "targetStyle": "Sorbets Zero",
     "ingredients": [
       {
         "name": "Água",
@@ -5509,8 +5509,8 @@
   {
     "id": "rec_140",
     "name": "Sorbet de Frutas Vermelhas Zero (Mix Zero)",
-    "category": "Zero",
-    "targetStyle": "Zero",
+    "category": "Sorbets Zero",
+    "targetStyle": "Sorbets Zero",
     "ingredients": [
       {
         "name": "Água",
@@ -5538,8 +5538,8 @@
   {
     "id": "rec_141",
     "name": "Sorbet de Limão Siciliano Zero (Mix Zero)",
-    "category": "Zero",
-    "targetStyle": "Zero",
+    "category": "Sorbets Zero",
+    "targetStyle": "Sorbets Zero",
     "ingredients": [
       {
         "name": "Água",
@@ -5563,8 +5563,8 @@
   {
     "id": "rec_142",
     "name": "Sorbet de Morango e Manjericão Diet (Addolcire)",
-    "category": "Zero",
-    "targetStyle": "Zero",
+    "category": "Sorbets Zero",
+    "targetStyle": "Sorbets Zero",
     "ingredients": [
       {
         "name": "Água",
@@ -5641,8 +5641,8 @@
   {
     "id": "rec_144",
     "name": "Sorbet de Framboesa - Polióis (Sem Açúcar)",
-    "category": "Zero",
-    "targetStyle": "Zero",
+    "category": "Sorbets Zero",
+    "targetStyle": "Sorbets Zero",
     "ingredients": [
       {
         "name": "Framboesa",
@@ -5682,8 +5682,8 @@
   {
     "id": "rec_145",
     "name": "Sorbet de Framboesa - Redução de Polióis (Sem Açúcar)",
-    "category": "Zero",
-    "targetStyle": "Zero",
+    "category": "Sorbets Zero",
+    "targetStyle": "Sorbets Zero",
     "ingredients": [
       {
         "name": "Framboesa",
@@ -6461,8 +6461,8 @@
   {
     "id": "rec_164",
     "name": "Sorbet de Manga - Polióis (Sem Açúcar)",
-    "category": "Zero",
-    "targetStyle": "Zero",
+    "category": "Sorbets Zero",
+    "targetStyle": "Sorbets Zero",
     "ingredients": [
       {
         "name": "Manga",
@@ -6498,8 +6498,8 @@
   {
     "id": "rec_165",
     "name": "Sorbet de Manga - Redução de Polióis (Sem Açúcar)",
-    "category": "Zero",
-    "targetStyle": "Zero",
+    "category": "Sorbets Zero",
+    "targetStyle": "Sorbets Zero",
     "ingredients": [
       {
         "name": "Manga",

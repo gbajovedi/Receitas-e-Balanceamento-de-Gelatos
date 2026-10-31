@@ -124,32 +124,62 @@ export const RecipeList: React.FC<RecipeListProps> = ({
         fatPct = analysis.percentages.fat * 100;
         sugarsPct = analysis.percentages.sugars * 100;
 
-        if (analysis.validations.sugars.status !== 'Ok') {
-          unbalanceReasons.push(`Açúcares ${analysis.validations.sugars.status.toLowerCase()} (${(analysis.percentages.sugars * 100).toFixed(1)}% | alvo ${Math.round(currentStyle.min.sugars * 100)}–${Math.round(currentStyle.max.sugars * 100)}%)`);
-        }
-        if (analysis.validations.fat.status !== 'Ok') {
-          unbalanceReasons.push(`Gordura ${analysis.validations.fat.status.toLowerCase()} (${(analysis.percentages.fat * 100).toFixed(1)}% | alvo ${Math.round(currentStyle.min.fat * 100)}–${Math.round(currentStyle.max.fat * 100)}%)`);
-        }
-        if (analysis.validations.msnf.status !== 'Ok') {
-          unbalanceReasons.push(`SLNG ${analysis.validations.msnf.status.toLowerCase()} (${(analysis.percentages.msnf * 100).toFixed(1)}% | alvo ${Math.round(currentStyle.min.msnf * 100)}–${Math.round(currentStyle.max.msnf * 100)}%)`);
-        }
-        if (analysis.validations.otherSolids.status !== 'Ok') {
-          unbalanceReasons.push(`Outros Sólidos ${analysis.validations.otherSolids.status.toLowerCase()} (${(analysis.percentages.otherSolids * 100).toFixed(1)}% | alvo ${Math.round(currentStyle.min.otherSolids * 100)}–${Math.round(currentStyle.max.otherSolids * 100)}%)`);
-        }
-        if (analysis.validations.totalSolids.status !== 'Ok') {
-          unbalanceReasons.push(`Sólidos Totais ${analysis.validations.totalSolids.status.toLowerCase()} (${(analysis.percentages.totalSolids * 100).toFixed(1)}% | alvo ${Math.round(currentStyle.min.totalSolids * 100)}–${Math.round(currentStyle.max.totalSolids * 100)}%)`);
-        }
-        if (analysis.validations.pod.status !== 'Ok') {
-          unbalanceReasons.push(`POD ${analysis.validations.pod.status.toLowerCase()} (${analysis.percentages.pod} | alvo ${currentStyle.min.pod}–${currentStyle.max.pod})`);
-        }
-        if (analysis.validations.pac.status !== 'Ok') {
-          unbalanceReasons.push(`PAC ${analysis.validations.pac.status.toLowerCase()} (${analysis.percentages.pac} | alvo ${currentStyle.min.pac}–${currentStyle.max.pac})`);
-        }
-        if (analysis.sandinessRisk?.isAtRisk) {
-          unbalanceReasons.push(`Risco de Arenosidade (SLNG ${(analysis.percentages.msnf * 100).toFixed(1)}% > limite seguro ${(analysis.sandinessRisk.maxSafeMsnf * 100).toFixed(1)}%)`);
+        const isCriticalDeviation = (val: number, min: number, max: number, tol: number) =>
+          val < (min - tol) || val > (max + tol);
+
+        const criticalReasons: string[] = [];
+
+        // 1. Risco crítico de arenosidade (Fórmula de Caviezel: SLNG excede teto seguro em > 0.8%)
+        const isCriticalSandiness =
+          analysis.percentages.msnf > 0.02 &&
+          Boolean(analysis.sandinessRisk) &&
+          analysis.percentages.msnf > (analysis.sandinessRisk!.maxSafeMsnf + 0.008);
+
+        if (isCriticalSandiness && analysis.sandinessRisk) {
+          criticalReasons.push(
+            `Risco Crítico de Arenosidade (SLNG ${(analysis.percentages.msnf * 100).toFixed(1)}% > teto seguro ${(analysis.sandinessRisk.maxSafeMsnf * 100).toFixed(1)}%)`
+          );
         }
 
-        needsAdjustment = !analysis.isBalanced || Boolean(analysis.sandinessRisk?.isAtRisk);
+        // 2. PAC crítico (> 20 pontos de desvio do estilo alvo)
+        if (isCriticalDeviation(analysis.percentages.pac, currentStyle.min.pac, currentStyle.max.pac, 20)) {
+          const status = analysis.percentages.pac < currentStyle.min.pac ? 'muito baixo (congelamento excessivo)' : 'muito alto (fusão rápida)';
+          criticalReasons.push(`PAC ${status} (${Math.round(analysis.percentages.pac)} | alvo ${currentStyle.min.pac}–${currentStyle.max.pac})`);
+        }
+
+        // 3. Açúcares críticos (> 2.5% de desvio)
+        if (isCriticalDeviation(analysis.percentages.sugars, currentStyle.min.sugars, currentStyle.max.sugars, 0.025)) {
+          const status = analysis.percentages.sugars < currentStyle.min.sugars ? 'muito baixo' : 'muito alto';
+          criticalReasons.push(`Açúcares ${status} (${(analysis.percentages.sugars * 100).toFixed(1)}% | alvo ${Math.round(currentStyle.min.sugars * 100)}–${Math.round(currentStyle.max.sugars * 100)}%)`);
+        }
+
+        // 4. Gordura crítica (> 2.0% de desvio)
+        if (isCriticalDeviation(analysis.percentages.fat, currentStyle.min.fat, currentStyle.max.fat, 0.02)) {
+          const status = analysis.percentages.fat < currentStyle.min.fat ? 'muito baixa' : 'muito alta';
+          criticalReasons.push(`Gordura ${status} (${(analysis.percentages.fat * 100).toFixed(1)}% | alvo ${Math.round(currentStyle.min.fat * 100)}–${Math.round(currentStyle.max.fat * 100)}%)`);
+        }
+
+        // 5. SLNG crítico (> 1.5% de desvio)
+        if (isCriticalDeviation(analysis.percentages.msnf, currentStyle.min.msnf, currentStyle.max.msnf, 0.015)) {
+          const status = analysis.percentages.msnf < currentStyle.min.msnf ? 'muito baixo' : 'muito alto';
+          criticalReasons.push(`SLNG ${status} (${(analysis.percentages.msnf * 100).toFixed(1)}% | alvo ${Math.round(currentStyle.min.msnf * 100)}–${Math.round(currentStyle.max.msnf * 100)}%)`);
+        }
+
+        // 6. Sólidos Totais críticos (> 3.0% de desvio)
+        if (isCriticalDeviation(analysis.percentages.totalSolids, currentStyle.min.totalSolids, currentStyle.max.totalSolids, 0.03)) {
+          const status = analysis.percentages.totalSolids < currentStyle.min.totalSolids ? 'muito baixo (textura aguada)' : 'muito alto (textura pesada)';
+          criticalReasons.push(`Sólidos Totais ${status} (${(analysis.percentages.totalSolids * 100).toFixed(1)}% | alvo ${Math.round(currentStyle.min.totalSolids * 100)}–${Math.round(currentStyle.max.totalSolids * 100)}%)`);
+        }
+
+        // 7. POD crítico (> 25 pontos de desvio)
+        if (isCriticalDeviation(analysis.percentages.pod, currentStyle.min.pod, currentStyle.max.pod, 25)) {
+          const status = analysis.percentages.pod < currentStyle.min.pod ? 'dulçor insuficiente' : 'dulçor excessivo';
+          criticalReasons.push(`POD ${status} (${Math.round(analysis.percentages.pod)} | alvo ${currentStyle.min.pod}–${currentStyle.max.pod})`);
+        }
+
+        // Somente sinalizar alerta na lista se houver desbalanceamento crítico
+        needsAdjustment = criticalReasons.length > 0;
+        unbalanceReasons.push(...criticalReasons);
       }
 
       map.set(recipe.id, {

@@ -416,6 +416,56 @@ export class GelatoDatabase extends Dexie {
         console.warn('Migration to v10 brand restoration:', e);
       }
     });
+
+    // Versão 11: Reclassificação taxonômica de receitas e calibração físico-química de Whey Protein
+    this.version(11).stores({
+      ingredients: 'id, name, category, costKg',
+      recipes: 'id, name, category, targetStyle, isCustom',
+      preparations: 'id, name, category, isCustom',
+      settings: 'key'
+    }).upgrade(async tx => {
+      try {
+        const milkChocIds = ['rec_3', 'rec_12', 'rec_17', 'rec_18', 'rec_28', 'rec_39', 'rec_40', 'rec_41', 'rec_59'];
+        const sorbetAlcIds = ['rec_110', 'rec_117', 'rec_118', 'rec_119'];
+        const sorbetZeroIds = [
+          'rec_131', 'rec_132', 'rec_133', 'rec_134', 'rec_135', 'rec_136', 'rec_137',
+          'rec_138', 'rec_139', 'rec_140', 'rec_141', 'rec_142', 'rec_144', 'rec_145',
+          'rec_164', 'rec_165'
+        ];
+
+        const recs = await tx.table('recipes').toArray();
+        for (const rec of recs) {
+          if (!rec.isCustom) {
+            if (milkChocIds.includes(rec.id)) {
+              await tx.table('recipes').update(rec.id, {
+                category: 'Gelatos de Chocolate com Leite',
+                targetStyle: 'Gelatos de Chocolate com Leite'
+              });
+            } else if (sorbetAlcIds.includes(rec.id)) {
+              await tx.table('recipes').update(rec.id, {
+                category: 'Sorbets Alcoólicos',
+                targetStyle: 'Sorbets Alcoólicos'
+              });
+            } else if (sorbetZeroIds.includes(rec.id)) {
+              await tx.table('recipes').update(rec.id, {
+                category: 'Sorbets Zero',
+                targetStyle: 'Sorbets Zero'
+              });
+            }
+          }
+        }
+
+        const whey = await tx.table('ingredients').get('ing_166');
+        if (whey && !whey.isCustom) {
+          await tx.table('ingredients').update('ing_166', {
+            msnf: 0.04,
+            otherSolids: 0.8667
+          });
+        }
+      } catch (e) {
+        console.warn('Migration to v11 styles reclassification:', e);
+      }
+    });
   }
 
   async initializeSeedData(): Promise<void> {
@@ -463,24 +513,31 @@ export class GelatoDatabase extends Dexie {
           await this.ingredients.bulkPut(newCatalogIngs);
         }
 
-        // Sincronizar refinamentos técnicos de POD/PAC em itens do catálogo preservando custo customizado
+        // Sincronizar refinamentos técnicos de POD/PAC/SLNG em itens do catálogo preservando custo customizado
         const paramSyncSetting = await this.settings.get('ingredient_technical_params_version');
-        if (!paramSyncSetting || paramSyncSetting.value < 1) {
-          console.log('Atualizando refinamentos técnicos de POD/PAC em insumos do catálogo...');
+        if (!paramSyncSetting || paramSyncSetting.value < 2) {
+          console.log('Atualizando refinamentos técnicos de POD/PAC/SLNG em insumos do catálogo...');
           const catalogMap = new Map((initialIngredients as Ingredient[]).map(i => [i.id, i]));
           const currentIngs = await this.ingredients.toArray();
           for (const ing of currentIngs) {
             const catItem = catalogMap.get(ing.id);
             if (catItem && !ing.isCustom) {
-              if (ing.pac !== catItem.pac || ing.pod !== catItem.pod) {
+              if (
+                ing.pac !== catItem.pac ||
+                ing.pod !== catItem.pod ||
+                ing.msnf !== catItem.msnf ||
+                ing.otherSolids !== catItem.otherSolids
+              ) {
                 await this.ingredients.update(ing.id, {
                   pac: catItem.pac,
-                  pod: catItem.pod
+                  pod: catItem.pod,
+                  msnf: catItem.msnf,
+                  otherSolids: catItem.otherSolids
                 });
               }
             }
           }
-          await this.settings.put({ key: 'ingredient_technical_params_version', value: 1 });
+          await this.settings.put({ key: 'ingredient_technical_params_version', value: 2 });
         }
 
         // Sincronizar limpeza de nomes de marcas em bancos existentes

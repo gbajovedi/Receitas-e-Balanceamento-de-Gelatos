@@ -15,6 +15,7 @@ export type StylePresetId = 'gold' | 'carpigiani' | 'custom';
  */
 export const STYLES_WITH_CARPIGIANI_DATA = new Set<string>([
   'Gelatos de Leite',
+  'Gelatos de Chocolate com Leite',
   'Gelatos de Oleaginosas',
   'Gelatos de Leite com Fruta',
   'Sorbets',
