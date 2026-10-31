@@ -349,7 +349,7 @@ export const ProfitSimulator: React.FC<ProfitSimulatorProps> = ({
 
         {/* Controles de Aeração & Alternância de Modo */}
         <div className="flex items-center gap-2.5 flex-wrap sm:flex-nowrap">
-          {/* Calibrador de Overrun */}
+          {/* Calibrador de Overrun com Slot Estável (Zero Layout Shift) */}
           <div className="flex items-center gap-2 bg-slate-950 px-3 py-1.5 rounded-xl border border-purple-500/30 shadow-inner">
             <div className="flex items-center gap-1.5 text-purple-300">
               <Wind className="w-4 h-4 text-purple-400 shrink-0" />
@@ -365,7 +365,7 @@ export const ProfitSimulator: React.FC<ProfitSimulatorProps> = ({
               >
                 <Minus className="w-3 h-3" />
               </button>
-              <span className="text-xs font-mono font-black text-white px-1 min-w-[34px] text-center">
+              <span className="text-xs font-mono font-black text-white px-1 min-w-[34px] text-center select-none">
                 {userOverrun}%
               </span>
               <button
@@ -378,17 +378,24 @@ export const ProfitSimulator: React.FC<ProfitSimulatorProps> = ({
               </button>
             </div>
 
-            {densityAndVolume?.baseOverrunPct && userOverrun !== densityAndVolume.baseOverrunPct && (
-              <button
-                type="button"
-                onClick={() => setUserOverrun(densityAndVolume.baseOverrunPct)}
-                className="text-[11px] text-purple-400 hover:text-purple-300 underline flex items-center gap-0.5 ml-1"
-                title="Restaurar estimativa bromatológica"
-              >
-                <RotateCcw className="w-2.5 h-2.5" />
-                <span>Reset ({densityAndVolume.baseOverrunPct}%)</span>
-              </button>
-            )}
+            {/* Botão de Reset com Largura e Posição 100% Fixas (Zero Deslocamento de Cursor) */}
+            <button
+              type="button"
+              disabled={!densityAndVolume?.baseOverrunPct || userOverrun === densityAndVolume.baseOverrunPct}
+              onClick={() => densityAndVolume?.baseOverrunPct && setUserOverrun(densityAndVolume.baseOverrunPct)}
+              className={`w-6 h-6 flex items-center justify-center rounded-md transition-all shrink-0 ${
+                densityAndVolume?.baseOverrunPct && userOverrun !== densityAndVolume.baseOverrunPct
+                  ? 'bg-purple-500/20 hover:bg-purple-500/40 text-purple-300 hover:text-white border border-purple-500/40 cursor-pointer shadow-sm'
+                  : 'opacity-0 pointer-events-none'
+              }`}
+              title={
+                densityAndVolume?.baseOverrunPct && userOverrun !== densityAndVolume.baseOverrunPct
+                  ? `Restaurar aeração padrão Carpigiani (${densityAndVolume.baseOverrunPct}%)`
+                  : undefined
+              }
+            >
+              <RotateCcw className="w-3 h-3" />
+            </button>
           </div>
 
           {/* Mode Switch (Margem vs Preço) */}
