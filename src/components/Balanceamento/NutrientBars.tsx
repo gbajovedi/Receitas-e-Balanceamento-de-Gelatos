@@ -265,19 +265,19 @@ export const NutrientBars: React.FC<NutrientBarsProps> = ({ analysis }) => {
 
             {/* Status Pill with Actionable Delta */}
             {status === 'Ok' ? (
-              <span className="text-[11px] px-2.5 py-0.5 rounded-full border font-bold bg-emerald-500/15 text-emerald-300 border-emerald-500/30 flex items-center gap-1 whitespace-nowrap shrink-0">
-                <Check className="w-3 h-3 text-emerald-400 stroke-[3]" />
+              <span className="text-xs px-2.5 py-0.5 rounded-full border font-bold bg-emerald-500/15 text-emerald-300 border-emerald-500/30 flex items-center gap-1 whitespace-nowrap shrink-0">
+                <Check className="w-3.5 h-3.5 text-emerald-400 stroke-[3]" />
                 <span>No Alvo</span>
               </span>
             ) : status === 'Baixo' ? (
-              <span className="text-[11px] px-2 py-0.5 rounded-full border font-bold bg-amber-500/20 text-amber-300 border-amber-500/40 flex items-center gap-1 animate-pulse whitespace-nowrap shrink-0">
+              <span className="text-xs px-2.5 py-0.5 rounded-full border font-bold bg-amber-500/20 text-amber-300 border-amber-500/40 flex items-center gap-1 animate-pulse whitespace-nowrap shrink-0">
                 <span>↓ -{deltaStr}</span>
-                <span className="text-[10px] uppercase">Baixo</span>
+                <span className="text-[11px] uppercase font-bold">Baixo</span>
               </span>
             ) : (
-              <span className="text-[11px] px-2 py-0.5 rounded-full border font-bold bg-rose-500/20 text-rose-300 border-rose-500/40 flex items-center gap-1 animate-pulse whitespace-nowrap shrink-0">
+              <span className="text-xs px-2.5 py-0.5 rounded-full border font-bold bg-rose-500/20 text-rose-300 border-rose-500/40 flex items-center gap-1 animate-pulse whitespace-nowrap shrink-0">
                 <span>↑ +{deltaStr}</span>
-                <span className="text-[10px] uppercase">Alto</span>
+                <span className="text-[11px] uppercase font-bold">Alto</span>
               </span>
             )}
           </div>
@@ -326,30 +326,30 @@ export const NutrientBars: React.FC<NutrientBarsProps> = ({ analysis }) => {
           </div>
 
           {/* Clean, Non-Redundant Micro-Scale */}
-          <div className="flex items-center justify-between text-[11px] text-slate-400 font-mono mt-1.5 px-0.5">
+          <div className="flex items-center justify-between text-xs text-slate-300 font-mono mt-1.5 px-0.5">
             <span title={`Mínimo: ${displayMin}${unit}`}>
-              Mín: <strong className="text-slate-200">{displayMin}{unit}</strong>
+              Mín: <strong className="text-white font-bold">{displayMin}{unit}</strong>
             </span>
 
             <span title={`Máximo: ${displayMax}${unit}`}>
-              Máx: <strong className="text-slate-200">{displayMax}{unit}</strong>
+              Máx: <strong className="text-white font-bold">{displayMax}{unit}</strong>
             </span>
           </div>
 
           {/* Razão Gordura : SLNG & Overrun (Carpigiani) */}
           {key === 'fat' && emulsion && emulsion.status !== 'sorbet' && (
-            <div className="mt-2.5 pt-2 border-t border-slate-800/80 text-[10px] text-slate-400 flex items-center justify-between">
+            <div className="mt-2.5 pt-2 border-t border-slate-800/80 text-xs text-slate-300 flex items-center justify-between">
               <span title="Relação Lipídica Carpigiani: Gordura / SLNG (Alvo ideal: 0.75 a 1.25)">
                 Razão Gordura:SLNG:
               </span>
-              <span className="flex items-center gap-1 font-mono font-bold">
+              <span className="flex items-center gap-1.5 font-mono font-bold">
                 <strong className={
                   emulsion.status === 'ideal' ? 'text-emerald-300' :
                   emulsion.status === 'gorduroso' ? 'text-amber-300' : 'text-sky-300'
                 }>
                   {emulsion.fatMsnfRatio} : 1
                 </strong>
-                <span className="text-[9px] text-slate-400 font-normal">
+                <span className="text-xs text-slate-400 font-normal">
                   (~{emulsion.overrunEstimatePct}% ar)
                 </span>
               </span>
@@ -358,20 +358,20 @@ export const NutrientBars: React.FC<NutrientBarsProps> = ({ analysis }) => {
 
           {/* Alerta Dinâmico de Arenosidade (Luca Caviezel) */}
           {key === 'msnf' && sandiness && (
-            <div className={`mt-2.5 pt-2 border-t text-[10px] sm:text-[11px] flex items-start gap-1.5 transition-all ${sandiness.isAtRisk ? 'border-amber-500/50 text-amber-300 bg-amber-950/40 p-2 rounded-xl border' : 'border-slate-800/80 text-slate-400'}`}>
+            <div className={`mt-2.5 pt-2 border-t text-xs flex items-start gap-1.5 transition-all ${sandiness.isAtRisk ? 'border-amber-500/50 text-amber-200 bg-amber-950/40 p-2.5 rounded-xl border' : 'border-slate-800/80 text-slate-300'}`}>
               {sandiness.isAtRisk ? (
                 <>
-                  <AlertTriangle className="w-3.5 h-3.5 text-amber-400 shrink-0 mt-0.5" />
+                  <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
                   <div>
-                    <span className="font-bold text-amber-200">Alerta Arenosidade (Caviezel):</span>
-                    <span className="block text-[10px] text-amber-300/90 leading-tight mt-0.5">
+                    <span className="font-bold text-amber-100">Alerta Arenosidade (Caviezel):</span>
+                    <span className="block text-xs text-amber-200/90 leading-relaxed mt-0.5">
                       SLNG ({displayVal}%) excede teto seguro de {(sandiness.maxSafeMsnf * 100).toFixed(1)}% p/ água disponível. Risco de cristalizar lactose.
                     </span>
                   </div>
                 </>
               ) : valItem.val > 0.03 ? (
-                <div className="flex items-center gap-1 text-[10px] text-emerald-400/90">
-                  <Check className="w-3 h-3 text-emerald-400" />
+                <div className="flex items-center gap-1.5 text-xs text-emerald-300">
+                  <Check className="w-3.5 h-3.5 text-emerald-400" />
                   <span>Teto seguro anti-arenosidade: {(sandiness.maxSafeMsnf * 100).toFixed(1)}%</span>
                 </div>
               ) : null}
@@ -380,11 +380,11 @@ export const NutrientBars: React.FC<NutrientBarsProps> = ({ analysis }) => {
 
           {/* Diagnóstico Corvitto de PAC na Água Livre */}
           {key === 'pac' && corvitto && (
-            <div className="mt-2.5 pt-2 border-t border-slate-800/80 text-[10px] text-slate-400 flex items-center justify-between">
+            <div className="mt-2.5 pt-2 border-t border-slate-800/80 text-xs text-slate-300 flex items-center justify-between">
               <span title="Índice Angelo Corvitto: PAC por kg de água pura disponível">
                 PAC Água Livre (Corvitto):
               </span>
-              <strong className="text-cyan-300 font-mono font-bold">
+              <strong className="text-cyan-300 font-mono font-bold text-sm">
                 {corvitto.pacWater}
               </strong>
             </div>
@@ -449,21 +449,24 @@ export const NutrientBars: React.FC<NutrientBarsProps> = ({ analysis }) => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 pt-1">
             
             {/* CARD 1: Comportamento Térmico de Serviço */}
-            <div className="bg-slate-900/95 p-3.5 rounded-2xl border border-slate-700/80 shadow-md flex flex-col justify-between space-y-3">
+            <div className="bg-slate-900/95 p-4 rounded-2xl border border-slate-700/80 shadow-md flex flex-col justify-between space-y-3">
               {/* Header do Card com Toggle Switch */}
               <div className="flex items-center justify-between gap-2 flex-wrap">
-                <span className="text-[10px] uppercase font-bold tracking-wider text-slate-400">
-                  Cenário Térmico de Serviço
-                </span>
+                <div className="flex items-center gap-2 text-cyan-300">
+                  <Store className="w-4 h-4 text-cyan-400" />
+                  <span className="text-xs sm:text-sm uppercase font-bold tracking-wider text-cyan-200">
+                    Cenário Térmico de Serviço
+                  </span>
+                </div>
 
-                <div className="flex bg-slate-950/90 p-1 rounded-xl border border-slate-800">
+                <div className="flex bg-slate-950 p-1 rounded-xl border border-slate-800">
                   <button
                     type="button"
                     onClick={() => setThermalMode('vitrine')}
-                    className={`px-2.5 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
+                    className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
                       thermalMode === 'vitrine'
-                        ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 shadow-sm'
-                        : 'text-slate-400 hover:text-slate-200'
+                        ? 'bg-cyan-500/25 text-cyan-200 border border-cyan-400/50 shadow-sm'
+                        : 'text-slate-300 hover:text-white'
                     }`}
                     title="Ponto de espatulabilidade para vitrine comercial ventilada (-11°C a -13°C)"
                   >
@@ -473,10 +476,10 @@ export const NutrientBars: React.FC<NutrientBarsProps> = ({ analysis }) => {
                   <button
                     type="button"
                     onClick={() => setThermalMode('freezer')}
-                    className={`px-2.5 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
+                    className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
                       thermalMode === 'freezer'
-                        ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40 shadow-sm'
-                        : 'text-slate-400 hover:text-slate-200'
+                        ? 'bg-amber-500/25 text-amber-200 border border-amber-400/50 shadow-sm'
+                        : 'text-slate-300 hover:text-white'
                     }`}
                     title="Diagnóstico Angelo Corvitto para potes de delivery / freezer doméstico (-18°C)"
                   >
@@ -488,48 +491,48 @@ export const NutrientBars: React.FC<NutrientBarsProps> = ({ analysis }) => {
 
               {/* Corpo de Métricas Térmicas */}
               {thermalMode === 'vitrine' ? (
-                <div className="flex items-center gap-3 py-0.5">
-                  <div className="w-10 h-10 rounded-xl bg-cyan-500/15 border border-cyan-500/30 flex items-center justify-center shrink-0">
-                    <ThermometerSnowflake className="w-5 h-5 text-cyan-400" />
+                <div className="flex items-center gap-3.5 py-1">
+                  <div className="w-12 h-12 rounded-xl bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center shrink-0 shadow-inner">
+                    <ThermometerSnowflake className="w-6 h-6 text-cyan-300" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <span className="text-[10px] uppercase font-bold tracking-wider text-slate-400">
+                      <span className="text-xs uppercase font-bold tracking-wider text-slate-300">
                         Temp. Serviço
                       </span>
-                      <span className={`text-[10px] px-2 py-0.5 rounded-full border font-bold ${textureVerdict.badgeColor}`}>
+                      <span className={`text-xs px-2.5 py-0.5 rounded-full border font-bold ${textureVerdict.badgeColor}`}>
                         {textureVerdict.title}
                       </span>
                     </div>
-                    <div className="flex items-baseline gap-2 mt-0.5">
-                      <span className="text-xl sm:text-2xl font-black font-mono text-cyan-300">
+                    <div className="flex items-baseline gap-2 mt-1">
+                      <span className="text-2xl sm:text-3xl font-black font-mono text-cyan-300 tracking-tight">
                         {servingTemperature} °C
                       </span>
-                      <span className="text-xs text-slate-400 font-mono">
+                      <span className="text-sm text-slate-300 font-mono font-medium">
                         (PAC: {Math.round(pacValue)})
                       </span>
                     </div>
                   </div>
                 </div>
               ) : (
-                <div className="flex items-center gap-3 py-0.5">
-                  <div className="w-10 h-10 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center shrink-0">
-                    <Snowflake className="w-5 h-5 text-amber-400" />
+                <div className="flex items-center gap-3.5 py-1">
+                  <div className="w-12 h-12 rounded-xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center shrink-0 shadow-inner">
+                    <Snowflake className="w-6 h-6 text-amber-300" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <span className="text-[10px] uppercase font-bold tracking-wider text-slate-400">
+                      <span className="text-xs uppercase font-bold tracking-wider text-slate-300">
                         PAC Água Livre (Corvitto)
                       </span>
-                      <span className={`text-[10px] px-2 py-0.5 rounded-full border font-bold ${freezerVerdictBadge}`}>
+                      <span className={`text-xs px-2.5 py-0.5 rounded-full border font-bold ${freezerVerdictBadge}`}>
                         {corvitto?.freezerLabel}
                       </span>
                     </div>
-                    <div className="flex items-baseline gap-2 mt-0.5">
-                      <span className="text-xl sm:text-2xl font-black font-mono text-amber-300">
+                    <div className="flex items-baseline gap-2 mt-1">
+                      <span className="text-2xl sm:text-3xl font-black font-mono text-amber-300 tracking-tight">
                         {corvitto?.pacWater}
                       </span>
-                      <span className="text-xs text-slate-400">
+                      <span className="text-xs sm:text-sm text-slate-300 font-medium">
                         {corvitto?.neededPacForFreezer && corvitto.neededPacForFreezer > 0
                           ? `(+${corvitto.neededPacForFreezer} PAC p/ ponto de colher)`
                           : `(ponto de colher imediato)`}
@@ -541,18 +544,18 @@ export const NutrientBars: React.FC<NutrientBarsProps> = ({ analysis }) => {
             </div>
 
             {/* CARD 2: Emulsão & Overrun (Aeração) — SEMPRE VISÍVEL E DESTACADO */}
-            <div className="bg-gradient-to-br from-slate-900 via-slate-900 to-purple-950/30 p-3.5 rounded-2xl border border-purple-500/30 shadow-md flex flex-col justify-between space-y-3">
+            <div className="bg-gradient-to-br from-slate-900 via-slate-900 to-purple-950/30 p-4 rounded-2xl border border-purple-500/30 shadow-md flex flex-col justify-between space-y-3">
               {/* Header do Card de Overrun */}
               <div className="flex items-center justify-between gap-2 flex-wrap">
-                <div className="flex items-center gap-1.5 text-purple-300">
-                  <Wind className="w-3.5 h-3.5 text-purple-400" />
-                  <span className="text-[10px] uppercase font-bold tracking-wider">
+                <div className="flex items-center gap-2 text-purple-300">
+                  <Wind className="w-4 h-4 text-purple-400" />
+                  <span className="text-xs sm:text-sm uppercase font-bold tracking-wider text-purple-200">
                     Emulsão & Overrun (Carpigiani)
                   </span>
                 </div>
 
                 <span
-                  className={`text-[10px] px-2 py-0.5 rounded-full border font-bold ${
+                  className={`text-xs px-2.5 py-1 rounded-full border font-bold shadow-sm ${
                     emulsion?.status === 'ideal'
                       ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40'
                       : emulsion?.status === 'gorduroso'
@@ -568,21 +571,21 @@ export const NutrientBars: React.FC<NutrientBarsProps> = ({ analysis }) => {
               </div>
 
               {/* Corpo com Overrun em Grande Destaque e Razão Lipídica */}
-              <div className="flex items-center justify-between gap-4 py-0.5">
+              <div className="flex items-center justify-between gap-4 py-1">
                 {/* Bloco de Overrun */}
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-purple-500/15 border border-purple-500/30 flex items-center justify-center shrink-0">
-                    <Wind className="w-5 h-5 text-purple-400" />
+                <div className="flex items-center gap-3.5">
+                  <div className="w-12 h-12 rounded-xl bg-purple-500/20 border border-purple-500/40 flex items-center justify-center shrink-0 shadow-inner">
+                    <Wind className="w-6 h-6 text-purple-300" />
                   </div>
                   <div>
-                    <span className="text-[10px] uppercase font-bold tracking-wider text-slate-400 block">
+                    <span className="text-xs uppercase font-bold tracking-wider text-slate-300 block">
                       Overrun Estimado
                     </span>
-                    <div className="flex items-baseline gap-1.5 mt-0.5">
-                      <span className="text-xl sm:text-2xl font-black font-mono text-purple-200">
+                    <div className="flex items-baseline gap-2 mt-1">
+                      <span className="text-2xl sm:text-3xl font-black font-mono text-purple-200 tracking-tight">
                         ~{emulsion?.overrunEstimatePct}%
                       </span>
-                      <span className="text-xs text-slate-400 font-mono">
+                      <span className="text-sm text-slate-300 font-mono font-medium">
                         ({emulsion?.overrunRange})
                       </span>
                     </div>
@@ -591,31 +594,31 @@ export const NutrientBars: React.FC<NutrientBarsProps> = ({ analysis }) => {
 
                 {/* Bloco de Razão Lipídica */}
                 <div className="text-right shrink-0">
-                  <span className="text-[10px] uppercase font-bold tracking-wider text-slate-400 block">
+                  <span className="text-xs uppercase font-bold tracking-wider text-slate-300 block">
                     Gordura : SLNG
                   </span>
-                  <span className="text-base sm:text-lg font-black font-mono text-slate-200 block mt-0.5">
+                  <span className="text-xl sm:text-2xl font-black font-mono text-white block mt-0.5 tracking-tight">
                     {emulsion?.status === 'sorbet' ? 'Sorbet' : `${emulsion?.fatMsnfRatio} : 1`}
                   </span>
-                  <span className="text-[10px] text-slate-500 font-medium block">
+                  <span className="text-xs text-slate-300 font-mono font-medium block mt-0.5">
                     {emulsion?.status === 'sorbet' ? 'Base Água' : 'Alvo: 0.75 a 1.25'}
                   </span>
                 </div>
               </div>
 
               {/* Mini-Gauge de Nível de Aeração */}
-              <div className="space-y-1">
-                <div className="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
+              <div className="space-y-1.5 pt-1">
+                <div className="w-full h-2 bg-slate-950 rounded-full overflow-hidden border border-slate-800">
                   <div
-                    className="h-full bg-gradient-to-r from-sky-400 via-purple-400 to-emerald-400 rounded-full transition-all duration-500"
+                    className="h-full bg-gradient-to-r from-sky-400 via-purple-400 to-emerald-400 rounded-full transition-all duration-500 shadow-sm"
                     style={{
                       width: `${Math.min(100, Math.max(12, (((emulsion?.overrunEstimatePct || 30) - 15) / 30) * 100))}%`
                     }}
                   />
                 </div>
-                <div className="flex items-center justify-between text-[9px] text-slate-500 font-mono">
+                <div className="flex items-center justify-between text-xs text-slate-300 font-medium font-sans">
                   <span>Denso (18%)</span>
-                  <span>Clássico Italiano (~32%)</span>
+                  <span className="text-purple-300 font-bold">Clássico Italiano (~32%)</span>
                   <span>Aerado (45%)</span>
                 </div>
               </div>
@@ -626,13 +629,13 @@ export const NutrientBars: React.FC<NutrientBarsProps> = ({ analysis }) => {
 
         {/* Alerta Destacado de Arenosidade (Caviezel) */}
         {sandiness?.isAtRisk && (
-          <div className="mt-3.5 p-3 bg-amber-950/40 rounded-xl border border-amber-500/50 text-xs text-amber-200 flex items-start gap-2.5 shadow-sm">
+          <div className="mt-3.5 p-3.5 bg-amber-950/40 rounded-xl border border-amber-500/50 text-xs text-amber-200 flex items-start gap-2.5 shadow-sm">
             <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
             <div className="space-y-0.5">
-              <strong className="text-amber-300 font-bold block">
+              <strong className="text-amber-300 font-bold block text-sm">
                 Alerta de Arenosidade (Regra Áurea de Luca Caviezel):
               </strong>
-              <p className="text-amber-200/90 leading-relaxed text-[11px]">
+              <p className="text-amber-200/90 leading-relaxed text-xs sm:text-sm">
                 O teor de sólidos do leite (SLNG: {(sandiness.currentMsnf * 100).toFixed(1)}%) ultrapassa o limite seguro de saturação da água livre (máx. {(sandiness.maxSafeMsnf * 100).toFixed(1)}%). Sob oscilação térmica na vitrine, a lactose pode precipitar em microcristais perceptíveis na língua. Recomenda-se reduzir leite em pó ou elevar a proporção de leite integral/água.
               </p>
             </div>
