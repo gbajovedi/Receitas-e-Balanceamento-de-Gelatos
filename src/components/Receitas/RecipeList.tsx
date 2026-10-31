@@ -12,6 +12,7 @@ import {
   ArrowUpDown,
   Layers,
   AlertCircle,
+  CheckCircle2,
   SlidersHorizontal
 } from 'lucide-react';
 import { db, stylesDataMap } from '../../db/database';
@@ -36,6 +37,7 @@ export const RecipeList: React.FC<RecipeListProps> = ({
 }) => {
   const [search, setSearch] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('Todas');
+  const [balanceFilter, setBalanceFilter] = useState<'all' | 'balanced' | 'critical'>('all');
   const [sortBy, setSortBy] = useState<'name-asc' | 'custom-first' | 'cost-asc' | 'pac-desc'>('name-asc');
   const [viewingRecipe, setViewingRecipe] = useState<Recipe | null>(null);
   const [isStyleModalOpen, setIsStyleModalOpen] = useState(false);
@@ -206,14 +208,50 @@ export const RecipeList: React.FC<RecipeListProps> = ({
   }, [recipes]);
 
   const categoryCounts = useMemo(() => {
-    const counts: Record<string, number> = { Todas: recipes.length };
+    const counts: Record<string, number> = { Todas: 0 };
     for (const r of recipes) {
+      const matchSearch =
+        search === '' ||
+        r.name.toLowerCase().includes(search.toLowerCase()) ||
+        (r.ingredients && r.ingredients.some(i => i.name.toLowerCase().includes(search.toLowerCase())));
+      if (!matchSearch) continue;
+
+      const isCritical = metrics.get(r.id)?.needsAdjustment;
+      if (balanceFilter === 'balanced' && isCritical) continue;
+      if (balanceFilter === 'critical' && !isCritical) continue;
+
+      counts.Todas = (counts.Todas || 0) + 1;
       if (r.category) {
         counts[r.category] = (counts[r.category] || 0) + 1;
       }
     }
     return counts;
-  }, [recipes]);
+  }, [recipes, search, balanceFilter, metrics]);
+
+  // Contadores contextuais dinâmicos para o Cockpit de Status de Balanceamento
+  const balanceStatusCounts = useMemo(() => {
+    let all = 0;
+    let balanced = 0;
+    let critical = 0;
+
+    for (const r of recipes) {
+      const matchCat = selectedCategory === 'Todas' || r.category === selectedCategory;
+      const matchSearch =
+        search === '' ||
+        r.name.toLowerCase().includes(search.toLowerCase()) ||
+        (r.ingredients && r.ingredients.some(i => i.name.toLowerCase().includes(search.toLowerCase())));
+      if (!matchCat || !matchSearch) continue;
+
+      all++;
+      if (metrics.get(r.id)?.needsAdjustment) {
+        critical++;
+      } else {
+        balanced++;
+      }
+    }
+
+    return { all, balanced, critical };
+  }, [recipes, selectedCategory, search, metrics]);
 
   const filteredRecipes = useMemo(() => {
     return recipes.filter(r => {
@@ -222,9 +260,15 @@ export const RecipeList: React.FC<RecipeListProps> = ({
         search === '' ||
         r.name.toLowerCase().includes(search.toLowerCase()) ||
         (r.ingredients && r.ingredients.some(i => i.name.toLowerCase().includes(search.toLowerCase())));
-      return matchCat && matchSearch;
+      if (!matchCat || !matchSearch) return false;
+
+      const isCritical = metrics.get(r.id)?.needsAdjustment;
+      if (balanceFilter === 'balanced' && isCritical) return false;
+      if (balanceFilter === 'critical' && !isCritical) return false;
+
+      return true;
     });
-  }, [recipes, search, selectedCategory]);
+  }, [recipes, search, selectedCategory, balanceFilter, metrics]);
 
   const sortedAndFilteredRecipes = useMemo(() => {
     const list = [...filteredRecipes];
@@ -316,12 +360,96 @@ export const RecipeList: React.FC<RecipeListProps> = ({
               )}
             </div>
 
+            {/* Status de Balanceamento: Cockpit de Ação Rápida (Opção 1) */}
+            <div className="flex flex-wrap items-center gap-2 pt-0.5 pb-1">
+              <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mr-1">
+                Fórmula:
+              </span>
+              <div className="inline-flex p-1 bg-slate-900/90 border border-slate-700/80 rounded-2xl gap-1 shadow-inner flex-wrap">
+                {/* Todas */}
+                <button
+                  type="button"
+                  onClick={() => setBalanceFilter('all')}
+                  className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2 ${
+                    balanceFilter === 'all'
+                      ? 'bg-slate-700 text-white shadow-sm font-black'
+                      : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
+                  }`}
+                >
+                  <Layers className="w-3.5 h-3.5 text-slate-300" />
+                  <span>Todas</span>
+                  <span
+                    className={`text-[10px] px-1.5 py-0.5 rounded-full font-mono font-bold ${
+                      balanceFilter === 'all' ? 'bg-slate-900 text-white' : 'bg-slate-800 text-slate-400'
+                    }`}
+                  >
+                    {balanceStatusCounts.all}
+                  </span>
+                </button>
+
+                {/* Balanceadas */}
+                <button
+                  type="button"
+                  onClick={() => setBalanceFilter('balanced')}
+                  className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2 ${
+                    balanceFilter === 'balanced'
+                      ? 'bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/20 font-black'
+                      : 'text-slate-400 hover:text-emerald-300 hover:bg-emerald-500/10'
+                  }`}
+                >
+                  <CheckCircle2
+                    className={`w-3.5 h-3.5 ${
+                      balanceFilter === 'balanced' ? 'text-slate-950 stroke-[2.6]' : 'text-emerald-400'
+                    }`}
+                  />
+                  <span>Balanceadas</span>
+                  <span
+                    className={`text-[10px] px-1.5 py-0.5 rounded-full font-mono font-bold ${
+                      balanceFilter === 'balanced'
+                        ? 'bg-emerald-600/35 text-slate-950 font-black'
+                        : 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
+                    }`}
+                  >
+                    {balanceStatusCounts.balanced}
+                  </span>
+                </button>
+
+                {/* Precisam de Ajuste */}
+                <button
+                  type="button"
+                  onClick={() => setBalanceFilter('critical')}
+                  className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2 ${
+                    balanceFilter === 'critical'
+                      ? 'bg-amber-500 text-slate-950 shadow-md shadow-amber-500/20 font-black'
+                      : 'text-slate-400 hover:text-amber-300 hover:bg-amber-500/10'
+                  }`}
+                >
+                  <AlertCircle
+                    className={`w-3.5 h-3.5 ${
+                      balanceFilter === 'critical' ? 'text-slate-950 stroke-[2.6]' : 'text-amber-400'
+                    }`}
+                  />
+                  <span>Precisam de Ajuste</span>
+                  <span
+                    className={`text-[10px] px-1.5 py-0.5 rounded-full font-mono font-bold ${
+                      balanceFilter === 'critical'
+                        ? 'bg-amber-600/35 text-slate-950 font-black'
+                        : 'bg-amber-500/10 text-amber-400 border border-amber-500/20'
+                    }`}
+                  >
+                    {balanceStatusCounts.critical}
+                  </span>
+                </button>
+              </div>
+            </div>
+
             {/* Category filter pills with counters and unique icons */}
             <div className="flex flex-wrap items-center gap-2">
               {categories.map(cat => {
                 const isSelected = selectedCategory === cat;
                 const count = categoryCounts[cat] || 0;
                 const catTheme = cat !== 'Todas' ? getCategoryTheme(cat) : null;
+                const isDimmed = count === 0 && cat !== 'Todas' && !isSelected;
                 return (
                   <button
                     key={cat}
@@ -330,6 +458,8 @@ export const RecipeList: React.FC<RecipeListProps> = ({
                     className={`px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all flex items-center gap-1.5 ${
                       isSelected
                         ? 'bg-amber-500 text-slate-950 shadow-md shadow-amber-500/20 font-black'
+                        : isDimmed
+                        ? 'bg-slate-900/60 border border-slate-800 text-slate-500 hover:text-slate-300 hover:border-slate-700 opacity-60'
                         : 'bg-slate-900 border border-slate-700 text-slate-300 hover:text-white hover:border-slate-600'
                     }`}
                   >
@@ -343,7 +473,11 @@ export const RecipeList: React.FC<RecipeListProps> = ({
                     <span>{cat}</span>
                     <span
                       className={`text-[10px] px-1.5 py-0.5 rounded-full font-mono font-bold ${
-                        isSelected ? 'bg-amber-600/30 text-slate-950' : 'bg-slate-800 text-slate-400'
+                        isSelected
+                          ? 'bg-amber-600/30 text-slate-950'
+                          : isDimmed
+                          ? 'bg-slate-800/50 text-slate-500'
+                          : 'bg-slate-800 text-slate-400'
                       }`}
                     >
                       {count}
@@ -355,16 +489,42 @@ export const RecipeList: React.FC<RecipeListProps> = ({
 
             {/* Sub-bar: Results Count & Quick Sort */}
             <div className="flex items-center justify-between text-xs text-slate-400 pt-2 border-t border-slate-700/60 flex-wrap gap-2">
-              <span>
-                Exibindo <strong className="text-amber-400 font-mono font-bold">{sortedAndFilteredRecipes.length}</strong>{' '}
-                de <strong className="text-slate-200 font-mono font-bold">{recipes.length}</strong> receitas
-                {selectedCategory !== 'Todas' && (
-                  <span>
-                    {' '}
-                    em <span className="text-white font-bold">{selectedCategory}</span>
-                  </span>
+              <div className="flex items-center gap-2 flex-wrap">
+                <span>
+                  Exibindo <strong className="text-amber-400 font-mono font-bold">{sortedAndFilteredRecipes.length}</strong>{' '}
+                  de <strong className="text-slate-200 font-mono font-bold">{recipes.length}</strong> receitas
+                  {balanceFilter !== 'all' && (
+                    <span>
+                      {' '}
+                      (
+                      <strong className={balanceFilter === 'balanced' ? 'text-emerald-400 font-bold' : 'text-amber-400 font-bold'}>
+                        {balanceFilter === 'balanced' ? 'Balanceadas' : 'Precisam de Ajuste'}
+                      </strong>
+                      )
+                    </span>
+                  )}
+                  {selectedCategory !== 'Todas' && (
+                    <span>
+                      {' '}
+                      em <span className="text-white font-bold">{selectedCategory}</span>
+                    </span>
+                  )}
+                </span>
+
+                {(selectedCategory !== 'Todas' || balanceFilter !== 'all' || search) && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSelectedCategory('Todas');
+                      setBalanceFilter('all');
+                      setSearch('');
+                    }}
+                    className="text-[11px] text-amber-400/90 hover:text-amber-300 underline font-semibold ml-2 cursor-pointer transition-colors"
+                  >
+                    Limpar filtros
+                  </button>
                 )}
-              </span>
+              </div>
 
               <div className="flex items-center gap-2">
                 <ArrowUpDown className="w-3.5 h-3.5 text-slate-400" />
