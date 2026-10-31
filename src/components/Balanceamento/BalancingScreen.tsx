@@ -2,7 +2,14 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { Recipe, Ingredient, StyleStandard, VariegatoItem, RecipeItem } from '../../types/gelato';
 import { calculateBatchAnalysis } from '../../core/calculator';
 import { getStoredPricingParams, getPricingSettings, PRICING_UPDATED_EVENT, PricingParams } from '../../core/pricingStorage';
-import { STYLES_UPDATED_EVENT } from '../../core/stylesStorage';
+import {
+  STYLES_UPDATED_EVENT,
+  getActivePresetId,
+  applyGoldStandardPreset,
+  applyCarpigianiPreset,
+  hasCarpigianiData,
+  StylePresetId
+} from '../../core/stylesStorage';
 import { stylesDataMap, db } from '../../db/database';
 import { NutrientBars } from './NutrientBars';
 import { AllergensBadge } from './AllergensBadge';
@@ -28,7 +35,9 @@ import {
   ArrowDownWideNarrow,
   AlertTriangle,
   PieChart,
-  SlidersHorizontal
+  SlidersHorizontal,
+  ShieldCheck,
+  GraduationCap
 } from 'lucide-react';
 
 const getIngredientCategoryPill = (category?: string) => {
@@ -87,6 +96,7 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
   const [isSaveModalOpen, setIsSaveModalOpen] = useState<boolean>(false);
   const [isStyleModalOpen, setIsStyleModalOpen] = useState<boolean>(false);
   const [stylesRevision, setStylesRevision] = useState<number>(0);
+  const [activePresetId, setActivePresetId] = useState<StylePresetId>(() => getActivePresetId());
   const [batchScaleInput, setBatchScaleInput] = useState<string>('1000');
   const [lastActiveRecipeId, setLastActiveRecipeId] = useState<string>(initialRecipeId || (recipes[0]?.id ?? ''));
 
@@ -123,8 +133,14 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
 
   // Sincronização em tempo real com metas físico-químicas
   useEffect(() => {
-    const handleStylesUpdate = () => {
+    const handleStylesUpdate = (e: Event) => {
       setStylesRevision(prev => prev + 1);
+      const customEvt = e as CustomEvent;
+      if (customEvt?.detail?.presetId) {
+        setActivePresetId(customEvt.detail.presetId);
+      } else {
+        setActivePresetId(getActivePresetId());
+      }
     };
     window.addEventListener(STYLES_UPDATED_EVENT, handleStylesUpdate);
     window.addEventListener('storage', handleStylesUpdate);
@@ -410,16 +426,58 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
                 </div>
               </div>
 
-              {/* Botão de Ajuste Manual de Metas Físico-Químicas */}
-              <button
-                type="button"
-                onClick={() => setIsStyleModalOpen(true)}
-                className="flex items-center gap-1.5 bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-amber-500/50 text-slate-300 hover:text-amber-300 rounded-xl px-3 py-2.5 text-xs font-bold transition-all shadow-inner shrink-0 group"
-                title="Ajustar metas físico-químicas e limites técnicos deste estilo"
-              >
-                <SlidersHorizontal className="w-3.5 h-3.5 text-amber-400 group-hover:rotate-45 transition-transform" />
-                <span className="hidden sm:inline">Ajustar Metas</span>
-              </button>
+              {/* Presets Rápidos e Ajuste de Metas (3 Botões) */}
+              <div className="flex items-center gap-1.5 flex-wrap">
+                {/* 1. Padrão Ouro */}
+                <button
+                  type="button"
+                  onClick={() => applyGoldStandardPreset()}
+                  className={`flex items-center gap-1.5 rounded-xl px-3 py-2.5 text-xs font-bold transition-all shadow-inner shrink-0 border ${
+                    activePresetId === 'gold'
+                      ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/50 shadow-sm shadow-emerald-500/10'
+                      : 'bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border-slate-700 hover:border-slate-600'
+                  }`}
+                  title="Ativar Padrão Ouro Híbrido Protegido (Recomendado: proteção contra arenosidade de Caviezel e PAC Carpigiani)"
+                >
+                  <ShieldCheck className={`w-3.5 h-3.5 ${activePresetId === 'gold' ? 'text-emerald-400' : 'text-slate-400'}`} />
+                  <span>Padrão Ouro</span>
+                </button>
+
+                {/* 2. Carpigiani Estrito (exibido apenas se houver dados da Carpigiani para o estilo) */}
+                {hasCarpigianiData(targetStyleName) && (
+                  <button
+                    type="button"
+                    onClick={() => applyCarpigianiPreset()}
+                    className={`flex items-center gap-1.5 rounded-xl px-3 py-2.5 text-xs font-bold transition-all shadow-inner shrink-0 border ${
+                      activePresetId === 'carpigiani'
+                        ? 'bg-sky-500/20 text-sky-300 border-sky-500/50 shadow-sm shadow-sky-500/10'
+                        : 'bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border-slate-700 hover:border-slate-600'
+                    }`}
+                    title="Ativar réguas estritas da Carpigiani Gelato University (Apostila 2025/2026)"
+                  >
+                    <GraduationCap className={`w-3.5 h-3.5 ${activePresetId === 'carpigiani' ? 'text-sky-400' : 'text-slate-400'}`} />
+                    <span>Carpigiani Estrito</span>
+                  </button>
+                )}
+
+                {/* 3. Ajustar Metas */}
+                <button
+                  type="button"
+                  onClick={() => setIsStyleModalOpen(true)}
+                  className={`flex items-center gap-1.5 rounded-xl px-3 py-2.5 text-xs font-bold transition-all shadow-inner shrink-0 group border ${
+                    activePresetId === 'custom'
+                      ? 'bg-purple-500/20 text-purple-300 border-purple-500/50 shadow-sm'
+                      : 'bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-amber-300 border-slate-700 hover:border-amber-500/50'
+                  }`}
+                  title="Ajustar manualmente metas e limites físico-químicos deste estilo"
+                >
+                  <SlidersHorizontal className="w-3.5 h-3.5 text-amber-400 group-hover:rotate-45 transition-transform" />
+                  <span>Ajustar Metas</span>
+                  {activePresetId === 'custom' && (
+                    <span className="w-1.5 h-1.5 rounded-full bg-purple-400 ml-0.5 animate-pulse" />
+                  )}
+                </button>
+              </div>
             </div>
           </div>
 
