@@ -604,7 +604,7 @@ export const BalancingScreen: React.FC<BalancingScreenProps> = ({
                 <div className="flex items-center gap-1 border-l border-slate-700/80 pl-2 ml-1">
                   {[
                     { label: '1kg', grams: 1000, title: '1 kg (Receita Base / Teste)' },
-                    { label: '2.5kg', grams: 2500, title: '2.5 kg (Meia Cuba Vitrine)' },
+                    { label: '3kg', grams: 3000, title: '3 kg (Produção Média / Cuba)' },
                     { label: '4kg', grams: 4000, title: '4 kg (Cuba Padrão GN 5L)' }
                   ].map(preset => {
                     const isCurrent = Math.abs(analysis.caldaWeight - preset.grams) < 2;
