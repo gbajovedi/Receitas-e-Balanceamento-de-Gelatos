@@ -1,0 +1,1 @@
+if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/Receitas-e-Balanceamento-de-Gelatos/sw.js', { scope: '/Receitas-e-Balanceamento-de-Gelatos/' })})}
